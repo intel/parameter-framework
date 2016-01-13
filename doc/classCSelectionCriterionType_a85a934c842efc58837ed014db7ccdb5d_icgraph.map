@@ -1,0 +1,10 @@
+<map id="CSelectionCriterionType::getFormattedState" name="CSelectionCriterionType::getFormattedState">
+<area shape="rect" id="node2" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="225,37,416,79"/>
+<area shape="rect" id="node9" href="$classCSelectionCriterion.html#a70f0e613ec0b6d6fa03d2db2b6150898" title="Export to XML. " alt="" coords="249,103,393,144"/>
+<area shape="rect" id="node3" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="464,5,660,47"/>
+<area shape="rect" id="node8" href="$classCSelectionCriterion.html#a9de488f252ad2b33b2cfe843496d47ba" title="From ISelectionCriterionInterface. " alt="" coords="490,71,634,112"/>
+<area shape="rect" id="node4" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="708,5,861,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="909,13,1067,39"/>
+<area shape="rect" id="node6" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="1115,5,1357,47"/>
+<area shape="rect" id="node7" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1405,13,1480,39"/>
+</map>

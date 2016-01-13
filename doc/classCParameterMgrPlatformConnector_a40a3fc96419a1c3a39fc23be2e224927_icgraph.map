@@ -1,3 +1,6 @@
 <map id="CParameterMgrPlatformConnector::setLogger" name="CParameterMgrPlatformConnector::setLogger">
-<area shape="rect" id="node2" href="$classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221" title="CTestPlatform::CTestPlatform" alt="" coords="296,13,503,39"/>
+<area shape="rect" id="node2" href="$structPfwHandler__.html#a239533da5b455134b8ac3b173e4b1719" title="PfwHandler_::setLogger" alt="" coords="313,5,485,32"/>
+<area shape="rect" id="node4" href="$classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221" title="CTestPlatform::CTestPlatform" alt="" coords="296,80,503,107"/>
+<area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="551,5,625,32"/>
+<area shape="rect" id="node5" href="$test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="561,80,615,107"/>
 </map>

@@ -1,9 +1,4 @@
 <map id="CConfigurableElement::fillSyncerSet" name="CConfigurableElement::fillSyncerSet">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="265,5,429,47"/>
-<area shape="rect" id="node3" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="239,71,454,112"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="267,137,426,163"/>
-<area shape="rect" id="node8" href="$classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e" title="Look for subsystems that need to be resynchronized. " alt="" coords="217,188,476,229"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="524,107,735,134"/>
-<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="525,159,733,200"/>
-<area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="783,100,991,141"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="243,5,407,47"/>
+<area shape="rect" id="node3" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="217,71,432,112"/>
 </map>

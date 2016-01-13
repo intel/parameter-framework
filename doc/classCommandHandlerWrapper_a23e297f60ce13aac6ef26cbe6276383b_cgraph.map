@@ -1,3 +1,5 @@
 <map id="CommandHandlerWrapper::process" name="CommandHandlerWrapper::process">
-<area shape="rect" id="node2" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="244,13,479,39"/>
+<area shape="rect" id="node2" href="$classCRequestMessage.html#a6c555ce6d4198c825ba2d14785b29639" title="CRequestMessage::CRequest\lMessage" alt="" coords="258,5,465,47"/>
+<area shape="rect" id="node4" href="$classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3" title="CRequestMessage::addArgument" alt="" coords="244,71,479,98"/>
+<area shape="rect" id="node3" href="$classCMessage.html#ac024ca2d84ab9a05e6b3ff5c8f807af5" title="CMessage::CMessage" alt="" coords="527,13,689,39"/>
 </map>

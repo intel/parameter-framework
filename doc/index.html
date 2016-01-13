@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -83,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">parameter-framework Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a href="https://travis-ci.org/01org/parameter-framework"><img alt="Build Status" title="Build Status" src="https://travis-ci.org/01org/parameter-framework.svg?branch=master" /></a><a href="https://ci.appveyor.com/project/parameter-framework/parameter-framework"><img alt="Windows Build Status" title="Windows Build Status" src="https://ci.appveyor.com/api/projects/status/ga24jp8tet0qimbu/branch/master" /></a><a href="https://coveralls.io/r/01org/parameter-framework"><img alt="Coverage Status" title="Coverage Status" src="https://coveralls.io/repos/01org/parameter-framework/badge.svg?branch=master" /></a></p>
+<div class="textblock"><p><a href="https://travis-ci.org/01org/parameter-framework">![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=master)</a> <a href="https://ci.appveyor.com/project/parameter-framework/parameter-framework">![Windows Build Status](https://ci.appveyor.com/api/projects/status/ga24jp8tet0qimbu/branch/master)</a> <a href="https://codecov.io/github/01org/parameter-framework?branch=master">![Coverage Status](https://codecov.io/github/01org/parameter-framework/coverage.svg?branch=master)</a></p>
 <h2>Introduction</h2>
 <p>The parameter-framework is a plugin-based and rule-based framework for handling parameters. This means that you can:</p>
 <ol type="1">
@@ -119,22 +118,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3>Dependencies</h3>
 <p>In order to compile you'll need, at the very least:</p>
 <ul>
-<li>CMake (v2.8.12 or later);</li>
+<li>CMake (v3.2.2 or later) (v3.3.0 or later on Windows);</li>
 <li>A C/C++ compiler supporting C++11;</li>
 <li>libxml2 headers and libraries (Provided by the <code>libxml2-dev</code> on debian-based distributions);</li>
+</ul>
+<p>If you want to use the remote command interface (<code>NETWORKING=ON</code> by default), you'll also need:</p>
+<ul>
 <li>Standalone ASIO (1.10.6 or later) (Provided by <code>libasio-dev</code> on debian-based distributions) ASIO is C++ header-only ASynchronous-IO library.</li>
 </ul>
-<p>If you want to compile the <em>Python bindings</em>, you'll also need:</p>
+<p>If you want to compile the <em>Python bindings</em> (<code>PYTHON_BINDINGS=ON</code> by default), you'll also need:</p>
 <ul>
 <li>SWIG 2.0 (A binding generator);</li>
 <li>Python2.7 development environment (Provided by <code>python2.7-dev</code> on debian-based distributions)</li>
 </ul>
-<p>If you want to <em>compile and run the tests</em>, you'll also need:</p>
+<p>If you want to <em>compile and run the tests</em> (<code>BUILD_TESTING=ON</code> by default), you'll also need:</p>
 <ul>
 <li>Catch (Provided by <code>catch</code> on debian-based distributions). Catch is a single-header test framework - as such you may also download it directly <a href="https://raw.githubusercontent.com/philsquared/Catch/master/single_include/catch.hpp">here</a>;</li>
 <li>Python2.7 (Provided by <code>python2.7</code> on debian-based distribution - it is preinstalled on most distributions).</li>
 </ul>
-<p>If you want to <em>build the code documentation</em>, you'll need <code>doxygen</code> and <code>graphviz</code>. This doc is already available to you - see the wiki.</p>
+<p>If you want to <em>build the code documentation</em> (<code>DOXYGEN=OFF</code> by default), you'll need <code>doxygen</code> and <code>graphviz</code>. This doc is already available to you - see the wiki.</p>
 <p><b>To list all available configuration options, try</b> <code>cmake -L</code> (you may also filter-out lines starting with <code>CMAKE_</code>).</p>
 <h3>How-To</h3>
 <p>If you are already familiar with CMake, you know what to do.</p>
@@ -149,16 +151,15 @@ cmake /path/to/sources/of/parameter-framework
 make
 </pre><p>After a build you may want to run the parameter-framework tests with <code>make test</code> or <code>ctest</code>.</p>
 <h3>Compiling on Windows</h3>
-<p>If you don't already have libxml2 headers/libraries and don't want to build them by yourself, we have a precompiled version for x86-64.</p>
+<p>The only supported compiler on Windows in Visual Studio 14 2015. The 2013 version does not support some C++11 features. When running CMake's configuration step (the first call to CMake) you must specify the build system you want to use, i.e. <code>-G Visual Studio 14 2015 Win64</code>. Again, you may refer to <code>appveyor.yml</code>.</p>
+<p>If you don't already have libxml2 headers/libraries and don't want to build them by yourself, we have a precompiled version for x86-64. <em>These are provided for reference and as a convenience for development purpose only; when making a final product, you should recompile the latest libxml2 release yourself.</em></p>
 <p>Compiled with Visual Studio 12 2013:</p><ul>
 <li><a href="https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip">in debug configuration</a></li>
 <li><a href="https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip">in release configuration</a></li>
 </ul>
 <p>We have mirrored ASIO 1.10.6 <a href="https://01.org/sites/default/files/asio-1.10.6.tar.gz">here</a>.</p>
 <p>Once you have downloaded and uncompressed these two dependencies, add the following two entries to <code>CMAKE_PREFIX_PATH</code>: </p><pre class="fragment">/path/to/libxml2-x86_64/
-/path/to/asio-1.10.6/
-</pre><p>When running CMake's configuration step (the first call to CMake) you should specify the build system you want to use. If you are using the precompiled libxml2 mentioned above, add: <code>-G Visual Studio 12 2013 Win64</code> </p>
-</div></div><!-- contents -->
+/path/to/asio-1.10.6/</pre> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

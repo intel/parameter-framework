@@ -1,7 +1,0 @@
-<map id="CTypeElement::getArrayLength" name="CTypeElement::getArrayLength">
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a590967d30772d8ada0ac367f4273d248" title="CInstanceConfigurableElement\l::getArrayLength" alt="" coords="272,5,491,47"/>
-<area shape="rect" id="node5" href="$classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8" title="CTypeElement::toXml" alt="" coords="303,71,460,98"/>
-<area shape="rect" id="node3" href="$classElementHandle.html#a338edfe012745ce3dd8ecfe7180385aa" title="ElementHandle::getArrayLength" alt="" coords="539,13,765,39"/>
-<area shape="rect" id="node4" href="$classElementHandle.html#a7dbe78e90ccb7a01d1a00011ae6b009e" title="ElementHandle::isArray" alt="" coords="813,13,985,39"/>
-<area shape="rect" id="node6" href="$classCBaseParameter.html#a42621ccce8ce4235e124789c7f2a9b8a" title="Serialize the structure to xml. " alt="" coords="554,64,750,105"/>
-</map>

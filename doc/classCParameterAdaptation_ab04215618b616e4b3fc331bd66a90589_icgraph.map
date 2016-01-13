@@ -1,3 +1,5 @@
 <map id="CParameterAdaptation::fromUserValue" name="CParameterAdaptation::fromUserValue">
-<area shape="rect" id="node2" href="$classCIntegerParameterType.html#a9d25cc4e229809073650232292da1e0f" title="CIntegerParameterType\l::toBlackboard" alt="" coords="221,5,392,47"/>
+<area shape="rect" id="node2" href="$classCIntegerParameterType.html#a550bff3ea9bbfe85712ef70b67f9f56e" title="CIntegerParameterType\l::toBlackboard" alt="" coords="239,5,410,47"/>
+<area shape="rect" id="node3" href="$classCLinearParameterAdaptation.html#ac9ab066a2403bafee63dc96f05bfb978" title="CLinearParameterAdaptation\l::fromUserValue" alt="" coords="221,71,428,112"/>
+<area shape="rect" id="node4" href="$classCLogarithmicParameterAdaptation.html#aa3ff8869b09ca59447da9d1ea60e2102" title="Conversions must satisfy the following: f(f&#39;(a)) = a Let f=fromUserValue and f&#39;=toUserValue if y = f(..." alt="" coords="476,71,719,112"/>
 </map>

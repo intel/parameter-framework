@@ -1,5 +1,5 @@
 <map id="pfwSetCriterion" name="pfwSetCriterion">
-<area shape="rect" id="node2" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="214,5,325,32"/>
+<area shape="rect" id="node2" href="$classStatus.html#af094cfd33ddfae117f710778ef648af5" title="Fail with the given error msg. " alt="" coords="214,5,325,32"/>
 <area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a1f9464a07a220fe7ed69bf34fdbaa3ef" title="getCriterion" alt="" coords="221,56,318,83"/>
 <area shape="rect" id="node4" href="$classISelectionCriterionInterface.html#a691565a6ffda7c44e419c3b048cc5d1e" title="ISelectionCriterionInterface\l::setCriterionState" alt="" coords="172,107,367,149"/>
 <area shape="rect" id="node5" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="208,173,331,200"/>

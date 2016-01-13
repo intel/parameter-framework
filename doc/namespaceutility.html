@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -112,6 +111,23 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a09cce371085c0096b86c22fb467da3d4"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt , class BinaryOperation &gt; </td></tr>
+<tr class="memitem:a09cce371085c0096b86c22fb467da3d4"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a09cce371085c0096b86c22fb467da3d4">join</a> (InputIt first, InputIt last, BinaryOperation op, T empty=T{})</td></tr>
+<tr class="memdesc:a09cce371085c0096b86c22fb467da3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join all elements in [first, last[ with op.  <a href="#a09cce371085c0096b86c22fb467da3d4">More...</a><br /></td></tr>
+<tr class="separator:a09cce371085c0096b86c22fb467da3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1a5fc9a6a732edf346e956f8fef957d"><td class="memTemplParams" colspan="2">template&lt;class Sequence &gt; </td></tr>
+<tr class="memitem:ad1a5fc9a6a732edf346e956f8fef957d"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d">asString</a> (const Sequence &amp;lstr, const std::string &amp;separator=&quot;\n&quot;)</td></tr>
+<tr class="memdesc:ad1a5fc9a6a732edf346e956f8fef957d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format the items of a sequence container of strings into a string.  <a href="#ad1a5fc9a6a732edf346e956f8fef957d">More...</a><br /></td></tr>
+<tr class="separator:ad1a5fc9a6a732edf346e956f8fef957d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">asString</a> (const std::map&lt; std::string, std::string &gt; &amp;mapStr, const std::string &amp;strItemSeparator=&quot;, &quot;, const std::string &amp;strKeyValueSeparator=&quot;:&quot;)</td></tr>
+<tr class="memdesc:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format the items of a map into a string as a list of key-value pairs.  <a href="#a0c420c08a1eb41e2b27ed6d28ac5a096">More...</a><br /></td></tr>
+<tr class="separator:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40">appendTitle</a> (std::string &amp;strTo, const std::string &amp;strTitle)</td></tr>
+<tr class="memdesc:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility to underline.  <a href="#afd9949bbd80a31bbdbc1aa57439c5d40">More...</a><br /></td></tr>
+<tr class="separator:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af26524fd398a870267af79c918862662"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#af26524fd398a870267af79c918862662">isHexadecimal</a> (const std::string &amp;strValue)</td></tr>
+<tr class="memdesc:af26524fd398a870267af79c918862662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a string has the written representation of an hexadecimal number (Which is the prefix "0x" or "0X" in C++).  <a href="#af26524fd398a870267af79c918862662">More...</a><br /></td></tr>
+<tr class="separator:af26524fd398a870267af79c918862662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad60661d9c1edc5053bee3cdb84b895d7"><td class="memTemplParams" colspan="2">template&lt;class Destination , class Source &gt; </td></tr>
 <tr class="memitem:ad60661d9c1edc5053bee3cdb84b895d7"><td class="memTemplItemLeft" align="right" valign="top">std::remove_reference&lt; Destination &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutility.html#ad60661d9c1edc5053bee3cdb84b895d7">binaryCopy</a> (const Source source)</td></tr>
 <tr class="memdesc:ad60661d9c1edc5053bee3cdb84b895d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw copy of one variable to another of the same size.  <a href="#ad60661d9c1edc5053bee3cdb84b895d7">More...</a><br /></td></tr>
@@ -137,21 +153,6 @@ Functions</h2></td></tr>
 <tr class="separator:a3db2a3b546b45bb63dd266e48d003946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab86e79948f4c19a6de2104ce88e3f007"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#ab86e79948f4c19a6de2104ce88e3f007">SCENARIO</a> (&quot;binaryCopy bit exactness&quot;)</td></tr>
 <tr class="separator:ab86e79948f4c19a6de2104ce88e3f007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fb85a4dbd0307733f0dda49811db6d1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">asString</a> (const std::list&lt; std::string &gt; &amp;lstr, const std::string &amp;separator=&quot;\n&quot;)</td></tr>
-<tr class="memdesc:a3fb85a4dbd0307733f0dda49811db6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format the items of a map into a string as a list of key-value pairs.  <a href="#a3fb85a4dbd0307733f0dda49811db6d1">More...</a><br /></td></tr>
-<tr class="separator:a3fb85a4dbd0307733f0dda49811db6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">asString</a> (const std::map&lt; std::string, std::string &gt; &amp;mapStr, const std::string &amp;strItemSeparator=&quot;, &quot;, const std::string &amp;strKeyValueSeparator=&quot;:&quot;)</td></tr>
-<tr class="memdesc:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format the items of a map into a string as a list of key-value pairs.  <a href="#a0c420c08a1eb41e2b27ed6d28ac5a096">More...</a><br /></td></tr>
-<tr class="separator:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40">appendTitle</a> (std::string &amp;strTo, const std::string &amp;strTitle)</td></tr>
-<tr class="memdesc:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility to underline.  <a href="#afd9949bbd80a31bbdbc1aa57439c5d40">More...</a><br /></td></tr>
-<tr class="separator:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af26524fd398a870267af79c918862662"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#af26524fd398a870267af79c918862662">isHexadecimal</a> (const std::string &amp;strValue)</td></tr>
-<tr class="memdesc:af26524fd398a870267af79c918862662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a string has the written representation of an hexadecimal number (Which is the prefix "0x" or "0X" in C++).  <a href="#af26524fd398a870267af79c918862662">More...</a><br /></td></tr>
-<tr class="separator:af26524fd398a870267af79c918862662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09cce371085c0096b86c22fb467da3d4"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt , class BinaryOperation &gt; </td></tr>
-<tr class="memitem:a09cce371085c0096b86c22fb467da3d4"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a09cce371085c0096b86c22fb467da3d4">join</a> (InputIt first, InputIt last, BinaryOperation op, T empty=T{})</td></tr>
-<tr class="separator:a09cce371085c0096b86c22fb467da3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -183,13 +184,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void utility::appendTitle </td>
           <td>(</td>
-          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
           <td class="paramname"><em>strTo</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>strTitle</em>&#160;</td>
         </tr>
         <tr>
@@ -202,25 +203,28 @@ Variables</h2></td></tr>
 
 <p>Utility to underline. </p>
 
-<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00063">63</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00055">55</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_afd9949bbd80a31bbdbc1aa57439c5d40_icgraph.svg" width="1658" height="138"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_afd9949bbd80a31bbdbc1aa57439c5d40_icgraph.svg" width="1451" height="138"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a3fb85a4dbd0307733f0dda49811db6d1"></a>
+<a class="anchor" id="ad1a5fc9a6a732edf346e956f8fef957d"></a>
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class Sequence &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::string utility::asString </td>
           <td>(</td>
-          <td class="paramtype">const std::list&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramtype">const Sequence &amp;&#160;</td>
           <td class="paramname"><em>lstr</em>, </td>
         </tr>
         <tr>
@@ -237,23 +241,29 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Format the items of a map into a string as a list of key-value pairs. </p>
-<p>The map must be composed of pairs of strings.</p>
+<p>Format the items of a sequence container of strings into a string. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Sequence</td><td>the string sequence container (e.g. list or vector) </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mapStr</td><td>A map of strings </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lstr</td><td>A list of strings </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">separator</td><td>The separator to use between each item</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the concatenated elements. </dd></dl>
 
-<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00043">43</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Utility_8h_source.html#l00075">75</a> of file <a class="el" href="Utility_8h_source.html">Utility.h</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a3fb85a4dbd0307733f0dda49811db6d1_icgraph.svg" width="975" height="540"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_ad1a5fc9a6a732edf346e956f8fef957d_icgraph.svg" width="1231" height="494"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -294,19 +304,28 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">mapStr</td><td>A map of strings </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">strOutput</td><td>The output string </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strItemSeparator</td><td>The separator to use between each item (key-value pair) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">strKeyValueSeparator</td><td>The separator to use between key and value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strKeyValueSeparator</td><td>The separator to use between key and value</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>the pretty-printed map </dd></dl>
 
-<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00051">51</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00043">43</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a0c420c08a1eb41e2b27ed6d28ac5a096_cgraph.svg" width="291" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a0c420c08a1eb41e2b27ed6d28ac5a096_cgraph.svg" width="291" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a0c420c08a1eb41e2b27ed6d28ac5a096_icgraph.svg" width="875" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -348,6 +367,14 @@ template&lt;class Destination , class Source &gt; </div>
 
 <p>Definition at line <a class="el" href="BinaryCopy_8hpp_source.html#l00055">55</a> of file <a class="el" href="BinaryCopy_8hpp_source.html">BinaryCopy.hpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_ad60661d9c1edc5053bee3cdb84b895d7_icgraph.svg" width="402" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a3db2a3b546b45bb63dd266e48d003946"></a>
@@ -378,6 +405,14 @@ template&lt;class T1 , class T2 &gt; </div>
 
 <p>Definition at line <a class="el" href="utility_8cpp_source.html#l00174">174</a> of file <a class="el" href="utility_8cpp_source.html">utility.cpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a3db2a3b546b45bb63dd266e48d003946_icgraph.svg" width="363" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a0f94956bed3f73bceb3bdd22895ef6a4"></a>
@@ -399,7 +434,8 @@ template&lt;class T1 , class T2 &gt; </div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a0f94956bed3f73bceb3bdd22895ef6a4_cgraph.svg" width="255" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a0f94956bed3f73bceb3bdd22895ef6a4_cgraph.svg" width="255" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -424,7 +460,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a5646748024d7a15cbe51a96732fe96b5_cgraph.svg" width="255" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a5646748024d7a15cbe51a96732fe96b5_cgraph.svg" width="419" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -453,12 +490,13 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the string is written as hexa, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00068">68</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Utility_8cpp_source.html#l00060">60</a> of file <a class="el" href="Utility_8cpp_source.html">Utility.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_af26524fd398a870267af79c918862662_icgraph.svg" width="423" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_af26524fd398a870267af79c918862662_icgraph.svg" width="423" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -502,12 +540,19 @@ template&lt;class T , class InputIt , class BinaryOperation &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Utility_8h_source.html#l00051">51</a> of file <a class="el" href="Utility_8h_source.html">Utility.h</a>.</p>
+<p>Join all elements in [first, last[ with op. </p>
+<p>If their is no element to join, return empty.</p>
+<p>Example (joining strings): </p><pre class="fragment">* let op = [](auto l, auto r){ return l + "|" + r; }
+* let [first, last[ = list&lt;string&gt;{"1", "2", "3"}
+* then join(first, last, op) == "1|2|3"
+* </pre> 
+<p>Definition at line <a class="el" href="Utility_8h_source.html#l00055">55</a> of file <a class="el" href="Utility_8h_source.html">Utility.h</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a09cce371085c0096b86c22fb467da3d4_icgraph.svg" width="274" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a09cce371085c0096b86c22fb467da3d4_icgraph.svg" width="274" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -534,6 +579,14 @@ template&lt;class T , class... Args&gt; </div>
 
 <p>Definition at line <a class="el" href="Memory_8hpp_source.html#l00041">41</a> of file <a class="el" href="Memory_8hpp_source.html">Memory.hpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a301c7f13096a34ad739625a71ae64ccf_icgraph.svg" width="959" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a79ad59e92aa9b682f3749bb10c34f6bb"></a>
@@ -555,7 +608,8 @@ template&lt;class T , class... Args&gt; </div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a79ad59e92aa9b682f3749bb10c34f6bb_cgraph.svg" width="274" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a79ad59e92aa9b682f3749bb10c34f6bb_cgraph.svg" width="274" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -580,7 +634,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_afc1726e77866e5b0ed7eae4641b49787_cgraph.svg" width="326" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_afc1726e77866e5b0ed7eae4641b49787_cgraph.svg" width="326" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -605,7 +660,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_ae1a807f7f950d9b509b1745708acb8ce_cgraph.svg" width="344" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_ae1a807f7f950d9b509b1745708acb8ce_cgraph.svg" width="344" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -630,7 +686,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a6a8311e24470a0f091f1ad387347c7fc_cgraph.svg" width="344" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_a6a8311e24470a0f091f1ad387347c7fc_cgraph.svg" width="344" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -651,6 +708,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="utility_8cpp_source.html#l00195">195</a> of file <a class="el" href="utility_8cpp_source.html">utility.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceutility_ab86e79948f4c19a6de2104ce88e3f007_cgraph.svg" width="363" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>

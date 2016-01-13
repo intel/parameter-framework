@@ -1,7 +1,4 @@
 <map id="CParameterAccessContext::getAutoSync" name="CParameterAccessContext::getAutoSync">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="274,5,438,47"/>
 <area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="247,71,465,112"/>
-<area shape="rect" id="node4" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="513,27,732,54"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#aa0367b428dcd868c67f34989bb101020" title="CBaseParameter::access" alt="" coords="531,78,714,105"/>
-<area shape="rect" id="node6" href="$classCBitParameter.html#a8cf5e6e2d4e823eca86f0c30ff837fef" title="CBitParameter::access" alt="" coords="539,129,706,155"/>
 </map>

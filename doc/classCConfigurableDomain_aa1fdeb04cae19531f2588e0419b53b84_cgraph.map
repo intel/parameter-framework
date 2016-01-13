@@ -1,5 +1,0 @@
-<map id="CConfigurableDomain::fromXml" name="CConfigurableDomain::fromXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="217,5,410,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="238,56,389,83"/>
-<area shape="rect" id="node4" href="$classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd" title="CXmlDomainImportContext\l::autoValidationRequired" alt="" coords="215,107,412,149"/>
-</map>

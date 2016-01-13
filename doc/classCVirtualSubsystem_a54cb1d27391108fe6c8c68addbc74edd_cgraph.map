@@ -1,3 +1,6 @@
 <map id="CVirtualSubsystem::CVirtualSubsystem" name="CVirtualSubsystem::CVirtualSubsystem">
-<area shape="rect" id="node2" href="$classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca" title="Retrieve wrapped warning logger. " alt="" coords="205,5,343,47"/>
+<area shape="rect" id="node2" href="$classCSubsystem.html#ae82425f8db738960f723ac028020cbe3" title="Class Constructor. " alt="" coords="205,13,397,39"/>
+<area shape="rect" id="node5" href="$classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca" title="Retrieve wrapped warning logger. " alt="" coords="233,64,370,105"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a227e3ad5b43843c0171bdd80ab9ec048" title="CConfigurableElement\l::CConfigurableElement" alt="" coords="445,5,617,47"/>
+<area shape="rect" id="node4" href="$classCElement.html#adda0945fbca000ff1e605a9b93f74c64" title="CElement::CElement" alt="" coords="665,13,820,39"/>
 </map>

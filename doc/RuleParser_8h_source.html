@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,18 +121,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdint</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">class </span><a class="code" href="classCCompoundRule.html">CCompoundRule</a>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">class</span> <a class="code" href="classCCompoundRule.html">CCompoundRule</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCRuleParser.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCRuleParser.html">CRuleParser</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCRuleParser.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCRuleParser.html">CRuleParser</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016f">   41</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classStatus.html">Status</a></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016f">   41</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016f">Status</a></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fac02c7b66a83d40b7daf5b7d47a8ad0ea">   43</a></span>&#160;        <a class="code" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fac02c7b66a83d40b7daf5b7d47a8ad0ea">EInit</a>,</div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fa9145a13bc86bd10e5b96f04dc39f3cfd">   44</a></span>&#160;        <a class="code" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fa9145a13bc86bd10e5b96f04dc39f3cfd">EBeginCompoundRule</a>,</div>
@@ -147,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classCRuleParser.html#a04260c30f05a16437df6fa9e5f4865ba">CRuleParser</a>(<span class="keyword">const</span> std::string &amp;strApplicationRule,</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keyword">const</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *pSelectionCriteriaDefinition);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classCRuleParser.html#ae36b780b30d4ac7c723df85089f93a3d">~CRuleParser</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    ~<a class="code" href="classCRuleParser.html#ae36b780b30d4ac7c723df85089f93a3d">CRuleParser</a>();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// Parse</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a">parse</a>(<a class="code" href="classCCompoundRule.html">CCompoundRule</a> *pParentRule, std::string &amp;strError);</div>
@@ -168,22 +167,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classCCompoundRule.html">CCompoundRule</a> *<a class="code" href="classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544">grabRootRule</a>();</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classCRuleParser.html#a04260c30f05a16437df6fa9e5f4865ba">CRuleParser</a>(<span class="keyword">const</span> <a class="code" href="classCRuleParser.html">CRuleParser</a> &amp;);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    CRuleParser(<span class="keyword">const</span> <a class="code" href="classCRuleParser.html">CRuleParser</a> &amp;);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classCRuleParser.html">CRuleParser</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classCRuleParser.html">CRuleParser</a> &amp;);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// Rule definition</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::string _strApplicationRule;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// Criteria defintion</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *_pSelectionCriteriaDefinition;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">/** String iterator */</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    std::string::size_type _uiCurrentPos{0};</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Deepness</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">size_t</span> _currentDeepness{0};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    size_t _currentDeepness{0};</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Current Type</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::string _strRuleType;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// Status</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classStatus.html">Status</a> _eStatus{<a class="code" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fac02c7b66a83d40b7daf5b7d47a8ad0ea">EInit</a>};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016f">Status</a> _eStatus{EInit};</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Root rule</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classCCompoundRule.html">CCompoundRule</a> *_pRootRule{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classCCompoundRule.html">CCompoundRule</a> *_pRootRule{<span class="keywordtype">nullptr</span>};</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Matches</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *_acDelimiters[<a class="code" href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fa0915ea72263ef8824ab7f326c4e6887b">ENbStatuses</a>];</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;};</div>
@@ -192,8 +192,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCRuleParser_html_acdfda657fedce4d85ac96333b60e016facd75a78cdef6ca7070073434691ab6e5"><div class="ttname"><a href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016facd75a78cdef6ca7070073434691ab6e5">CRuleParser::EContinue</a></div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8h_source.html#l00047">RuleParser.h:47</a></div></div>
 <div class="ttc" id="classCRuleParser_html_acdfda657fedce4d85ac96333b60e016fa1f6137b74eb17db02799376e44eb5352"><div class="ttname"><a href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fa1f6137b74eb17db02799376e44eb5352">CRuleParser::ECriterionRule</a></div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8h_source.html#l00046">RuleParser.h:46</a></div></div>
 <div class="ttc" id="classCRuleParser_html_a89407cd2535589d81d1d5beba1e51544"><div class="ttname"><a href="classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544">CRuleParser::grabRootRule</a></div><div class="ttdeci">CCompoundRule * grabRootRule()</div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8cpp_source.html#l00229">RuleParser.cpp:229</a></div></div>
+<div class="ttc" id="classCRuleParser_html_acdfda657fedce4d85ac96333b60e016f"><div class="ttname"><a href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016f">CRuleParser::Status</a></div><div class="ttdeci">Status</div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8h_source.html#l00041">RuleParser.h:41</a></div></div>
 <div class="ttc" id="classCRuleParser_html_acdfda657fedce4d85ac96333b60e016fac02c7b66a83d40b7daf5b7d47a8ad0ea"><div class="ttname"><a href="classCRuleParser.html#acdfda657fedce4d85ac96333b60e016fac02c7b66a83d40b7daf5b7d47a8ad0ea">CRuleParser::EInit</a></div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8h_source.html#l00043">RuleParser.h:43</a></div></div>
-<div class="ttc" id="classStatus_html"><div class="ttname"><a href="classStatus.html">Status</a></div><div class="ttdoc">Class to abstract the boolean+string status api. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00056">ParameterFramework.cpp:56</a></div></div>
 <div class="ttc" id="classCRuleParser_html_a04260c30f05a16437df6fa9e5f4865ba"><div class="ttname"><a href="classCRuleParser.html#a04260c30f05a16437df6fa9e5f4865ba">CRuleParser::CRuleParser</a></div><div class="ttdeci">CRuleParser(const std::string &amp;strApplicationRule, const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition)</div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8cpp_source.html#l00048">RuleParser.cpp:48</a></div></div>
 <div class="ttc" id="classCRuleParser_html_af179ac22a54025386da02a5bdb33b253"><div class="ttname"><a href="classCRuleParser.html#af179ac22a54025386da02a5bdb33b253">CRuleParser::getSelectionCriteriaDefinition</a></div><div class="ttdeci">const CSelectionCriteriaDefinition * getSelectionCriteriaDefinition() const </div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8cpp_source.html#l00223">RuleParser.cpp:223</a></div></div>
 <div class="ttc" id="classCRuleParser_html_ae36b780b30d4ac7c723df85089f93a3d"><div class="ttname"><a href="classCRuleParser.html#ae36b780b30d4ac7c723df85089f93a3d">CRuleParser::~CRuleParser</a></div><div class="ttdeci">~CRuleParser()</div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8cpp_source.html#l00055">RuleParser.cpp:55</a></div></div>

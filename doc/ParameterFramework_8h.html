@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -99,6 +98,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ParameterFramework.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Simplified parameter framework C API.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;cparameter_export.h&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
@@ -106,12 +108,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ParameterFramework.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h__incl.svg" width="467" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h__incl.svg" width="467" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h__dep__incl.svg" width="432" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h__dep__incl.svg" width="432" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="ParameterFramework_8h_source.html">Go to the source code of this file.</a></p>
@@ -152,9 +156,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa306287c22f0e6ff701f7fbf3ad92972"><td class="memItemLeft" align="right" valign="top">CPARAMETER_EXPORT void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParameterFramework_8h.html#aa306287c22f0e6ff701f7fbf3ad92972">pfwDestroy</a> (<a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle) NONNULL</td></tr>
 <tr class="memdesc:aa306287c22f0e6ff701f7fbf3ad92972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy a parameter framework.  <a href="#aa306287c22f0e6ff701f7fbf3ad92972">More...</a><br /></td></tr>
 <tr class="separator:aa306287c22f0e6ff701f7fbf3ad92972"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc8358052abb3cd3bff668efbcf9cfcf"><td class="memItemLeft" align="right" valign="top">CPARAMETER_EXPORT bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParameterFramework_8h.html#abc8358052abb3cd3bff668efbcf9cfcf">pfwStart</a> (<a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, const char *configPath, const <a class="el" href="structPfwCriterion.html">PfwCriterion</a> criteria[], size_t criterionNb, const <a class="el" href="structPfwLogger.html">PfwLogger</a> *loggger) NONNULL_(1</td></tr>
-<tr class="memdesc:abc8358052abb3cd3bff668efbcf9cfcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a parameter framework.  <a href="#abc8358052abb3cd3bff668efbcf9cfcf">More...</a><br /></td></tr>
-<tr class="separator:abc8358052abb3cd3bff668efbcf9cfcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35507d2584e2dde83bbc618aa810ba51"><td class="memItemLeft" align="right" valign="top">CPARAMETER_EXPORT bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParameterFramework_8h.html#a35507d2584e2dde83bbc618aa810ba51">pfwStart</a> (<a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, const char *configPath, const <a class="el" href="structPfwCriterion.html">PfwCriterion</a> criteria[], size_t criterionNb, const <a class="el" href="structPfwLogger.html">PfwLogger</a> *logger) NONNULL_(1</td></tr>
+<tr class="memdesc:a35507d2584e2dde83bbc618aa810ba51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a parameter framework.  <a href="#a35507d2584e2dde83bbc618aa810ba51">More...</a><br /></td></tr>
+<tr class="separator:a35507d2584e2dde83bbc618aa810ba51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e5ebfa005afa6e7daa12058d9d6cb69"><td class="memItemLeft" align="right" valign="top">CPARAMETER_EXPORT const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69">pfwGetLastError</a> (const <a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle) NONNULL</td></tr>
 <tr class="separator:a4e5ebfa005afa6e7daa12058d9d6cb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e2da0cb4b2dad4fe639259c4a087feb"><td class="memItemLeft" align="right" valign="top">CPARAMETER_EXPORT bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb">pfwSetCriterion</a> (<a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, const char name[], int value) NONNULL <a class="el" href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">USERESULT</a></td></tr>
@@ -193,7 +197,19 @@ Variables</h2></td></tr>
 <tr class="memitem:a62734ee35af516b5d5f3d669ad1abb44"><td class="memItemLeft" align="right" valign="top">CPARAMETER_EXPORT bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">USERESULT</a></td></tr>
 <tr class="separator:a62734ee35af516b5d5f3d669ad1abb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Simplified parameter framework C API. </p>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2015, Intel Corporation All rights reserved.</dd></dl>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+<ol type="1">
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ol>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. This API does not target a perfect one/one mapping with the c++ one, but rather aim ease of use and type safety (as far as possible in c). All function are reentrant and function call on a pfw (PfwHandle) does not impact any other pfw. Ie. There is no shared resources between pfw instances. </p>
+
+<p>Definition in file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="a6dddfea6f8fa7f2770530d770062c572"></a>
 <div class="memitem">
 <div class="memproto">
@@ -207,7 +223,7 @@ Variables</h2></td></tr>
 <p>Typedef for use ease. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structPfwHandler__.html">PfwHandler_</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00080">80</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00081">81</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>
@@ -224,15 +240,15 @@ Variables</h2></td></tr>
 <p>Type of the parameter framework log callback. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userCtx[in]</td><td>Arbitrary context provided during callback registration. </td></tr>
-    <tr><td class="paramname">level[in]</td><td>Log level of the log line. </td></tr>
-    <tr><td class="paramname">logLine[in]</td><td>Log line (without end line control character like '<br />
+    <tr><td class="paramdir">[in]</td><td class="paramname">userCtx</td><td>Arbitrary context provided during callback registration. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">level</td><td>Log level of the log line. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">logLine</td><td>Log line (without end line control character like '<br />
 ') to be logged. The pointer is invalidate after function return or if any pfw function is called. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00098">98</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00099">99</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>
@@ -246,7 +262,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00228">228</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00233">233</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>
@@ -269,7 +285,7 @@ Variables</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00086">86</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00087">87</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +308,7 @@ Variables</h2></td></tr>
 <p>Criterion do not have impact on the parameters value when changed, instead they are staged and only feed to the rule engine (who then impact parameter values according to the configuration) when committed with this function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -304,14 +320,16 @@ Variables</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a78db487e58935caf376608255d652caa_cgraph.svg" width="776" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a78db487e58935caf376608255d652caa_cgraph.svg" width="776" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a78db487e58935caf376608255d652caa_icgraph.svg" width="388" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a78db487e58935caf376608255d652caa_icgraph.svg" width="388" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -343,21 +361,23 @@ Here is the caller graph for this function:</div>
 
 <p>Construct the handle to a parameter given its path. </p>
 <p>The PfwHandle MUST stay valid until PfwParameterHandler destruction. </p><dl class="section return"><dt>Returns</dt><dd>a PfwParameterHandler on success, NULL on error. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69">pfwGetLastError</a> for error <a class="el" href="namespacedetail.html">detail</a>. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69">pfwGetLastError</a> for error detail. </dd></dl>
 
 <p>Definition at line <a class="el" href="ParameterFramework_8cpp_source.html#l00306">306</a> of file <a class="el" href="ParameterFramework_8cpp_source.html">ParameterFramework.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a1c73add8fee0c519bfa18677d533ebd4_cgraph.svg" width="1520" height="247"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a1c73add8fee0c519bfa18677d533ebd4_cgraph.svg" width="1560" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a1c73add8fee0c519bfa18677d533ebd4_icgraph.svg" width="356" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a1c73add8fee0c519bfa18677d533ebd4_icgraph.svg" width="356" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -384,7 +404,8 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a630ec902b1ed64c398dfd463621db6a5_icgraph.svg" width="304" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a630ec902b1ed64c398dfd463621db6a5_icgraph.svg" width="304" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -412,7 +433,8 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_aa306287c22f0e6ff701f7fbf3ad92972_icgraph.svg" width="311" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_aa306287c22f0e6ff701f7fbf3ad92972_icgraph.svg" width="311" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -435,7 +457,7 @@ Here is the caller graph for this function:</div>
 <p>Frees the memory space pointed to by ptr, which must have been returned by a previous call to the pfw. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ptr[in]</td><td>pointer to the memory to free. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to the memory to free. </td></tr>
   </table>
   </dd>
 </dl>
@@ -447,7 +469,8 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a6cfbb2296e998093be642da39745b425_icgraph.svg" width="288" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a6cfbb2296e998093be642da39745b425_icgraph.svg" width="288" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -491,14 +514,16 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_afe708ce766409bc0d82638cca172330a_cgraph.svg" width="374" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_afe708ce766409bc0d82638cca172330a_cgraph.svg" width="374" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_afe708ce766409bc0d82638cca172330a_icgraph.svg" width="338" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_afe708ce766409bc0d82638cca172330a_icgraph.svg" width="338" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -531,8 +556,8 @@ Here is the caller graph for this function:</div>
 <p>Access the value of a previously bind int parameter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td>Handler to a valid parameter. </td></tr>
-    <tr><td class="paramname">value[in]</td><td>Non null pointer to an integer that will hold the parameter value on success, undefined otherwise. return true of success, false on failure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>Handler to a valid parameter. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Non null pointer to an integer that will hold the parameter value on success, undefined otherwise. return true of success, false on failure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -542,14 +567,16 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7dde5f55f3d1e45a05409912160df12f_cgraph.svg" width="588" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7dde5f55f3d1e45a05409912160df12f_cgraph.svg" width="418" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7dde5f55f3d1e45a05409912160df12f_icgraph.svg" width="367" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7dde5f55f3d1e45a05409912160df12f_icgraph.svg" width="367" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -576,14 +603,16 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a4e5ebfa005afa6e7daa12058d9d6cb69_cgraph.svg" width="283" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a4e5ebfa005afa6e7daa12058d9d6cb69_cgraph.svg" width="283" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a4e5ebfa005afa6e7daa12058d9d6cb69_icgraph.svg" width="363" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a4e5ebfa005afa6e7daa12058d9d6cb69_icgraph.svg" width="570" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -616,8 +645,8 @@ Here is the caller graph for this function:</div>
 <p>Access the value of a previously bind string parameter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td>Handler to a valid parameter. </td></tr>
-    <tr><td class="paramname">value[out]</td><td>Non null pointer on a string. Will point on the parameter value string on success, NULL on failure. The callee MUST free the returned string using pfwFree after use. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>Handler to a valid parameter. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>Non null pointer on a string. Will point on the parameter value string on success, NULL on failure. The callee MUST free the returned string using pfwFree after use. </td></tr>
   </table>
   </dd>
 </dl>
@@ -628,14 +657,16 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7d998384abf12976a2bbb59bc0ba82e4_cgraph.svg" width="603" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7d998384abf12976a2bbb59bc0ba82e4_cgraph.svg" width="432" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7d998384abf12976a2bbb59bc0ba82e4_icgraph.svg" width="388" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7d998384abf12976a2bbb59bc0ba82e4_icgraph.svg" width="388" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -674,15 +705,15 @@ Here is the caller graph for this function:</div>
 <p>Set a criterion value given its name and value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572" title="Typedef for use ease. ">PfwHandler</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name[in]</td><td>The name of the criterion that need to be changed. </td></tr>
-    <tr><td class="paramname">value</td><td>If the criterion is exclusive, the index of the new value. If the criterion is inclusive, a bit field where each bit correspond to the value index. For an inclusive criterion defined as such: { "Red", "Green", "Blue", NULL } to set the value Green and Blue, value has to be 1&lt;&lt;1 | 1&lt;&lt;2 = 0b110 = 6. For an exclusive criterion defined as such: { "Car", "Boat", "Plane", NULL } to set the value Plane, value has to be 2.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>The name of the criterion that need to be changed. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>If the criterion is exclusive, the index of the new value. If the criterion is inclusive, a bit field where each bit correspond to the value index. For an inclusive criterion defined as such: { "Red", "Green", "Blue", NULL } to set the value Green and Blue, value has to be 1&lt;&lt;1 | 1&lt;&lt;2 = 0b110 = 6. For an exclusive criterion defined as such: { "Car", "Boat", "Plane", NULL } to set the value Plane, value has to be 2.</td></tr>
   </table>
   </dd>
 </dl>
@@ -694,14 +725,16 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7e2da0cb4b2dad4fe639259c4a087feb_cgraph.svg" width="372" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7e2da0cb4b2dad4fe639259c4a087feb_cgraph.svg" width="372" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7e2da0cb4b2dad4fe639259c4a087feb_icgraph.svg" width="336" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7e2da0cb4b2dad4fe639259c4a087feb_icgraph.svg" width="336" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -734,8 +767,8 @@ Here is the caller graph for this function:</div>
 <p>Set the value of a previously bind int parameter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td>Handler to a valid parameter. </td></tr>
-    <tr><td class="paramname">value[in]</td><td>The parameter value to set. return true of success, false on failure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>Handler to a valid parameter. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The parameter value to set. return true of success, false on failure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -745,14 +778,16 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_af7fd08602e984c778aaf0e4526cbbded_cgraph.svg" width="586" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_af7fd08602e984c778aaf0e4526cbbded_cgraph.svg" width="415" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_af7fd08602e984c778aaf0e4526cbbded_icgraph.svg" width="366" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_af7fd08602e984c778aaf0e4526cbbded_icgraph.svg" width="366" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -785,8 +820,8 @@ Here is the caller graph for this function:</div>
 <p>Set the value of a previously bind string parameter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td>Handler to a valid parameter </td></tr>
-    <tr><td class="paramname">value[in]</td><td>Non null pointer to a null terminated string to set. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>Handler to a valid parameter </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Non null pointer to a null terminated string to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -796,20 +831,22 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7913a676a9f57c14b0b6f7fa20ec9f9a_cgraph.svg" width="603" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7913a676a9f57c14b0b6f7fa20ec9f9a_cgraph.svg" width="432" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7913a676a9f57c14b0b6f7fa20ec9f9a_icgraph.svg" width="388" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a7913a676a9f57c14b0b6f7fa20ec9f9a_icgraph.svg" width="388" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="abc8358052abb3cd3bff668efbcf9cfcf"></a>
+<a class="anchor" id="a35507d2584e2dde83bbc618aa810ba51"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -841,7 +878,7 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structPfwLogger.html">PfwLogger</a> *&#160;</td>
-          <td class="paramname"><em>loggger</em>&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -854,21 +891,29 @@ Here is the caller graph for this function:</div>
 <p>Start a parameter framework. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle[in]</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572" title="Typedef for use ease. ">PfwHandler</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">configPath[in]</td><td>Path to the file containing the pfw configuration. </td></tr>
-    <tr><td class="paramname">criteria[in]</td><td>An array of <a class="el" href="structPfwCriterion.html" title="Structure of a parameter framework criterion. ">PfwCriterion</a>. </td></tr>
-    <tr><td class="paramname">criterionNb[in]</td><td>The number of <a class="el" href="structPfwCriterion.html" title="Structure of a parameter framework criterion. ">PfwCriterion</a> in criteria. </td></tr>
-    <tr><td class="paramname">logger[in]</td><td>the logger to use for all operation. If NULL, log infos to standard output and errors to standard error. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">configPath</td><td>Path to the file containing the pfw configuration. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">criteria</td><td>An array of <a class="el" href="structPfwCriterion.html" title="Structure of a parameter framework criterion. ">PfwCriterion</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">criterionNb</td><td>The number of <a class="el" href="structPfwCriterion.html" title="Structure of a parameter framework criterion. ">PfwCriterion</a> in criteria. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">logger</td><td>the logger to use for all operation. If NULL, log infos to standard output and errors to standard error. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a35507d2584e2dde83bbc618aa810ba51_icgraph.svg" width="292" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -894,7 +939,8 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a4f999a930988aba1ce1ace77e07bad97_icgraph.svg" width="372" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ParameterFramework_8h_a4f999a930988aba1ce1ace77e07bad97_icgraph.svg" width="372" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -911,7 +957,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00158">158</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00163">163</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>

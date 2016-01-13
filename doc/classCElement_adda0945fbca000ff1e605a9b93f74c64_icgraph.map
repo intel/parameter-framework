@@ -1,0 +1,51 @@
+<map id="CElement::CElement" name="CElement::CElement">
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a6703394fd3a71fe58597d1c5d27925a8" title="CConfigurableDomain\l::CConfigurableDomain" alt="" coords="229,75,398,116"/>
+<area shape="rect" id="node6" href="$classCKindElement.html#aa9414aba7b15223c978873cbe6d8d945" title="CKindElement::CKindElement" alt="" coords="209,242,417,269"/>
+<area shape="rect" id="node13" href="$classCConfigurableElement.html#a227e3ad5b43843c0171bdd80ab9ec048" title="CConfigurableElement\l::CConfigurableElement" alt="" coords="227,465,399,507"/>
+<area shape="rect" id="node25" href="$classCDomainConfiguration.html#a80948f485ce0b70ce80c8bd9f9aca003" title="CDomainConfiguration\l::CDomainConfiguration" alt="" coords="226,531,401,572"/>
+<area shape="rect" id="node30" href="$classCParameterAdaptation.html#a1a31e6f9e65bee611936b526d40e0730" title="CParameterAdaptation\l::CParameterAdaptation" alt="" coords="225,596,401,637"/>
+<area shape="rect" id="node32" href="$classCSelectionCriterion.html#ac0435b98642a148ab2adcf3401fc158e" title="CSelectionCriterion\l::CSelectionCriterion" alt="" coords="237,661,389,703"/>
+<area shape="rect" id="node38" href="$classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d" title="CTypeElement::CTypeElement" alt="" coords="208,894,419,921"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a879368ed109dc1a906205f8324d05d81" title="Domains. " alt="" coords="510,5,678,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#af7d24a3ef2e52fb2aee19e303092d696" title="CParameterMgr::createDomain" alt="" coords="782,13,1003,39"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a25e98b1d6b0eb374ad3908e6cffd475e" title="CParameterMgrFullConnector\l::createDomain" alt="" coords="1088,5,1296,47"/>
+<area shape="rect" id="node7" href="$classCSubsystemPlugins.html#a967e3a45f3051b73ed3d82fe80384898" title="CSubsystemPlugins::\lCSubsystemPlugins" alt="" coords="516,71,672,112"/>
+<area shape="rect" id="node8" href="$classCFrameworkConfigurationLocation.html#a4efe1402ea3004cdab25865b7a4702bb" title="CFrameworkConfigurationLocation\l::CFrameworkConfigurationLocation" alt="" coords="471,136,717,177"/>
+<area shape="rect" id="node9" href="$classCFrameworkConfigurationGroup.html#ad1ed5effdbb7f7543f8345b1320752b2" title="CFrameworkConfigurationGroup\l::CFrameworkConfigurationGroup" alt="" coords="478,201,710,243"/>
+<area shape="rect" id="node10" href="$classCPluginLocation.html#a6b0bec32514a8c62f1fc4bd7c970490b" title="CPluginLocation::CPlugin\lLocation" alt="" coords="505,267,683,308"/>
+<area shape="rect" id="node11" href="$classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6" title="CXmlFileIncluderElement\l::CXmlFileIncluderElement" alt="" coords="501,332,687,373"/>
+<area shape="rect" id="node12" href="$classCFileIncluderElementBuilder.html#a9e152b12ff5c450488560c67cde9742a" title="CFileIncluderElementBuilder\l::createElement" alt="" coords="793,213,992,255"/>
+<area shape="rect" id="node14" href="$classCInstanceConfigurableElement.html#a06c2f5c077a21c715caa1d1d86ce3432" title="CInstanceConfigurableElement\l::CInstanceConfigurableElement" alt="" coords="481,397,707,439"/>
+<area shape="rect" id="node23" href="$classCSubsystem.html#ae82425f8db738960f723ac028020cbe3" title="Class Constructor. " alt="" coords="498,477,690,503"/>
+<area shape="rect" id="node15" href="$classCBaseParameter.html#a1fc2da9917f7fc5ab39bef1f7a45653f" title="CBaseParameter::CBaseParameter" alt="" coords="769,279,1016,306"/>
+<area shape="rect" id="node20" href="$classCBitParameterBlock.html#acd4bd16ba2f69e2f3293f2746e0738bb" title="CBitParameterBlock\l::CBitParameterBlock" alt="" coords="814,331,971,372"/>
+<area shape="rect" id="node21" href="$classCComponent.html#aa119d1db95478a14d19aafd7bd5247a5" title="CComponent::CComponent" alt="" coords="793,397,992,423"/>
+<area shape="rect" id="node22" href="$classCParameterBlock.html#a75f7367a54c34bd1fd41b060429bd1ed" title="CParameterBlock::CParameter\lBlock" alt="" coords="785,448,1001,489"/>
+<area shape="rect" id="node16" href="$classCBitParameter.html#a5cba8dbf652dcda19b3082dcff3bd230" title="CBitParameter::CBitParameter" alt="" coords="1084,229,1300,255"/>
+<area shape="rect" id="node17" href="$classCParameter.html#a8f631f0c26c9c329a839afac8528da05" title="CParameter::CParameter" alt="" coords="1101,279,1283,306"/>
+<area shape="rect" id="node19" href="$classCStringParameter.html#abc16fba4f62fc3db5353e4e758b4ef88" title="CStringParameter::CString\lParameter" alt="" coords="1097,331,1287,372"/>
+<area shape="rect" id="node18" href="$classCArrayParameter.html#a12f240fb80a55cdf1cd9b7f1f7593980" title="CArrayParameter::CArrayParameter" alt="" coords="1368,279,1619,306"/>
+<area shape="rect" id="node24" href="$classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd" title="CVirtualSubsystem::\lCVirtualSubsystem" alt="" coords="817,537,969,579"/>
+<area shape="rect" id="node26" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="513,531,675,572"/>
+<area shape="rect" id="node27" href="$classCConfigurableDomains.html#aa96eec13d9bdbb307e1dcfe6f057a685" title="CConfigurableDomains\l::createConfiguration" alt="" coords="809,603,977,644"/>
+<area shape="rect" id="node28" href="$classCParameterMgr.html#ad60e8abcd5881a2833d24c3a531e16f0" title="CParameterMgr::createConfiguration" alt="" coords="1064,610,1320,637"/>
+<area shape="rect" id="node29" href="$classCParameterMgrFullConnector.html#ac863444469b87e23f6aeba390e46f5b3" title="CParameterMgrFullConnector\l::createConfiguration" alt="" coords="1389,603,1597,644"/>
+<area shape="rect" id="node31" href="$classCLinearParameterAdaptation.html#a9c25f9577e81ed89304bddb13e445bb8" title="CLinearParameterAdaptation\l::CLinearParameterAdaptation" alt="" coords="487,596,701,637"/>
+<area shape="rect" id="node33" href="$classCSelectionCriteriaDefinition.html#a721af071a21972611a6b410be8a8a240" title="CSelectionCriteriaDefinition\l::createSelectionCriterion" alt="" coords="496,661,692,703"/>
+<area shape="rect" id="node34" href="$classCSelectionCriteria.html#a8ae57add042140f555532ed8c6b35221" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="801,668,985,709"/>
+<area shape="rect" id="node35" href="$classCParameterMgr.html#a3b6a3500b78f43bfb894263689b809a7" title="CParameterMgr::createSelection\lCriterion" alt="" coords="1077,668,1307,709"/>
+<area shape="rect" id="node36" href="$classCParameterMgrPlatformConnector.html#ab96bc20c11b804b95a0b44a5d39009c2" title="CParameterMgrPlatformConnector\l::createSelectionCriterion" alt="" coords="1372,668,1615,709"/>
+<area shape="rect" id="node37" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="1667,675,1861,702"/>
+<area shape="rect" id="node39" href="$classCBitParameterBlockType.html#a7ef352b6729eae5baa98c2d2f2f1d95c" title="CBitParameterBlockType\l::CBitParameterBlockType" alt="" coords="501,727,687,768"/>
+<area shape="rect" id="node40" href="$classCBitParameterType.html#ab492a6713724137b5476a7291f0ee6d7" title="CBitParameterType::\lCBitParameterType" alt="" coords="519,792,669,833"/>
+<area shape="rect" id="node41" href="$classCComponentInstance.html#aeb7251658529d4ce7aeacfbb4614a29c" title="CComponentInstance\l::CComponentInstance" alt="" coords="510,857,678,899"/>
+<area shape="rect" id="node42" href="$classCComponentType.html#abd537a00b1292e7ba5149e4f7e0c7355" title="CComponentType::CComponentType" alt="" coords="467,923,721,950"/>
+<area shape="rect" id="node43" href="$classCParameterBlockType.html#ab98b1a1a4e414927932f4bf498c77236" title="CParameterBlockType\l::CParameterBlockType" alt="" coords="510,975,678,1016"/>
+<area shape="rect" id="node44" href="$classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035" title="CParameterType::CParameterType" alt="" coords="475,1041,713,1067"/>
+<area shape="rect" id="node50" href="$classCStringParameterType.html#afb9f456fe6a9903e7fc1811d7f1615f6" title="CStringParameterType\l::CStringParameterType" alt="" coords="508,1092,680,1133"/>
+<area shape="rect" id="node45" href="$classCBooleanParameterType.html#a7a6aff5356ac529edaed5ae1335f0fda" title="CBooleanParameterType\l::CBooleanParameterType" alt="" coords="799,903,986,944"/>
+<area shape="rect" id="node46" href="$classCEnumParameterType.html#aa258fc91322b6b68d0b1bd48d6dee751" title="CEnumParameterType\l::CEnumParameterType" alt="" coords="807,968,978,1009"/>
+<area shape="rect" id="node47" href="$classCFixedPointParameterType.html#ae4f7329c5302548ca51af23916203c8d" title="CFixedPointParameterType\l::CFixedPointParameterType" alt="" coords="793,1033,992,1075"/>
+<area shape="rect" id="node48" href="$classCFloatingPointParameterType.html#a9d51b5e810800b22f54373f54129db44" title="CFloatingPointParameterType\l::CFloatingPointParameterType" alt="" coords="785,1099,1001,1140"/>
+<area shape="rect" id="node49" href="$classCIntegerParameterType.html#a792327adbe7ca3b98fa4aa6fd95c104e" title="CIntegerParameterType\l::CIntegerParameterType" alt="" coords="803,1164,982,1205"/>
+</map>

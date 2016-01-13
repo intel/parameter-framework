@@ -1,10 +1,10 @@
 <map id="parameter/ConfigurableElementAggregator.h" name="parameter/ConfigurableElementAggregator.h">
-<area shape="rect" id="node2" href="$BackSynchronizer_8h.html" title="parameter/BackSynchronizer.h" alt="" coords="321,102,539,129"/>
-<area shape="rect" id="node8" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="564,102,819,129"/>
-<area shape="rect" id="node9" href="$ConfigurableElementAggregator_8cpp.html" title="parameter/ConfigurableElement\lAggregator.cpp" alt="" coords="843,95,1070,136"/>
-<area shape="rect" id="node3" href="$HardwareBackSynchronizer_8h.html" title="parameter/HardwareBackSynchronizer.h" alt="" coords="137,184,417,211"/>
-<area shape="rect" id="node6" href="$SimulatedBackSynchronizer_8h.html" title="parameter/SimulatedBackSynchronizer.h" alt="" coords="441,184,725,211"/>
-<area shape="rect" id="node4" href="$HardwareBackSynchronizer_8cpp.html" title="parameter/HardwareBackSynchronizer.cpp" alt="" coords="5,259,300,285"/>
-<area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="323,259,534,285"/>
-<area shape="rect" id="node7" href="$SimulatedBackSynchronizer_8cpp.html" title="parameter/SimulatedBackSynchronizer.cpp" alt="" coords="558,259,857,285"/>
+<area shape="rect" id="node2" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="5,102,260,129"/>
+<area shape="rect" id="node3" href="$ConfigurableElementAggregator_8cpp.html" title="parameter/ConfigurableElement\lAggregator.cpp" alt="" coords="285,95,511,136"/>
+<area shape="rect" id="node4" href="$BackSynchronizer_8h.html" title="parameter/BackSynchronizer.h" alt="" coords="535,102,754,129"/>
+<area shape="rect" id="node5" href="$HardwareBackSynchronizer_8h.html" title="parameter/HardwareBackSynchronizer.h" alt="" coords="351,184,631,211"/>
+<area shape="rect" id="node8" href="$SimulatedBackSynchronizer_8h.html" title="parameter/SimulatedBackSynchronizer.h" alt="" coords="656,184,940,211"/>
+<area shape="rect" id="node6" href="$HardwareBackSynchronizer_8cpp.html" title="parameter/HardwareBackSynchronizer.cpp" alt="" coords="220,259,515,285"/>
+<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="538,259,749,285"/>
+<area shape="rect" id="node9" href="$SimulatedBackSynchronizer_8cpp.html" title="parameter/SimulatedBackSynchronizer.cpp" alt="" coords="773,259,1071,285"/>
 </map>

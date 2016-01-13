@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,26 +121,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElementAggregator_8h.html">ConfigurableElementAggregator.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElement_8h.html">ConfigurableElement.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ConfigurableElementAggregator_8h.html">&quot;ConfigurableElementAggregator.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ConfigurableElement_8h.html">&quot;ConfigurableElement.h&quot;</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">   33</a></span>&#160;<a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator::CConfigurableElementAggregator</a>(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::list&lt;const CConfigurableElement *&gt; &amp;aggregateList,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    MatchesAggregationCriterion pfnMatchesAggregationCriterion)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">   33</a></span>&#160;<a class="code" href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a>::<a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator</a>(</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; &amp;aggregateList,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">MatchesAggregationCriterion</a> pfnMatchesAggregationCriterion)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    : _aggregateList(aggregateList), _pfnMatchesAggregationCriterion(pfnMatchesAggregationCriterion)</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Aggregate</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">CConfigurableElementAggregator::aggegate</a>(<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement)</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a>::<a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">aggegate</a>(<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement)</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    doAggregate(pConfigurableElement, _aggregateList);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// Recursive aggregate</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">bool</span> CConfigurableElementAggregator::doAggregate(</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a>::doAggregate(</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::list&lt;const CConfigurableElement *&gt; &amp;aggregateList)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; &amp;aggregateList)</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span> (!(pConfigurableElement-&gt;*_pfnMatchesAggregationCriterion)()) {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
@@ -149,15 +148,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Check children</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::list&lt;const CConfigurableElement *&gt; childAggregateElementList;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; childAggregateElementList;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">size_t</span> uiNbChildren = pConfigurableElement-&gt;<a class="code" href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">getNbChildren</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">size_t</span> uiNbMatchingChildren = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    size_t uiNbChildren = pConfigurableElement-&gt;getNbChildren();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    size_t uiNbMatchingChildren = 0;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> index = 0; index &lt; uiNbChildren; index++) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">for</span> (size_t index = 0; index &lt; uiNbChildren; index++) {</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pChildConfigurableElement =</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *<span class="keyword">&gt;</span>(pConfigurableElement-&gt;<a class="code" href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">getChild</a>(index));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> CConfigurableElement *&gt;(pConfigurableElement-&gt;getChild(index));</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        uiNbMatchingChildren += doAggregate(pChildConfigurableElement, childAggregateElementList);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
@@ -176,11 +175,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
-<div class="ttc" id="classCElement_html_a58b6cdb5715497442fde6afa1e65f8e5"><div class="ttname"><a href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">CElement::getNbChildren</a></div><div class="ttdeci">size_t getNbChildren() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00368">Element.cpp:368</a></div></div>
-<div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
-<div class="ttc" id="classCElement_html_aee0d626525e9cd24d7639b6365afdc16"><div class="ttname"><a href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">CElement::getChild</a></div><div class="ttdeci">const CElement * getChild(size_t index) const </div><div class="ttdoc">Get a child element (const) </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00289">Element.cpp:289</a></div></div>
+<div class="ttc" id="classCConfigurableElementAggregator_html_acbfdb8633112b9e3a3708d448c3b6587"><div class="ttname"><a href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">CConfigurableElementAggregator::MatchesAggregationCriterion</a></div><div class="ttdeci">bool(CConfigurableElement::* MatchesAggregationCriterion)() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8h_source.html#l00042">ConfigurableElementAggregator.h:42</a></div></div>
+<div class="ttc" id="classCConfigurableElementAggregator_html"><div class="ttname"><a href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8h_source.html#l00038">ConfigurableElementAggregator.h:38</a></div></div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
-<div class="ttc" id="ConfigurableElementAggregator_8h_html"><div class="ttname"><a href="ConfigurableElementAggregator_8h.html">ConfigurableElementAggregator.h</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a2cc804d11a5ec48d098ecb34be7c9c36"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">CConfigurableElementAggregator::aggegate</a></div><div class="ttdeci">void aggegate(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00041">ConfigurableElementAggregator.cpp:41</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a904bebdafd6cf776a60882f60e0ea44a"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator::CConfigurableElementAggregator</a></div><div class="ttdeci">CConfigurableElementAggregator(std::list&lt; const CConfigurableElement * &gt; &amp;aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00033">ConfigurableElementAggregator.cpp:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

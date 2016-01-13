@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,22 +121,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tokenizer_8h.html">Tokenizer.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Tokenizer_8h.html">&quot;Tokenizer.h&quot;</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">using</span> std::vector;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span> <a class="code" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">Tokenizer::defaultDelimiters</a> = <span class="stringliteral">&quot; \n\r\t\v\f&quot;</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">const</span> string <a class="code" href="classTokenizer.html">Tokenizer</a>::<a class="code" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">defaultDelimiters</a> = <span class="stringliteral">&quot; \n\r\t\v\f&quot;</span>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">   37</a></span>&#160;<a class="code" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">Tokenizer::Tokenizer</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;input, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;delimiters, <span class="keywordtype">bool</span> mergeDelimiters)</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">   37</a></span>&#160;<a class="code" href="classTokenizer.html">Tokenizer</a>::<a class="code" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">Tokenizer</a>(<span class="keyword">const</span> string &amp;input, <span class="keyword">const</span> string &amp;delimiters, <span class="keywordtype">bool</span> mergeDelimiters)</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    : _input(input), _delimiters(delimiters), _mergeDelimiters(mergeDelimiters)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">   42</a></span>&#160;vector&lt;string&gt; <a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">Tokenizer::split</a>()</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">   42</a></span>&#160;vector&lt;string&gt; <a class="code" href="classTokenizer.html">Tokenizer</a>::<a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">split</a>()</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    vector&lt;string&gt; result;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">string</span> token;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    string token;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span> leftover = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> character : _input) {</div>
@@ -171,9 +170,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="ttc" id="classTokenizer_html"><div class="ttname"><a href="classTokenizer.html">Tokenizer</a></div><div class="ttdoc">Tokenizer class. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00042">Tokenizer.h:42</a></div></div>
 <div class="ttc" id="classTokenizer_html_a70433b3af21758bf81653cb304b899fa"><div class="ttname"><a href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">Tokenizer::defaultDelimiters</a></div><div class="ttdeci">static const std::string defaultDelimiters</div><div class="ttdoc">Default list of delimiters (" \n\r\t\v\f") </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00063">Tokenizer.h:63</a></div></div>
 <div class="ttc" id="classTokenizer_html_ac0873693f9de717d9dbdeb8d6b5429ec"><div class="ttname"><a href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">Tokenizer::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split()</div><div class="ttdoc">Return a vector of all tokens. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00042">Tokenizer.cpp:42</a></div></div>
-<div class="ttc" id="Tokenizer_8h_html"><div class="ttname"><a href="Tokenizer_8h.html">Tokenizer.h</a></div></div>
 <div class="ttc" id="classTokenizer_html_acdbff327e154738f1553d722dbf71fa5"><div class="ttname"><a href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">Tokenizer::Tokenizer</a></div><div class="ttdeci">Tokenizer(const std::string &amp;input, const std::string &amp;delimiters=defaultDelimiters, bool mergeDelimiters=true)</div><div class="ttdoc">Constructs a Tokenizer. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00037">Tokenizer.cpp:37</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -1,7 +1,7 @@
 <map id="CRuleParser::parse" name="CRuleParser::parse">
-<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="195,5,361,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="409,5,571,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="619,5,787,47"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="835,13,1081,39"/>
-<area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#a7a0323667af932143f43399070f7fe62" title="CParameterMgrFullConnector\l::setApplicationRule" alt="" coords="1129,5,1337,47"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="195,22,361,63"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="409,22,571,63"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="619,22,787,63"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="835,29,1081,56"/>
+<area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#a7a0323667af932143f43399070f7fe62" title="CParameterMgrFullConnector\l::setApplicationRule" alt="" coords="1129,22,1337,63"/>
 </map>

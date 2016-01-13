@@ -1,6 +1,0 @@
-<map id="CInstanceConfigurableElement::getSyncer" name="CInstanceConfigurableElement::getSyncer">
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="272,49,491,90"/>
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="539,5,757,32"/>
-<area shape="rect" id="node4" href="$classCBaseParameter.html#aa0367b428dcd868c67f34989bb101020" title="CBaseParameter::access" alt="" coords="557,56,739,83"/>
-<area shape="rect" id="node5" href="$classCBitParameter.html#a8cf5e6e2d4e823eca86f0c30ff837fef" title="CBitParameter::access" alt="" coords="565,107,731,133"/>
-</map>

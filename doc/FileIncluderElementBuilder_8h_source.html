@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,12 +121,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ElementBuilder_8h.html">ElementBuilder.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlFileIncluderElement_8h.html">XmlFileIncluderElement.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ElementBuilder_8h.html">&quot;ElementBuilder.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="XmlFileIncluderElement_8h.html">&quot;XmlFileIncluderElement.h&quot;</a></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCFileIncluderElementBuilder.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCFileIncluderElementBuilder.html">CFileIncluderElementBuilder</a> : <span class="keyword">public</span> <a class="code" href="classCElementBuilder.html">CElementBuilder</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/** This is the XmlFileIncluderElement builder class</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * It is builds the XmlFileIncluderElement with</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * a mandatory option specific to xml:</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> *  whether it should be validated with schemas or not</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCFileIncluderElementBuilder.html">   41</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCFileIncluderElementBuilder.html">CFileIncluderElementBuilder</a> : <span class="keyword">public</span> <a class="code" href="classCElementBuilder.html">CElementBuilder</a></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCFileIncluderElementBuilder.html#a4491c5895715096e8cf0210e5bec8b5f">   44</a></span>&#160;    <a class="code" href="classCFileIncluderElementBuilder.html#a4491c5895715096e8cf0210e5bec8b5f">CFileIncluderElementBuilder</a>(<span class="keywordtype">bool</span> bValidateWithSchemas, <span class="keyword">const</span> std::string &amp;schemaBaseUri)</div>
@@ -136,10 +141,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCFileIncluderElementBuilder.html#a17d7991d19087f05fc6f0cdc065da3e2">   50</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCElement.html">CElement</a> *<a class="code" href="classCFileIncluderElementBuilder.html#a17d7991d19087f05fc6f0cdc065da3e2">createElement</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCXmlFileIncluderElement.html">CXmlFileIncluderElement</a>(xmlElement.<a class="code" href="classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89">getNameAttribute</a>(), xmlElement.<a class="code" href="classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4">getType</a>(),</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                           _bValidateWithSchemas, _schemaBaseUri);</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCFileIncluderElementBuilder.html#a9e152b12ff5c450488560c67cde9742a">   50</a></span>&#160;    <a class="code" href="classCElement.html">CElement</a> *<a class="code" href="classCFileIncluderElementBuilder.html#a9e152b12ff5c450488560c67cde9742a">createElement</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) <span class="keyword">const</span> <span class="keyword">override</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCXmlFileIncluderElement.html">CXmlFileIncluderElement</a><a class="code" href="classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6">(</a>xmlElement<a class="code" href="classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89">.</a><a class="code" href="classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89">getNameAttribute</a><a class="code" href="classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89">(</a><a class="code" href="classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89">)</a><a class="code" href="classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6">,</a> xmlElement<a class="code" href="classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4">.</a><a class="code" href="classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4">getType</a><a class="code" href="classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4">(</a><a class="code" href="classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4">)</a><a class="code" href="classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6">,</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                           _bValidateWithSchemas<a class="code" href="classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6">,</a> _schemaBaseUri<a class="code" href="classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6">)</a>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
@@ -147,12 +152,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">const</span> std::string _schemaBaseUri;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
 <div class="ttc" id="classCXmlElement_html_a21b9cfd66e7cd6f33a889e099102ef89"><div class="ttname"><a href="classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89">CXmlElement::getNameAttribute</a></div><div class="ttdeci">std::string getNameAttribute() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00117">XmlElement.cpp:117</a></div></div>
-<div class="ttc" id="XmlFileIncluderElement_8h_html"><div class="ttname"><a href="XmlFileIncluderElement_8h.html">XmlFileIncluderElement.h</a></div></div>
+<div class="ttc" id="classCFileIncluderElementBuilder_html_a9e152b12ff5c450488560c67cde9742a"><div class="ttname"><a href="classCFileIncluderElementBuilder.html#a9e152b12ff5c450488560c67cde9742a">CFileIncluderElementBuilder::createElement</a></div><div class="ttdeci">CElement * createElement(const CXmlElement &amp;xmlElement) const override</div><div class="ttdef"><b>Definition:</b> <a href="FileIncluderElementBuilder_8h_source.html#l00050">FileIncluderElementBuilder.h:50</a></div></div>
 <div class="ttc" id="classCFileIncluderElementBuilder_html_a4491c5895715096e8cf0210e5bec8b5f"><div class="ttname"><a href="classCFileIncluderElementBuilder.html#a4491c5895715096e8cf0210e5bec8b5f">CFileIncluderElementBuilder::CFileIncluderElementBuilder</a></div><div class="ttdeci">CFileIncluderElementBuilder(bool bValidateWithSchemas, const std::string &amp;schemaBaseUri)</div><div class="ttdef"><b>Definition:</b> <a href="FileIncluderElementBuilder_8h_source.html#l00044">FileIncluderElementBuilder.h:44</a></div></div>
-<div class="ttc" id="ElementBuilder_8h_html"><div class="ttname"><a href="ElementBuilder_8h.html">ElementBuilder.h</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
 <div class="ttc" id="classCFileIncluderElementBuilder_html"><div class="ttname"><a href="classCFileIncluderElementBuilder.html">CFileIncluderElementBuilder</a></div><div class="ttdoc">This is the XmlFileIncluderElement builder class. </div><div class="ttdef"><b>Definition:</b> <a href="FileIncluderElementBuilder_8h_source.html#l00041">FileIncluderElementBuilder.h:41</a></div></div>
-<div class="ttc" id="classCFileIncluderElementBuilder_html_a17d7991d19087f05fc6f0cdc065da3e2"><div class="ttname"><a href="classCFileIncluderElementBuilder.html#a17d7991d19087f05fc6f0cdc065da3e2">CFileIncluderElementBuilder::createElement</a></div><div class="ttdeci">virtual CElement * createElement(const CXmlElement &amp;xmlElement) const </div><div class="ttdef"><b>Definition:</b> <a href="FileIncluderElementBuilder_8h_source.html#l00050">FileIncluderElementBuilder.h:50</a></div></div>
+<div class="ttc" id="classCXmlFileIncluderElement_html_a3f0cb06fcaf0203240f6a862d06c66d6"><div class="ttname"><a href="classCXmlFileIncluderElement.html#a3f0cb06fcaf0203240f6a862d06c66d6">CXmlFileIncluderElement::CXmlFileIncluderElement</a></div><div class="ttdeci">CXmlFileIncluderElement(const std::string &amp;strName, const std::string &amp;strKind, bool bValidateWithSchemas, const std::string &amp;schemaBaseUri)</div><div class="ttdef"><b>Definition:</b> <a href="XmlFileIncluderElement_8cpp_source.html#l00039">XmlFileIncluderElement.cpp:39</a></div></div>
 <div class="ttc" id="classCXmlFileIncluderElement_html"><div class="ttname"><a href="classCXmlFileIncluderElement.html">CXmlFileIncluderElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlFileIncluderElement_8h_source.html#l00037">XmlFileIncluderElement.h:37</a></div></div>
 <div class="ttc" id="classCXmlElement_html_ab2e750aaad2b93b4d875d04b624de1c4"><div class="ttname"><a href="classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4">CXmlElement::getType</a></div><div class="ttdeci">std::string getType() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00050">XmlElement.cpp:50</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>

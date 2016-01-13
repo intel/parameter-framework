@@ -1,0 +1,10 @@
+<map id="CConfigurableDomain::toXml" name="CConfigurableDomain::toXml">
+<area shape="rect" id="node2" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="215,81,344,108"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="667,165,859,192"/>
+<area shape="rect" id="node3" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="392,103,600,145"/>
+<area shape="rect" id="node6" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="407,52,585,79"/>
+<area shape="rect" id="node4" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="670,111,855,137"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="669,5,857,32"/>
+<area shape="rect" id="node8" href="$classCElement.html#abd9e5e3b9b21652902a6fc151cce76f7" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="648,56,877,83"/>
+<area shape="rect" id="node9" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="925,56,1065,83"/>
+</map>

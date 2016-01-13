@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,24 +121,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlDomainSerializingContext_8h.html">XmlDomainSerializingContext.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SelectionCriteriaDefinition_8h.html">SelectionCriteriaDefinition.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SystemClass_8h.html">SystemClass.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="XmlDomainSerializingContext_8h.html">&quot;XmlDomainSerializingContext.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SelectionCriteriaDefinition_8h.html">&quot;SelectionCriteriaDefinition.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SystemClass_8h.html">&quot;SystemClass.h&quot;</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCXmlDomainImportContext.html">CXmlDomainImportContext</a> : <span class="keyword">public</span> <a class="code" href="classCXmlDomainSerializingContext.html">CXmlDomainSerializingContext</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCXmlDomainImportContext.html">CXmlDomainImportContext</a> : <span class="keyword">public</span> <a class="code" href="classCXmlDomainSerializingContext.html">CXmlDomainSerializingContext</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#ae6aab6b3ac8ba84432c7c831c52bef0b">   41</a></span>&#160;    <a class="code" href="classCXmlDomainImportContext.html#ae6aab6b3ac8ba84432c7c831c52bef0b">CXmlDomainImportContext</a>(std::string &amp;strError, <span class="keywordtype">bool</span> bWithSettings, <a class="code" href="classCSystemClass.html">CSystemClass</a> &amp;systemClass)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        : <a class="code" href="classCXmlDomainSerializingContext.html">base</a>(strError, bWithSettings), _systemClass(systemClass)</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#ae6aab6b3ac8ba84432c7c831c52bef0b">   41</a></span>&#160;    <a class="code" href="classCXmlDomainImportContext.html#ae6aab6b3ac8ba84432c7c831c52bef0b">CXmlDomainImportContext</a>(std::string &amp;strError, <span class="keywordtype">bool</span> bWithSettings, CSystemClass &amp;systemClass)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        : base<a class="code" href="classCXmlDomainSerializingContext.html#a465af84de659e39167b1704adfa475dd">(</a>strError<a class="code" href="classCXmlDomainSerializingContext.html#a465af84de659e39167b1704adfa475dd">,</a> bWithSettings<a class="code" href="classCXmlDomainSerializingContext.html#a465af84de659e39167b1704adfa475dd">)</a>, _systemClass(systemClass)</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// System Class</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#af4c9b8ac435d4aafb04372dd228f9974">   47</a></span>&#160;    <a class="code" href="classCSystemClass.html">CSystemClass</a> &amp;<a class="code" href="classCXmlDomainImportContext.html#af4c9b8ac435d4aafb04372dd228f9974">getSystemClass</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _systemClass; }</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#af4c9b8ac435d4aafb04372dd228f9974">   47</a></span>&#160;    CSystemClass &amp;<a class="code" href="classCXmlDomainImportContext.html#af4c9b8ac435d4aafb04372dd228f9974">getSystemClass</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> _systemClass; }</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Criteria defintion</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#a3cbe5e251bc41e6ae2166c4dc0e8a2d2">   50</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCXmlDomainImportContext.html#a3cbe5e251bc41e6ae2166c4dc0e8a2d2">setSelectionCriteriaDefinition</a>(</div>
@@ -148,8 +147,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        _pSelectionCriteriaDefinition = pSelectionCriteriaDefinition;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#a6846a8b738626da74a630624f3635730">   56</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *<a class="code" href="classCXmlDomainImportContext.html#a6846a8b738626da74a630624f3635730">getSelectionCriteriaDefinition</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#a6846a8b738626da74a630624f3635730">   56</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *<a class="code" href="classCXmlDomainImportContext.html#a6846a8b738626da74a630624f3635730">getSelectionCriteriaDefinition</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> _pSelectionCriteriaDefinition;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
@@ -159,33 +158,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        _bAutoValidationRequired = bAutoValidationRequired;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd">   67</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd">autoValidationRequired</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _bAutoValidationRequired; }</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd">   67</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd">autoValidationRequired</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> _bAutoValidationRequired; }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classCXmlDomainSerializingContext.html">CXmlDomainSerializingContext</a> base;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// System Class</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classCSystemClass.html">CSystemClass</a> &amp;_systemClass;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    CSystemClass &amp;_systemClass;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// Criteria defintion</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *_pSelectionCriteriaDefinition{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *_pSelectionCriteriaDefinition{<span class="keywordtype">nullptr</span>};</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Auto validation of configurations</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">bool</span> _bAutoValidationRequired{<span class="keyword">true</span>};</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
-<div class="ttc" id="SystemClass_8h_html"><div class="ttname"><a href="SystemClass_8h.html">SystemClass.h</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html_a6131d7195b5c80cabcd9a0f0be5776bd"><div class="ttname"><a href="classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd">CXmlDomainImportContext::autoValidationRequired</a></div><div class="ttdeci">bool autoValidationRequired() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00067">XmlDomainImportContext.h:67</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html_ae6aab6b3ac8ba84432c7c831c52bef0b"><div class="ttname"><a href="classCXmlDomainImportContext.html#ae6aab6b3ac8ba84432c7c831c52bef0b">CXmlDomainImportContext::CXmlDomainImportContext</a></div><div class="ttdeci">CXmlDomainImportContext(std::string &amp;strError, bool bWithSettings, CSystemClass &amp;systemClass)</div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00041">XmlDomainImportContext.h:41</a></div></div>
 <div class="ttc" id="classCSelectionCriteriaDefinition_html"><div class="ttname"><a href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a></div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteriaDefinition_8h_source.html#l00038">SelectionCriteriaDefinition.h:38</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html_a3cbe5e251bc41e6ae2166c4dc0e8a2d2"><div class="ttname"><a href="classCXmlDomainImportContext.html#a3cbe5e251bc41e6ae2166c4dc0e8a2d2">CXmlDomainImportContext::setSelectionCriteriaDefinition</a></div><div class="ttdeci">void setSelectionCriteriaDefinition(const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition)</div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00050">XmlDomainImportContext.h:50</a></div></div>
 <div class="ttc" id="classCXmlDomainSerializingContext_html"><div class="ttname"><a href="classCXmlDomainSerializingContext.html">CXmlDomainSerializingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainSerializingContext_8h_source.html#l00036">XmlDomainSerializingContext.h:36</a></div></div>
-<div class="ttc" id="classCSystemClass_html"><div class="ttname"><a href="classCSystemClass.html">CSystemClass</a></div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8h_source.html#l00043">SystemClass.h:43</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html_a14063e793322c8c917f3d95b3e05d329"><div class="ttname"><a href="classCXmlDomainImportContext.html#a14063e793322c8c917f3d95b3e05d329">CXmlDomainImportContext::setAutoValidationRequired</a></div><div class="ttdeci">void setAutoValidationRequired(bool bAutoValidationRequired)</div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00062">XmlDomainImportContext.h:62</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html_af4c9b8ac435d4aafb04372dd228f9974"><div class="ttname"><a href="classCXmlDomainImportContext.html#af4c9b8ac435d4aafb04372dd228f9974">CXmlDomainImportContext::getSystemClass</a></div><div class="ttdeci">CSystemClass &amp; getSystemClass() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00047">XmlDomainImportContext.h:47</a></div></div>
-<div class="ttc" id="SelectionCriteriaDefinition_8h_html"><div class="ttname"><a href="SelectionCriteriaDefinition_8h.html">SelectionCriteriaDefinition.h</a></div></div>
+<div class="ttc" id="classCXmlDomainSerializingContext_html_a465af84de659e39167b1704adfa475dd"><div class="ttname"><a href="classCXmlDomainSerializingContext.html#a465af84de659e39167b1704adfa475dd">CXmlDomainSerializingContext::CXmlDomainSerializingContext</a></div><div class="ttdeci">CXmlDomainSerializingContext(std::string &amp;strError, bool bWithSettings)</div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainSerializingContext_8h_source.html#l00039">XmlDomainSerializingContext.h:39</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html"><div class="ttname"><a href="classCXmlDomainImportContext.html">CXmlDomainImportContext</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00038">XmlDomainImportContext.h:38</a></div></div>
 <div class="ttc" id="classCXmlDomainImportContext_html_a6846a8b738626da74a630624f3635730"><div class="ttname"><a href="classCXmlDomainImportContext.html#a6846a8b738626da74a630624f3635730">CXmlDomainImportContext::getSelectionCriteriaDefinition</a></div><div class="ttdeci">const CSelectionCriteriaDefinition * getSelectionCriteriaDefinition() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlDomainImportContext_8h_source.html#l00056">XmlDomainImportContext.h:56</a></div></div>
-<div class="ttc" id="XmlDomainSerializingContext_8h_html"><div class="ttname"><a href="XmlDomainSerializingContext_8h.html">XmlDomainSerializingContext.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

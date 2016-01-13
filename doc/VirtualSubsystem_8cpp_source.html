@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,41 +121,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="VirtualSubsystem_8h.html">VirtualSubsystem.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="VirtualSyncer_8h.html">VirtualSyncer.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SyncerSet_8h.html">SyncerSet.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="VirtualSubsystem_8h.html">&quot;VirtualSubsystem.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="VirtualSyncer_8h.html">&quot;VirtualSyncer.h&quot;</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SyncerSet_8h.html">&quot;SyncerSet.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="VirtualSubsystem_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   34</a></span>&#160;<span class="preprocessor">#define base CSubsystem</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="VirtualSubsystem_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   34</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CSubsystem</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">   38</a></span>&#160;<a class="code" href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">CVirtualSubsystem::CVirtualSubsystem</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strName, <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    : <a class="code" href="VirtualSubsystem_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(strName, logger), _pVirtualSyncer(new <a class="code" href="classCVirtualSyncer.html">CVirtualSyncer</a>(this))</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">   38</a></span>&#160;CVirtualSubsystem::<a class="code" href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">CVirtualSubsystem</a>(<span class="keyword">const</span> string &amp;strName, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCSubsystem.html#ae82425f8db738960f723ac028020cbe3">(</a>strName<a class="code" href="classCSubsystem.html#ae82425f8db738960f723ac028020cbe3">,</a> logger<a class="code" href="classCSubsystem.html#ae82425f8db738960f723ac028020cbe3">)</a>, <a class="code" href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">_pVirtualSyncer</a>(<span class="keyword">new</span> <a class="code" href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">CVirtualSyncer</a>(<span class="keyword">this</span>))</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    logger.<a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">warning</a>() &lt;&lt; <span class="stringliteral">&quot;Subsystem &quot;</span> &lt;&lt; strName</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    logger<a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">.</a><a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">warning</a><a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">(</a><a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">)</a> &lt;&lt; <span class="stringliteral">&quot;Subsystem &quot;</span> &lt;&lt; strName</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                     &lt;&lt; <span class="stringliteral">&quot; loaded as virtual. &quot;</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                        <span class="stringliteral">&quot;Its parameters will not be synced with any external system.&quot;</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#ad97b8e8e0acb64d7ad9972e7e6c38e55">   46</a></span>&#160;<a class="code" href="classCVirtualSubsystem.html#ad97b8e8e0acb64d7ad9972e7e6c38e55">CVirtualSubsystem::~CVirtualSubsystem</a>()</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#ae68cfe8726a4e1547323a03bf18d8fd7">   46</a></span>&#160;CVirtualSubsystem::~<a class="code" href="classCVirtualSubsystem.html#ae68cfe8726a4e1547323a03bf18d8fd7">CVirtualSubsystem</a>()</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">delete</span> _pVirtualSyncer;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// Syncer</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#a3e24de9e2953d0879961bfdbc92803ff">   52</a></span>&#160;<a class="code" href="classISyncer.html">ISyncer</a> *<a class="code" href="classCVirtualSubsystem.html#a3e24de9e2953d0879961bfdbc92803ff">CVirtualSubsystem::getSyncer</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#aa9346cce89e6071018b44e39775bc7c4">   52</a></span>&#160;<a class="code" href="classISyncer.html">ISyncer</a> *CVirtualSubsystem::<a class="code" href="classCVirtualSubsystem.html#aa9346cce89e6071018b44e39775bc7c4">getSyncer</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> _pVirtualSyncer;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#a20b6872c4d29823ba5dc5c4d5c0e4650">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCVirtualSubsystem.html#a20b6872c4d29823ba5dc5c4d5c0e4650">CVirtualSubsystem::fillSyncerSetFromDescendant</a>(<a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;syncerSet)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    syncerSet += _pVirtualSyncer;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCVirtualSubsystem.html#a20b6872c4d29823ba5dc5c4d5c0e4650">   57</a></span>&#160;<span class="keywordtype">void</span> CVirtualSubsystem::<a class="code" href="classCVirtualSubsystem.html#a20b6872c4d29823ba5dc5c4d5c0e4650">fillSyncerSetFromDescendant</a>(<a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;syncerSet) <span class="keyword">const</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    syncerSet <a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">+=</a> _pVirtualSyncer;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// From IMapper</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">bool</span> CVirtualSubsystem::mapBegin(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> * <span class="comment">/*elem*/</span>, <span class="keywordtype">bool</span> &amp;bKeepDiving,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                 <span class="keywordtype">string</span> &amp; <span class="comment">/*strError*/</span>)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                 string &amp; <span class="comment">/*strError*/</span>)</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// Do nothing: prevent any subsystem object from being mapped</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
@@ -171,19 +170,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Do nothing</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
-<div class="ttc" id="VirtualSyncer_8h_html"><div class="ttname"><a href="VirtualSyncer_8h.html">VirtualSyncer.h</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
+<div class="ttc" id="classCVirtualSubsystem_html_aa9346cce89e6071018b44e39775bc7c4"><div class="ttname"><a href="classCVirtualSubsystem.html#aa9346cce89e6071018b44e39775bc7c4">CVirtualSubsystem::getSyncer</a></div><div class="ttdeci">ISyncer * getSyncer() const override</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00052">VirtualSubsystem.cpp:52</a></div></div>
 <div class="ttc" id="classCVirtualSubsystem_html_a54cb1d27391108fe6c8c68addbc74edd"><div class="ttname"><a href="classCVirtualSubsystem.html#a54cb1d27391108fe6c8c68addbc74edd">CVirtualSubsystem::CVirtualSubsystem</a></div><div class="ttdeci">CVirtualSubsystem(const std::string &amp;strName, core::log::Logger &amp;logger)</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00038">VirtualSubsystem.cpp:38</a></div></div>
-<div class="ttc" id="classCVirtualSyncer_html"><div class="ttname"><a href="classCVirtualSyncer.html">CVirtualSyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8h_source.html#l00036">VirtualSyncer.h:36</a></div></div>
-<div class="ttc" id="classCVirtualSubsystem_html_a3e24de9e2953d0879961bfdbc92803ff"><div class="ttname"><a href="classCVirtualSubsystem.html#a3e24de9e2953d0879961bfdbc92803ff">CVirtualSubsystem::getSyncer</a></div><div class="ttdeci">virtual ISyncer * getSyncer() const </div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00052">VirtualSubsystem.cpp:52</a></div></div>
+<div class="ttc" id="classCVirtualSubsystem_html_ae68cfe8726a4e1547323a03bf18d8fd7"><div class="ttname"><a href="classCVirtualSubsystem.html#ae68cfe8726a4e1547323a03bf18d8fd7">CVirtualSubsystem::~CVirtualSubsystem</a></div><div class="ttdeci">~CVirtualSubsystem() override</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00046">VirtualSubsystem.cpp:46</a></div></div>
+<div class="ttc" id="classCSyncerSet_html_abda7650761df37cecee929c510d70b6f"><div class="ttname"><a href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">CSyncerSet::operator+=</a></div><div class="ttdeci">const CSyncerSet &amp; operator+=(ISyncer *pRightSyncer)</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00033">SyncerSet.cpp:33</a></div></div>
 <div class="ttc" id="classCVirtualSubsystem_html_a20b6872c4d29823ba5dc5c4d5c0e4650"><div class="ttname"><a href="classCVirtualSubsystem.html#a20b6872c4d29823ba5dc5c4d5c0e4650">CVirtualSubsystem::fillSyncerSetFromDescendant</a></div><div class="ttdeci">void fillSyncerSetFromDescendant(CSyncerSet &amp;syncerSet) const override</div><div class="ttdoc">Fill Syncer Set From descendant nodes. </div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00057">VirtualSubsystem.cpp:57</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
-<div class="ttc" id="VirtualSubsystem_8h_html"><div class="ttname"><a href="VirtualSubsystem_8h.html">VirtualSubsystem.h</a></div></div>
-<div class="ttc" id="VirtualSubsystem_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="VirtualSubsystem_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00034">VirtualSubsystem.cpp:34</a></div></div>
-<div class="ttc" id="classCVirtualSubsystem_html_ad97b8e8e0acb64d7ad9972e7e6c38e55"><div class="ttname"><a href="classCVirtualSubsystem.html#ad97b8e8e0acb64d7ad9972e7e6c38e55">CVirtualSubsystem::~CVirtualSubsystem</a></div><div class="ttdeci">virtual ~CVirtualSubsystem()</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSubsystem_8cpp_source.html#l00046">VirtualSubsystem.cpp:46</a></div></div>
+<div class="ttc" id="ArrayParameter_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8cpp_source.html#l00040">ArrayParameter.cpp:40</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html_a2df9464630e1079288e5f04eb90cbdca"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">core::log::Logger::warning</a></div><div class="ttdeci">details::Warning warning()</div><div class="ttdoc">Retrieve wrapped warning logger. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00069">Logger.h:69</a></div></div>
 <div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00038">SyncerSet.h:38</a></div></div>
-<div class="ttc" id="SyncerSet_8h_html"><div class="ttname"><a href="SyncerSet_8h.html">SyncerSet.h</a></div></div>
 <div class="ttc" id="classISyncer_html"><div class="ttname"><a href="classISyncer.html">ISyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="Syncer_8h_source.html#l00036">Syncer.h:36</a></div></div>
+<div class="ttc" id="classCSubsystem_html_ae82425f8db738960f723ac028020cbe3"><div class="ttname"><a href="classCSubsystem.html#ae82425f8db738960f723ac028020cbe3">CSubsystem::CSubsystem</a></div><div class="ttdeci">CSubsystem(const std::string &amp;strName, core::log::Logger &amp;logger)</div><div class="ttdoc">Class Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00046">Subsystem.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

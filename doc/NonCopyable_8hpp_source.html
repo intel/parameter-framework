@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,26 +121,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutility.html">utility</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="namespaceutility.html">   32</a></span>&#160;<span class="keyword">namespace</span> <a class="code" href="namespaceutility.html">utility</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classutility_1_1NonCopyable.html">   46</a></span>&#160;<span class="keyword">class </span><a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/** Base class for private inheritance to make the derived class non copyable.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * Sometime implementing copy/move semantic is complicated or not useful.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * The traditional way is to declare the relevant methods private in c++ &lt; 11</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * or deleted in c++ &gt; 11.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * It is easier and self documented to derive from this class.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * For more documentation see:</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * http://www.boost.org/doc/libs/release/libs/utility/utility.htm#Class_noncopyable</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classutility_1_1NonCopyable.html">   46</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html#a6b7a1ec608b5f9458966e85634dc04dc">NonCopyable</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html#a6b7a1ec608b5f9458966e85634dc04dc">NonCopyable</a>(<span class="keyword">const</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html#a6b7a1ec608b5f9458966e85634dc04dc">NonCopyable</a>(<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;<a class="code" href="classutility_1_1NonCopyable.html#a22b13a151ea5379332511dbffcb318ae">operator=</a>(<span class="keyword">const</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;<a class="code" href="classutility_1_1NonCopyable.html#a22b13a151ea5379332511dbffcb318ae">operator=</a>(<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html#af0c4dcf52937b7291810244fa64701e5">NonCopyable</a>(<span class="keyword">const</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html#ac3ff93b4ab76b88ff11241c9fb163416">NonCopyable</a>(<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;<a class="code" href="classutility_1_1NonCopyable.html#a22b13a151ea5379332511dbffcb318ae">operator</a>=(<span class="keyword">const</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;<a class="code" href="classutility_1_1NonCopyable.html#a1a11d10e410d52f2d3032578f6d5c385">operator</a>=(<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;} <span class="comment">// namespace utility</span></div>
 <div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00046">NonCopyable.hpp:46</a></div></div>
+<div class="ttc" id="classutility_1_1NonCopyable_html_a1a11d10e410d52f2d3032578f6d5c385"><div class="ttname"><a href="classutility_1_1NonCopyable.html#a1a11d10e410d52f2d3032578f6d5c385">utility::NonCopyable::operator=</a></div><div class="ttdeci">NonCopyable &amp; operator=(NonCopyable &amp;&amp;)=delete</div></div>
 <div class="ttc" id="classutility_1_1NonCopyable_html_a22b13a151ea5379332511dbffcb318ae"><div class="ttname"><a href="classutility_1_1NonCopyable.html#a22b13a151ea5379332511dbffcb318ae">utility::NonCopyable::operator=</a></div><div class="ttdeci">NonCopyable &amp; operator=(const NonCopyable &amp;)=delete</div></div>
+<div class="ttc" id="classutility_1_1NonCopyable_html_ac3ff93b4ab76b88ff11241c9fb163416"><div class="ttname"><a href="classutility_1_1NonCopyable.html#ac3ff93b4ab76b88ff11241c9fb163416">utility::NonCopyable::NonCopyable</a></div><div class="ttdeci">NonCopyable(NonCopyable &amp;&amp;)=delete</div></div>
 <div class="ttc" id="classutility_1_1NonCopyable_html_a6b7a1ec608b5f9458966e85634dc04dc"><div class="ttname"><a href="classutility_1_1NonCopyable.html#a6b7a1ec608b5f9458966e85634dc04dc">utility::NonCopyable::NonCopyable</a></div><div class="ttdeci">NonCopyable()=default</div></div>
-<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00043">Element.h:43</a></div></div>
+<div class="ttc" id="classutility_1_1NonCopyable_html_af0c4dcf52937b7291810244fa64701e5"><div class="ttname"><a href="classutility_1_1NonCopyable.html#af0c4dcf52937b7291810244fa64701e5">utility::NonCopyable::NonCopyable</a></div><div class="ttdeci">NonCopyable(const NonCopyable &amp;)=delete</div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

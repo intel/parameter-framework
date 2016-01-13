@@ -1,8 +1,0 @@
-<map id="CBitParameterBlock::structureToXml" name="CBitParameterBlock::structureToXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="736,17,928,44"/>
-<area shape="rect" id="node3" href="$classCBitParameterBlock.html#a53ab74abef6085b354322affebd7072c" title="CBitParameterBlock\l::getSize" alt="" coords="237,31,387,73"/>
-<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#a9fc955181503bd0cfd5a148dd5653905" title="Serialize the structure to xml. " alt="" coords="203,97,421,138"/>
-<area shape="rect" id="node4" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="469,31,688,73"/>
-<area shape="rect" id="node6" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="475,97,683,138"/>
-<area shape="rect" id="node7" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="739,104,925,131"/>
-</map>

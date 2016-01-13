@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,22 +101,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CLogarithmicParameterAdaptation:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation__inherit__graph.svg" width="254" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation__inherit__graph.svg" width="254" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ec45f26f9100c308478e31704a90edc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#a5ec45f26f9100c308478e31704a90edc">CLogarithmicParameterAdaptation</a> ()</td></tr>
 <tr class="separator:a5ec45f26f9100c308478e31704a90edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fde65d34adb8fed65a480a3da1fa97a"><td class="memItemLeft" align="right" valign="top">virtual int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#a7fde65d34adb8fed65a480a3da1fa97a">fromUserValue</a> (double dValue) const </td></tr>
-<tr class="memdesc:a7fde65d34adb8fed65a480a3da1fa97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversions must satisfy the following: f(f'(a)) = a Let f=fromUserValue and f'=toUserValue if y = f(log(x)/log(base)), then f'(y) * log(base) = log (x) exp(f'(y)*log(base)) = x.  <a href="#a7fde65d34adb8fed65a480a3da1fa97a">More...</a><br /></td></tr>
-<tr class="separator:a7fde65d34adb8fed65a480a3da1fa97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf984713c701ab07c15f3c5939c2b297"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#adf984713c701ab07c15f3c5939c2b297">toUserValue</a> (int64_t iValue) const </td></tr>
-<tr class="separator:adf984713c701ab07c15f3c5939c2b297"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f714e7074a0c83dbad88b8594563c1d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#a7f714e7074a0c83dbad88b8594563c1d">showProperties</a> (std::string &amp;strResult) const </td></tr>
-<tr class="separator:a7f714e7074a0c83dbad88b8594563c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0b21330479721a562cbc9ff572b5e8e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#ac0b21330479721a562cbc9ff572b5e8e">fromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)</td></tr>
-<tr class="separator:ac0b21330479721a562cbc9ff572b5e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3ff8869b09ca59447da9d1ea60e2102"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#aa3ff8869b09ca59447da9d1ea60e2102">fromUserValue</a> (double dValue) const override</td></tr>
+<tr class="memdesc:aa3ff8869b09ca59447da9d1ea60e2102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversions must satisfy the following: f(f'(a)) = a Let f=fromUserValue and f'=toUserValue if y = f(log(x)/log(base)), then f'(y) * log(base) = log (x) exp(f'(y)*log(base)) = x.  <a href="#aa3ff8869b09ca59447da9d1ea60e2102">More...</a><br /></td></tr>
+<tr class="separator:aa3ff8869b09ca59447da9d1ea60e2102"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e3b11c477ea3dc6fda5bc030528c09b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#a6e3b11c477ea3dc6fda5bc030528c09b">toUserValue</a> (int64_t iValue) const override</td></tr>
+<tr class="separator:a6e3b11c477ea3dc6fda5bc030528c09b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa4f613023182d50925b39eb0056a9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#a2fa4f613023182d50925b39eb0056a9e">showProperties</a> (std::string &amp;strResult) const override</td></tr>
+<tr class="separator:a2fa4f613023182d50925b39eb0056a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad493648bd491eb49dd10ff611e4cab10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLogarithmicParameterAdaptation.html#ad493648bd491eb49dd10ff611e4cab10">fromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) override</td></tr>
+<tr class="separator:ad493648bd491eb49dd10ff611e4cab10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCLinearParameterAdaptation"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCLinearParameterAdaptation')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCLinearParameterAdaptation.html">CLinearParameterAdaptation</a></td></tr>
 <tr class="memitem:a9c25f9577e81ed89304bddb13e445bb8 inherit pub_methods_classCLinearParameterAdaptation"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLinearParameterAdaptation.html#a9c25f9577e81ed89304bddb13e445bb8">CLinearParameterAdaptation</a> ()</td></tr>
 <tr class="separator:a9c25f9577e81ed89304bddb13e445bb8 inherit pub_methods_classCLinearParameterAdaptation"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,13 +126,13 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classCParameterAdaptation"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterAdaptation')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCParameterAdaptation.html">CParameterAdaptation</a></td></tr>
 <tr class="memitem:a1a31e6f9e65bee611936b526d40e0730 inherit pub_methods_classCParameterAdaptation"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAdaptation.html#a1a31e6f9e65bee611936b526d40e0730">CParameterAdaptation</a> (const std::string &amp;strType)</td></tr>
 <tr class="separator:a1a31e6f9e65bee611936b526d40e0730 inherit pub_methods_classCParameterAdaptation"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65ffe249fab74b43f0b927cd56cbee95 inherit pub_methods_classCParameterAdaptation"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAdaptation.html#a65ffe249fab74b43f0b927cd56cbee95">getKind</a> () const </td></tr>
-<tr class="separator:a65ffe249fab74b43f0b927cd56cbee95 inherit pub_methods_classCParameterAdaptation"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c0a7222a88366dac2b7a004e4feb9d inherit pub_methods_classCParameterAdaptation"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAdaptation.html#af7c0a7222a88366dac2b7a004e4feb9d">getKind</a> () const override</td></tr>
+<tr class="separator:af7c0a7222a88366dac2b7a004e4feb9d inherit pub_methods_classCParameterAdaptation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
 <tr class="memitem:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#adda0945fbca000ff1e605a9b93f74c64">CElement</a> (const std::string &amp;strName=&quot;&quot;)</td></tr>
 <tr class="separator:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ae09302d1fbbe377cdcb7c5ceb2fb46a6">~CElement</a> ()</td></tr>
-<tr class="separator:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5760db9b406623e7e2c302b041af7be inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ab5760db9b406623e7e2c302b041af7be">~CElement</a> () override</td></tr>
+<tr class="separator:ab5760db9b406623e7e2c302b041af7be inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac5fa8c7e838a44733f3887f1bec20d7b">setDescription</a> (const std::string &amp;strDescription)</td></tr>
 <tr class="separator:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c3c6e07b015c44706edf4bb8fc41c2 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2">getDescription</a> () const </td></tr>
@@ -185,8 +185,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae0fcf9bbc9468a4372a9383299057e7a inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7653fbad5491138533ac0fa889ffecd9 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7653fbad5491138533ac0fa889ffecd9">isDescendantOf</a> (const <a class="el" href="classCElement.html">CElement</a> *pCandidateAscendant) const </td></tr>
 <tr class="separator:a7653fbad5491138533ac0fa889ffecd9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ce1bde0fda5cf412b652000cab473e4 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7ce1bde0fda5cf412b652000cab473e4">toXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const </td></tr>
-<tr class="separator:a7ce1bde0fda5cf412b652000cab473e4 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411078c34f3257bbda1ecaba79c8488c inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a411078c34f3257bbda1ecaba79c8488c">toXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const override</td></tr>
+<tr class="separator:a411078c34f3257bbda1ecaba79c8488c inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee22d6b038603b6481a8f029bf59ff3d">childrenToXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const </td></tr>
 <tr class="memdesc:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the children to XML.  <a href="#aee22d6b038603b6481a8f029bf59ff3d">More...</a><br /></td></tr>
 <tr class="separator:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -245,10 +245,18 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html#l00038">38</a> of file <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html">LogarithmicParameterAdaptation.cpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation_a5ec45f26f9100c308478e31704a90edc_cgraph.svg" width="951" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7fde65d34adb8fed65a480a3da1fa97a"></a>
+<a class="anchor" id="aa3ff8869b09ca59447da9d1ea60e2102"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -265,20 +273,28 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Conversions must satisfy the following: f(f'(a)) = a Let f=fromUserValue and f'=toUserValue if y = f(log(x)/log(base)), then f'(y) * log(base) = log (x) exp(f'(y)*log(base)) = x. </p>
 
-<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#a7c2b1a6c3ae09624a722fbeece81b96c">CLinearParameterAdaptation</a>.</p>
+<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#ac9ab066a2403bafee63dc96f05bfb978">CLinearParameterAdaptation</a>.</p>
 
 <p>Definition at line <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html#l00076">76</a> of file <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html">LogarithmicParameterAdaptation.cpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation_aa3ff8869b09ca59447da9d1ea60e2102_cgraph.svg" width="724" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
-<a class="anchor" id="ac0b21330479721a562cbc9ff572b5e8e"></a>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad493648bd491eb49dd10ff611e4cab10"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -305,25 +321,26 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e">CLinearParameterAdaptation</a>.</p>
+<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#a48805c5ccc995e73c5b387724845e6f7">CLinearParameterAdaptation</a>.</p>
 
 <p>Definition at line <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html#l00058">58</a> of file <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html">LogarithmicParameterAdaptation.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation_ac0b21330479721a562cbc9ff572b5e8e_cgraph.svg" width="1008" height="222"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation_ad493648bd491eb49dd10ff611e4cab10_cgraph.svg" width="1967" height="775"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a7f714e7074a0c83dbad88b8594563c1d"></a>
+<a class="anchor" id="a2fa4f613023182d50925b39eb0056a9e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -340,18 +357,26 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#a572f6d34392375d3c51ea131a6f5e6f4">CLinearParameterAdaptation</a>.</p>
+<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#a31e76070b1fd203905eedde08a6a9381">CLinearParameterAdaptation</a>.</p>
 
 <p>Definition at line <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html#l00046">46</a> of file <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html">LogarithmicParameterAdaptation.cpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation_a2fa4f613023182d50925b39eb0056a9e_cgraph.svg" width="924" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
-<a class="anchor" id="adf984713c701ab07c15f3c5939c2b297"></a>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6e3b11c477ea3dc6fda5bc030528c09b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -368,14 +393,22 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#a73a4a83aca65a6d339bc83a259659864">CLinearParameterAdaptation</a>.</p>
+<p>Reimplemented from <a class="el" href="classCLinearParameterAdaptation.html#af8906d64e91b6f15990b546761dabccd">CLinearParameterAdaptation</a>.</p>
 
 <p>Definition at line <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html#l00082">82</a> of file <a class="el" href="LogarithmicParameterAdaptation_8cpp_source.html">LogarithmicParameterAdaptation.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCLogarithmicParameterAdaptation_a6e3b11c477ea3dc6fda5bc030528c09b_cgraph.svg" width="724" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>

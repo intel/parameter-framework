@@ -1,3 +1,4 @@
 <map id="utility::for" name="utility::for">
-<area shape="rect" id="node2" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="133,5,249,32"/>
+<area shape="rect" id="node2" href="$namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="133,5,249,32"/>
+<area shape="rect" id="node3" href="$namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d" title="Format the items of a sequence container of strings into a string. " alt="" coords="297,5,413,32"/>
 </map>

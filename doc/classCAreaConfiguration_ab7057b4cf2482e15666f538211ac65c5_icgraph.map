@@ -1,0 +1,8 @@
+<map id="CAreaConfiguration::CAreaConfiguration" name="CAreaConfiguration::CAreaConfiguration">
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a41fcefde73d823509e16458ef712e0c3" title="CConfigurableElement\l::createAreaConfiguration" alt="" coords="208,5,395,47"/>
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#a2722416342b16b07ffa05b0e0253bc66" title="CDomainConfiguration\l::addConfigurableElement" alt="" coords="443,5,629,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="677,5,839,47"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#aa96eec13d9bdbb307e1dcfe6f057a685" title="CConfigurableDomains\l::createConfiguration" alt="" coords="887,5,1055,47"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#ad60e8abcd5881a2833d24c3a531e16f0" title="CParameterMgr::createConfiguration" alt="" coords="1103,13,1359,39"/>
+<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#ac863444469b87e23f6aeba390e46f5b3" title="CParameterMgrFullConnector\l::createConfiguration" alt="" coords="1407,5,1615,47"/>
+</map>

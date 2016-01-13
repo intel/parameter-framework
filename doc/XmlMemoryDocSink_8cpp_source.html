@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -123,28 +122,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlMemoryDocSink_8h.html">XmlMemoryDocSink.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="XmlMemoryDocSink_8h.html">&quot;XmlMemoryDocSink.h&quot;</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="XmlMemoryDocSink_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   33</a></span>&#160;<span class="preprocessor">#define base CXmlDocSink</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="XmlMemoryDocSink_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   33</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CXmlDocSink</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCXmlMemoryDocSink.html#a61b24a359e12fe303346f8a4cddbe9c8">   35</a></span>&#160;<a class="code" href="classCXmlMemoryDocSink.html#a61b24a359e12fe303346f8a4cddbe9c8">CXmlMemoryDocSink::CXmlMemoryDocSink</a>(<a class="code" href="classIXmlSink.html">IXmlSink</a> *pXmlSink) : _pXmlSink(pXmlSink)</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCXmlMemoryDocSink.html#a61b24a359e12fe303346f8a4cddbe9c8">   35</a></span>&#160;<a class="code" href="classCXmlMemoryDocSink.html">CXmlMemoryDocSink</a>::<a class="code" href="classCXmlMemoryDocSink.html#a61b24a359e12fe303346f8a4cddbe9c8">CXmlMemoryDocSink</a>(<a class="code" href="classIXmlSink.html">IXmlSink</a> *pXmlSink) : _pXmlSink(pXmlSink)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">bool</span> CXmlMemoryDocSink::doProcess(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a> &amp;xmlDocSource,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlMemoryDocSink.html">CXmlMemoryDocSink</a>::doProcess(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a> &amp;xmlDocSource,</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                  <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCXmlElement.html">CXmlElement</a> docElement;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    xmlDocSource.<a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">getRootElement</a>(docElement);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    xmlDocSource<a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">.</a><a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">getRootElement</a><a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">(</a>docElement<a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">)</a>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Load the structure from the XML Sink</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> _pXmlSink-&gt;<a class="code" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">fromXml</a>(docElement, serializingContext);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> _pXmlSink<a class="code" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">-&gt;</a><a class="code" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">fromXml</a><a class="code" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">(</a>docElement<a class="code" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">,</a> serializingContext<a class="code" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">)</a>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="ttc" id="classCXmlMemoryDocSink_html_a61b24a359e12fe303346f8a4cddbe9c8"><div class="ttname"><a href="classCXmlMemoryDocSink.html#a61b24a359e12fe303346f8a4cddbe9c8">CXmlMemoryDocSink::CXmlMemoryDocSink</a></div><div class="ttdeci">CXmlMemoryDocSink(IXmlSink *pXmlSink)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlMemoryDocSink_8cpp_source.html#l00035">XmlMemoryDocSink.cpp:35</a></div></div>
 <div class="ttc" id="classCXmlDocSource_html_a2a7e3d4b2568b41e56b6f553eba7b93c"><div class="ttname"><a href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">CXmlDocSource::getRootElement</a></div><div class="ttdeci">void getRootElement(CXmlElement &amp;xmlRootElement) const </div><div class="ttdoc">Method that returns the root element of the Xml tree. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00068">XmlDocSource.cpp:68</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
-<div class="ttc" id="XmlMemoryDocSink_8h_html"><div class="ttname"><a href="XmlMemoryDocSink_8h.html">XmlMemoryDocSink.h</a></div></div>
+<div class="ttc" id="classCXmlMemoryDocSink_html"><div class="ttname"><a href="classCXmlMemoryDocSink.html">CXmlMemoryDocSink</a></div><div class="ttdoc">Sink class used to parse an xml document and instanciate parameter-framework structures. </div><div class="ttdef"><b>Definition:</b> <a href="XmlMemoryDocSink_8h_source.html#l00038">XmlMemoryDocSink.h:38</a></div></div>
 <div class="ttc" id="classIXmlSink_html"><div class="ttname"><a href="classIXmlSink.html">IXmlSink</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlSink_8h_source.html#l00035">XmlSink.h:35</a></div></div>
 <div class="ttc" id="classCXmlDocSource_html"><div class="ttname"><a href="classCXmlDocSource.html">CXmlDocSource</a></div><div class="ttdoc">The CXmlDocSource is used by CXmlDocSink. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00050">XmlDocSource.h:50</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>

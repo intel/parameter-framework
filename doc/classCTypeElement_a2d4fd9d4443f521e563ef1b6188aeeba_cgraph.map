@@ -1,4 +1,5 @@
 <map id="CTypeElement::getFormattedMapping" name="CTypeElement::getFormattedMapping">
 <area shape="rect" id="node2" href="$classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411" title="Formats the mapping as a list of comma&#45;space separated key:value pairs. " alt="" coords="261,13,439,39"/>
-<area shape="rect" id="node3" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="487,13,603,39"/>
+<area shape="rect" id="node3" href="$namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="487,13,603,39"/>
+<area shape="rect" id="node4" href="$namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d" title="Format the items of a sequence container of strings into a string. " alt="" coords="651,13,767,39"/>
 </map>

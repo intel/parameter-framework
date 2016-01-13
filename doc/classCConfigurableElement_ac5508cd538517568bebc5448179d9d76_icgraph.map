@@ -1,9 +1,7 @@
 <map id="CConfigurableElement::belongsTo" name="CConfigurableElement::belongsTo">
 <area shape="rect" id="node2" href="$classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090" title="Add a configurable element to the domain. " alt="" coords="229,5,415,47"/>
 <area shape="rect" id="node6" href="$classCConfigurableDomains.html#a0fb6ef1d7480f819135a29a5dfc6463d" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="217,71,427,112"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a1be2d84567e3868ed69fdc50904cab3b" title="Associate a configurable element to a domain. " alt="" coords="479,5,729,47"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="781,5,1016,47"/>
-<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650" title="CParameterMgrFullConnector\l::addConfigurableElementToDomain" alt="" coords="1064,5,1315,47"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="475,71,733,112"/>
-<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="795,71,1003,112"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a1be2d84567e3868ed69fdc50904cab3b" title="Associate a configurable element to a domain. " alt="" coords="475,5,725,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="773,5,1008,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650" title="CParameterMgrFullConnector\l::addConfigurableElementToDomain" alt="" coords="1056,5,1307,47"/>
 </map>

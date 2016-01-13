@@ -1,5 +1,6 @@
 <map id="core::log::Logger::info" name="core::log::Logger::info">
-<area shape="rect" id="node2" href="$classcore_1_1log_1_1Context.html#a09319c971f1c9db5b8603eb0911d7941" title="Class Constructor. " alt="" coords="218,5,353,47"/>
-<area shape="rect" id="node3" href="$classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3" title="Class Destructor. " alt="" coords="218,71,353,112"/>
-<area shape="rect" id="node4" href="$classCSelectionCriterion.html#a83e33a27a1094e00154018756c0be2dc" title="From ISelectionCriterionInterface. " alt="" coords="213,136,357,177"/>
+<area shape="rect" id="node2" href="$classcore_1_1log_1_1Context.html#a09319c971f1c9db5b8603eb0911d7941" title="Class Constructor. " alt="" coords="233,5,368,47"/>
+<area shape="rect" id="node3" href="$classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3" title="Class Destructor. " alt="" coords="233,71,368,112"/>
+<area shape="rect" id="node4" href="$classCSubsystemObject.html#adb6a150b1e47d9815c71c413c8e4dd99" title="Logging methods. " alt="" coords="213,137,388,163"/>
+<area shape="rect" id="node5" href="$classCSelectionCriterion.html#a9de488f252ad2b33b2cfe843496d47ba" title="From ISelectionCriterionInterface. " alt="" coords="229,188,373,229"/>
 </map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,26 +121,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SubsystemElementBuilder_8h.html">SubsystemElementBuilder.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SubsystemLibrary_8h.html">SubsystemLibrary.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SubsystemElementBuilder_8h.html">&quot;SubsystemElementBuilder.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SubsystemLibrary_8h.html">&quot;SubsystemLibrary.h&quot;</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classCSubsystemElementBuilder.html#a300134faad7f67c49de9cf84cc8417f7">   33</a></span>&#160;<a class="code" href="classCSubsystemElementBuilder.html#a300134faad7f67c49de9cf84cc8417f7">CSubsystemElementBuilder::CSubsystemElementBuilder</a>(<span class="keyword">const</span> <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *pSubsystemLibrary)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classCSubsystemElementBuilder.html#a300134faad7f67c49de9cf84cc8417f7">   33</a></span>&#160;<a class="code" href="classCSubsystemElementBuilder.html">CSubsystemElementBuilder</a>::<a class="code" href="classCSubsystemElementBuilder.html#a300134faad7f67c49de9cf84cc8417f7">CSubsystemElementBuilder</a>(<span class="keyword">const</span> <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *pSubsystemLibrary)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    : <a class="code" href="classCElementBuilder.html">CElementBuilder</a>(), _pSubsystemLibrary(pSubsystemLibrary)</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCSubsystemElementBuilder.html#ab93319cc2de998b9d0674c2530e01e35">   38</a></span>&#160;<a class="code" href="classCElement.html">CElement</a> *<a class="code" href="classCSubsystemElementBuilder.html#ab93319cc2de998b9d0674c2530e01e35">CSubsystemElementBuilder::createElement</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">return</span> _pSubsystemLibrary-&gt;<a class="code" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">createElement</a>(xmlElement);</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCSubsystemElementBuilder.html#a4c805bcb2fd37483c681f99a26591dfa">   38</a></span>&#160;<a class="code" href="classCElement.html">CElement</a> *<a class="code" href="classCSubsystemElementBuilder.html">CSubsystemElementBuilder</a>::<a class="code" href="classCSubsystemElementBuilder.html#a4c805bcb2fd37483c681f99a26591dfa">createElement</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) <span class="keyword">const</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">return</span> _pSubsystemLibrary<a class="code" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">-&gt;</a><a class="code" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">createElement</a><a class="code" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">(</a>xmlElement<a class="code" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">)</a>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
 <div class="ttc" id="classCSubsystemElementBuilder_html_a300134faad7f67c49de9cf84cc8417f7"><div class="ttname"><a href="classCSubsystemElementBuilder.html#a300134faad7f67c49de9cf84cc8417f7">CSubsystemElementBuilder::CSubsystemElementBuilder</a></div><div class="ttdeci">CSubsystemElementBuilder(const CSubsystemLibrary *pSubsystemLibrary)</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemElementBuilder_8cpp_source.html#l00033">SubsystemElementBuilder.cpp:33</a></div></div>
 <div class="ttc" id="classCDefaultElementLibrary_html_a77f617162a83a4129d8355b4299b13ec"><div class="ttname"><a href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">CDefaultElementLibrary::createElement</a></div><div class="ttdeci">CElement * createElement(const CXmlElement &amp;xmlElement) const </div><div class="ttdoc">Create and return an element instanciated depending on an xmlElement. </div><div class="ttdef"><b>Definition:</b> <a href="DefaultElementLibrary_8h_source.html#l00079">DefaultElementLibrary.h:79</a></div></div>
+<div class="ttc" id="classCSubsystemElementBuilder_html_a4c805bcb2fd37483c681f99a26591dfa"><div class="ttname"><a href="classCSubsystemElementBuilder.html#a4c805bcb2fd37483c681f99a26591dfa">CSubsystemElementBuilder::createElement</a></div><div class="ttdeci">CElement * createElement(const CXmlElement &amp;xmlElement) const override</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemElementBuilder_8cpp_source.html#l00038">SubsystemElementBuilder.cpp:38</a></div></div>
+<div class="ttc" id="classCSubsystemElementBuilder_html"><div class="ttname"><a href="classCSubsystemElementBuilder.html">CSubsystemElementBuilder</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemElementBuilder_8h_source.html#l00036">SubsystemElementBuilder.h:36</a></div></div>
 <div class="ttc" id="classCSubsystemLibrary_html"><div class="ttname"><a href="classCSubsystemLibrary.html">CSubsystemLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemLibrary_8h_source.html#l00046">SubsystemLibrary.h:46</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCSubsystemElementBuilder_html_ab93319cc2de998b9d0674c2530e01e35"><div class="ttname"><a href="classCSubsystemElementBuilder.html#ab93319cc2de998b9d0674c2530e01e35">CSubsystemElementBuilder::createElement</a></div><div class="ttdeci">virtual CElement * createElement(const CXmlElement &amp;xmlElement) const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemElementBuilder_8cpp_source.html#l00038">SubsystemElementBuilder.cpp:38</a></div></div>
-<div class="ttc" id="SubsystemLibrary_8h_html"><div class="ttname"><a href="SubsystemLibrary_8h.html">SubsystemLibrary.h</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
-<div class="ttc" id="SubsystemElementBuilder_8h_html"><div class="ttname"><a href="SubsystemElementBuilder_8h.html">SubsystemElementBuilder.h</a></div></div>
 <div class="ttc" id="classCElementBuilder_html"><div class="ttname"><a href="classCElementBuilder.html">CElementBuilder</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementBuilder_8h_source.html#l00035">ElementBuilder.h:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

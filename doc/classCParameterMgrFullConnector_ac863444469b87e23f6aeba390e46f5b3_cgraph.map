@@ -1,3 +1,15 @@
 <map id="CParameterMgrFullConnector::createConfiguration" name="CParameterMgrFullConnector::createConfiguration">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#ad60e8abcd5881a2833d24c3a531e16f0" title="CParameterMgr::createConfiguration" alt="" coords="261,13,517,39"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ad60e8abcd5881a2833d24c3a531e16f0" title="CParameterMgr::createConfiguration" alt="" coords="261,129,517,156"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#aa96eec13d9bdbb307e1dcfe6f057a685" title="CConfigurableDomains\l::createConfiguration" alt="" coords="565,122,733,163"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="781,122,943,163"/>
+<area shape="rect" id="node5" href="$classCElement.html#af51bbf231ec74ff4d4b7fac9588be603" title="CElement::findChild" alt="" coords="1011,5,1157,32"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a80948f485ce0b70ce80c8bd9f9aca003" title="CDomainConfiguration\l::CDomainConfiguration" alt="" coords="997,57,1171,98"/>
+<area shape="rect" id="node8" href="$classCDomainConfiguration.html#a2722416342b16b07ffa05b0e0253bc66" title="CDomainConfiguration\l::addConfigurableElement" alt="" coords="991,122,1177,163"/>
+<area shape="rect" id="node11" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="1011,188,1157,215"/>
+<area shape="rect" id="node12" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="1001,239,1167,281"/>
+<area shape="rect" id="node7" href="$classCElement.html#adda0945fbca000ff1e605a9b93f74c64" title="CElement::CElement" alt="" coords="1241,64,1396,91"/>
+<area shape="rect" id="node9" href="$classCConfigurableElement.html#a41fcefde73d823509e16458ef712e0c3" title="CConfigurableElement\l::createAreaConfiguration" alt="" coords="1225,122,1412,163"/>
+<area shape="rect" id="node10" href="$classCAreaConfiguration.html#ab7057b4cf2482e15666f538211ac65c5" title="CAreaConfiguration\l::CAreaConfiguration" alt="" coords="1460,122,1615,163"/>
+<area shape="rect" id="node13" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="1245,239,1392,281"/>
+<area shape="rect" id="node14" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1464,239,1611,281"/>
 </map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,30 +121,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="InstanceConfigurableElement_8h.html">InstanceConfigurableElement.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="InstanceConfigurableElement_8h.html">&quot;InstanceConfigurableElement.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterBlock.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterBlock.html">CParameterBlock</a> : <span class="keyword">public</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterBlock.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCParameterBlock.html">CParameterBlock</a> : <span class="keyword">public</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classCParameterBlock.html#a75f7367a54c34bd1fd41b060429bd1ed">   39</a></span>&#160;    <a class="code" href="classCParameterBlock.html#a75f7367a54c34bd1fd41b060429bd1ed">CParameterBlock</a>(<span class="keyword">const</span> std::string &amp;strName, <span class="keyword">const</span> <a class="code" href="classCTypeElement.html">CTypeElement</a> *pTypeElement)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        : <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>(strName, pTypeElement)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        : <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a><a class="code" href="classCInstanceConfigurableElement.html#a06c2f5c077a21c715caa1d1d86ce3432">(</a>strName<a class="code" href="classCInstanceConfigurableElement.html#a06c2f5c077a21c715caa1d1d86ce3432">,</a> pTypeElement<a class="code" href="classCInstanceConfigurableElement.html#a06c2f5c077a21c715caa1d1d86ce3432">)</a></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Type</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCParameterBlock.html#a2265e9ded4e8d6b3cd053f16d96eafa0">   45</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCInstanceConfigurableElement.html#ab6044d9220cf0ef0d835088244c7d31f">Type</a> <a class="code" href="classCParameterBlock.html#a2265e9ded4e8d6b3cd053f16d96eafa0">getType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classCInstanceConfigurableElement.html#ab6044d9220cf0ef0d835088244c7d31fac043889167f859fea57ec869f339b74d">EParameterBlock</a>; }</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCParameterBlock.html#a70a1509f92cc354cbe2472aca55c17ea">   45</a></span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html#ab6044d9220cf0ef0d835088244c7d31f">Type</a> <a class="code" href="classCParameterBlock.html#a70a1509f92cc354cbe2472aca55c17ea">getType</a>() <span class="keyword">const</span> <span class="keyword">override</span> { <span class="keywordflow">return</span> <a class="code" href="classCInstanceConfigurableElement.html#ab6044d9220cf0ef0d835088244c7d31fac043889167f859fea57ec869f339b74d">EParameterBlock</a>; }</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
 <div class="ttc" id="classCParameterBlock_html_a75f7367a54c34bd1fd41b060429bd1ed"><div class="ttname"><a href="classCParameterBlock.html#a75f7367a54c34bd1fd41b060429bd1ed">CParameterBlock::CParameterBlock</a></div><div class="ttdeci">CParameterBlock(const std::string &amp;strName, const CTypeElement *pTypeElement)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlock_8h_source.html#l00039">ParameterBlock.h:39</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html_ab6044d9220cf0ef0d835088244c7d31fac043889167f859fea57ec869f339b74d"><div class="ttname"><a href="classCInstanceConfigurableElement.html#ab6044d9220cf0ef0d835088244c7d31fac043889167f859fea57ec869f339b74d">CInstanceConfigurableElement::EParameterBlock</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00053">InstanceConfigurableElement.h:53</a></div></div>
 <div class="ttc" id="classCTypeElement_html"><div class="ttname"><a href="classCTypeElement.html">CTypeElement</a></div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8h_source.html#l00040">TypeElement.h:40</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
-<div class="ttc" id="classCParameterBlock_html_a2265e9ded4e8d6b3cd053f16d96eafa0"><div class="ttname"><a href="classCParameterBlock.html#a2265e9ded4e8d6b3cd053f16d96eafa0">CParameterBlock::getType</a></div><div class="ttdeci">virtual Type getType() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlock_8h_source.html#l00045">ParameterBlock.h:45</a></div></div>
+<div class="ttc" id="classCInstanceConfigurableElement_html_a06c2f5c077a21c715caa1d1d86ce3432"><div class="ttname"><a href="classCInstanceConfigurableElement.html#a06c2f5c077a21c715caa1d1d86ce3432">CInstanceConfigurableElement::CInstanceConfigurableElement</a></div><div class="ttdeci">CInstanceConfigurableElement(const std::string &amp;strName, const CTypeElement *pTypeElement)</div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8cpp_source.html#l00040">InstanceConfigurableElement.cpp:40</a></div></div>
+<div class="ttc" id="classCParameterBlock_html_a70a1509f92cc354cbe2472aca55c17ea"><div class="ttname"><a href="classCParameterBlock.html#a70a1509f92cc354cbe2472aca55c17ea">CParameterBlock::getType</a></div><div class="ttdeci">Type getType() const override</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlock_8h_source.html#l00045">ParameterBlock.h:45</a></div></div>
 <div class="ttc" id="classCParameterBlock_html"><div class="ttname"><a href="classCParameterBlock.html">CParameterBlock</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlock_8h_source.html#l00036">ParameterBlock.h:36</a></div></div>
-<div class="ttc" id="InstanceConfigurableElement_8h_html"><div class="ttname"><a href="InstanceConfigurableElement_8h.html">InstanceConfigurableElement.h</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html_ab6044d9220cf0ef0d835088244c7d31f"><div class="ttname"><a href="classCInstanceConfigurableElement.html#ab6044d9220cf0ef0d835088244c7d31f">CInstanceConfigurableElement::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00047">InstanceConfigurableElement.h:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

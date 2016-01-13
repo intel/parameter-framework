@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -95,19 +94,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="BackgroundRemoteProcessorServer_8h_source.html">BackgroundRemoteProcessorServer.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for BackgroundRemoteProcessorServer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer__inherit__graph.svg" width="246" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer__inherit__graph.svg" width="246" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a843f44a059fae8e93acc9ca75589531a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBackgroundRemoteProcessorServer.html#a843f44a059fae8e93acc9ca75589531a">BackgroundRemoteProcessorServer</a> (uint16_t uiPort, std::unique_ptr&lt; <a class="el" href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a> &gt; &amp;&amp;commandHandler)</td></tr>
 <tr class="separator:a843f44a059fae8e93acc9ca75589531a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570a795b4b9f1d5215123dffced3d4e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBackgroundRemoteProcessorServer.html#a570a795b4b9f1d5215123dffced3d4e0">~BackgroundRemoteProcessorServer</a> ()</td></tr>
-<tr class="separator:a570a795b4b9f1d5215123dffced3d4e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad5e2d2bcdc9f8657859d262c370bae6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBackgroundRemoteProcessorServer.html#aad5e2d2bcdc9f8657859d262c370bae6">~BackgroundRemoteProcessorServer</a> () override</td></tr>
+<tr class="separator:aad5e2d2bcdc9f8657859d262c370bae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad87e4d6b8ef517d85133bdfcfaa19379"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBackgroundRemoteProcessorServer.html#ad87e4d6b8ef517d85133bdfcfaa19379">start</a> (std::string &amp;error) override</td></tr>
 <tr class="separator:ad87e4d6b8ef517d85133bdfcfaa19379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92e751b21e1f43221e037a6cd5aed6ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBackgroundRemoteProcessorServer.html#a92e751b21e1f43221e037a6cd5aed6ea">stop</a> () override</td></tr>
@@ -118,14 +118,11 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html#l00034">34</a> of file <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a>.</p>
+<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServer_8h_source.html#l00039">39</a> of file <a class="el" href="BackgroundRemoteProcessorServer_8h_source.html">BackgroundRemoteProcessorServer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a843f44a059fae8e93acc9ca75589531a"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">BackgroundRemoteProcessorServer::BackgroundRemoteProcessorServer </td>
@@ -145,18 +142,21 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html#l00037">37</a> of file <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a>.</p>
+<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html#l00033">33</a> of file <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html">BackgroundRemoteProcessorServer.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_a843f44a059fae8e93acc9ca75589531a_cgraph.svg" width="512" height="84"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a570a795b4b9f1d5215123dffced3d4e0"></a>
+<a class="anchor" id="aad5e2d2bcdc9f8657859d262c370bae6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -172,17 +172,18 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html#l00043">43</a> of file <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a>.</p>
+<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html#l00061">61</a> of file <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html">BackgroundRemoteProcessorServer.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_a570a795b4b9f1d5215123dffced3d4e0_cgraph.svg" width="774" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_aad5e2d2bcdc9f8657859d262c370bae6_cgraph.svg" width="774" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -206,19 +207,20 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIRemoteProcessorServerInterface.html#abd7a2063075d6e629adc359049ac9154">IRemoteProcessorServerInterface</a>.</p>
 
-<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html#l00045">45</a> of file <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a>.</p>
+<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html#l00039">39</a> of file <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html">BackgroundRemoteProcessorServer.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_ad87e4d6b8ef517d85133bdfcfaa19379_cgraph.svg" width="455" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_ad87e4d6b8ef517d85133bdfcfaa19379_cgraph.svg" width="455" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -240,33 +242,36 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIRemoteProcessorServerInterface.html#a8ee4cecb385515eda5148ace41e080f0">IRemoteProcessorServerInterface</a>.</p>
 
-<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html#l00061">61</a> of file <a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a>.</p>
+<p>Definition at line <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html#l00055">55</a> of file <a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html">BackgroundRemoteProcessorServer.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_a92e751b21e1f43221e037a6cd5aed6ea_cgraph.svg" width="455" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_a92e751b21e1f43221e037a6cd5aed6ea_cgraph.svg" width="455" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_a92e751b21e1f43221e037a6cd5aed6ea_icgraph.svg" width="540" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBackgroundRemoteProcessorServer_a92e751b21e1f43221e037a6cd5aed6ea_icgraph.svg" width="540" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>remote-processor/<a class="el" href="BackgroundRemoteProcessorServerBuilder_8h_source.html">BackgroundRemoteProcessorServerBuilder.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>remote-processor/<a class="el" href="BackgroundRemoteProcessorServer_8h_source.html">BackgroundRemoteProcessorServer.h</a></li>
+<li>remote-processor/<a class="el" href="BackgroundRemoteProcessorServer_8cpp_source.html">BackgroundRemoteProcessorServer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,63 +121,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterBlockType_8h.html">ParameterBlockType.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterBlock_8h.html">ParameterBlock.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Utility_8h.html">Utility.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ParameterBlockType_8h.html">&quot;ParameterBlockType.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ParameterBlock_8h.html">&quot;ParameterBlock.h&quot;</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Utility_8h.html">&quot;Utility.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="ParameterBlockType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   34</a></span>&#160;<span class="preprocessor">#define base CTypeElement</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="ParameterBlockType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   34</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CTypeElement</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterBlockType.html#ab98b1a1a4e414927932f4bf498c77236">   36</a></span>&#160;<a class="code" href="classCParameterBlockType.html#ab98b1a1a4e414927932f4bf498c77236">CParameterBlockType::CParameterBlockType</a>(<span class="keyword">const</span> std::string &amp;strName) : <a class="code" href="ParameterBlockType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(strName)</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterBlockType.html#ab98b1a1a4e414927932f4bf498c77236">   36</a></span>&#160;<a class="code" href="classCParameterBlockType.html">CParameterBlockType</a>::<a class="code" href="classCParameterBlockType.html#ab98b1a1a4e414927932f4bf498c77236">CParameterBlockType</a>(<span class="keyword">const</span> std::string &amp;strName) : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">(</a>strName<a class="code" href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">)</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCParameterBlockType.html#a5fd53ed1f1b183dd37ad0614e2920944">   40</a></span>&#160;std::string <a class="code" href="classCParameterBlockType.html#a5fd53ed1f1b183dd37ad0614e2920944">CParameterBlockType::getKind</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCParameterBlockType.html#a46f4aae461c6d19b7d9ffb1b6c945a4e">   40</a></span>&#160;std::string <a class="code" href="classCParameterBlockType.html">CParameterBlockType</a>::<a class="code" href="classCParameterBlockType.html#a46f4aae461c6d19b7d9ffb1b6c945a4e">getKind</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;ParameterBlock&quot;</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">bool</span> CParameterBlockType::childrenAreDynamic()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterBlockType.html">CParameterBlockType</a>::childrenAreDynamic() <span class="keyword">const</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *CParameterBlockType::doInstantiate()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCParameterBlock.html">CParameterBlock</a>(<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>(), <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *<a class="code" href="classCParameterBlockType.html">CParameterBlockType</a>::doInstantiate() <span class="keyword">const</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> CParameterBlock(getName(), <span class="keyword">this</span>);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> CParameterBlockType::populate(<a class="code" href="classCElement.html">CElement</a> *pElement)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">size_t</span> arrayLength = <a class="code" href="classCTypeElement.html#a6f0d426a1a1be3334bcd9f6a7db2c281">getArrayLength</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlockType.html">CParameterBlockType</a>::populate(<a class="code" href="classCElement.html">CElement</a> *pElement) <span class="keyword">const</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    size_t arrayLength = getArrayLength();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> (arrayLength) {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Create child elements</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> child = 0; child &lt; arrayLength; child++) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">for</span> (size_t child = 0; child &lt; arrayLength; child++) {</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <a class="code" href="classCParameterBlock.html">CParameterBlock</a> *pChildParameterBlock =</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keyword">new</span> <a class="code" href="classCParameterBlock.html">CParameterBlock</a>(std::to_string(child), <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            CParameterBlock *pChildParameterBlock =</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keyword">new</span> CParameterBlock(std::to_string(child), <span class="keyword">this</span>);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            pElement-&gt;<a class="code" href="classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72">addChild</a>(pChildParameterBlock);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            pElement-&gt;addChild(pChildParameterBlock);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            base::populate(pChildParameterBlock);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>::populate(pChildParameterBlock);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// Regular block</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        base::populate(pElement);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>::populate(pElement);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
-<div class="ttc" id="ParameterBlock_8h_html"><div class="ttname"><a href="ParameterBlock_8h.html">ParameterBlock.h</a></div></div>
-<div class="ttc" id="classCParameterBlockType_html_a5fd53ed1f1b183dd37ad0614e2920944"><div class="ttname"><a href="classCParameterBlockType.html#a5fd53ed1f1b183dd37ad0614e2920944">CParameterBlockType::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlockType_8cpp_source.html#l00040">ParameterBlockType.cpp:40</a></div></div>
+<div class="ttc" id="classCTypeElement_html_aaf598b31938a8ba37fa306ee8847ed0d"><div class="ttname"><a href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">CTypeElement::CTypeElement</a></div><div class="ttdeci">CTypeElement(const std::string &amp;strName=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00040">TypeElement.cpp:40</a></div></div>
+<div class="ttc" id="classCParameterBlockType_html"><div class="ttname"><a href="classCParameterBlockType.html">CParameterBlockType</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlockType_8h_source.html#l00036">ParameterBlockType.h:36</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
 <div class="ttc" id="classCParameterBlockType_html_ab98b1a1a4e414927932f4bf498c77236"><div class="ttname"><a href="classCParameterBlockType.html#ab98b1a1a4e414927932f4bf498c77236">CParameterBlockType::CParameterBlockType</a></div><div class="ttdeci">CParameterBlockType(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlockType_8cpp_source.html#l00036">ParameterBlockType.cpp:36</a></div></div>
-<div class="ttc" id="classCElement_html_a49581fb6412e29e932962acd82d52d6a"><div class="ttname"><a href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">CElement::getName</a></div><div class="ttdeci">const std::string &amp; getName() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00236">Element.cpp:236</a></div></div>
-<div class="ttc" id="classCElement_html_ac2ad66ee438a4a0c1390b7388874fe72"><div class="ttname"><a href="classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72">CElement::addChild</a></div><div class="ttdeci">void addChild(CElement *pChild)</div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00275">Element.cpp:275</a></div></div>
-<div class="ttc" id="classCParameterBlock_html"><div class="ttname"><a href="classCParameterBlock.html">CParameterBlock</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlock_8h_source.html#l00036">ParameterBlock.h:36</a></div></div>
-<div class="ttc" id="Utility_8h_html"><div class="ttname"><a href="Utility_8h.html">Utility.h</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a6f0d426a1a1be3334bcd9f6a7db2c281"><div class="ttname"><a href="classCTypeElement.html#a6f0d426a1a1be3334bcd9f6a7db2c281">CTypeElement::getArrayLength</a></div><div class="ttdeci">size_t getArrayLength() const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00052">TypeElement.cpp:52</a></div></div>
-<div class="ttc" id="ParameterBlockType_8h_html"><div class="ttname"><a href="ParameterBlockType_8h.html">ParameterBlockType.h</a></div></div>
-<div class="ttc" id="ParameterBlockType_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ParameterBlockType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlockType_8cpp_source.html#l00034">ParameterBlockType.cpp:34</a></div></div>
+<div class="ttc" id="ArrayParameter_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8cpp_source.html#l00040">ArrayParameter.cpp:40</a></div></div>
+<div class="ttc" id="classCParameterBlockType_html_a46f4aae461c6d19b7d9ffb1b6c945a4e"><div class="ttname"><a href="classCParameterBlockType.html#a46f4aae461c6d19b7d9ffb1b6c945a4e">CParameterBlockType::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlockType_8cpp_source.html#l00040">ParameterBlockType.cpp:40</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

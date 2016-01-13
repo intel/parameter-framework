@@ -1,8 +1,8 @@
 <map id="CParameterMgrFullConnector::importDomainsXml" name="CParameterMgrFullConnector::importDomainsXml">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="261,64,515,91"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="563,57,731,98"/>
-<area shape="rect" id="node4" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="988,5,1171,32"/>
-<area shape="rect" id="node5" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="1007,123,1151,149"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="779,57,940,98"/>
-<area shape="rect" id="node7" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="996,57,1163,98"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="261,13,515,39"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="563,5,731,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="779,5,940,47"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="988,5,1155,47"/>
+<area shape="rect" id="node6" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="1203,5,1349,47"/>
+<area shape="rect" id="node7" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1397,5,1544,47"/>
 </map>

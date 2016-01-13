@@ -1,4 +1,6 @@
 <map id="CConfigurableDomains::createDomain" name="CConfigurableDomains::createDomain">
-<area shape="rect" id="node2" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="221,5,368,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="221,56,368,83"/>
+<area shape="rect" id="node2" href="$classCElement.html#af51bbf231ec74ff4d4b7fac9588be603" title="CElement::findChild" alt="" coords="233,5,379,32"/>
+<area shape="rect" id="node3" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="233,56,379,83"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a6703394fd3a71fe58597d1c5d27925a8" title="CConfigurableDomain\l::CConfigurableDomain" alt="" coords="221,107,391,149"/>
+<area shape="rect" id="node5" href="$classCElement.html#adda0945fbca000ff1e605a9b93f74c64" title="CElement::CElement" alt="" coords="439,115,593,141"/>
 </map>

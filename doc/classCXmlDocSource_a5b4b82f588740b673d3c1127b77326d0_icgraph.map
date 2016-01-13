@@ -1,3 +1,9 @@
 <map id="CXmlDocSource::mkUri" name="CXmlDocSource::mkUri">
-<area shape="rect" id="node2" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="224,5,403,47"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ae7738edec2c505ffa54a9f0f42975586" title="CParameterMgr::CParameterMgr" alt="" coords="224,64,455,91"/>
+<area shape="rect" id="node8" href="$classCXmlFileIncluderElement.html#ae08f8539bdbdd6d31e09444fdc7bca2e" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="250,115,429,157"/>
+<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a99b164b53bcc43f20d06efc062422a2d" title="CParameterMgrPlatformConnector\l::CParameterMgrPlatformConnector" alt="" coords="503,57,753,98"/>
+<area shape="rect" id="node4" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="872,5,947,32"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a1332fa19c5b7e2da056d99d8037f42eb" title="CParameterMgrFullConnector\l::CParameterMgrFullConnector" alt="" coords="801,57,1017,98"/>
+<area shape="rect" id="node6" href="$classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221" title="CTestPlatform::CTestPlatform" alt="" coords="806,147,1013,173"/>
+<area shape="rect" id="node7" href="$test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="1065,147,1120,173"/>
 </map>

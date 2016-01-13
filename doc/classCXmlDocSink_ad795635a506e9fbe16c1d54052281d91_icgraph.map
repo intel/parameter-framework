@@ -1,5 +1,4 @@
 <map id="CXmlDocSink::process" name="CXmlDocSink::process">
 <area shape="rect" id="node2" href="$classCParameterMgr.html#a83f14b09892d2edf83546d50fe375095" title="Method that exports an Xml description of the passed element into a string. " alt="" coords="219,5,443,47"/>
-<area shape="rect" id="node4" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="241,71,420,112"/>
-<area shape="rect" id="node3" href="$classElementHandle.html#a364115ffa9f7e6e718b586b2da72e1e4" title="Gets element structure description as XML string. " alt="" coords="491,5,700,47"/>
+<area shape="rect" id="node3" href="$classCXmlFileIncluderElement.html#ae08f8539bdbdd6d31e09444fdc7bca2e" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="241,71,420,112"/>
 </map>

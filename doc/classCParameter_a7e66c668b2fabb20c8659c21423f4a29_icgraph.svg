@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCParameter.html#a74e2c5c9292fcd85c6a78181ab865cfe" target="_top" xlink:title="CParameter::serializeXml\lSettings">
+<g id="a_node2"><a xlink:href="classCParameter.html#a4db00587a9c4713082f058bc0778ae41" target="_top" xlink:title="CParameter::serializeXml\lSettings">
 <polygon fill="white" stroke="black" points="204,-0.5 204,-30.5 341,-30.5 341,-0.5 204,-0.5"/>
 <text text-anchor="start" x="212" y="-18.5" font-family="Verdana" font-size="10.00">CParameter::serializeXml</text>
 <text text-anchor="middle" x="272.5" y="-7.5" font-family="Verdana" font-size="10.00">Settings</text>

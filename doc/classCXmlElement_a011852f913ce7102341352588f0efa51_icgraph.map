@@ -1,6 +1,0 @@
-<map id="CXmlElement::setNameAttribute" name="CXmlElement::setNameAttribute">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="284,71,448,112"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="499,5,657,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="496,71,660,112"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="496,136,660,177"/>
-</map>

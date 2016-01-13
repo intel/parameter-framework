@@ -1,4 +1,4 @@
 <map id="ElementHandle::getMappingData" name="ElementHandle::getMappingData">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#a878b74bc497da4f959a31cde0cb59165" title="CConfigurableElement\l::getConfigurableElementContext" alt="" coords="288,5,523,47"/>
-<area shape="rect" id="node3" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="571,13,725,39"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a361c300a3bbd05a72d2f43b68e4e0f99" title="Get the value associated to a mapping key in the object&#39;s mapping. " alt="" coords="323,71,487,112"/>
 </map>

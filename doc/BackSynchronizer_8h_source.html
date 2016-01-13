@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,52 +121,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElementAggregator_8h.html">ConfigurableElementAggregator.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElement_8h.html">ConfigurableElement.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ConfigurableElementAggregator_8h.html">&quot;ConfigurableElementAggregator.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ConfigurableElement_8h.html">&quot;ConfigurableElement.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">NonCopyable</span><span class="preprocessor">.</span><span class="preprocessor">hpp</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">list</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class</span> <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCBackSynchronizer.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCBackSynchronizer.html">CBackSynchronizer</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCBackSynchronizer.html">   40</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCBackSynchronizer.html">CBackSynchronizer</a> : <span class="keyword">private</span> <a class="code" href="namespaceutility.html">utility</a>::<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7">   43</a></span>&#160;    <a class="code" href="classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7">CBackSynchronizer</a>(<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        : _configurableElementAggregator(<a class="code" href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">_needingBackSyncList</a>,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                         &amp;<a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>::hasNoValidDomainAssociated)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        : _configurableElementAggregator<a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">(</a><a class="code" href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">_needingBackSyncList</a><a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">,</a></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                         &amp;<a class="code" href="classCConfigurableElement.html">CConfigurableElement</a><a class="code" href="classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9">::</a><a class="code" href="classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9">hasNoValidDomainAssociated</a><a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">)</a></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// Aggegate elements</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        _configurableElementAggregator.<a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">aggegate</a>(pConfigurableElement);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        _configurableElementAggregator<a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">.</a><a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">aggegate</a><a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">(</a>pConfigurableElement<a class="code" href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">)</a>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Back synchronization</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCBackSynchronizer.html#aee2e5654fab65e762bb294bc1d3cbc05">sync</a>() = 0;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCBackSynchronizer.html#ac49210eeab86561bccd4d768203d8232">~CBackSynchronizer</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCBackSynchronizer.html#ac49210eeab86561bccd4d768203d8232">CBackSynchronizer</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Aggregate list</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">   57</a></span>&#160;    std::list&lt;const CConfigurableElement *&gt; <a class="code" href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">_needingBackSyncList</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">   57</a></span>&#160;    std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; <a class="code" href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">_needingBackSyncList</a>;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Aggegator</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a> _configurableElementAggregator;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00046">NonCopyable.hpp:46</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html_a711b8af1b9aac12e57244f2edbe916e9"><div class="ttname"><a href="classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9">CConfigurableElement::hasNoValidDomainAssociated</a></div><div class="ttdeci">bool hasNoValidDomainAssociated() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00524">ConfigurableElement.cpp:524</a></div></div>
 <div class="ttc" id="classCBackSynchronizer_html_a8f1d4835d14d4c2a89a093c72ed140b7"><div class="ttname"><a href="classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7">CBackSynchronizer::CBackSynchronizer</a></div><div class="ttdeci">CBackSynchronizer(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="BackSynchronizer_8h_source.html#l00043">BackSynchronizer.h:43</a></div></div>
 <div class="ttc" id="classCBackSynchronizer_html_ac49210eeab86561bccd4d768203d8232"><div class="ttname"><a href="classCBackSynchronizer.html#ac49210eeab86561bccd4d768203d8232">CBackSynchronizer::~CBackSynchronizer</a></div><div class="ttdeci">virtual ~CBackSynchronizer()=default</div></div>
-<div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html"><div class="ttname"><a href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8h_source.html#l00038">ConfigurableElementAggregator.h:38</a></div></div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
-<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
 <div class="ttc" id="classCBackSynchronizer_html_a06bd71ef66f07d0f36f4c3d1bec339a0"><div class="ttname"><a href="classCBackSynchronizer.html#a06bd71ef66f07d0f36f4c3d1bec339a0">CBackSynchronizer::_needingBackSyncList</a></div><div class="ttdeci">std::list&lt; const CConfigurableElement * &gt; _needingBackSyncList</div><div class="ttdef"><b>Definition:</b> <a href="BackSynchronizer_8h_source.html#l00057">BackSynchronizer.h:57</a></div></div>
-<div class="ttc" id="ConfigurableElementAggregator_8h_html"><div class="ttname"><a href="ConfigurableElementAggregator_8h.html">ConfigurableElementAggregator.h</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a2cc804d11a5ec48d098ecb34be7c9c36"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">CConfigurableElementAggregator::aggegate</a></div><div class="ttdeci">void aggegate(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00041">ConfigurableElementAggregator.cpp:41</a></div></div>
+<div class="ttc" id="classCConfigurableElementAggregator_html_a904bebdafd6cf776a60882f60e0ea44a"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator::CConfigurableElementAggregator</a></div><div class="ttdeci">CConfigurableElementAggregator(std::list&lt; const CConfigurableElement * &gt; &amp;aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00033">ConfigurableElementAggregator.cpp:33</a></div></div>
 <div class="ttc" id="classCBackSynchronizer_html"><div class="ttname"><a href="classCBackSynchronizer.html">CBackSynchronizer</a></div><div class="ttdef"><b>Definition:</b> <a href="BackSynchronizer_8h_source.html#l00040">BackSynchronizer.h:40</a></div></div>
 <div class="ttc" id="classCBackSynchronizer_html_aee2e5654fab65e762bb294bc1d3cbc05"><div class="ttname"><a href="classCBackSynchronizer.html#aee2e5654fab65e762bb294bc1d3cbc05">CBackSynchronizer::sync</a></div><div class="ttdeci">virtual void sync()=0</div></div>
 <div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

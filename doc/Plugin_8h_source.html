@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,22 +121,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="SubsystemLibrary_8h.html">SubsystemLibrary.h</a>&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/** @file</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * This file is intended to be used by the plugins.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * The compilation unit defining the entry point (aka the Subsystem Builder)</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * should include this file a define a function corresponding to the one</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * declared below.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">SubsystemLibrary</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#if defined(__clang__) || defined(__GNUC__)</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;__attribute__((visibility(<span class="stringliteral">&quot;default&quot;</span>)))</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#elif defined(_MSC_VER)</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;__declspec(dllexport)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="Plugin_8h.html#a25ffc772cc1b795e9558956422d5fdc2">PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1</a>(<a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a>*, <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a>&amp;);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">if</span> <span class="preprocessor">defined</span><span class="preprocessor">(</span>__clang__<span class="preprocessor">)</span> <span class="preprocessor">||</span> <span class="preprocessor">defined</span><span class="preprocessor">(</span>__GNUC__<span class="preprocessor">)</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">__attribute__</span>((visibility(<span class="stringliteral">&quot;default&quot;</span>)))</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">elif</span> <span class="preprocessor">defined</span><span class="preprocessor">(</span><span class="preprocessor">_MSC_VER</span><span class="preprocessor">)</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">__declspec</span>(dllexport)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="SubsystemLibrary_8h.html#a8969359f34e45a4913cef36269664805">PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1</a>(<a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a>*, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a>&amp;);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
-<div class="ttc" id="Plugin_8h_html_a25ffc772cc1b795e9558956422d5fdc2"><div class="ttname"><a href="Plugin_8h.html#a25ffc772cc1b795e9558956422d5fdc2">PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1</a></div><div class="ttdeci">void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary *, core::log::Logger &amp;)</div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
+<div class="ttc" id="SubsystemLibrary_8h_html_a8969359f34e45a4913cef36269664805"><div class="ttname"><a href="SubsystemLibrary_8h.html#a8969359f34e45a4913cef36269664805">PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1</a></div><div class="ttdeci">#define PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1</div><div class="ttdoc">Plugin entry point symbol. </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemLibrary_8h_source.html#l00044">SubsystemLibrary.h:44</a></div></div>
 <div class="ttc" id="classCSubsystemLibrary_html"><div class="ttname"><a href="classCSubsystemLibrary.html">CSubsystemLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemLibrary_8h_source.html#l00046">SubsystemLibrary.h:46</a></div></div>
-<div class="ttc" id="SubsystemLibrary_8h_html"><div class="ttname"><a href="SubsystemLibrary_8h.html">SubsystemLibrary.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

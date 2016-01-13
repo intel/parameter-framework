@@ -1,3 +1,7 @@
 <map id="CParameterMgrFullConnector::renameDomain" name="CParameterMgrFullConnector::renameDomain">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a7d8898361dc42076dccb72489e3e7a43" title="CParameterMgr::renameDomain" alt="" coords="261,13,492,39"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a7d8898361dc42076dccb72489e3e7a43" title="CParameterMgr::renameDomain" alt="" coords="261,31,492,57"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a5191495863bf95f1fc3beb545b410269" title="CConfigurableDomains\l::renameDomain" alt="" coords="540,23,708,65"/>
+<area shape="rect" id="node4" href="$classCElement.html#aa09118f89e5b3208ee92d0ec51151ccf" title="CElement::rename" alt="" coords="756,31,899,57"/>
+<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="947,5,1099,32"/>
+<area shape="rect" id="node6" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="947,56,1098,83"/>
 </map>

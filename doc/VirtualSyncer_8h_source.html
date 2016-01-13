@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,28 +121,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Syncer_8h.html">Syncer.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Syncer_8h.html">&quot;Syncer.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">class </span><a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">class</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCVirtualSyncer.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCVirtualSyncer.html">CVirtualSyncer</a> : <span class="keyword">public</span> <a class="code" href="classISyncer.html">ISyncer</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCVirtualSyncer.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCVirtualSyncer.html">CVirtualSyncer</a> : <span class="keyword">public</span> <a class="code" href="classISyncer.html">ISyncer</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classCVirtualSyncer.html#a26cb2061643333ba04f288448d979a14">CVirtualSyncer</a>(<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// from ISyncer</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCVirtualSyncer.html#a7dbef9e770ef4433cb113fd466c3995e">sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;parameterBlackboard, <span class="keywordtype">bool</span> bBack, std::string &amp;strError);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *_pConfigurableElement;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCVirtualSyncer.html#aa6472778164f359a50a63b3c8b4f5623">sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;parameterBlackboard, <span class="keywordtype">bool</span> bBack,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;              std::string &amp;strError) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *_pConfigurableElement;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
 <div class="ttc" id="classCVirtualSyncer_html"><div class="ttname"><a href="classCVirtualSyncer.html">CVirtualSyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8h_source.html#l00036">VirtualSyncer.h:36</a></div></div>
 <div class="ttc" id="classCVirtualSyncer_html_a26cb2061643333ba04f288448d979a14"><div class="ttname"><a href="classCVirtualSyncer.html#a26cb2061643333ba04f288448d979a14">CVirtualSyncer::CVirtualSyncer</a></div><div class="ttdeci">CVirtualSyncer(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8cpp_source.html#l00036">VirtualSyncer.cpp:36</a></div></div>
-<div class="ttc" id="Syncer_8h_html"><div class="ttname"><a href="Syncer_8h.html">Syncer.h</a></div></div>
-<div class="ttc" id="classCVirtualSyncer_html_a7dbef9e770ef4433cb113fd466c3995e"><div class="ttname"><a href="classCVirtualSyncer.html#a7dbef9e770ef4433cb113fd466c3995e">CVirtualSyncer::sync</a></div><div class="ttdeci">virtual bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8cpp_source.html#l00042">VirtualSyncer.cpp:42</a></div></div>
+<div class="ttc" id="classCVirtualSyncer_html_aa6472778164f359a50a63b3c8b4f5623"><div class="ttname"><a href="classCVirtualSyncer.html#aa6472778164f359a50a63b3c8b4f5623">CVirtualSyncer::sync</a></div><div class="ttdeci">bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::string &amp;strError) override</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8cpp_source.html#l00042">VirtualSyncer.cpp:42</a></div></div>
 <div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 <div class="ttc" id="classISyncer_html"><div class="ttname"><a href="classISyncer.html">ISyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="Syncer_8h_source.html#l00036">Syncer.h:36</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

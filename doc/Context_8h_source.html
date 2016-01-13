@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,47 +121,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Logger_8h.html">log/Logger.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;log/Logger.h&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespacecore.html">   35</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacecore.html">core</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace</span> <a class="code" href="namespacecore.html">core</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespacecore_1_1log.html">   37</a></span>&#160;<span class="keyword">namespace </span>log</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace</span> <a class="code" href="namespacecore_1_1log.html">log</a></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Context.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="classcore_1_1log_1_1Context.html">Context</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/** Log formatter which provide context indentation */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Context.html">   41</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classcore_1_1log_1_1Context.html">Context</a></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">     * Class Constructor</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     * @param[in] logger application logger</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     * @param[in] context name of the context to open</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Context.html#a09319c971f1c9db5b8603eb0911d7941">   50</a></span>&#160;    <a class="code" href="classcore_1_1log_1_1Context.html#a09319c971f1c9db5b8603eb0911d7941">Context</a>(<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger, <span class="keyword">const</span> std::string &amp;context) : mLogger(logger)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        mLogger.<a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">info</a>() &lt;&lt; context &lt;&lt; <span class="stringliteral">&quot; {&quot;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        mLogger<a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">.</a><a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">info</a><a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">(</a><a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">)</a> &lt;&lt; context &lt;&lt; <span class="stringliteral">&quot; {&quot;</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        mLogger.mProlog += <span class="stringliteral">&quot;    &quot;</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3">   57</a></span>&#160;    <a class="code" href="classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3">~Context</a>()</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">/** Class Destructor */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3">   57</a></span>&#160;    ~<a class="code" href="classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3">Context</a>()</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        mLogger.mProlog.resize(mLogger.mProlog.size() - 4);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        mLogger.<a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">info</a>() &lt;&lt; <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        mLogger<a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">.</a><a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">info</a><a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">(</a><a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">)</a> &lt;&lt; <span class="stringliteral">&quot;}&quot;</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classcore_1_1log_1_1Context.html#a09319c971f1c9db5b8603eb0911d7941">Context</a>(<span class="keyword">const</span> <a class="code" href="classcore_1_1log_1_1Context.html">Context</a> &amp;);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    Context(<span class="keyword">const</span> <a class="code" href="classcore_1_1log_1_1Context.html">Context</a> &amp;);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classcore_1_1log_1_1Context.html">Context</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classcore_1_1log_1_1Context.html">Context</a> &amp;);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">/** Application logger */</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;mLogger;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;} </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;} <span class="comment">// namespace log</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} <span class="comment">// namespace core</span></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
-<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Context_8h_source.html#l00035">Context.h:35</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Context_html"><div class="ttname"><a href="classcore_1_1log_1_1Context.html">core::log::Context</a></div><div class="ttdoc">Log formatter which provide context indentation. </div><div class="ttdef"><b>Definition:</b> <a href="Context_8h_source.html#l00041">Context.h:41</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html_a6f9d18ae0fd8ee47f0d1ad3b204cee5c"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">core::log::Logger::info</a></div><div class="ttdeci">details::Info info()</div><div class="ttdoc">Retrieve wrapped information logger. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00062">Logger.h:62</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Context_html_a09319c971f1c9db5b8603eb0911d7941"><div class="ttname"><a href="classcore_1_1log_1_1Context.html#a09319c971f1c9db5b8603eb0911d7941">core::log::Context::Context</a></div><div class="ttdeci">Context(Logger &amp;logger, const std::string &amp;context)</div><div class="ttdoc">Class Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="Context_8h_source.html#l00050">Context.h:50</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Context_html_a0dfe4165afd796f76822f618505ccfe3"><div class="ttname"><a href="classcore_1_1log_1_1Context.html#a0dfe4165afd796f76822f618505ccfe3">core::log::Context::~Context</a></div><div class="ttdeci">~Context()</div><div class="ttdoc">Class Destructor. </div><div class="ttdef"><b>Definition:</b> <a href="Context_8h_source.html#l00057">Context.h:57</a></div></div>
-<div class="ttc" id="Logger_8h_html"><div class="ttname"><a href="Logger_8h.html">Logger.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

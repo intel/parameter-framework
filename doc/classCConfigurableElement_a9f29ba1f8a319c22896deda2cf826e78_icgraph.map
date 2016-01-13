@@ -1,10 +1,5 @@
 <map id="CConfigurableElement::fillSyncerSetFromDescendant" name="CConfigurableElement::fillSyncerSetFromDescendant">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="272,100,436,141"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="531,5,695,47"/>
-<area shape="rect" id="node4" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="506,71,721,112"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="534,137,693,163"/>
-<area shape="rect" id="node9" href="$classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e" title="Look for subsystems that need to be resynchronized. " alt="" coords="484,188,743,229"/>
-<area shape="rect" id="node6" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="791,107,1001,134"/>
-<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="792,159,1000,200"/>
-<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="1049,100,1257,141"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="272,39,436,80"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="509,5,673,47"/>
+<area shape="rect" id="node4" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="484,71,699,112"/>
 </map>

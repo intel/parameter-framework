@@ -1,4 +1,8 @@
 <map id="CConfigurableDomain::apply" name="CConfigurableDomain::apply">
-<area shape="rect" id="node2" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="222,5,374,32"/>
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#a1ddc929e5782dabbf3d95f2c916f995e" title="Restore the configuration. " alt="" coords="215,57,381,98"/>
+<area shape="rect" id="node2" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="230,5,382,32"/>
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#a0b7c7c014a797b2bfa9235470d97944b" title="Restore the configuration. " alt="" coords="223,57,389,98"/>
+<area shape="rect" id="node7" href="$classCSyncerSet.html#acdb5d93aac5d893d08a9e269348b0c09" title="CSyncerSet::operator+=" alt="" coords="215,123,397,149"/>
+<area shape="rect" id="node4" href="$classCAreaConfiguration.html#a428784970faf0dd87652936a4fa29c55" title="Restore the configuration area. " alt="" coords="445,57,592,98"/>
+<area shape="rect" id="node5" href="$classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" title="Sync the blackboard. " alt="" coords="640,64,775,91"/>
+<area shape="rect" id="node6" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="823,64,929,91"/>
 </map>

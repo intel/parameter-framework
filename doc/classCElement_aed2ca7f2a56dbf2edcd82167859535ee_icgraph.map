@@ -1,15 +1,24 @@
 <map id="CElement::getKind" name="CElement::getKind">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="498,135,662,177"/>
-<area shape="rect" id="node6" href="$classCElement.html#af8155fa6281cb35f6794819132c091a6" title="CElement::dumpContent" alt="" coords="218,56,398,83"/>
-<area shape="rect" id="node7" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="213,107,403,133"/>
-<area shape="rect" id="node8" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="210,5,406,32"/>
-<area shape="rect" id="node10" href="$classCElement.html#abd9e5e3b9b21652902a6fc151cce76f7" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="193,208,423,235"/>
-<area shape="rect" id="node13" href="$classElementHandle.html#a1cc967ca77b7f3d0dfed70285f05dfdf" title="ElementHandle::getKind" alt="" coords="220,259,396,285"/>
-<area shape="rect" id="node14" href="$classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10" title="CInstanceConfigurableElement\l::getKind" alt="" coords="199,310,417,351"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="740,70,899,111"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="737,135,901,177"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="737,201,901,242"/>
-<area shape="rect" id="node9" href="$classCElement.html#a442be4dd4096eafb92adff5a41b70636" title="CElement::listQualifiedPaths" alt="" coords="480,5,680,32"/>
-<area shape="rect" id="node11" href="$classElementHandle.html#a364115ffa9f7e6e718b586b2da72e1e4" title="Gets element structure description as XML string. " alt="" coords="475,201,685,242"/>
-<area shape="rect" id="node12" href="$classCInstanceConfigurableElement.html#a98adbaeeac4aa99b44b50f6634b405bc" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="471,266,689,307"/>
+<area shape="rect" id="node2" href="$classCElement.html#af8155fa6281cb35f6794819132c091a6" title="CElement::dumpContent" alt="" coords="218,103,398,130"/>
+<area shape="rect" id="node3" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="213,154,403,181"/>
+<area shape="rect" id="node4" href="$classCElement.html#acee1af3e8516a211731a59b85727c6b9" title="CElement::findChildOfKind" alt="" coords="215,205,401,231"/>
+<area shape="rect" id="node14" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="210,255,406,282"/>
+<area shape="rect" id="node15" href="$classCElement.html#abd9e5e3b9b21652902a6fc151cce76f7" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="193,335,423,362"/>
+<area shape="rect" id="node5" href="$classCElement.html#a9cc62393370848bda4c0591e6698ebe8" title="CElement::fromXml" alt="" coords="487,175,633,202"/>
+<area shape="rect" id="node6" href="$classCComponentLibrary.html#a655b53ad8035a9cc519dc260b18b9c27" title="CComponentLibrary::\lfromXml" alt="" coords="745,29,901,71"/>
+<area shape="rect" id="node8" href="$classCCompoundRule.html#a30af6bf1e12febe2e2c7c8d45507f4c9" title="CCompoundRule::fromXml" alt="" coords="729,95,918,122"/>
+<area shape="rect" id="node9" href="$classCEnumValuePair.html#a48536bec778cf0baa85c30d4d08936d7" title="CEnumValuePair::fromXml" alt="" coords="729,146,917,173"/>
+<area shape="rect" id="node10" href="$classCParameterAdaptation.html#af48a8064e3a8c3bafccf9d431269a569" title="CParameterAdaptation\l::fromXml" alt="" coords="739,197,907,239"/>
+<area shape="rect" id="node13" href="$classCParameterFrameworkConfiguration.html#a911f494edd7e2e929bec95e6a294241f" title="CParameterFrameworkConfiguration\l::fromXml" alt="" coords="697,263,949,304"/>
+<area shape="rect" id="node7" href="$classCSubsystem.html#ab9e7934e8526dcaaf0b037e72b4e6b7e" title="Deserialize the structure from xml. " alt="" coords="997,37,1223,63"/>
+<area shape="rect" id="node11" href="$classCLinearParameterAdaptation.html#a48805c5ccc995e73c5b387724845e6f7" title="CLinearParameterAdaptation\l::fromXml" alt="" coords="1007,197,1213,239"/>
+<area shape="rect" id="node12" href="$classCLogarithmicParameterAdaptation.html#ad493648bd491eb49dd10ff611e4cab10" title="CLogarithmicParameterAdaptation\l::fromXml" alt="" coords="1271,197,1513,239"/>
+<area shape="rect" id="node16" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="471,394,649,421"/>
+<area shape="rect" id="node17" href="$classCConfigurableDomains.html#ae44f433af0f092a42a61a9896e064884" title="CConfigurableDomains\l::toXml" alt="" coords="739,328,907,369"/>
+<area shape="rect" id="node18" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="759,394,888,421"/>
+<area shape="rect" id="node23" href="$classCEnumValuePair.html#a763ca19eaef38f62ba366790e37a21ca" title="CEnumValuePair::toXml" alt="" coords="738,445,909,471"/>
+<area shape="rect" id="node19" href="$classCCompoundRule.html#a58e6aac0b9a43fd0f357bbc3c170fa1e" title="CCompoundRule::toXml" alt="" coords="1024,306,1196,333"/>
+<area shape="rect" id="node20" href="$classCConfigurableDomain.html#aeb71f15ffa4899575fba06911b8aa22a" title="CConfigurableDomain\l::toXml" alt="" coords="1029,357,1191,399"/>
+<area shape="rect" id="node21" href="$classCSelectionCriterion.html#a70f0e613ec0b6d6fa03d2db2b6150898" title="Export to XML. " alt="" coords="1320,445,1464,487"/>
+<area shape="rect" id="node22" href="$classCSelectionCriterionType.html#aa192b57f7757524c619c41edf942d642" title="Export to XML. " alt="" coords="1024,475,1196,516"/>
 </map>

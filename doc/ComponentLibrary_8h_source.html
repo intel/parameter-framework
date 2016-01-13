@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,39 +121,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlElement_8h.html">XmlElement.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Element_8h.html">Element.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="XmlElement_8h.html">&quot;XmlElement.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Element_8h.html">&quot;Element.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Component_8h.html">&quot;Component.h&quot;</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class </span><a class="code" href="classCComponentType.html">CComponentType</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class</span> <a class="code" href="classCComponentType.html">CComponentType</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCComponentLibrary.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCComponentLibrary.html">CComponentLibrary</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCComponentLibrary.html">   40</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCComponentLibrary.html">CComponentLibrary</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCComponentType.html">CComponentType</a> *<a class="code" href="classCComponentLibrary.html#afc3a6329eb7e76f3b585755611a2e7d8">getComponentType</a>(<span class="keyword">const</span> std::string &amp;strName) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCComponentLibrary.html#a4328cb2ad27a29ec04e6f93645ab0531">getKind</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::string <a class="code" href="classCComponentLibrary.html#a83a7ec6484e3aebc3824e61a7debb367">getKind</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCComponentLibrary.html#a655b53ad8035a9cc519dc260b18b9c27">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                 <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
 <div class="ttc" id="classCComponentLibrary_html"><div class="ttname"><a href="classCComponentLibrary.html">CComponentLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8h_source.html#l00040">ComponentLibrary.h:40</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
-<div class="ttc" id="classCComponentLibrary_html_a4328cb2ad27a29ec04e6f93645ab0531"><div class="ttname"><a href="classCComponentLibrary.html#a4328cb2ad27a29ec04e6f93645ab0531">CComponentLibrary::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8cpp_source.html#l00039">ComponentLibrary.cpp:39</a></div></div>
-<div class="ttc" id="Component_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div></div>
 <div class="ttc" id="classCComponentType_html"><div class="ttname"><a href="classCComponentType.html">CComponentType</a></div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8h_source.html#l00038">ComponentType.h:38</a></div></div>
-<div class="ttc" id="XmlElement_8h_html"><div class="ttname"><a href="XmlElement_8h.html">XmlElement.h</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
 <div class="ttc" id="classCComponentLibrary_html_afc3a6329eb7e76f3b585755611a2e7d8"><div class="ttname"><a href="classCComponentLibrary.html#afc3a6329eb7e76f3b585755611a2e7d8">CComponentLibrary::getComponentType</a></div><div class="ttdeci">const CComponentType * getComponentType(const std::string &amp;strName) const </div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8cpp_source.html#l00044">ComponentLibrary.cpp:44</a></div></div>
-<div class="ttc" id="classCComponentLibrary_html_ad4cc928cda43371fb31f20394e8e04e5"><div class="ttname"><a href="classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5">CComponentLibrary::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8cpp_source.html#l00049">ComponentLibrary.cpp:49</a></div></div>
-<div class="ttc" id="Element_8h_html"><div class="ttname"><a href="Element_8h.html">Element.h</a></div></div>
+<div class="ttc" id="classCComponentLibrary_html_a83a7ec6484e3aebc3824e61a7debb367"><div class="ttname"><a href="classCComponentLibrary.html#a83a7ec6484e3aebc3824e61a7debb367">CComponentLibrary::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8cpp_source.html#l00039">ComponentLibrary.cpp:39</a></div></div>
+<div class="ttc" id="classCComponentLibrary_html_a655b53ad8035a9cc519dc260b18b9c27"><div class="ttname"><a href="classCComponentLibrary.html#a655b53ad8035a9cc519dc260b18b9c27">CComponentLibrary::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8cpp_source.html#l00049">ComponentLibrary.cpp:49</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

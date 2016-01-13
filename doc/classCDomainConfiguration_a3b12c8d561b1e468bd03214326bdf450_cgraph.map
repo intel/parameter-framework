@@ -1,17 +1,18 @@
 <map id="CDomainConfiguration::setApplicationRule" name="CDomainConfiguration::setApplicationRule">
-<area shape="rect" id="node2" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="243,81,385,108"/>
-<area shape="rect" id="node16" href="$classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544" title="CRuleParser::grabRootRule" alt="" coords="220,132,408,159"/>
-<area shape="rect" id="node3" href="$classCRuleParser.html#ac7faca228556fb47a33ccb95e15ce6d6" title="CRuleParser::iterate" alt="" coords="468,5,615,32"/>
-<area shape="rect" id="node4" href="$classCCompoundRule.html#a127d40590afcf25e9fcf9b18234249f8" title="CCompoundRule::parse" alt="" coords="456,56,627,83"/>
-<area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="468,107,615,133"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="456,194,627,235"/>
-<area shape="rect" id="node5" href="$classCRuleParser.html#ae574ae0109f76cc624590bd4899e0a91" title="CRuleParser::getType" alt="" coords="709,37,863,64"/>
-<area shape="rect" id="node8" href="$classCRuleParser.html#af179ac22a54025386da02a5bdb33b253" title="CRuleParser::getSelection\lCriteriaDefinition" alt="" coords="693,89,879,130"/>
-<area shape="rect" id="node9" href="$classCSelectionCriteriaDefinition.html#ade9c9f7fe7806988d3d922bf615e5994" title="CSelectionCriteriaDefinition\l::getSelectionCriterion" alt="" coords="688,154,884,195"/>
-<area shape="rect" id="node11" href="$classCRuleParser.html#a7f6198bd3656599e15aee6860c1bf4d7" title="CRuleParser::next" alt="" coords="719,220,853,247"/>
-<area shape="rect" id="node12" href="$classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" title="CSelectionCriterion\l::getCriterionType" alt="" coords="714,271,858,313"/>
-<area shape="rect" id="node13" href="$classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f" title="ISelectionCriterionTypeInterface\l::getNumericalValue" alt="" coords="675,337,897,378"/>
-<area shape="rect" id="node14" href="$classCSelectionCriterion.html#a1570d99b016390cca5b5d6f3c1d405c1" title="CSelectionCriterion\l::getCriterionName" alt="" coords="714,402,858,443"/>
-<area shape="rect" id="node10" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="948,161,1095,188"/>
-<area shape="rect" id="node15" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="945,409,1097,436"/>
+<area shape="rect" id="node2" href="$classCRuleParser.html#a04260c30f05a16437df6fa9e5f4865ba" title="CRuleParser::CRuleParser" alt="" coords="224,7,404,33"/>
+<area shape="rect" id="node3" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="243,81,385,108"/>
+<area shape="rect" id="node17" href="$classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544" title="CRuleParser::grabRootRule" alt="" coords="220,132,408,159"/>
+<area shape="rect" id="node4" href="$classCRuleParser.html#ac7faca228556fb47a33ccb95e15ce6d6" title="CRuleParser::iterate" alt="" coords="468,5,615,32"/>
+<area shape="rect" id="node5" href="$classCCompoundRule.html#ab66d3bbb9bd8b229e1644a5eb87f7fa7" title="CCompoundRule::parse" alt="" coords="456,56,627,83"/>
+<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="468,107,615,133"/>
+<area shape="rect" id="node8" href="$classCSelectionCriterionRule.html#a9fa6c6fcf97c803ffb535843ca0e0637" title="CSelectionCriterionRule\l::parse" alt="" coords="456,194,627,235"/>
+<area shape="rect" id="node6" href="$classCRuleParser.html#ae574ae0109f76cc624590bd4899e0a91" title="CRuleParser::getType" alt="" coords="709,37,863,64"/>
+<area shape="rect" id="node9" href="$classCRuleParser.html#af179ac22a54025386da02a5bdb33b253" title="CRuleParser::getSelection\lCriteriaDefinition" alt="" coords="693,89,879,130"/>
+<area shape="rect" id="node10" href="$classCSelectionCriteriaDefinition.html#ade9c9f7fe7806988d3d922bf615e5994" title="CSelectionCriteriaDefinition\l::getSelectionCriterion" alt="" coords="688,154,884,195"/>
+<area shape="rect" id="node12" href="$classCRuleParser.html#a7f6198bd3656599e15aee6860c1bf4d7" title="CRuleParser::next" alt="" coords="719,220,853,247"/>
+<area shape="rect" id="node13" href="$classCSelectionCriterion.html#a68f922bffc18811306eb3da52c340289" title="CSelectionCriterion\l::getCriterionType" alt="" coords="714,271,858,313"/>
+<area shape="rect" id="node14" href="$classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f" title="ISelectionCriterionTypeInterface\l::getNumericalValue" alt="" coords="675,337,897,378"/>
+<area shape="rect" id="node15" href="$classCSelectionCriterion.html#aa7d73b79a9ee5ce47153dd52f9bbcc71" title="CSelectionCriterion\l::getCriterionName" alt="" coords="714,402,858,443"/>
+<area shape="rect" id="node11" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="948,161,1095,188"/>
+<area shape="rect" id="node16" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="945,409,1097,436"/>
 </map>

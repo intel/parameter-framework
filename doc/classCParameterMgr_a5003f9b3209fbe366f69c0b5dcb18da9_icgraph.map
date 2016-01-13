@@ -1,3 +1,4 @@
 <map id="CParameterMgr::setValidateSchemasOnStart" name="CParameterMgr::setValidateSchemasOnStart">
 <area shape="rect" id="node2" href="$classCParameterMgrPlatformConnector.html#a92b662cd038a83302e6f72493b05fc8e" title="Should .xml files be validated on start ? " alt="" coords="255,5,497,47"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#ad228bf877fba414aca7862d854dd4ee9" title="CParameterMgrFullConnector\l::setValidateSchemasOnStart" alt="" coords="545,5,756,47"/>
 </map>

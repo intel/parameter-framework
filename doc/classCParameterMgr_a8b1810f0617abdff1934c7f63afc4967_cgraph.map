@@ -1,3 +1,4 @@
 <map id="CParameterMgr::setTuningMode" name="CParameterMgr::setTuningMode">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="279,5,501,32"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="293,5,516,32"/>
+<area shape="rect" id="node3" href="$classCParameterFrameworkConfiguration.html#ab25cd7647d7caa81e8f51edb74359b70" title="CParameterFrameworkConfiguration\l::isTuningAllowed" alt="" coords="279,57,531,98"/>
 </map>

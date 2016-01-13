@@ -1,9 +1,0 @@
-<map id="CConfigurableElement::getSettingsAsBytes" name="CConfigurableElement::getSettingsAsBytes">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#ab674ec27478a05b77d0138747f560f7b" title="CConfigurableElement\l::getFootPrint" alt="" coords="232,29,396,71"/>
-<area shape="rect" id="node5" href="$classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20" title="CParameterAccessContext\l::getParameterBlackboard" alt="" coords="217,95,411,136"/>
-<area shape="rect" id="node6" href="$classCParameterBlackboard.html#a6c450122777ee781b76a88f47d4d5d7c" title="Raw read the blackboard memory. " alt="" coords="229,160,399,201"/>
-<area shape="rect" id="node7" href="$classCConfigurableElement.html#aad502a1139a10faa1a87fd1e033e4ad4" title="CConfigurableElement\l::getOffset" alt="" coords="232,225,396,267"/>
-<area shape="rect" id="node8" href="$classCParameterAccessContext.html#af89af08aeec798e2e4e3a5c269722343" title="CParameterAccessContext\l::getBaseOffset" alt="" coords="217,291,411,332"/>
-<area shape="rect" id="node3" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="459,11,641,38"/>
-<area shape="rect" id="node4" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="478,62,622,89"/>
-</map>

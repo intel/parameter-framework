@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -94,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="ParameterAccessContext_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2016, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -122,57 +121,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ErrorContext_8hpp.html">ErrorContext.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdint</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ErrorContext_8hpp.html">&quot;ErrorContext.hpp&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class</span> <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCParameterAccessContext.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> : <span class="keyword">public</span> <a class="code" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCParameterAccessContext.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> : <span class="keyword">public</span> <a class="code" href="namespaceutility.html">utility</a>::<a class="code" href="classutility_1_1ErrorContext.html">ErrorContext</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classCParameterAccessContext.html#aff53b16ecfe294bbb73c9722425a6cba">CParameterAccessContext</a>(std::string &amp;strError, <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard,</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                            <span class="keywordtype">bool</span> bValueSpaceIsRaw, <span class="keywordtype">bool</span> bOutputRawFormatIsHex,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                            <span class="keywordtype">size_t</span> offsetBase = 0);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classCParameterAccessContext.html#aff53b16ecfe294bbb73c9722425a6cba">CParameterAccessContext</a>(std::string &amp;strError, <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                            <span class="keywordtype">size_t</span> offsetBase = 0);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classCParameterAccessContext.html#aff53b16ecfe294bbb73c9722425a6cba">CParameterAccessContext</a>(std::string &amp;strError);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// ParameterBlackboard</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *<a class="code" href="classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20">getParameterBlackboard</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a5c8a052ad42c4e93476715cd85f1d6e3">setParameterBlackboard</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pBlackboard);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Value interpretation as Real or Raw</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a506d83c2a6d876c61a3a21880f3302da">setValueSpaceRaw</a>(<span class="keywordtype">bool</span> bIsRaw);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">valueSpaceIsRaw</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCParameterAccessContext.html#afe1416a36bf7586d3ef5fbe07a19b574">   59</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#afe1416a36bf7586d3ef5fbe07a19b574">serializeSettings</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a9ad7e919a1246fdf077213f0a0b70d78">setOutputRawFormat</a>(<span class="keywordtype">bool</span> bIsHex);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">outputRawFormatIsHex</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Automatic synchronization to HW</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a07eda176f4ae601bd26a6d0c9e0cc6e2">setAutoSync</a>(<span class="keywordtype">bool</span> bAutoSync);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00">getAutoSync</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Base offset for blackboard access</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#ac1b39f8d2db271b7db48b47e8dba46e8">setBaseOffset</a>(<span class="keywordtype">size_t</span> baseOffset);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classCParameterAccessContext.html#af89af08aeec798e2e4e3a5c269722343">getBaseOffset</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Blackboard</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *_pParameterBlackboard{<span class="keyword">nullptr</span>};</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Value space</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">bool</span> _bValueSpaceIsRaw{<span class="keyword">false</span>};</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// Output Raw Format</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">bool</span> _bOutputRawFormatIsHex{<span class="keyword">false</span>};</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Automatic synchronization to HW</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> _bAutoSync{<span class="keyword">true</span>};</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Base offset where parameters are stored in configuration blackboards</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">size_t</span> _uiBaseOffset{0};</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                            size_t offsetBase = 0);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classCParameterAccessContext.html#ae6d67384d5b5d300f27e76d09600d5a8">CParameterAccessContext</a>(std::string &amp;strError, <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                            size_t offsetBase = 0);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classCParameterAccessContext.html#a63edfc4e3e4be246343523fad557d156">CParameterAccessContext</a>(std::string &amp;strError);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCParameterAccessContext.html#a875dd3eef0f9f0768a37f3bdd7dd5c9b">CParameterAccessContext</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// ParameterBlackboard</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *<a class="code" href="classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20">getParameterBlackboard</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a5c8a052ad42c4e93476715cd85f1d6e3">setParameterBlackboard</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pBlackboard);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Value interpretation as Real or Raw</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a506d83c2a6d876c61a3a21880f3302da">setValueSpaceRaw</a>(<span class="keywordtype">bool</span> bIsRaw);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">valueSpaceIsRaw</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">/** @return true if setting serialization is requested,</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">     *          false if structure serialization</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classCParameterAccessContext.html#afe1416a36bf7586d3ef5fbe07a19b574">   60</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#afe1416a36bf7586d3ef5fbe07a19b574">serializeSettings</a>() <span class="keyword">const</span> { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">     * Assigns Output Raw Format for user get value interpretation.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">     * @param[in] bIsHex &quot;true&quot; for hexadecimal, &quot;false&quot; for decimal</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a9ad7e919a1246fdf077213f0a0b70d78">setOutputRawFormat</a>(<span class="keywordtype">bool</span> bIsHex);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">     * Returns Output Raw Format for user get value interpretation.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">     * @return &quot;true&quot; for hexadecimal, &quot;false&quot; for decimal</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">outputRawFormatIsHex</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Automatic synchronization to HW</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#a07eda176f4ae601bd26a6d0c9e0cc6e2">setAutoSync</a>(<span class="keywordtype">bool</span> bAutoSync);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00">getAutoSync</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// Base offset for blackboard access</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCParameterAccessContext.html#ac1b39f8d2db271b7db48b47e8dba46e8">setBaseOffset</a>(size_t baseOffset);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classCParameterAccessContext.html#af89af08aeec798e2e4e3a5c269722343">size_t</a> <a class="code" href="classCParameterAccessContext.html#af89af08aeec798e2e4e3a5c269722343">getBaseOffset</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// Blackboard</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *_pParameterBlackboard{<span class="keywordtype">nullptr</span>};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Value space</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">bool</span> _bValueSpaceIsRaw{<span class="keyword">false</span>};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Output Raw Format</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">bool</span> _bOutputRawFormatIsHex{<span class="keyword">false</span>};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// Automatic synchronization to HW</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> _bAutoSync{<span class="keyword">true</span>};</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Base offset where parameters are stored in configuration blackboards</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    size_t _uiBaseOffset{0};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_aa36964a7a0cc063c1a5589adb29ed5a7"><div class="ttname"><a href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">CParameterAccessContext::valueSpaceIsRaw</a></div><div class="ttdeci">bool valueSpaceIsRaw() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00084">ParameterAccessContext.cpp:84</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_ad354dd5bf2a88f4ed4197be9a59fda20"><div class="ttname"><a href="classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20">CParameterAccessContext::getParameterBlackboard</a></div><div class="ttdeci">CParameterBlackboard * getParameterBlackboard()</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00056">ParameterAccessContext.cpp:56</a></div></div>
@@ -181,13 +196,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCParameterAccessContext_html_adc2c2dabdfb9af278c0f5237ddcd3643"><div class="ttname"><a href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">CParameterAccessContext::outputRawFormatIsHex</a></div><div class="ttdeci">bool outputRawFormatIsHex() const </div><div class="ttdoc">Returns Output Raw Format for user get value interpretation. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00095">ParameterAccessContext.cpp:95</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_af89af08aeec798e2e4e3a5c269722343"><div class="ttname"><a href="classCParameterAccessContext.html#af89af08aeec798e2e4e3a5c269722343">CParameterAccessContext::getBaseOffset</a></div><div class="ttdeci">size_t getBaseOffset() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00073">ParameterAccessContext.cpp:73</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_ad073ad9ca128b5504f8a4a1d844c4e00"><div class="ttname"><a href="classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00">CParameterAccessContext::getAutoSync</a></div><div class="ttdeci">bool getAutoSync() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00106">ParameterAccessContext.cpp:106</a></div></div>
-<div class="ttc" id="classCParameterAccessContext_html_afe1416a36bf7586d3ef5fbe07a19b574"><div class="ttname"><a href="classCParameterAccessContext.html#afe1416a36bf7586d3ef5fbe07a19b574">CParameterAccessContext::serializeSettings</a></div><div class="ttdeci">virtual bool serializeSettings() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00059">ParameterAccessContext.h:59</a></div></div>
+<div class="ttc" id="classCParameterAccessContext_html_afe1416a36bf7586d3ef5fbe07a19b574"><div class="ttname"><a href="classCParameterAccessContext.html#afe1416a36bf7586d3ef5fbe07a19b574">CParameterAccessContext::serializeSettings</a></div><div class="ttdeci">virtual bool serializeSettings() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00060">ParameterAccessContext.h:60</a></div></div>
+<div class="ttc" id="classCParameterAccessContext_html_a875dd3eef0f9f0768a37f3bdd7dd5c9b"><div class="ttname"><a href="classCParameterAccessContext.html#a875dd3eef0f9f0768a37f3bdd7dd5c9b">CParameterAccessContext::~CParameterAccessContext</a></div><div class="ttdeci">virtual ~CParameterAccessContext()=default</div></div>
 <div class="ttc" id="classCParameterAccessContext_html_a506d83c2a6d876c61a3a21880f3302da"><div class="ttname"><a href="classCParameterAccessContext.html#a506d83c2a6d876c61a3a21880f3302da">CParameterAccessContext::setValueSpaceRaw</a></div><div class="ttdeci">void setValueSpaceRaw(bool bIsRaw)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00079">ParameterAccessContext.cpp:79</a></div></div>
+<div class="ttc" id="classCParameterAccessContext_html_ae6d67384d5b5d300f27e76d09600d5a8"><div class="ttname"><a href="classCParameterAccessContext.html#ae6d67384d5b5d300f27e76d09600d5a8">CParameterAccessContext::CParameterAccessContext</a></div><div class="ttdeci">CParameterAccessContext(std::string &amp;strError, CParameterBlackboard *pParameterBlackboard, size_t offsetBase=0)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00044">ParameterAccessContext.cpp:44</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_a07eda176f4ae601bd26a6d0c9e0cc6e2"><div class="ttname"><a href="classCParameterAccessContext.html#a07eda176f4ae601bd26a6d0c9e0cc6e2">CParameterAccessContext::setAutoSync</a></div><div class="ttdeci">void setAutoSync(bool bAutoSync)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00101">ParameterAccessContext.cpp:101</a></div></div>
-<div class="ttc" id="ErrorContext_8hpp_html"><div class="ttname"><a href="ErrorContext_8hpp.html">ErrorContext.hpp</a></div></div>
+<div class="ttc" id="classCParameterAccessContext_html_a63edfc4e3e4be246343523fad557d156"><div class="ttname"><a href="classCParameterAccessContext.html#a63edfc4e3e4be246343523fad557d156">CParameterAccessContext::CParameterAccessContext</a></div><div class="ttdeci">CParameterAccessContext(std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00051">ParameterAccessContext.cpp:51</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_a5c8a052ad42c4e93476715cd85f1d6e3"><div class="ttname"><a href="classCParameterAccessContext.html#a5c8a052ad42c4e93476715cd85f1d6e3">CParameterAccessContext::setParameterBlackboard</a></div><div class="ttdeci">void setParameterBlackboard(CParameterBlackboard *pBlackboard)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00061">ParameterAccessContext.cpp:61</a></div></div>
 <div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_aff53b16ecfe294bbb73c9722425a6cba"><div class="ttname"><a href="classCParameterAccessContext.html#aff53b16ecfe294bbb73c9722425a6cba">CParameterAccessContext::CParameterAccessContext</a></div><div class="ttdeci">CParameterAccessContext(std::string &amp;strError, CParameterBlackboard *pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex, size_t offsetBase=0)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00034">ParameterAccessContext.cpp:34</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_a9ad7e919a1246fdf077213f0a0b70d78"><div class="ttname"><a href="classCParameterAccessContext.html#a9ad7e919a1246fdf077213f0a0b70d78">CParameterAccessContext::setOutputRawFormat</a></div><div class="ttdeci">void setOutputRawFormat(bool bIsHex)</div><div class="ttdoc">Assigns Output Raw Format for user get value interpretation. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00090">ParameterAccessContext.cpp:90</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

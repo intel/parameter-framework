@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,13 +121,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classISelectionCriterionTypeInterface.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classISelectionCriterionTypeInterface.html">ISelectionCriterionTypeInterface</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classISelectionCriterionTypeInterface.html">   34</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classISelectionCriterionTypeInterface.html">ISelectionCriterionTypeInterface</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">     * Add a new pair [integer, litteral] which represents a criterion</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">     * @param[in] iValue integer value</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">     * @param[in] strValue litteral value</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">     * @param[out] strError string containing error information we can provide to client</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">     * @return true if succeed false otherwise</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5">addValuePair</a>(<span class="keywordtype">int</span> iValue, <span class="keyword">const</span> std::string &amp;strValue, std::string &amp;strError) = 0;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f">getNumericalValue</a>(<span class="keyword">const</span> std::string &amp;strValue, <span class="keywordtype">int</span> &amp;iValue) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classISelectionCriterionTypeInterface.html#a11719cbf09ffcc4e58bb0892253ae466">getLiteralValue</a>(<span class="keywordtype">int</span> iValue, std::string &amp;strValue) <span class="keyword">const</span> = 0;</div>
@@ -136,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classISelectionCriterionTypeInterface.html#a554523556313821253fe2013b5b310ea">getFormattedState</a>(<span class="keywordtype">int</span> iValue) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classISelectionCriterionTypeInterface.html#ab1a893a4b1d9b42e782b1ba23362387a">   52</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classISelectionCriterionTypeInterface.html#ab1a893a4b1d9b42e782b1ba23362387a">~ISelectionCriterionTypeInterface</a>() {}</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classISelectionCriterionTypeInterface.html#ab1a893a4b1d9b42e782b1ba23362387a">   52</a></span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classISelectionCriterionTypeInterface.html#ab1a893a4b1d9b42e782b1ba23362387a">ISelectionCriterionTypeInterface</a>() {}</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
 <div class="ttc" id="classISelectionCriterionTypeInterface_html_ab1a893a4b1d9b42e782b1ba23362387a"><div class="ttname"><a href="classISelectionCriterionTypeInterface.html#ab1a893a4b1d9b42e782b1ba23362387a">ISelectionCriterionTypeInterface::~ISelectionCriterionTypeInterface</a></div><div class="ttdeci">virtual ~ISelectionCriterionTypeInterface()</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriterionTypeInterface_8h_source.html#l00052">SelectionCriterionTypeInterface.h:52</a></div></div>
 <div class="ttc" id="classISelectionCriterionTypeInterface_html_a554523556313821253fe2013b5b310ea"><div class="ttname"><a href="classISelectionCriterionTypeInterface.html#a554523556313821253fe2013b5b310ea">ISelectionCriterionTypeInterface::getFormattedState</a></div><div class="ttdeci">virtual std::string getFormattedState(int iValue) const =0</div></div>

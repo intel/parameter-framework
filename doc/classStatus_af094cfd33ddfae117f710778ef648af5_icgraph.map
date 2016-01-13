@@ -1,0 +1,9 @@
+<map id="Status::failure" name="Status::failure">
+<area shape="rect" id="node2" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="164,5,359,32"/>
+<area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="224,56,299,83"/>
+<area shape="rect" id="node4" href="$ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb" title="Set a criterion value given its name and value. " alt="" coords="202,107,321,133"/>
+<area shape="rect" id="node6" href="$ParameterFramework_8h.html#afe708ce766409bc0d82638cca172330a" title="Get a criterion value given its name. " alt="" coords="201,157,321,184"/>
+<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a78db487e58935caf376608255d652caa" title="Commit criteria change and change parameters according to the configurations. " alt="" coords="176,208,347,235"/>
+<area shape="rect" id="node8" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="192,259,331,285"/>
+<area shape="rect" id="node5" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="407,183,565,209"/>
+</map>

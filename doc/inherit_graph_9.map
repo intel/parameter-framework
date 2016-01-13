@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCParameterMgrPlatformConnector.html" title="CParameterMgrPlatformConnector" alt="" coords="5,5,248,32"/>
-<area shape="rect" id="node2" href="$classCParameterMgrFullConnector.html" title="CParameterMgrFullConnector" alt="" coords="296,5,504,32"/>
+<area shape="rect" id="node1" href="$classCParameterMgrPlatformConnector_1_1ILogger.html" title="Interface to implement to provide a custom logger to the PF. " alt="" coords="5,5,248,47"/>
+<area shape="rect" id="node2" href="$classLogWrapper.html" title="LogWrapper" alt="" coords="296,13,393,39"/>
 </map>

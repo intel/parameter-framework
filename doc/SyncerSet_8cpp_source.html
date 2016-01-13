@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,17 +121,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SyncerSet_8h.html">SyncerSet.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Syncer_8h.html">Syncer.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SyncerSet_8h.html">&quot;SyncerSet.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Syncer_8h.html">&quot;Syncer.h&quot;</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">   33</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;<a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">CSyncerSet::operator+=</a>(<a class="code" href="classISyncer.html">ISyncer</a> *pRightSyncer)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">   33</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;<a class="code" href="classCSyncerSet.html">CSyncerSet</a>::<a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">operator</a>+=(<a class="code" href="classISyncer.html">ISyncer</a> *pRightSyncer)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    _syncerSet.insert(pRightSyncer);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#acdb5d93aac5d893d08a9e269348b0c09">   40</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;<a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">CSyncerSet::operator+=</a>(<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;rightSyncerSet)</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#acdb5d93aac5d893d08a9e269348b0c09">   40</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;<a class="code" href="classCSyncerSet.html">CSyncerSet</a>::<a class="code" href="classCSyncerSet.html#acdb5d93aac5d893d08a9e269348b0c09">operator</a>+=(<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;rightSyncerSet)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span> (&amp;rightSyncerSet != <span class="keyword">this</span>) {</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
@@ -142,14 +141,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">   50</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">CSyncerSet::clear</a>()</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">   50</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>::<a class="code" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">clear</a>()</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    _syncerSet.clear();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">   55</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">CSyncerSet::sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;parameterBlackboard, <span class="keywordtype">bool</span> bBack,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                      <a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> *errors)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">   55</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>::<a class="code" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;parameterBlackboard, <span class="keywordtype">bool</span> bBack,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                      <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">Results</a> *errors) <span class="keyword">const</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> bSuccess = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::string strError;</div>
@@ -161,9 +160,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="classISyncer.html">ISyncer</a> *pSyncer = *it;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span> (!pSyncer-&gt;<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">sync</a>(parameterBlackboard, bBack, strError)) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span> (!pSyncer<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">-&gt;</a><a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">sync</a><a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">(</a>parameterBlackboard<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">,</a> bBack<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">,</a> strError<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">)</a>) {</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span> (errors != NULL) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span> (errors != <span class="keywordtype">nullptr</span>) {</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                errors-&gt;push_back(strError);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
@@ -175,10 +174,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCSyncerSet_html_ab139f1169697d601b202eef7d6c1c754"><div class="ttname"><a href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">CSyncerSet::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00050">SyncerSet.cpp:50</a></div></div>
 <div class="ttc" id="classISyncer_html_a16844aac52fb0caf4aed4f68d4b038d9"><div class="ttname"><a href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">ISyncer::sync</a></div><div class="ttdeci">virtual bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::string &amp;strError)=0</div></div>
 <div class="ttc" id="namespacecore_html_a348873e34bd38d2a62f77d3973f1dc1c"><div class="ttname"><a href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a></div><div class="ttdeci">std::list&lt; std::string &gt; Results</div><div class="ttdoc">String list type which can hold list of error/info. </div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00039">Results.h:39</a></div></div>
+<div class="ttc" id="classCSyncerSet_html_acdb5d93aac5d893d08a9e269348b0c09"><div class="ttname"><a href="classCSyncerSet.html#acdb5d93aac5d893d08a9e269348b0c09">CSyncerSet::operator+=</a></div><div class="ttdeci">const CSyncerSet &amp; operator+=(const CSyncerSet &amp;rightSyncerSet)</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00040">SyncerSet.cpp:40</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
 <div class="ttc" id="classCSyncerSet_html_abda7650761df37cecee929c510d70b6f"><div class="ttname"><a href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">CSyncerSet::operator+=</a></div><div class="ttdeci">const CSyncerSet &amp; operator+=(ISyncer *pRightSyncer)</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00033">SyncerSet.cpp:33</a></div></div>
-<div class="ttc" id="Syncer_8h_html"><div class="ttname"><a href="Syncer_8h.html">Syncer.h</a></div></div>
 <div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00038">SyncerSet.h:38</a></div></div>
-<div class="ttc" id="SyncerSet_8h_html"><div class="ttname"><a href="SyncerSet_8h.html">SyncerSet.h</a></div></div>
 <div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 <div class="ttc" id="classISyncer_html"><div class="ttname"><a href="classISyncer.html">ISyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="Syncer_8h_source.html#l00036">Syncer.h:36</a></div></div>
 <div class="ttc" id="classCSyncerSet_html_a8f8381b520a758f49ba8013c5cb8c7b5"><div class="ttname"><a href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">CSyncerSet::sync</a></div><div class="ttdeci">bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, core::Results *errors) const </div><div class="ttdoc">Sync the blackboard. </div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00055">SyncerSet.cpp:55</a></div></div>

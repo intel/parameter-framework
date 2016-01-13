@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -100,12 +99,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for AlwaysAssert.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="AlwaysAssert_8hpp__incl.svg" width="186" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="AlwaysAssert_8hpp__incl.svg" width="186" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="AlwaysAssert_8hpp__dep__incl.svg" width="1286" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="AlwaysAssert_8hpp__dep__incl.svg" width="1286" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="AlwaysAssert_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -143,14 +144,14 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
 <div class="line">        if (!(cond)) {                                                                             \</div>
-<div class="line">            std::cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; __FUNCTION__                        \</div>
+<div class="line">            std::cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; __func__                            \</div>
 <div class="line">                      &lt;&lt; <span class="stringliteral">&quot;: Assert &#39;&quot;</span> #cond <span class="stringliteral">&quot;&#39; failed: &quot;</span> &lt;&lt; iostr &lt;&lt; std::endl;                    <a class="code" href="AlwaysAssert_8hpp.html#aa91e8936169b833f305263ad032821d8">\</a></div>
 <div class="line"><a class="code" href="AlwaysAssert_8hpp.html#aa91e8936169b833f305263ad032821d8">            ALWAYS_ASSERT_FAILURE</a>(cond);                                                           \</div>
 <div class="line">        }                                                                                          \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 <div class="ttc" id="AlwaysAssert_8hpp_html_aa91e8936169b833f305263ad032821d8"><div class="ttname"><a href="AlwaysAssert_8hpp.html#aa91e8936169b833f305263ad032821d8">ALWAYS_ASSERT_FAILURE</a></div><div class="ttdeci">#define ALWAYS_ASSERT_FAILURE(cond)</div><div class="ttdef"><b>Definition:</b> <a href="AlwaysAssert_8hpp_source.html#l00039">AlwaysAssert.hpp:39</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="AlwaysAssert_8hpp_source.html#l00045">45</a> of file <a class="el" href="AlwaysAssert_8hpp_source.html">AlwaysAssert.hpp</a>.</p>
+<p>Definition at line <a class="el" href="AlwaysAssert_8hpp_source.html#l00042">42</a> of file <a class="el" href="AlwaysAssert_8hpp_source.html">AlwaysAssert.hpp</a>.</p>
 
 </div>
 </div>

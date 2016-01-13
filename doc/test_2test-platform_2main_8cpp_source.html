@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -123,14 +122,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TestPlatform_8h.html">TestPlatform.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="convert_8hpp.html">convert.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Utility_8h.html">Utility.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="TestPlatform_8h.html">&quot;TestPlatform.h&quot;</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="convert_8hpp.html">&quot;convert.hpp&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Utility_8h.html">&quot;Utility.h&quot;</a></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">iostream</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">algorithm</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">using</span> std::cerr;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">using</span> std::endl;</div>
@@ -144,22 +143,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">   52</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;error)</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">   52</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a>(<span class="keyword">const</span> string &amp;error)</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    cerr &lt;&lt; <span class="stringliteral">&quot;Invalid arguments: &quot;</span> &lt;&lt; error;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">showUsage</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">showUsage</a><a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">(</a><a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">)</a>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">   58</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">showHelp</a>()</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">showUsage</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">showUsage</a><a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">(</a><a class="code" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">)</a>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cerr &lt;&lt; <span class="stringliteral">&quot;&lt;file path&gt; must be a valid Paramter top level config file, &quot;</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;often named ParameterFrameworkConfiguration.xml.\n&quot;</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;Arguments:&quot;</span> &lt;&lt; endl</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;         &lt;&lt; <span class="stringliteral">&quot;    -h|--help  display this help and exit&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">   67</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">   67</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">using</span> Options = std::list&lt;string&gt;;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// argv[0] is the program name, not an option</span></div>
@@ -169,12 +168,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">auto</span> helpOpts = {<span class="stringliteral">&quot;-h&quot;</span>, <span class="stringliteral">&quot;--help&quot;</span>};</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">auto</span> match = std::find_first_of(begin(options), end(options), begin(helpOpts), end(helpOpts));</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span> (match != end(options)) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">showHelp</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">showHelp</a><a class="code" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">(</a><a class="code" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">)</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (options.empty()) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a>(<span class="stringliteral">&quot;Expected a path to a Parameter Framework config file.&quot;</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a><a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">(</a><span class="stringliteral">&quot;Expected a path to a Parameter Framework config file.&quot;</span><a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">)</a>;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
@@ -184,23 +183,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// Handle optional port number argument</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    uint16_t portNumber = <a class="code" href="test_2test-platform_2main_8cpp.html#a4fdf133929887a5d3e21e2889b1c173d">defaultPortNumber</a>;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (not options.empty()) {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> (not <a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a>(options.front(), portNumber)) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a>(<span class="stringliteral">&quot;Could not convert \&quot;&quot;</span> + options.front() +</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                             <span class="stringliteral">&quot;\&quot; to a socket port number.&quot;</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (<span class="keyword">not</span> options.empty()) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">not</span> <a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a><a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">(</a>options.front()<a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">,</a> portNumber<a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">)</a>) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a><a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">(</a><span class="stringliteral">&quot;Could not convert \&quot;&quot;</span> + options.front() +</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                             <span class="stringliteral">&quot;\&quot; to a socket port number.&quot;</span><a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">)</a>;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">return</span> 2;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        };</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        options.pop_front();</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">// All arguments should have been consumed</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">if</span> (not options.empty()) {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a>(<span class="stringliteral">&quot;Unexpected extra arguments: &quot;</span> + <a class="code" href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a>(options));</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">if</span> (<span class="keyword">not</span> options.empty()) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a><a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">(</a><span class="stringliteral">&quot;Unexpected extra arguments: &quot;</span> + <a class="code" href="namespaceutility.html">utility</a><a class="code" href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d">::</a><a class="code" href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d">asString</a><a class="code" href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d">(</a>options<a class="code" href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d">)</a><a class="code" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">)</a>;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> 3;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">string</span> strError;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCTestPlatform.html">CTestPlatform</a>(filePath, portNumber).run(strError)) {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    string strError;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCTestPlatform.html">CTestPlatform</a><a class="code" href="classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221">(</a>filePath<a class="code" href="classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221">,</a> portNumber<a class="code" href="classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221">)</a><a class="code" href="classCTestPlatform.html#ad2bd3b351dea2737d1fe73702a662981">.</a><a class="code" href="classCTestPlatform.html#ad2bd3b351dea2737d1fe73702a662981">run</a><a class="code" href="classCTestPlatform.html#ad2bd3b351dea2737d1fe73702a662981">(</a>strError<a class="code" href="classCTestPlatform.html#ad2bd3b351dea2737d1fe73702a662981">)</a>) {</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Test-platform error:&quot;</span> &lt;&lt; strError.c_str() &lt;&lt; endl;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">return</span> -1;</div>
@@ -208,16 +207,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
 <div class="ttc" id="test_2test-platform_2main_8cpp_html_a4fdf133929887a5d3e21e2889b1c173d"><div class="ttname"><a href="test_2test-platform_2main_8cpp.html#a4fdf133929887a5d3e21e2889b1c173d">defaultPortNumber</a></div><div class="ttdeci">static const uint16_t defaultPortNumber</div><div class="ttdef"><b>Definition:</b> <a href="test_2test-platform_2main_8cpp_source.html#l00044">main.cpp:44</a></div></div>
-<div class="ttc" id="namespaceutility_html_a3fb85a4dbd0307733f0dda49811db6d1"><div class="ttname"><a href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a></div><div class="ttdeci">std::string asString(const std::list&lt; std::string &gt; &amp;lstr, const std::string &amp;strSeparator)</div><div class="ttdoc">Format the items of a map into a string as a list of key-value pairs. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00043">Utility.cpp:43</a></div></div>
-<div class="ttc" id="remote-process_2main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="remote-process_2main_8cpp_source.html#l00077">main.cpp:77</a></div></div>
+<div class="ttc" id="test_2test-platform_2main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="test_2test-platform_2main_8cpp_source.html#l00067">main.cpp:67</a></div></div>
+<div class="ttc" id="namespaceutility_html_ad1a5fc9a6a732edf346e956f8fef957d"><div class="ttname"><a href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d">utility::asString</a></div><div class="ttdeci">std::string asString(const Sequence &amp;lstr, const std::string &amp;separator=&quot;\n&quot;)</div><div class="ttdoc">Format the items of a sequence container of strings into a string. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8h_source.html#l00075">Utility.h:75</a></div></div>
 <div class="ttc" id="test_2test-platform_2main_8cpp_html_ace20b4c64e0e4391617feee761929d6a"><div class="ttname"><a href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">showHelp</a></div><div class="ttdeci">static void showHelp()</div><div class="ttdef"><b>Definition:</b> <a href="test_2test-platform_2main_8cpp_source.html#l00058">main.cpp:58</a></div></div>
-<div class="ttc" id="TestPlatform_8h_html"><div class="ttname"><a href="TestPlatform_8h.html">TestPlatform.h</a></div></div>
-<div class="ttc" id="convert_8hpp_html_a964ad4e5bd0e92d61880c18cbc5bd5b3"><div class="ttname"><a href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a></div><div class="ttdeci">static bool convertTo(const std::string &amp;str, T &amp;result)</div><div class="ttdoc">Convert a string to a given type. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00189">convert.hpp:189</a></div></div>
+<div class="ttc" id="convert_8hpp_html_a964ad4e5bd0e92d61880c18cbc5bd5b3"><div class="ttname"><a href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a></div><div class="ttdeci">static bool convertTo(const std::string &amp;str, T &amp;result)</div><div class="ttdoc">Convert a string to a given type. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00197">convert.hpp:197</a></div></div>
+<div class="ttc" id="classCTestPlatform_html_ad2bd3b351dea2737d1fe73702a662981"><div class="ttname"><a href="classCTestPlatform.html#ad2bd3b351dea2737d1fe73702a662981">CTestPlatform::run</a></div><div class="ttdeci">bool run(std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="TestPlatform_8cpp_source.html#l00059">TestPlatform.cpp:59</a></div></div>
 <div class="ttc" id="test_2test-platform_2main_8cpp_html_a5c69b952783170105c8f058a90b3212b"><div class="ttname"><a href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a></div><div class="ttdeci">static void showInvalidUsage(const string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="test_2test-platform_2main_8cpp_source.html#l00052">main.cpp:52</a></div></div>
 <div class="ttc" id="classCTestPlatform_html"><div class="ttname"><a href="classCTestPlatform.html">CTestPlatform</a></div><div class="ttdef"><b>Definition:</b> <a href="TestPlatform_8h_source.html#l00042">TestPlatform.h:42</a></div></div>
 <div class="ttc" id="test_2test-platform_2main_8cpp_html_ae5245243a40303ea40f3e033b19d9557"><div class="ttname"><a href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">showUsage</a></div><div class="ttdeci">static void showUsage()</div><div class="ttdef"><b>Definition:</b> <a href="test_2test-platform_2main_8cpp_source.html#l00046">main.cpp:46</a></div></div>
-<div class="ttc" id="convert_8hpp_html"><div class="ttname"><a href="convert_8hpp.html">convert.hpp</a></div></div>
-<div class="ttc" id="Utility_8h_html"><div class="ttname"><a href="Utility_8h.html">Utility.h</a></div></div>
+<div class="ttc" id="classCTestPlatform_html_adc6585e3c639bdf4169a440cef81a221"><div class="ttname"><a href="classCTestPlatform.html#adc6585e3c639bdf4169a440cef81a221">CTestPlatform::CTestPlatform</a></div><div class="ttdeci">CTestPlatform(const std::string &amp;strclass, uint16_t iPortNumber)</div><div class="ttdef"><b>Definition:</b> <a href="TestPlatform_8cpp_source.html#l00041">TestPlatform.cpp:41</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

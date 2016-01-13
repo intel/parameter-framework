@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,23 +121,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BackSynchronizer_8h.html">BackSynchronizer.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="BackSynchronizer_8h.html">&quot;BackSynchronizer.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ParameterAccessContext_8h.html">&quot;ParameterAccessContext.h&quot;</a></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">class</span> <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classCSimulatedBackSynchronizer.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSimulatedBackSynchronizer.html">CSimulatedBackSynchronizer</a> : <span class="keyword">public</span> <a class="code" href="classCBackSynchronizer.html">CBackSynchronizer</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classCSimulatedBackSynchronizer.html">   39</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCSimulatedBackSynchronizer.html">CSimulatedBackSynchronizer</a> : <span class="keyword">public</span> <a class="code" href="classCBackSynchronizer.html">CBackSynchronizer</a></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classCSimulatedBackSynchronizer.html#a29b298407c7bccc21caa811d04813bcf">CSimulatedBackSynchronizer</a>(<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement,</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                               <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Back synchronization</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCSimulatedBackSynchronizer.html#a0908a34ec39880bd941f3c336e2baf74">sync</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSimulatedBackSynchronizer.html#a1cf1b0b49fd6e95f3139b2afd58ed0ab">sync</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Fake error for parameter context creation</span></div>
@@ -147,14 +146,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> _parameterAccessContext;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
-<div class="ttc" id="ParameterAccessContext_8h_html"><div class="ttname"><a href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a></div></div>
-<div class="ttc" id="BackSynchronizer_8h_html"><div class="ttname"><a href="BackSynchronizer_8h.html">BackSynchronizer.h</a></div></div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
+<div class="ttc" id="classCSimulatedBackSynchronizer_html_a1cf1b0b49fd6e95f3139b2afd58ed0ab"><div class="ttname"><a href="classCSimulatedBackSynchronizer.html#a1cf1b0b49fd6e95f3139b2afd58ed0ab">CSimulatedBackSynchronizer::sync</a></div><div class="ttdeci">void sync() override</div><div class="ttdef"><b>Definition:</b> <a href="SimulatedBackSynchronizer_8cpp_source.html#l00043">SimulatedBackSynchronizer.cpp:43</a></div></div>
 <div class="ttc" id="classCSimulatedBackSynchronizer_html"><div class="ttname"><a href="classCSimulatedBackSynchronizer.html">CSimulatedBackSynchronizer</a></div><div class="ttdef"><b>Definition:</b> <a href="SimulatedBackSynchronizer_8h_source.html#l00039">SimulatedBackSynchronizer.h:39</a></div></div>
 <div class="ttc" id="classCBackSynchronizer_html"><div class="ttname"><a href="classCBackSynchronizer.html">CBackSynchronizer</a></div><div class="ttdef"><b>Definition:</b> <a href="BackSynchronizer_8h_source.html#l00040">BackSynchronizer.h:40</a></div></div>
 <div class="ttc" id="classCSimulatedBackSynchronizer_html_a29b298407c7bccc21caa811d04813bcf"><div class="ttname"><a href="classCSimulatedBackSynchronizer.html#a29b298407c7bccc21caa811d04813bcf">CSimulatedBackSynchronizer::CSimulatedBackSynchronizer</a></div><div class="ttdeci">CSimulatedBackSynchronizer(const CConfigurableElement *pConfigurableElement, CParameterBlackboard *pParameterBlackboard)</div><div class="ttdef"><b>Definition:</b> <a href="SimulatedBackSynchronizer_8cpp_source.html#l00035">SimulatedBackSynchronizer.cpp:35</a></div></div>
 <div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
-<div class="ttc" id="classCSimulatedBackSynchronizer_html_a0908a34ec39880bd941f3c336e2baf74"><div class="ttname"><a href="classCSimulatedBackSynchronizer.html#a0908a34ec39880bd941f3c336e2baf74">CSimulatedBackSynchronizer::sync</a></div><div class="ttdeci">virtual void sync()</div><div class="ttdef"><b>Definition:</b> <a href="SimulatedBackSynchronizer_8cpp_source.html#l00043">SimulatedBackSynchronizer.cpp:43</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

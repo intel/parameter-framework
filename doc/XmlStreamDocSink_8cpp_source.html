@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,42 +121,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlStreamDocSink_8h.html">XmlStreamDocSink.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;libxml/parser.h&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="XmlStreamDocSink_8h.html">&quot;XmlStreamDocSink.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">libxml</span><span class="preprocessor">/</span><span class="preprocessor">parser</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="XmlStreamDocSink_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   33</a></span>&#160;<span class="preprocessor">#define base CXmlDocSink</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="XmlStreamDocSink_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   33</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CXmlDocSink</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCXmlStreamDocSink.html#a04405c106e74c8d7b5292c9ab23d853e">   35</a></span>&#160;<a class="code" href="classCXmlStreamDocSink.html#a04405c106e74c8d7b5292c9ab23d853e">CXmlStreamDocSink::CXmlStreamDocSink</a>(std::ostream &amp;output) : _output(output)</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCXmlStreamDocSink.html#a04405c106e74c8d7b5292c9ab23d853e">   35</a></span>&#160;<a class="code" href="classCXmlStreamDocSink.html">CXmlStreamDocSink</a>::<a class="code" href="classCXmlStreamDocSink.html#a04405c106e74c8d7b5292c9ab23d853e">CXmlStreamDocSink</a>(std::ostream &amp;output) : _output(output)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">bool</span> CXmlStreamDocSink::doProcess(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a> &amp;xmlDocSource,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlStreamDocSink.html">CXmlStreamDocSink</a>::doProcess(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a> &amp;xmlDocSource,</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                  <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    xmlChar *dumpedDoc = NULL;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    xmlChar *dumpedDoc = <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> iSize;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    xmlDocDumpFormatMemoryEnc(xmlDocSource.<a class="code" href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">getDoc</a>(), &amp;dumpedDoc, &amp;iSize, <span class="stringliteral">&quot;UTF-8&quot;</span>, 1);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &amp;dumpedDoc, &amp;iSize, <span class="stringliteral">&quot;UTF-8&quot;</span>, 1);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span> (!dumpedDoc) {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unable to encode XML document in memory&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        serializingContext.setError(<span class="stringliteral">&quot;Unable to encode XML document in memory&quot;</span>);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    _output &lt;&lt; static_cast&lt;unsigned char *&gt;(dumpedDoc);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    _output &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *&gt;(dumpedDoc);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    xmlFree(dumpedDoc);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="XmlStreamDocSink_8h_html"><div class="ttname"><a href="XmlStreamDocSink_8h.html">XmlStreamDocSink.h</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
-<div class="ttc" id="classutility_1_1ErrorContext_html_afc2e1af8c4a81e36e5013bf31127c15f"><div class="ttname"><a href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">utility::ErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00043">ErrorContext.hpp:43</a></div></div>
 <div class="ttc" id="classCXmlDocSource_html"><div class="ttname"><a href="classCXmlDocSource.html">CXmlDocSource</a></div><div class="ttdoc">The CXmlDocSource is used by CXmlDocSink. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00050">XmlDocSource.h:50</a></div></div>
 <div class="ttc" id="classCXmlStreamDocSink_html_a04405c106e74c8d7b5292c9ab23d853e"><div class="ttname"><a href="classCXmlStreamDocSink.html#a04405c106e74c8d7b5292c9ab23d853e">CXmlStreamDocSink::CXmlStreamDocSink</a></div><div class="ttdeci">CXmlStreamDocSink(std::ostream &amp;output)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlStreamDocSink_8cpp_source.html#l00035">XmlStreamDocSink.cpp:35</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a26377c512cf5aea36ef6c3646a90494a"><div class="ttname"><a href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a></div><div class="ttdeci">_xmlDoc * getDoc() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00105">XmlDocSource.cpp:105</a></div></div>
+<div class="ttc" id="classCXmlStreamDocSink_html"><div class="ttname"><a href="classCXmlStreamDocSink.html">CXmlStreamDocSink</a></div><div class="ttdoc">Sink class that writes the content of any CXmlDocSource into a std::string. </div><div class="ttdef"><b>Definition:</b> <a href="XmlStreamDocSink_8h_source.html#l00040">XmlStreamDocSink.h:40</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

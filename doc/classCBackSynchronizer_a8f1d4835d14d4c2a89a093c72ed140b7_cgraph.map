@@ -1,3 +1,8 @@
 <map id="CBackSynchronizer::CBackSynchronizer" name="CBackSynchronizer::CBackSynchronizer">
-<area shape="rect" id="node2" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="207,5,443,47"/>
+<area shape="rect" id="node2" href="$classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a" title="CConfigurableElementAggregator\l::CConfigurableElementAggregator" alt="" coords="207,5,451,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="218,71,439,112"/>
+<area shape="rect" id="node7" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="211,136,447,177"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="499,63,689,119"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="737,71,904,112"/>
+<area shape="rect" id="node6" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="952,71,1099,112"/>
 </map>

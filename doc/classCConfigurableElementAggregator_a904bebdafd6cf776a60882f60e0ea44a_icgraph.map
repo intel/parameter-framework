@@ -1,0 +1,8 @@
+<map id="CConfigurableElementAggregator::CConfigurableElementAggregator" name="CConfigurableElementAggregator::CConfigurableElementAggregator">
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a1b28dbdb4a01edd94c1ae8b5e42d76b2" title="CConfigurableElement\l::listRogueElements" alt="" coords="297,5,461,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a" title="CConfigurableElement\l::isRogue" alt="" coords="297,71,461,112"/>
+<area shape="rect" id="node5" href="$classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7" title="CBackSynchronizer::\lCBackSynchronizer" alt="" coords="303,136,456,177"/>
+<area shape="rect" id="node4" href="$classElementHandle.html#a0e895aacf73fa76d07f70a0e2e7b23bd" title="ElementHandle::isRogue" alt="" coords="530,78,707,105"/>
+<area shape="rect" id="node6" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="511,132,726,173"/>
+<area shape="rect" id="node7" href="$classCSimulatedBackSynchronizer.html#a29b298407c7bccc21caa811d04813bcf" title="CSimulatedBackSynchronizer\l::CSimulatedBackSynchronizer" alt="" coords="509,221,728,263"/>
+</map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,44 +121,104 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;parameter_export.h&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;parameter_export.h&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SubsystemObject_8h.html">SubsystemObject.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SubsystemObject_8h.html">&quot;SubsystemObject.h&quot;</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html">   36</a></span>&#160;<span class="keyword">class </span>PARAMETER_EXPORT <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a> : <span class="keyword">public</span> <a class="code" href="classCSubsystemObject.html">CSubsystemObject</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html">   36</a></span>&#160;<span class="keyword">class</span> PARAMETER_EXPORT <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a> : <span class="keyword">public</span> <a class="code" href="classCSubsystemObject.html">CSubsystemObject</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                              <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">     * Builds a new CFormattedSubsystemObject instance, without any mapping information.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">     * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">     * @param[in] logger the logger provided by the client</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                              <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                              <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger, <span class="keyword">const</span> std::string &amp;strFormattedMapping);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     * Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends.</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">     * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">     * @param[in] logger the logger provided by the client</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">     * @param[in] strFormattedMapping A std::string corresponding to the mapping of the element. The</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">     * std::string does not contain any Amend (%) and does not need to be formatted.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classCFormattedSubsystemObject.html#a009af50dc3f846b8c6250d1e9f9e67b3">CFormattedSubsystemObject</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                              <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger, <span class="keyword">const</span> std::string &amp;strFormattedMapping);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                              <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger, <span class="keyword">const</span> std::string &amp;strMappingValue,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                              <span class="keywordtype">size_t</span> firstAmendKey, <span class="keywordtype">size_t</span> nbAmendKeys,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     * Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">     * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">     * @param[in] logger the logger provided by the client</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">     * @param[in] strMappingValue A std::string corresponding to the mapping of the element. The</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">     * std::string contains Amend (%) and needs to be formatted with information from the context.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">     * @param[in] firstAmendKey Index of the first Amend key</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">     * @param[in] nbAmendKeys Number of Amends</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">     * @param[in] context Contains values associated to Amend keys</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classCFormattedSubsystemObject.html#a276d72835f5a24baa4b5540215c9a205">CFormattedSubsystemObject</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                              <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger, <span class="keyword">const</span> std::string &amp;strMappingValue,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                              size_t firstAmendKey, size_t nbAmendKeys,</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                              <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a> &amp;context);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    ~<a class="code" href="classCFormattedSubsystemObject.html#aebad6641b5613824220165340d3b7346">CFormattedSubsystemObject</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCSubsystemObject.html#a32300e65e238a60f37430fc6bf6042f8">getFormattedMappingValue</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">     * Returns the formatted mapping value associated to the element.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">     * @return A std::string containing the mapping</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    std::string <a class="code" href="classCFormattedSubsystemObject.html#ad24bb993e451e0ee7d6bccb6c8dd010e">getFormattedMappingValue</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> isAmendKeyValid(<span class="keywordtype">size_t</span> uiAmendKey);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">     * Check if the index of Amend key is valid.</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">     * @param uiAmendKey Index of the Amend key</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">     * @return true if the index of the Amend key is &gt; 0 and &lt;= 9.</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> isAmendKeyValid(size_t uiAmendKey);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">static</span> std::string formatMappingValue(<span class="keyword">const</span> std::string &amp;strMappingValue, <span class="keywordtype">size_t</span> firstAmendKey,</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                          <span class="keywordtype">size_t</span> nbAmendKeys, <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a> &amp;context);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">     * Generic mapping formatting</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">     * Format a std::string from mapping data and its context, replacing amendments by their value</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">     * @param[in] strMappingValue The input mapping std::string containing amendments</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">     * @param[in] context firstAmendKey The index of the first Amend key in the key list of the</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">     * context</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">     * @param[in] nbAmendKeys Number of Amend keys in the context</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">     * @param[in] context The context containing Amend values</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">     * @return The formatted std::string, corresponding to the input strMappingValue where %n have</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">     * been</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">     * replaced by their value</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">static</span> std::string formatMappingValue(<span class="keyword">const</span> std::string &amp;strMappingValue, size_t firstAmendKey,</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                          size_t nbAmendKeys, <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a> &amp;context);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">     * std::string containing the formatted mapping value</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    std::string _strFormattedMappingValue;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;};</div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_a009af50dc3f846b8c6250d1e9f9e67b3"><div class="ttname"><a href="classCFormattedSubsystemObject.html#a009af50dc3f846b8c6250d1e9f9e67b3">CFormattedSubsystemObject::CFormattedSubsystemObject</a></div><div class="ttdeci">CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger, const std::string &amp;strFormattedMapping)</div><div class="ttdoc">Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends...</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00046">FormattedSubsystemObject.cpp:46</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_ad24bb993e451e0ee7d6bccb6c8dd010e"><div class="ttname"><a href="classCFormattedSubsystemObject.html#ad24bb993e451e0ee7d6bccb6c8dd010e">CFormattedSubsystemObject::getFormattedMappingValue</a></div><div class="ttdeci">std::string getFormattedMappingValue() const override</div><div class="ttdoc">Returns the formatted mapping value associated to the element. </div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00068">FormattedSubsystemObject.cpp:68</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_a276d72835f5a24baa4b5540215c9a205"><div class="ttname"><a href="classCFormattedSubsystemObject.html#a276d72835f5a24baa4b5540215c9a205">CFormattedSubsystemObject::CFormattedSubsystemObject</a></div><div class="ttdeci">CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger, const std::string &amp;strMappingValue, size_t firstAmendKey, size_t nbAmendKeys, const CMappingContext &amp;context)</div><div class="ttdoc">Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends...</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00053">FormattedSubsystemObject.cpp:53</a></div></div>
 <div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00038">MappingContext.h:38</a></div></div>
 <div class="ttc" id="classCSubsystemObject_html"><div class="ttname"><a href="classCSubsystemObject.html">CSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8h_source.html#l00044">SubsystemObject.h:44</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
 <div class="ttc" id="classCFormattedSubsystemObject_html"><div class="ttname"><a href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8h_source.html#l00036">FormattedSubsystemObject.h:36</a></div></div>
-<div class="ttc" id="classCSubsystemObject_html_a32300e65e238a60f37430fc6bf6042f8"><div class="ttname"><a href="classCSubsystemObject.html#a32300e65e238a60f37430fc6bf6042f8">CSubsystemObject::getFormattedMappingValue</a></div><div class="ttdeci">virtual std::string getFormattedMappingValue() const </div><div class="ttdoc">Return the mapping value of the SubystemObject. </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8cpp_source.html#l00060">SubsystemObject.cpp:60</a></div></div>
-<div class="ttc" id="SubsystemObject_8h_html"><div class="ttname"><a href="SubsystemObject_8h.html">SubsystemObject.h</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_aee3dcf053d429fd037d94024a475e24e"><div class="ttname"><a href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject::CFormattedSubsystemObject</a></div><div class="ttdeci">CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger)</div><div class="ttdoc">Builds a new CFormattedSubsystemObject instance, without any mapping information. ...</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00040">FormattedSubsystemObject.cpp:40</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_aebad6641b5613824220165340d3b7346"><div class="ttname"><a href="classCFormattedSubsystemObject.html#aebad6641b5613824220165340d3b7346">CFormattedSubsystemObject::~CFormattedSubsystemObject</a></div><div class="ttdeci">~CFormattedSubsystemObject() override=default</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

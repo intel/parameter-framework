@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,59 +121,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Rule_8h.html">Rule.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Rule_8h.html">&quot;Rule.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCCompoundRule.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCCompoundRule.html">CCompoundRule</a> : <span class="keyword">public</span> <a class="code" href="classCRule.html">CRule</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCCompoundRule.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCCompoundRule.html">CCompoundRule</a> : <span class="keyword">public</span> <a class="code" href="classCRule.html">CRule</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// Parse</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCCompoundRule.html#a127d40590afcf25e9fcf9b18234249f8">parse</a>(<a class="code" href="classCRuleParser.html">CRuleParser</a> &amp;ruleParser, std::string &amp;strError);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCCompoundRule.html#ab66d3bbb9bd8b229e1644a5eb87f7fa7">parse</a>(<a class="code" href="classCRuleParser.html">CRuleParser</a> &amp;ruleParser, std::string &amp;strError) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Dump</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string <a class="code" href="classCCompoundRule.html#aa96236e3d92d64f6d525082be7f3c115">dump</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string <a class="code" href="classCCompoundRule.html#aa96236e3d92d64f6d525082be7f3c115">dump</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Rule check</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8">matches</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCCompoundRule.html#a6e471834a8df99b4be7e30e45deb8b8f">matches</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCCompoundRule.html#a71717a28b3f33132f68825a5bf696ff2">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// From IXmlSource</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCCompoundRule.html#a39df5f49ea5dea5b888d0983a01b2f2a">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Class kind</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCCompoundRule.html#a9731e1c20cc045c3077ea0ec70410775">getKind</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Content dumping</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::string logValue(<a class="code" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext) <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// Returns true if children dynamic creation is to be dealt with</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Type</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">bool</span> _bTypeAll{<span class="keyword">false</span>};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Types</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *_apcTypes[];</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCCompoundRule.html#a30af6bf1e12febe2e2c7c8d45507f4c9">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                 <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// From IXmlSource</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCCompoundRule.html#a58e6aac0b9a43fd0f357bbc3c170fa1e">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// Class kind</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::string <a class="code" href="classCCompoundRule.html#a77ca0cfdc6a9bb61716108a378f2b50d">getKind</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Content dumping</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::string logValue(<a class="code" href="namespaceutility.html">utility</a>::<a class="code" href="classutility_1_1ErrorContext.html">ErrorContext</a> &amp;errorContext) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Returns true if children dynamic creation is to be dealt with</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Type</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span> _bTypeAll{<span class="keyword">false</span>};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Types</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *_apcTypes[];</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
 <div class="ttc" id="classCRule_html"><div class="ttname"><a href="classCRule.html">CRule</a></div><div class="ttdef"><b>Definition:</b> <a href="Rule_8h_source.html#l00038">Rule.h:38</a></div></div>
-<div class="ttc" id="classCCompoundRule_html_a92c9b3e8a2c0b240af3bf85e4b2630d8"><div class="ttname"><a href="classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8">CCompoundRule::matches</a></div><div class="ttdeci">virtual bool matches() const </div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00111">CompoundRule.cpp:111</a></div></div>
 <div class="ttc" id="classCCompoundRule_html"><div class="ttname"><a href="classCCompoundRule.html">CCompoundRule</a></div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8h_source.html#l00036">CompoundRule.h:36</a></div></div>
-<div class="ttc" id="classCCompoundRule_html_a39df5f49ea5dea5b888d0983a01b2f2a"><div class="ttname"><a href="classCCompoundRule.html#a39df5f49ea5dea5b888d0983a01b2f2a">CCompoundRule::toXml</a></div><div class="ttdeci">virtual void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const </div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00142">CompoundRule.cpp:142</a></div></div>
 <div class="ttc" id="classutility_1_1ErrorContext_html"><div class="ttname"><a href="classutility_1_1ErrorContext.html">utility::ErrorContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00038">ErrorContext.hpp:38</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
-<div class="ttc" id="Rule_8h_html"><div class="ttname"><a href="Rule_8h.html">Rule.h</a></div></div>
 <div class="ttc" id="classCCompoundRule_html_aa96236e3d92d64f6d525082be7f3c115"><div class="ttname"><a href="classCCompoundRule.html#aa96236e3d92d64f6d525082be7f3c115">CCompoundRule::dump</a></div><div class="ttdeci">std::string dump() const override</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00082">CompoundRule.cpp:82</a></div></div>
-<div class="ttc" id="classCCompoundRule_html_a71717a28b3f33132f68825a5bf696ff2"><div class="ttname"><a href="classCCompoundRule.html#a71717a28b3f33132f68825a5bf696ff2">CCompoundRule::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00129">CompoundRule.cpp:129</a></div></div>
-<div class="ttc" id="classCCompoundRule_html_a9731e1c20cc045c3077ea0ec70410775"><div class="ttname"><a href="classCCompoundRule.html#a9731e1c20cc045c3077ea0ec70410775">CCompoundRule::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00041">CompoundRule.cpp:41</a></div></div>
+<div class="ttc" id="classCCompoundRule_html_a77ca0cfdc6a9bb61716108a378f2b50d"><div class="ttname"><a href="classCCompoundRule.html#a77ca0cfdc6a9bb61716108a378f2b50d">CCompoundRule::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00041">CompoundRule.cpp:41</a></div></div>
 <div class="ttc" id="classCRuleParser_html"><div class="ttname"><a href="classCRuleParser.html">CRuleParser</a></div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8h_source.html#l00038">RuleParser.h:38</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCCompoundRule_html_a127d40590afcf25e9fcf9b18234249f8"><div class="ttname"><a href="classCCompoundRule.html#a127d40590afcf25e9fcf9b18234249f8">CCompoundRule::parse</a></div><div class="ttdeci">virtual bool parse(CRuleParser &amp;ruleParser, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00060">CompoundRule.cpp:60</a></div></div>
+<div class="ttc" id="classCCompoundRule_html_ab66d3bbb9bd8b229e1644a5eb87f7fa7"><div class="ttname"><a href="classCCompoundRule.html#ab66d3bbb9bd8b229e1644a5eb87f7fa7">CCompoundRule::parse</a></div><div class="ttdeci">bool parse(CRuleParser &amp;ruleParser, std::string &amp;strError) override</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00060">CompoundRule.cpp:60</a></div></div>
+<div class="ttc" id="classCCompoundRule_html_a58e6aac0b9a43fd0f357bbc3c170fa1e"><div class="ttname"><a href="classCCompoundRule.html#a58e6aac0b9a43fd0f357bbc3c170fa1e">CCompoundRule::toXml</a></div><div class="ttdeci">void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const override</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00142">CompoundRule.cpp:142</a></div></div>
+<div class="ttc" id="classCCompoundRule_html_a30af6bf1e12febe2e2c7c8d45507f4c9"><div class="ttname"><a href="classCCompoundRule.html#a30af6bf1e12febe2e2c7c8d45507f4c9">CCompoundRule::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00129">CompoundRule.cpp:129</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
+<div class="ttc" id="classCCompoundRule_html_a6e471834a8df99b4be7e30e45deb8b8f"><div class="ttname"><a href="classCCompoundRule.html#a6e471834a8df99b4be7e30e45deb8b8f">CCompoundRule::matches</a></div><div class="ttdeci">bool matches() const override</div><div class="ttdef"><b>Definition:</b> <a href="CompoundRule_8cpp_source.html#l00111">CompoundRule.cpp:111</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

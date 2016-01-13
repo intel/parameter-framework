@@ -1,0 +1,12 @@
+<map id="CSelectionCriterionType::toXml" name="CSelectionCriterionType::toXml">
+<area shape="rect" id="node2" href="$classCXmlElement.html#af7817bcccda078fa11b93ffa83c0a10a" title="Set attribute &#45; special case for C&#45;style strings. " alt="" coords="225,5,417,32"/>
+<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#a031d3104b102c648eb358b9fd5e275f5" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="235,57,407,98"/>
+<area shape="rect" id="node4" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="742,123,930,149"/>
+<area shape="rect" id="node5" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="257,173,386,200"/>
+<area shape="rect" id="node6" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="465,225,673,266"/>
+<area shape="rect" id="node9" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="480,173,659,200"/>
+<area shape="rect" id="node7" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="743,279,929,305"/>
+<area shape="rect" id="node8" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="740,228,932,255"/>
+<area shape="rect" id="node10" href="$classCElement.html#abd9e5e3b9b21652902a6fc151cce76f7" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="721,173,951,200"/>
+<area shape="rect" id="node11" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="999,173,1139,200"/>
+</map>

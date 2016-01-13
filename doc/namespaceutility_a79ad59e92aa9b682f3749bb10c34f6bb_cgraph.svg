@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="namespaceutility.html#a09cce371085c0096b86c22fb467da3d4" target="_top" xlink:title="utility::join">
+<g id="a_node2"><a xlink:href="namespaceutility.html#a09cce371085c0096b86c22fb467da3d4" target="_top" xlink:title="Join all elements in [first, last[ with op. ">
 <polygon fill="white" stroke="black" points="133,-0.5 133,-19.5 197,-19.5 197,-0.5 133,-0.5"/>
 <text text-anchor="middle" x="165" y="-7.5" font-family="Verdana" font-size="10.00">utility::join</text>
 </a>

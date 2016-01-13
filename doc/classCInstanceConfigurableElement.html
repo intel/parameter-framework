@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,7 +101,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CInstanceConfigurableElement:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement__inherit__graph.svg" width="726" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement__inherit__graph.svg" width="726" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -125,14 +125,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a06c2f5c077a21c715caa1d1d86ce3432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2d941df411f8ec4c025cbd04d3ba421"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCTypeElement.html">CTypeElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421">getTypeElement</a> () const </td></tr>
 <tr class="separator:ae2d941df411f8ec4c025cbd04d3ba421"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73aace151a51fbd2a2c02bfd83b24f59"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a73aace151a51fbd2a2c02bfd83b24f59">getMappingData</a> (const std::string &amp;strKey, const std::string *&amp;pStrValue) const </td></tr>
-<tr class="memdesc:a73aace151a51fbd2a2c02bfd83b24f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value associated to a mapping key in the object's mapping.  <a href="#a73aace151a51fbd2a2c02bfd83b24f59">More...</a><br /></td></tr>
-<tr class="separator:a73aace151a51fbd2a2c02bfd83b24f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab64a2df11be985c8f1deecbf26681594"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#ab64a2df11be985c8f1deecbf26681594">getFormattedMapping</a> () const </td></tr>
-<tr class="memdesc:ab64a2df11be985c8f1deecbf26681594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string.  <a href="#ab64a2df11be985c8f1deecbf26681594">More...</a><br /></td></tr>
-<tr class="separator:ab64a2df11be985c8f1deecbf26681594"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5e8dc0766c8bb045e61c577e114af10"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10">getKind</a> () const </td></tr>
-<tr class="separator:aa5e8dc0766c8bb045e61c577e114af10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa7f7850ff261cd394b53bd549029b3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a7fa7f7850ff261cd394b53bd549029b3">getMappingData</a> (const std::string &amp;strKey, const std::string *&amp;pStrValue) const override</td></tr>
+<tr class="memdesc:a7fa7f7850ff261cd394b53bd549029b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value associated to a mapping key in the object's mapping.  <a href="#a7fa7f7850ff261cd394b53bd549029b3">More...</a><br /></td></tr>
+<tr class="separator:a7fa7f7850ff261cd394b53bd549029b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d39595d62a9490423bc4e88d8d8e65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a67d39595d62a9490423bc4e88d8d8e65">getFormattedMapping</a> () const override</td></tr>
+<tr class="memdesc:a67d39595d62a9490423bc4e88d8d8e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string.  <a href="#a67d39595d62a9490423bc4e88d8d8e65">More...</a><br /></td></tr>
+<tr class="separator:a67d39595d62a9490423bc4e88d8d8e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad332b785d06d248ee9bf004c0c986f38"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#ad332b785d06d248ee9bf004c0c986f38">getKind</a> () const override</td></tr>
+<tr class="separator:ad332b785d06d248ee9bf004c0c986f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98adbaeeac4aa99b44b50f6634b405bc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a98adbaeeac4aa99b44b50f6634b405bc">getXmlElementName</a> () const override</td></tr>
 <tr class="memdesc:a98adbaeeac4aa99b44b50f6634b405bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns Xml element name used for element XML importing/exporting functionalities.  <a href="#a98adbaeeac4aa99b44b50f6634b405bc">More...</a><br /></td></tr>
 <tr class="separator:a98adbaeeac4aa99b44b50f6634b405bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,20 +144,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af1de535f93d932c14eceb4583277f95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43d2ce5dbc487aa8de02d39af1b1c2d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a43d2ce5dbc487aa8de02d39af1b1c2d3">map</a> (<a class="el" href="classIMapper.html">IMapper</a> &amp;mapper, std::string &amp;strError)</td></tr>
 <tr class="separator:a43d2ce5dbc487aa8de02d39af1b1c2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47a5949cc354fc3bb11cefef76f87ea7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a47a5949cc354fc3bb11cefef76f87ea7">showProperties</a> (std::string &amp;strResult) const </td></tr>
-<tr class="separator:a47a5949cc354fc3bb11cefef76f87ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4918eba875cbc561ffc09746db9250fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a4918eba875cbc561ffc09746db9250fd">showProperties</a> (std::string &amp;strResult) const override</td></tr>
+<tr class="separator:a4918eba875cbc561ffc09746db9250fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f1f67b9e526f8a9ae9d67292ead570a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a0f1f67b9e526f8a9ae9d67292ead570a">isScalar</a> () const </td></tr>
 <tr class="separator:a0f1f67b9e526f8a9ae9d67292ead570a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a590967d30772d8ada0ac367f4273d248"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a590967d30772d8ada0ac367f4273d248">getArrayLength</a> () const </td></tr>
 <tr class="separator:a590967d30772d8ada0ac367f4273d248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fc955181503bd0cfd5a148dd5653905"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a9fc955181503bd0cfd5a148dd5653905">structureToXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const </td></tr>
-<tr class="memdesc:a9fc955181503bd0cfd5a148dd5653905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the structure to xml.  <a href="#a9fc955181503bd0cfd5a148dd5653905">More...</a><br /></td></tr>
-<tr class="separator:a9fc955181503bd0cfd5a148dd5653905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac95988191e9f3d3d52d0649c00c713c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#ac95988191e9f3d3d52d0649c00c713c2">structureToXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const override</td></tr>
+<tr class="memdesc:ac95988191e9f3d3d52d0649c00c713c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the structure to xml.  <a href="#ac95988191e9f3d3d52d0649c00c713c2">More...</a><br /></td></tr>
+<tr class="separator:ac95988191e9f3d3d52d0649c00c713c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCConfigurableElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCConfigurableElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a></td></tr>
 <tr class="memitem:a227e3ad5b43843c0171bdd80ab9ec048 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#a227e3ad5b43843c0171bdd80ab9ec048">CConfigurableElement</a> (const std::string &amp;strName=&quot;&quot;)</td></tr>
 <tr class="separator:a227e3ad5b43843c0171bdd80ab9ec048 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed511ba2292de55d97b7d29fc07f8dd4 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#aed511ba2292de55d97b7d29fc07f8dd4">~CConfigurableElement</a> ()=default</td></tr>
-<tr class="separator:aed511ba2292de55d97b7d29fc07f8dd4 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ee89c2fe3ee04fd67df170d156af78 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#aa8ee89c2fe3ee04fd67df170d156af78">~CConfigurableElement</a> () override=default</td></tr>
+<tr class="separator:aa8ee89c2fe3ee04fd67df170d156af78 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a814cb153fd77968c68192acaf78db6b9 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#a814cb153fd77968c68192acaf78db6b9">setOffset</a> (size_t offset)</td></tr>
 <tr class="separator:a814cb153fd77968c68192acaf78db6b9 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad502a1139a10faa1a87fd1e033e4ad4 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#aad502a1139a10faa1a87fd1e033e4ad4">getOffset</a> () const </td></tr>
@@ -204,18 +204,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8f7c88b9e89d9167fce48196cc1cc324 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e3feb8a7b18a3291ec960c9726b4eaf inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf">serializeXmlSettings</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlConfigurationSettingsElementContent, <a class="el" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a> &amp;configurationAccessContext) const </td></tr>
 <tr class="separator:a0e3feb8a7b18a3291ec960c9726b4eaf inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5bbe709d02fa6af3469a91a72edcd06 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06">fromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) overridefinal</td></tr>
-<tr class="separator:ac5bbe709d02fa6af3469a91a72edcd06 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2331dbc00f60d4d19a5686bbb519c473 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473">toXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const overridefinal</td></tr>
-<tr class="separator:a2331dbc00f60d4d19a5686bbb519c473 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a471ef22f0f314e7813d2f7eca78fdb2d inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#a471ef22f0f314e7813d2f7eca78fdb2d">fromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) final</td></tr>
+<tr class="separator:a471ef22f0f314e7813d2f7eca78fdb2d inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4597087c2be2840b9ebe2463bf68a24 inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#ad4597087c2be2840b9ebe2463bf68a24">toXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const final</td></tr>
+<tr class="separator:ad4597087c2be2840b9ebe2463bf68a24 inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58dabad79b39f912250eed36e43d718a inherit pub_methods_classCConfigurableElement"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableElement.html#a58dabad79b39f912250eed36e43d718a">structureFromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)</td></tr>
 <tr class="memdesc:a58dabad79b39f912250eed36e43d718a inherit pub_methods_classCConfigurableElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize the structure from xml.  <a href="#a58dabad79b39f912250eed36e43d718a">More...</a><br /></td></tr>
 <tr class="separator:a58dabad79b39f912250eed36e43d718a inherit pub_methods_classCConfigurableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
 <tr class="memitem:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#adda0945fbca000ff1e605a9b93f74c64">CElement</a> (const std::string &amp;strName=&quot;&quot;)</td></tr>
 <tr class="separator:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ae09302d1fbbe377cdcb7c5ceb2fb46a6">~CElement</a> ()</td></tr>
-<tr class="separator:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5760db9b406623e7e2c302b041af7be inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ab5760db9b406623e7e2c302b041af7be">~CElement</a> () override</td></tr>
+<tr class="separator:ab5760db9b406623e7e2c302b041af7be inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac5fa8c7e838a44733f3887f1bec20d7b">setDescription</a> (const std::string &amp;strDescription)</td></tr>
 <tr class="separator:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c3c6e07b015c44706edf4bb8fc41c2 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2">getDescription</a> () const </td></tr>
@@ -268,6 +268,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae0fcf9bbc9468a4372a9383299057e7a inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7653fbad5491138533ac0fa889ffecd9 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7653fbad5491138533ac0fa889ffecd9">isDescendantOf</a> (const <a class="el" href="classCElement.html">CElement</a> *pCandidateAscendant) const </td></tr>
 <tr class="separator:a7653fbad5491138533ac0fa889ffecd9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc62393370848bda4c0591e6698ebe8 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a9cc62393370848bda4c0591e6698ebe8">fromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) override</td></tr>
+<tr class="separator:a9cc62393370848bda4c0591e6698ebe8 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411078c34f3257bbda1ecaba79c8488c inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a411078c34f3257bbda1ecaba79c8488c">toXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const override</td></tr>
+<tr class="separator:a411078c34f3257bbda1ecaba79c8488c inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee22d6b038603b6481a8f029bf59ff3d">childrenToXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const </td></tr>
 <tr class="memdesc:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the children to XML.  <a href="#aee22d6b038603b6481a8f029bf59ff3d">More...</a><br /></td></tr>
 <tr class="separator:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,10 +286,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a4a613634c5012d4f32c310ccf2fc9fb4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classISyncer.html">ISyncer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a4a613634c5012d4f32c310ccf2fc9fb4">getSyncer</a> () const </td></tr>
-<tr class="separator:a4a613634c5012d4f32c310ccf2fc9fb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a520a72feb5e4069adac8ca2b2d4a3292"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a520a72feb5e4069adac8ca2b2d4a3292">fillSyncerSetFromDescendant</a> (<a class="el" href="classCSyncerSet.html">CSyncerSet</a> &amp;syncerSet) const </td></tr>
-<tr class="separator:a520a72feb5e4069adac8ca2b2d4a3292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accea1d3383fcde90fa9e3f002ed28365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classISyncer.html">ISyncer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#accea1d3383fcde90fa9e3f002ed28365">getSyncer</a> () const override</td></tr>
+<tr class="separator:accea1d3383fcde90fa9e3f002ed28365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb0ffcf4e797224d704c7f1f3943d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#afbb0ffcf4e797224d704c7f1f3943d2a">fillSyncerSetFromDescendant</a> (<a class="el" href="classCSyncerSet.html">CSyncerSet</a> &amp;syncerSet) const override</td></tr>
+<tr class="separator:afbb0ffcf4e797224d704c7f1f3943d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e6e7782de8e4d7e844a869917f2f037"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037">sync</a> (<a class="el" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext) const </td></tr>
 <tr class="memdesc:a2e6e7782de8e4d7e844a869917f2f037"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the sync if the AutoSync is enabled.  <a href="#a2e6e7782de8e4d7e844a869917f2f037">More...</a><br /></td></tr>
 <tr class="separator:a2e6e7782de8e4d7e844a869917f2f037"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -375,6 +379,22 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00040">40</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a06c2f5c077a21c715caa1d1d86ce3432_cgraph.svg" width="660" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a06c2f5c077a21c715caa1d1d86ce3432_icgraph.svg" width="1095" height="272"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -415,20 +435,14 @@ Additional Inherited Members</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a37607c6081e2f406748ab6848acc422f_cgraph.svg" width="504" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a37607c6081e2f406748ab6848acc422f_cgraph.svg" width="504" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a37607c6081e2f406748ab6848acc422f_icgraph.svg" width="495" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a520a72feb5e4069adac8ca2b2d4a3292"></a>
+<a class="anchor" id="afbb0ffcf4e797224d704c7f1f3943d2a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -445,7 +459,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -453,6 +467,14 @@ Here is the caller graph for this function:</div>
 <p>Reimplemented from <a class="el" href="classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78">CConfigurableElement</a>.</p>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00163">163</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_afbb0ffcf4e797224d704c7f1f3943d2a_cgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -471,25 +493,14 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00133">133</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a590967d30772d8ada0ac367f4273d248_cgraph.svg" width="496" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a590967d30772d8ada0ac367f4273d248_icgraph.svg" width="724" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
-<a class="anchor" id="ab64a2df11be985c8f1deecbf26681594"></a>
+<a class="anchor" id="a67d39595d62a9490423bc4e88d8d8e65"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::string CInstanceConfigurableElement::getFormattedMapping </td>
@@ -498,23 +509,31 @@ Here is the caller graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string. </p>
 <dl class="section return"><dt>Returns</dt><dd>A std::string containing the formatted mapping </dd></dl>
+
+<p>Implements <a class="el" href="classCConfigurableElement.html#acb649bfa643ac956b1faf61c8259387e">CConfigurableElement</a>.</p>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00073">73</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_ab64a2df11be985c8f1deecbf26681594_cgraph.svg" width="886" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a67d39595d62a9490423bc4e88d8d8e65_cgraph.svg" width="1050" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aa5e8dc0766c8bb045e61c577e114af10"></a>
+<a class="anchor" id="ad332b785d06d248ee9bf004c0c986f38"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -530,7 +549,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -539,16 +558,9 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00046">46</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_aa5e8dc0766c8bb045e61c577e114af10_cgraph.svg" width="418" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
-<a class="anchor" id="a73aace151a51fbd2a2c02bfd83b24f59"></a>
+<a class="anchor" id="a7fa7f7850ff261cd394b53bd549029b3"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -575,7 +587,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -597,13 +609,14 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a73aace151a51fbd2a2c02bfd83b24f59_cgraph.svg" width="732" height="128"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a7fa7f7850ff261cd394b53bd549029b3_cgraph.svg" width="732" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a4a613634c5012d4f32c310ccf2fc9fb4"></a>
+<a class="anchor" id="accea1d3383fcde90fa9e3f002ed28365"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -619,7 +632,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -631,7 +644,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a4a613634c5012d4f32c310ccf2fc9fb4_icgraph.svg" width="763" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_accea1d3383fcde90fa9e3f002ed28365_icgraph.svg" width="496" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -658,7 +672,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classCParameter.html#aefa8d915e601c8c3e5ad9a8217cb8c72">CParameter</a>, <a class="el" href="classCBitParameter.html#a2ff7d9b0fdf9475cf831e880a8ee0d21">CBitParameter</a>, <a class="el" href="classCComponent.html#a168be8ed7a48a5ae5fbb61fdd2beda53">CComponent</a>, <a class="el" href="classCParameterBlock.html#a2265e9ded4e8d6b3cd053f16d96eafa0">CParameterBlock</a>, <a class="el" href="classCStringParameter.html#aa32e7cbc73251ebbddf9fe4a45a2cc7c">CStringParameter</a>, and <a class="el" href="classCBitParameterBlock.html#addc24dd13cf86d23eeec1cc240bb74f5">CBitParameterBlock</a>.</p>
+<p>Implemented in <a class="el" href="classCParameter.html#afd472c65338e6cd1dc8decd77c526179">CParameter</a>, <a class="el" href="classCBitParameter.html#a7810cc70f20d7c31e839d0f1dc854e02">CBitParameter</a>, <a class="el" href="classCComponent.html#aee4b03516baa851e660dfd20608202c5">CComponent</a>, <a class="el" href="classCParameterBlock.html#a70a1509f92cc354cbe2472aca55c17ea">CParameterBlock</a>, <a class="el" href="classCStringParameter.html#adca7d3bbc03e96e420b1d8dd433ecfe9">CStringParameter</a>, and <a class="el" href="classCBitParameterBlock.html#a8a6fa2a34f6447454bd4f8e671f02282">CBitParameterBlock</a>.</p>
 
 </div>
 </div>
@@ -680,7 +694,8 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_ae2d941df411f8ec4c025cbd04d3ba421_icgraph.svg" width="799" height="918"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_ae2d941df411f8ec4c025cbd04d3ba421_icgraph.svg" width="532" height="194"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -713,13 +728,6 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00052">52</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a98adbaeeac4aa99b44b50f6634b405bc_cgraph.svg" width="695" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="a0f1f67b9e526f8a9ae9d67292ead570a"></a>
@@ -740,7 +748,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a0f1f67b9e526f8a9ae9d67292ead570a_cgraph.svg" width="448" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a0f1f67b9e526f8a9ae9d67292ead570a_cgraph.svg" width="448" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -775,14 +784,16 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a43d2ce5dbc487aa8de02d39af1b1c2d3_cgraph.svg" width="542" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a43d2ce5dbc487aa8de02d39af1b1c2d3_cgraph.svg" width="542" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a43d2ce5dbc487aa8de02d39af1b1c2d3_icgraph.svg" width="266" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a43d2ce5dbc487aa8de02d39af1b1c2d3_icgraph.svg" width="266" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -804,16 +815,9 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00139">139</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a79a7b84abab6f0cc89a01b6e7dbba34e_icgraph.svg" width="511" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
-<a class="anchor" id="a47a5949cc354fc3bb11cefef76f87ea7"></a>
+<a class="anchor" id="a4918eba875cbc561ffc09746db9250fd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -830,27 +834,26 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1">CConfigurableElement</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classCArrayParameter.html#ad5d8e73cb182854db6fa4fd3ca5fe691">CArrayParameter</a>.</p>
+<p>Reimplemented from <a class="el" href="classCConfigurableElement.html#ab8ada772cc4b44d9dad938891ba8c979">CConfigurableElement</a>.</p>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00118">118</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a47a5949cc354fc3bb11cefef76f87ea7_cgraph.svg" width="972" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a4918eba875cbc561ffc09746db9250fd_cgraph.svg" width="495" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a9fc955181503bd0cfd5a148dd5653905"></a>
+<a class="anchor" id="ac95988191e9f3d3d52d0649c00c713c2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -877,7 +880,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -886,23 +889,9 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCConfigurableElement.html#aae8cc511624bd2cee5d204815178299b">CConfigurableElement</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classCBaseParameter.html#a42621ccce8ce4235e124789c7f2a9b8a">CBaseParameter</a>, and <a class="el" href="classCBitParameterBlock.html#ae8f1443ff248a9b5cb783bea475157f3">CBitParameterBlock</a>.</p>
+<p>Reimplemented in <a class="el" href="classCBitParameterBlock.html#a4c7947d32086bf22548d34d3fbf84732">CBitParameterBlock</a>.</p>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00218">218</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a9fc955181503bd0cfd5a148dd5653905_cgraph.svg" width="736" height="136"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a9fc955181503bd0cfd5a148dd5653905_icgraph.svg" width="427" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
 
 </div>
 </div>
@@ -932,24 +921,19 @@ Here is the caller graph for this function:</div>
 <p>If AutoSync is disabled, any call to sync will returns true, even if synchronization has not been done. It will happen when the AutoSync will be switched back on.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">parameterAccessContext</td><td>Parameter access context object</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the synchronization succeded or if the AutoSync is off, false otherwise. </dd></dl>
 
 <p>Definition at line <a class="el" href="InstanceConfigurableElement_8cpp_source.html#l00174">174</a> of file <a class="el" href="InstanceConfigurableElement_8cpp_source.html">InstanceConfigurableElement.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a2e6e7782de8e4d7e844a869917f2f037_cgraph.svg" width="496" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a2e6e7782de8e4d7e844a869917f2f037_cgraph.svg" width="496" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_a2e6e7782de8e4d7e844a869917f2f037_icgraph.svg" width="496" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
 
@@ -973,7 +957,8 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_aa9ecf181a3917f82a82439e432849f61_icgraph.svg" width="432" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCInstanceConfigurableElement_aa9ecf181a3917f82a82439e432849f61_icgraph.svg" width="432" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 

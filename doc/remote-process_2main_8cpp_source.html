@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -123,106 +122,104 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;asio.hpp&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">asio</span><span class="preprocessor">.</span><span class="preprocessor">hpp</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="RequestMessage_8h.html">RequestMessage.h</a>&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AnswerMessage_8h.html">AnswerMessage.h</a>&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">   42</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a>(asio::ip::tcp::socket &amp;socket, <a class="code" href="classCRequestMessage.html">CRequestMessage</a> &amp;requestMessage)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">string</span> strError;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (requestMessage.<a class="code" href="classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6">serialize</a>(socket, <span class="keyword">true</span>, strError) != <a class="code" href="classCMessage.html#a59c2a51750de7ca915174fe779283387a9a0d54a9b3dcea09a39ed7cf44a1a8e6">CRequestMessage::success</a>) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Unable to send command to target: &quot;</span> &lt;&lt; strError &lt;&lt; endl;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classCAnswerMessage.html">CAnswerMessage</a> answerMessage;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span> (answerMessage.<a class="code" href="classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6">serialize</a>(socket, <span class="keyword">false</span>, strError) != <a class="code" href="classCMessage.html#a59c2a51750de7ca915174fe779283387a9a0d54a9b3dcea09a39ed7cf44a1a8e6">CRequestMessage::success</a>) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Unable to received answer from target: &quot;</span> &lt;&lt; strError &lt;&lt; endl;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Success?</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">if</span> (!answerMessage.<a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">success</a>()) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// Display error answer</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        cerr &lt;&lt; answerMessage.<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a>() &lt;&lt; endl;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Display success answer</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    cout &lt;&lt; answerMessage.<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a>() &lt;&lt; endl;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// hostname port command [argument[s]]</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// or</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// hostname port &lt; commands</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">   77</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// Enough args?</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">if</span> (argc &lt; 4) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Missing arguments&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Usage: &quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Send a single command:&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; argv[0] &lt;&lt; <span class="stringliteral">&quot; hostname port command [argument[s]]&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">using</span> asio::ip::tcp;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    asio::io_service io_service;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    tcp::resolver resolver(io_service);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    tcp::socket connectionSocket(io_service);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">string</span> host{argv[1]};</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">string</span> port{argv[2]};</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(host, port)));</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> asio::system_error &amp;e) {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Connection to &#39;&quot;</span> &lt;&lt; host &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; port &lt;&lt; <span class="stringliteral">&quot;&#39; failed: &quot;</span> &lt;&lt; e.what() &lt;&lt; endl;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">// Create command message</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classCRequestMessage.html">CRequestMessage</a> requestMessage(argv[3]);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// Add arguments</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> arg = 4; arg &lt; argc; arg++) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        requestMessage.<a class="code" href="classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3">addArgument</a>(argv[arg]);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a>(connectionSocket, requestMessage)) {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// Program status</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
-<div class="ttc" id="classCMessage_html_a4ffffaf65b3e142bbd673eeaced870a6"><div class="ttname"><a href="classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6">CMessage::serialize</a></div><div class="ttdeci">Result serialize(asio::ip::tcp::socket &amp;socket, bool bOut, std::string &amp;strError)</div><div class="ttdoc">Write or read the message on pSocket. </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00128">Message.cpp:128</a></div></div>
-<div class="ttc" id="classCMessage_html_a59c2a51750de7ca915174fe779283387a9a0d54a9b3dcea09a39ed7cf44a1a8e6"><div class="ttname"><a href="classCMessage.html#a59c2a51750de7ca915174fe779283387a9a0d54a9b3dcea09a39ed7cf44a1a8e6">CMessage::success</a></div><div class="ttdef"><b>Definition:</b> <a href="Message_8h_source.html#l00055">Message.h:55</a></div></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">iostream</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cstring</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdlib</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="RequestMessage_8h.html">&quot;RequestMessage.h&quot;</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="AnswerMessage_8h.html">&quot;AnswerMessage.h&quot;</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Socket_8h.html">&quot;Socket.h&quot;</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">using</span> <span class="keyword">namespace</span> std;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">   43</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a>(asio::ip::tcp::socket &amp;socket, <a class="code" href="classCRequestMessage.html">CRequestMessage</a> &amp;requestMessage)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    string strError;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span> (requestMessage.serialize(Socket(socket), <span class="keyword">true</span>, strError) != CRequestMessage::success) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Unable to send command to target: &quot;</span> &lt;&lt; strError &lt;&lt; endl;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">///// Get answer</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classCAnswerMessage.html">CAnswerMessage</a> answerMessage;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span> (answerMessage.serialize(Socket(socket), <span class="keyword">false</span>, strError) != CRequestMessage::success) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Unable to received answer from target: &quot;</span> &lt;&lt; strError &lt;&lt; endl;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// Success?</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (!answerMessage<a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">.</a><a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">success</a><a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">(</a><a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">)</a>) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// Display error answer</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        cerr &lt;&lt; answerMessage<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">.</a><a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a><a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">(</a><a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">)</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Display success answer</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    cout &lt;&lt; answerMessage<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">.</a><a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a><a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">(</a><a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">)</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// hostname port command [argument[s]]</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// or</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">// hostname port &lt; commands</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">   78</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Enough args?</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (argc &lt; 4) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Missing arguments&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Usage: &quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Send a single command:&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; argv[0] &lt;&lt; <span class="stringliteral">&quot; hostname port command [argument[s]]&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">using</span> asio::ip::tcp;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    asio::io_service io_service;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    tcp::resolver resolver(io_service);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    tcp::socket connectionSocket(io_service);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    string host{argv[1]};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    string port{argv[2]};</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(host, port)));</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> asio::system_error &amp;e) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        cerr &lt;&lt; <span class="stringliteral">&quot;Connection to &#39;&quot;</span> &lt;&lt; host &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; port &lt;&lt; <span class="stringliteral">&quot;&#39; failed: &quot;</span> &lt;&lt; e.what() &lt;&lt; endl;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// Create command message</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="classCRequestMessage.html">CRequestMessage</a> requestMessage<a class="code" href="classCRequestMessage.html#a6c555ce6d4198c825ba2d14785b29639">(</a>argv[3]<a class="code" href="classCRequestMessage.html#a6c555ce6d4198c825ba2d14785b29639">)</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">// Add arguments</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> arg = 4; arg &lt; argc; arg++) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        requestMessage<a class="code" href="classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3">.</a><a class="code" href="classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3">addArgument</a><a class="code" href="classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3">(</a>argv[arg]<a class="code" href="classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3">)</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a><a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">(</a>connectionSocket<a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">,</a> requestMessage<a class="code" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">)</a>) {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">// Program status</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
 <div class="ttc" id="classCAnswerMessage_html_ad5b737b114cde75702c2233d723b970c"><div class="ttname"><a href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">CAnswerMessage::getAnswer</a></div><div class="ttdeci">const std::string &amp; getAnswer() const </div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00052">AnswerMessage.cpp:52</a></div></div>
-<div class="ttc" id="remote-process_2main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="remote-process_2main_8cpp_source.html#l00077">main.cpp:77</a></div></div>
-<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace. </div></div>
+<div class="ttc" id="classCRequestMessage_html_a908309ac6965bb2b3b8ab27d43f596b3"><div class="ttname"><a href="classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3">CRequestMessage::addArgument</a></div><div class="ttdeci">void addArgument(const std::string &amp;strArgument) override</div><div class="ttdef"><b>Definition:</b> <a href="RequestMessage_8cpp_source.html#l00063">RequestMessage.cpp:63</a></div></div>
+<div class="ttc" id="test_2test-platform_2main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="test_2test-platform_2main_8cpp_source.html#l00067">main.cpp:67</a></div></div>
+<div class="ttc" id="classCRequestMessage_html_a6c555ce6d4198c825ba2d14785b29639"><div class="ttname"><a href="classCRequestMessage.html#a6c555ce6d4198c825ba2d14785b29639">CRequestMessage::CRequestMessage</a></div><div class="ttdeci">CRequestMessage(const std::string &amp;strCommand)</div><div class="ttdef"><b>Definition:</b> <a href="RequestMessage_8cpp_source.html#l00042">RequestMessage.cpp:42</a></div></div>
 <div class="ttc" id="classCRequestMessage_html"><div class="ttname"><a href="classCRequestMessage.html">CRequestMessage</a></div><div class="ttdef"><b>Definition:</b> <a href="RequestMessage_8h_source.html#l00039">RequestMessage.h:39</a></div></div>
-<div class="ttc" id="remote-process_2main_8cpp_html_a6d6ad099f54d8866cc57dff6eea8931b"><div class="ttname"><a href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a></div><div class="ttdeci">bool sendAndDisplayCommand(asio::ip::tcp::socket &amp;socket, CRequestMessage &amp;requestMessage)</div><div class="ttdef"><b>Definition:</b> <a href="remote-process_2main_8cpp_source.html#l00042">main.cpp:42</a></div></div>
+<div class="ttc" id="remote-process_2main_8cpp_html_a6d6ad099f54d8866cc57dff6eea8931b"><div class="ttname"><a href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a></div><div class="ttdeci">bool sendAndDisplayCommand(asio::ip::tcp::socket &amp;socket, CRequestMessage &amp;requestMessage)</div><div class="ttdef"><b>Definition:</b> <a href="remote-process_2main_8cpp_source.html#l00043">main.cpp:43</a></div></div>
 <div class="ttc" id="classCAnswerMessage_html_af22d01ea3de76ad0e82513eab0d7e7ce"><div class="ttname"><a href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">CAnswerMessage::success</a></div><div class="ttdeci">bool success() const </div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00058">AnswerMessage.cpp:58</a></div></div>
-<div class="ttc" id="classCRequestMessage_html_acabef458b313a1e9a9c1c31239c0cbd3"><div class="ttname"><a href="classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3">CRequestMessage::addArgument</a></div><div class="ttdeci">virtual void addArgument(const std::string &amp;strArgument)</div><div class="ttdef"><b>Definition:</b> <a href="RequestMessage_8cpp_source.html#l00062">RequestMessage.cpp:62</a></div></div>
 <div class="ttc" id="classCAnswerMessage_html"><div class="ttname"><a href="classCAnswerMessage.html">CAnswerMessage</a></div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8h_source.html#l00036">AnswerMessage.h:36</a></div></div>
-<div class="ttc" id="AnswerMessage_8h_html"><div class="ttname"><a href="AnswerMessage_8h.html">AnswerMessage.h</a></div></div>
-<div class="ttc" id="RequestMessage_8h_html"><div class="ttname"><a href="RequestMessage_8h.html">RequestMessage.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

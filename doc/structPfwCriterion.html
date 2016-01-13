@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -108,12 +107,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa4ec70205cbf589870e251c7a9f040dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">inclusive</a></td></tr>
 <tr class="separator:aa4ec70205cbf589870e251c7a9f040dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636733a565765965e86b34c1b3c97b41"><td class="memItemLeft" align="right" valign="top">const char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">values</a></td></tr>
+<tr class="memdesc:a636733a565765965e86b34c1b3c97b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null terminated list of criterion value names.  <a href="#a636733a565765965e86b34c1b3c97b41">More...</a><br /></td></tr>
 <tr class="separator:a636733a565765965e86b34c1b3c97b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structure of a parameter framework criterion. </p>
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00116">116</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00117">117</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="aa4ec70205cbf589870e251c7a9f040dc"></a>
 <div class="memitem">
@@ -125,7 +125,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00120">120</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00121">121</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>
@@ -141,7 +141,7 @@ Public Attributes</h2></td></tr>
 
 <p>Name of the criterion in the pfw configuration rules. </p>
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00119">119</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00120">120</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>
@@ -155,7 +155,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00133">133</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
+<p>Null terminated list of criterion value names. </p>
+<p>Example: </p><pre class="fragment">* { "Red", "Green", "Blue", NULL }
+* </pre><p>For an exclusive criterion, the list must not contain more elements then INT_MAX. For an inclusive criterion, the list must not contain more elements then sizeof(int) * BIT_CHAR - 1. Ie: (int)1 &lt;&lt; n must <em>not</em> overflow (UB), were n is the number of element in the list. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb" title="Set a criterion value given its name and value. ">pfwSetCriterion</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="ParameterFramework_8h_source.html#l00138">138</a> of file <a class="el" href="ParameterFramework_8h_source.html">ParameterFramework.h</a>.</p>
 
 </div>
 </div>

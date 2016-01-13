@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,15 +121,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">NonCopyable</span><span class="preprocessor">.</span><span class="preprocessor">hpp</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutility.html">utility</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace</span> <a class="code" href="namespaceutility.html">utility</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classutility_1_1ErrorContext.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classutility_1_1ErrorContext.html">ErrorContext</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classutility_1_1ErrorContext.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classutility_1_1ErrorContext.html">ErrorContext</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classutility_1_1ErrorContext.html#aa7f62b70e85e2a02a21124454d0b928d">   41</a></span>&#160;    <a class="code" href="classutility_1_1ErrorContext.html#aa7f62b70e85e2a02a21124454d0b928d">ErrorContext</a>(std::string &amp;error) : mError(error) {}</div>
@@ -151,10 +150,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classutility_1_1ErrorContext_html"><div class="ttname"><a href="classutility_1_1ErrorContext.html">utility::ErrorContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00038">ErrorContext.hpp:38</a></div></div>
 <div class="ttc" id="classutility_1_1ErrorContext_html_aafe9cd30a03303cf376926d9c4e9dd02"><div class="ttname"><a href="classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02">utility::ErrorContext::appendToError</a></div><div class="ttdeci">void appendToError(const std::string &amp;append)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00045">ErrorContext.hpp:45</a></div></div>
 <div class="ttc" id="classutility_1_1ErrorContext_html_aa7f62b70e85e2a02a21124454d0b928d"><div class="ttname"><a href="classutility_1_1ErrorContext.html#aa7f62b70e85e2a02a21124454d0b928d">utility::ErrorContext::ErrorContext</a></div><div class="ttdeci">ErrorContext(std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00041">ErrorContext.hpp:41</a></div></div>
-<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
 <div class="ttc" id="classutility_1_1ErrorContext_html_afc2e1af8c4a81e36e5013bf31127c15f"><div class="ttname"><a href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">utility::ErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00043">ErrorContext.hpp:43</a></div></div>
 <div class="ttc" id="classutility_1_1ErrorContext_html_aa6926da6db5a542239e16f4b5819b442"><div class="ttname"><a href="classutility_1_1ErrorContext.html#aa6926da6db5a542239e16f4b5819b442">utility::ErrorContext::prependToError</a></div><div class="ttdeci">void prependToError(const std::string &amp;prepend)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00047">ErrorContext.hpp:47</a></div></div>
-<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00043">Element.h:43</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

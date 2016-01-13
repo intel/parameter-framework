@@ -1,3 +1,5 @@
 <map id="CParameterAdaptation::toUserValue" name="CParameterAdaptation::toUserValue">
-<area shape="rect" id="node2" href="$classCIntegerParameterType.html#a619e839d72b28c005702f4dd6a093db7" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="221,5,392,47"/>
+<area shape="rect" id="node2" href="$classCIntegerParameterType.html#a59911966c6ddb3808550206df98462fb" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="239,5,410,47"/>
+<area shape="rect" id="node3" href="$classCLinearParameterAdaptation.html#af8906d64e91b6f15990b546761dabccd" title="CLinearParameterAdaptation\l::toUserValue" alt="" coords="221,71,428,112"/>
+<area shape="rect" id="node4" href="$classCLogarithmicParameterAdaptation.html#a6e3b11c477ea3dc6fda5bc030528c09b" title="CLogarithmicParameterAdaptation\l::toUserValue" alt="" coords="476,71,719,112"/>
 </map>

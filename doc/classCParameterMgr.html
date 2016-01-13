@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,7 +101,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CParameterMgr:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr__inherit__graph.svg" width="206" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr__inherit__graph.svg" width="206" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -114,8 +114,8 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae7738edec2c505ffa54a9f0f42975586"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#ae7738edec2c505ffa54a9f0f42975586">CParameterMgr</a> (const std::string &amp;strConfigurationFilePath, <a class="el" href="classcore_1_1log_1_1ILogger.html">core::log::ILogger</a> &amp;logger)</td></tr>
 <tr class="separator:ae7738edec2c505ffa54a9f0f42975586"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c698bbf40cd884931dee325037c35d2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a8c698bbf40cd884931dee325037c35d2">~CParameterMgr</a> ()</td></tr>
-<tr class="separator:a8c698bbf40cd884931dee325037c35d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a5f2ecbb0221b57c94c3c0f3dd74711"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a8a5f2ecbb0221b57c94c3c0f3dd74711">~CParameterMgr</a> () override</td></tr>
+<tr class="separator:a8a5f2ecbb0221b57c94c3c0f3dd74711"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad4830a40d67cfae091cbf1a15ff29d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0">load</a> (std::string &amp;strError)</td></tr>
 <tr class="memdesc:aad4830a40d67cfae091cbf1a15ff29d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load plugins, structures and settings from the config file given.  <a href="#aad4830a40d67cfae091cbf1a15ff29d0">More...</a><br /></td></tr>
 <tr class="separator:aad4830a40d67cfae091cbf1a15ff29d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,8 +250,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a83f14b09892d2edf83546d50fe375095"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a83f14b09892d2edf83546d50fe375095">exportElementToXMLString</a> (const <a class="el" href="classIXmlSource.html">IXmlSource</a> *pXmlSource, const std::string &amp;strRootElementType, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;&amp;xmlSerializingContext, std::string &amp;strResult) const </td></tr>
 <tr class="memdesc:a83f14b09892d2edf83546d50fe375095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that exports an Xml description of the passed element into a string.  <a href="#a83f14b09892d2edf83546d50fe375095">More...</a><br /></td></tr>
 <tr class="separator:a83f14b09892d2edf83546d50fe375095"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7871a1e85adfbfc250e99b60fb2380f6"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a7871a1e85adfbfc250e99b60fb2380f6">getKind</a> () const </td></tr>
-<tr class="separator:a7871a1e85adfbfc250e99b60fb2380f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43662e0e74a52d1e90bff8223124b570"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a43662e0e74a52d1e90bff8223124b570">getKind</a> () const override</td></tr>
+<tr class="separator:a43662e0e74a52d1e90bff8223124b570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -272,7 +272,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00105">105</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00100">100</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
 
 </div>
 </div>
@@ -301,18 +301,27 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00325">325</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00326">326</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae7738edec2c505ffa54a9f0f42975586_cgraph.svg" width="436" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae7738edec2c505ffa54a9f0f42975586_cgraph.svg" width="460" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae7738edec2c505ffa54a9f0f42975586_icgraph.svg" width="907" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a8c698bbf40cd884931dee325037c35d2"></a>
+<a class="anchor" id="a8a5f2ecbb0221b57c94c3c0f3dd74711"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -328,12 +337,12 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00337">337</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00338">338</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 </div>
 </div>
@@ -388,19 +397,21 @@ Here is the call graph for this function:</div>
 <p>Update the Configuration Blackboard</p>
 <p>If the Configuration is the last one applied, update the Main Blackboard as well </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02017">2017</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02009">2009</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25055f536c2d537e86852c87a4e1a061_cgraph.svg" width="1247" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25055f536c2d537e86852c87a4e1a061_cgraph.svg" width="511" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25055f536c2d537e86852c87a4e1a061_icgraph.svg" width="526" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25055f536c2d537e86852c87a4e1a061_icgraph.svg" width="526" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -442,19 +453,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01967">1967</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad718888b2d13a3c6ebad7e0c97d92d20_cgraph.svg" width="494" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01959">1959</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad718888b2d13a3c6ebad7e0c97d92d20_icgraph.svg" width="508" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad718888b2d13a3c6ebad7e0c97d92d20_icgraph.svg" width="508" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -490,19 +495,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02396">2396</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02388">2388</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae9941471fb32f02b3620cf46cd13ebbb_cgraph.svg" width="1264" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae9941471fb32f02b3620cf46cd13ebbb_cgraph.svg" width="1254" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae9941471fb32f02b3620cf46cd13ebbb_icgraph.svg" width="544" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae9941471fb32f02b3620cf46cd13ebbb_icgraph.svg" width="544" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -521,12 +528,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00688">688</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00680">680</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8e084df8edc632b057815f533624480d_icgraph.svg" width="983" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8e084df8edc632b057815f533624480d_icgraph.svg" width="983" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -545,12 +553,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02198">2198</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02190">2190</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a42297dc0673367d974624d65034049bc_icgraph.svg" width="475" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a42297dc0673367d974624d65034049bc_icgraph.svg" width="475" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -586,19 +595,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02540">2540</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02532">2532</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5773905f5b49566fca22f6f30d0d9d54_cgraph.svg" width="930" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5773905f5b49566fca22f6f30d0d9d54_cgraph.svg" width="908" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5773905f5b49566fca22f6f30d0d9d54_icgraph.svg" width="524" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5773905f5b49566fca22f6f30d0d9d54_icgraph.svg" width="524" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -620,12 +631,13 @@ Here is the caller graph for this function:</div>
 <p>Create and return a command handler for this ParameterMgr instance. </p>
 <dl class="section return"><dt>Returns</dt><dd>a Command Handler </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02833">2833</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02825">2825</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
-Here is the caller graph for this function:</div>
+Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a64c7c61bd7374bae97d4ace124e98fb2_icgraph.svg" width="506" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a64c7c61bd7374bae97d4ace124e98fb2_cgraph.svg" width="447" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -661,12 +673,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02309">2309</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02301">2301</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad60e8abcd5881a2833d24c3a531e16f0_cgraph.svg" width="1364" height="287"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad60e8abcd5881a2833d24c3a531e16f0_icgraph.svg" width="523" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad60e8abcd5881a2833d24c3a531e16f0_icgraph.svg" width="523" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -696,12 +717,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02231">2231</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02223">2223</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af7d24a3ef2e52fb2aee19e303092d696_cgraph.svg" width="868" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af7d24a3ef2e52fb2aee19e303092d696_icgraph.svg" width="488" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af7d24a3ef2e52fb2aee19e303092d696_icgraph.svg" width="488" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -742,19 +772,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An element handle on success nullptr on error </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00766">766</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00758">758</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ab2c4c48ccf11b35c5e2f681b24852941_cgraph.svg" width="1028" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ab2c4c48ccf11b35c5e2f681b24852941_cgraph.svg" width="1068" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ab2c4c48ccf11b35c5e2f681b24852941_icgraph.svg" width="526" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ab2c4c48ccf11b35c5e2f681b24852941_icgraph.svg" width="526" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -784,19 +816,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00742">742</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00734">734</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ada6dd503a49385c74029b7c0e8e1ba0e_cgraph.svg" width="1043" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ada6dd503a49385c74029b7c0e8e1ba0e_cgraph.svg" width="1083" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ada6dd503a49385c74029b7c0e8e1ba0e_icgraph.svg" width="934" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ada6dd503a49385c74029b7c0e8e1ba0e_icgraph.svg" width="934" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -826,19 +860,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00672">672</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00664">664</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b6a3500b78f43bfb894263689b809a7_cgraph.svg" width="932" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b6a3500b78f43bfb894263689b809a7_cgraph.svg" width="1120" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b6a3500b78f43bfb894263689b809a7_icgraph.svg" width="532" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b6a3500b78f43bfb894263689b809a7_icgraph.svg" width="775" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -858,19 +894,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00666">666</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00658">658</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4d2a54a91f937ac71a1f7bbea2ffa1c2_cgraph.svg" width="956" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4d2a54a91f937ac71a1f7bbea2ffa1c2_cgraph.svg" width="990" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4d2a54a91f937ac71a1f7bbea2ffa1c2_icgraph.svg" width="532" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4d2a54a91f937ac71a1f7bbea2ffa1c2_icgraph.svg" width="775" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -890,19 +928,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02268">2268</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02260">2260</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a927c41273e23d3303f456d3c01907391_cgraph.svg" width="587" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a927c41273e23d3303f456d3c01907391_cgraph.svg" width="587" height="70"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a927c41273e23d3303f456d3c01907391_icgraph.svg" width="452" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a927c41273e23d3303f456d3c01907391_icgraph.svg" width="452" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -938,12 +978,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02337">2337</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02329">2329</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a1bb4638a89187ef50cf3a1aaea566244_cgraph.svg" width="911" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a1bb4638a89187ef50cf3a1aaea566244_icgraph.svg" width="522" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a1bb4638a89187ef50cf3a1aaea566244_icgraph.svg" width="522" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -973,12 +1022,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02244">2244</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02236">2236</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a9981826546c533325941986134d8bbfa_cgraph.svg" width="447" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a9981826546c533325941986134d8bbfa_icgraph.svg" width="487" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a9981826546c533325941986134d8bbfa_icgraph.svg" width="487" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1032,12 +1090,13 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02644">2644</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02636">2636</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a31d1f7c1783003ce3f922ff46f1f8638_icgraph.svg" width="519" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a31d1f7c1783003ce3f922ff46f1f8638_icgraph.svg" width="519" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1091,19 +1150,13 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true for success, false if any error occurs during the creation of the xml description (validation or encoding) </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02952">2952</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02949">2949</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a83f14b09892d2edf83546d50fe375095_cgraph.svg" width="1250" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a83f14b09892d2edf83546d50fe375095_cgraph.svg" width="1279" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a83f14b09892d2edf83546d50fe375095_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
 
@@ -1164,19 +1217,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02655">2655</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02647">2647</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d317d2ce2408abccaf845b1b2d671b9_cgraph.svg" width="647" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d317d2ce2408abccaf845b1b2d671b9_cgraph.svg" width="647" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d317d2ce2408abccaf845b1b2d671b9_icgraph.svg" width="478" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d317d2ce2408abccaf845b1b2d671b9_icgraph.svg" width="478" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1212,19 +1267,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02526">2526</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02518">2518</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a001de36ae98f163d21ec23f2d8a626d3_cgraph.svg" width="1370" height="162"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a001de36ae98f163d21ec23f2d8a626d3_cgraph.svg" width="1290" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a001de36ae98f163d21ec23f2d8a626d3_icgraph.svg" width="514" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a001de36ae98f163d21ec23f2d8a626d3_icgraph.svg" width="514" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1256,19 +1313,21 @@ Here is the caller graph for this function:</div>
 
 <p>const version of getConfigurableElement </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00705">705</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00697">697</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad3ee51d6a9f2e0d0ea143a238120b5af_cgraph.svg" width="756" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad3ee51d6a9f2e0d0ea143a238120b5af_cgraph.svg" width="518" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad3ee51d6a9f2e0d0ea143a238120b5af_icgraph.svg" width="1212" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad3ee51d6a9f2e0d0ea143a238120b5af_icgraph.svg" width="1491" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1308,7 +1367,23 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A const pointer to the corresponding <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a>. On error, NULL is returned and the error is explained in strError. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00733">733</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00725">725</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac1bab2b988587697b516037577bbb30f_cgraph.svg" width="796" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac1bab2b988587697b516037577bbb30f_icgraph.svg" width="1212" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -1328,12 +1403,13 @@ Here is the caller graph for this function:</div>
 <p>Would start fail in case of failed settings load. </p>
 <dl class="section return"><dt>Returns</dt><dd>failure on failed settings load policy state. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00842">842</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00834">834</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_adfaaf783ec358df4be47aaffff9f3167_icgraph.svg" width="494" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_adfaaf783ec358df4be47aaffff9f3167_icgraph.svg" width="494" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1355,12 +1431,13 @@ Here is the caller graph for this function:</div>
 <p>Would start fail in case of missing subsystems. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the subsystem will fail on missing subsystem, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00832">832</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00824">824</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a61f8b6dfa06a54f0e34d94d8be7e3306_icgraph.svg" width="494" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a61f8b6dfa06a54f0e34d94d8be7e3306_icgraph.svg" width="494" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1381,18 +1458,19 @@ Here is the caller graph for this function:</div>
 
 <p>Is the remote interface forcefully disabled ? </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02823">2823</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02815">2815</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a408dad671d0ff9857e5aca1df875484d_icgraph.svg" width="506" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a408dad671d0ff9857e5aca1df875484d_icgraph.svg" width="506" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a7871a1e85adfbfc250e99b60fb2380f6"></a>
+<a class="anchor" id="a43662e0e74a52d1e90bff8223124b570"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1408,14 +1486,14 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00345">345</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00346">346</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 </div>
 </div>
@@ -1453,19 +1531,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a mapping was found for this element </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01990">1990</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01982">1982</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a00467972dcf35bd3036a536f5c328436_cgraph.svg" width="1027" height="294"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a00467972dcf35bd3036a536f5c328436_cgraph.svg" width="788" height="259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a00467972dcf35bd3036a536f5c328436_icgraph.svg" width="486" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a00467972dcf35bd3036a536f5c328436_icgraph.svg" width="486" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1487,12 +1567,13 @@ Here is the caller graph for this function:</div>
 <p>Get the XML Schemas URI. </p>
 <dl class="section return"><dt>Returns</dt><dd>the XML Schemas URI </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00847">847</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00839">839</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8473e32d2837e26e57ef4c5957a2cb5a_icgraph.svg" width="524" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8473e32d2837e26e57ef4c5957a2cb5a_icgraph.svg" width="524" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1512,19 +1593,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00681">681</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00673">673</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a06ce1937c480d46ff3b01bd7bb500b39_cgraph.svg" width="892" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a06ce1937c480d46ff3b01bd7bb500b39_cgraph.svg" width="872" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a06ce1937c480d46ff3b01bd7bb500b39_icgraph.svg" width="512" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a06ce1937c480d46ff3b01bd7bb500b39_icgraph.svg" width="512" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1560,19 +1643,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02303">2303</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02295">2295</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae43b3dc52cf33a344ca0c70aae2e1306_cgraph.svg" width="882" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae43b3dc52cf33a344ca0c70aae2e1306_cgraph.svg" width="882" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae43b3dc52cf33a344ca0c70aae2e1306_icgraph.svg" width="482" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae43b3dc52cf33a344ca0c70aae2e1306_icgraph.svg" width="482" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1594,12 +1679,13 @@ Here is the caller graph for this function:</div>
 <p>Would .xml files be validated on start? </p>
 <dl class="section return"><dt>Returns</dt><dd>areSchemasValidated </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00862">862</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00854">854</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af10e1070f48953b53c2750137be46b2f_icgraph.svg" width="504" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af10e1070f48953b53c2750137be46b2f_icgraph.svg" width="504" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1653,19 +1739,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occures </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02546">2546</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02538">2538</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac2a3211a14a825e94e0090a9ad0e4c57_cgraph.svg" width="920" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac2a3211a14a825e94e0090a9ad0e4c57_cgraph.svg" width="1294" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac2a3211a14a825e94e0090a9ad0e4c57_icgraph.svg" width="520" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac2a3211a14a825e94e0090a9ad0e4c57_icgraph.svg" width="520" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1726,19 +1814,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02573">2573</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02565">2565</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b70c39ad6c10dfb6635f60e49f1c797_cgraph.svg" width="1079" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b70c39ad6c10dfb6635f60e49f1c797_cgraph.svg" width="638" height="122"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b70c39ad6c10dfb6635f60e49f1c797_icgraph.svg" width="734" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3b70c39ad6c10dfb6635f60e49f1c797_icgraph.svg" width="734" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1767,19 +1857,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if no error occurred, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00365">365</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00357">357</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aad4830a40d67cfae091cbf1a15ff29d0_cgraph.svg" width="1384" height="534"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aad4830a40d67cfae091cbf1a15ff29d0_cgraph.svg" width="1394" height="351"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aad4830a40d67cfae091cbf1a15ff29d0_icgraph.svg" width="788" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aad4830a40d67cfae091cbf1a15ff29d0_icgraph.svg" width="582" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1798,12 +1890,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02172">2172</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02164">2164</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad04bcae5680850bdba3a30fe8125863c_icgraph.svg" width="464" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad04bcae5680850bdba3a30fe8125863c_icgraph.svg" width="464" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1839,19 +1932,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02438">2438</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02430">2430</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4f307490c67f2dde0b08e638500dd5d4_cgraph.svg" width="947" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4f307490c67f2dde0b08e638500dd5d4_cgraph.svg" width="790" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4f307490c67f2dde0b08e638500dd5d4_icgraph.svg" width="562" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4f307490c67f2dde0b08e638500dd5d4_icgraph.svg" width="562" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1893,12 +1988,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02326">2326</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02318">2318</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af73dc2735e178eb3571400b76172b03e_cgraph.svg" width="1096" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af73dc2735e178eb3571400b76172b03e_icgraph.svg" width="532" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af73dc2735e178eb3571400b76172b03e_icgraph.svg" width="532" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1934,12 +2038,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02259">2259</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02251">2251</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d8898361dc42076dccb72489e3e7a43_cgraph.svg" width="848" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d8898361dc42076dccb72489e3e7a43_icgraph.svg" width="498" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d8898361dc42076dccb72489e3e7a43_icgraph.svg" width="498" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -1986,12 +2099,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if success false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02356">2356</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02348">2348</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a15436462aba339ed82ed9d25ae08cfdb_cgraph.svg" width="1466" height="136"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a15436462aba339ed82ed9d25ae08cfdb_icgraph.svg" width="528" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a15436462aba339ed82ed9d25ae08cfdb_icgraph.svg" width="528" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2027,12 +2149,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02377">2377</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02369">2369</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aabb760bc56ad6e76f32bf732005730cb_cgraph.svg" width="1091" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aabb760bc56ad6e76f32bf732005730cb_icgraph.svg" width="512" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aabb760bc56ad6e76f32bf732005730cb_icgraph.svg" width="512" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2074,19 +2205,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02532">2532</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02524">2524</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af63f9ad7f792b2bf226afd791c1db70e_cgraph.svg" width="1839" height="470"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af63f9ad7f792b2bf226afd791c1db70e_cgraph.svg" width="1871" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af63f9ad7f792b2bf226afd791c1db70e_icgraph.svg" width="514" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af63f9ad7f792b2bf226afd791c1db70e_icgraph.svg" width="514" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2118,19 +2251,21 @@ Here is the caller graph for this function:</div>
 
 <p>Sync. </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02179">2179</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02171">2171</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_acdcc1016dc61898195e8855979803572_cgraph.svg" width="1138" height="244"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_acdcc1016dc61898195e8855979803572_cgraph.svg" width="766" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_acdcc1016dc61898195e8855979803572_icgraph.svg" width="478" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_acdcc1016dc61898195e8855979803572_icgraph.svg" width="478" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2172,19 +2307,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02512">2512</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02504">2504</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aa57a75f10ccb35c8ea0b72e089bc5fc8_cgraph.svg" width="875" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aa57a75f10ccb35c8ea0b72e089bc5fc8_cgraph.svg" width="859" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aa57a75f10ccb35c8ea0b72e089bc5fc8_icgraph.svg" width="470" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aa57a75f10ccb35c8ea0b72e089bc5fc8_icgraph.svg" width="470" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2212,12 +2349,13 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00837">837</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00829">829</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_abbf31502418b796dbf490ca0b78d1902_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_abbf31502418b796dbf490ca0b78d1902_icgraph.svg" width="770" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2245,12 +2383,13 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00827">827</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00819">819</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5ebea489129b4368aa0b0059c6d96ae5_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5ebea489129b4368aa0b0059c6d96ae5_icgraph.svg" width="768" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2278,12 +2417,13 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02828">2828</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02820">2820</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a0130ee3f2b1b71c9a3a5b20dd9ec7697_icgraph.svg" width="504" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a0130ee3f2b1b71c9a3a5b20dd9ec7697_icgraph.svg" width="504" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2303,12 +2443,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02167">2167</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02159">2159</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a0070bfebc0adcd13db6b22dcb42caa67_icgraph.svg" width="462" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a0070bfebc0adcd13db6b22dcb42caa67_icgraph.svg" width="462" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2336,12 +2477,13 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00852">852</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00844">844</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a47651f580a0ce5499c74497189975226_icgraph.svg" width="523" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a47651f580a0ce5499c74497189975226_icgraph.svg" width="523" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2377,12 +2519,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02286">2286</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02278">2278</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8392607ed686806362c9a8882a471553_cgraph.svg" width="687" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8392607ed686806362c9a8882a471553_icgraph.svg" width="482" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8392607ed686806362c9a8882a471553_icgraph.svg" width="482" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2422,19 +2573,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if request is successful, false if the Parameter Manager is already in the mode requested or in case of error. If false, strError is set with the associated human readable error. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02120">2120</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02112">2112</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8b1810f0617abdff1934c7f63afc4967_cgraph.svg" width="507" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8b1810f0617abdff1934c7f63afc4967_cgraph.svg" width="536" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8b1810f0617abdff1934c7f63afc4967_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8b1810f0617abdff1934c7f63afc4967_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2463,12 +2616,13 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if unable to set, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00857">857</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00849">849</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5003f9b3209fbe366f69c0b5dcb18da9_icgraph.svg" width="503" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a5003f9b3209fbe366f69c0b5dcb18da9_icgraph.svg" width="762" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2488,12 +2642,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02156">2156</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02148">2148</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ab6f5e39eeef3adc71fc53a21887b9c57_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ab6f5e39eeef3adc71fc53a21887b9c57_icgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2529,19 +2684,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02472">2472</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02464">2464</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a042735242f31241743085d2d9d7edcc5_cgraph.svg" width="1084" height="420"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a042735242f31241743085d2d9d7edcc5_cgraph.svg" width="1002" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a042735242f31241743085d2d9d7edcc5_icgraph.svg" width="423" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a042735242f31241743085d2d9d7edcc5_icgraph.svg" width="423" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2561,19 +2718,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02204">2204</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02196">2196</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3c23f1ef6dbe73de230fe429af194937_cgraph.svg" width="879" height="244"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3c23f1ef6dbe73de230fe429af194937_cgraph.svg" width="507" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3c23f1ef6dbe73de230fe429af194937_icgraph.svg" width="684" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a3c23f1ef6dbe73de230fe429af194937_icgraph.svg" width="684" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2592,12 +2751,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02150">2150</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02142">2142</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25606ff4b96a3539dd76723fb4346d67_icgraph.svg" width="763" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25606ff4b96a3539dd76723fb4346d67_icgraph.svg" width="763" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2616,12 +2776,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02161">2161</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02153">2153</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a01c5c06f7b1d5782d29382fb3503fe51_icgraph.svg" width="471" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a01c5c06f7b1d5782d29382fb3503fe51_icgraph.svg" width="471" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -2646,7 +2807,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00088">88</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00083">83</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
 
 </div>
 </div>

@@ -1,8 +1,10 @@
 <map id="CElement::getXmlElementName" name="CElement::getXmlElementName">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="310,71,474,112"/>
-<area shape="rect" id="node6" href="$classElementHandle.html#a364115ffa9f7e6e718b586b2da72e1e4" title="Gets element structure description as XML string. " alt="" coords="287,136,497,177"/>
-<area shape="rect" id="node7" href="$classCInstanceConfigurableElement.html#a98adbaeeac4aa99b44b50f6634b405bc" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="283,201,501,243"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="552,5,711,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="549,71,713,112"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="549,136,713,177"/>
+<area shape="rect" id="node2" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="283,93,461,120"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#ae44f433af0f092a42a61a9896e064884" title="CConfigurableDomains\l::toXml" alt="" coords="511,27,679,69"/>
+<area shape="rect" id="node4" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="530,93,659,120"/>
+<area shape="rect" id="node9" href="$classCEnumValuePair.html#a763ca19eaef38f62ba366790e37a21ca" title="CEnumValuePair::toXml" alt="" coords="509,144,680,171"/>
+<area shape="rect" id="node5" href="$classCCompoundRule.html#a58e6aac0b9a43fd0f357bbc3c170fa1e" title="CCompoundRule::toXml" alt="" coords="728,5,900,32"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomain.html#aeb71f15ffa4899575fba06911b8aa22a" title="CConfigurableDomain\l::toXml" alt="" coords="733,57,895,98"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a70f0e613ec0b6d6fa03d2db2b6150898" title="Export to XML. " alt="" coords="948,145,1092,186"/>
+<area shape="rect" id="node8" href="$classCSelectionCriterionType.html#aa192b57f7757524c619c41edf942d642" title="Export to XML. " alt="" coords="728,174,900,215"/>
 </map>

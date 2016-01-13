@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,43 +121,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterAdaptation_8h.html">ParameterAdaptation.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ParameterAdaptation_8h.html">&quot;ParameterAdaptation.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCLinearParameterAdaptation.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCLinearParameterAdaptation.html">CLinearParameterAdaptation</a> : <span class="keyword">public</span> <a class="code" href="classCParameterAdaptation.html">CParameterAdaptation</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCLinearParameterAdaptation.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCLinearParameterAdaptation.html">CLinearParameterAdaptation</a> : <span class="keyword">public</span> <a class="code" href="classCParameterAdaptation.html">CParameterAdaptation</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classCLinearParameterAdaptation.html#a9c25f9577e81ed89304bddb13e445bb8">CLinearParameterAdaptation</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classCLinearParameterAdaptation.html#a9c25f9577e81ed89304bddb13e445bb8">CLinearParameterAdaptation</a>(<span class="keyword">const</span> std::string &amp;strType);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classCLinearParameterAdaptation.html#a2394637874e9d1f9fe7caf388c91a782">CLinearParameterAdaptation</a>(<span class="keyword">const</span> std::string &amp;strType);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Conversions</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> int64_t <a class="code" href="classCLinearParameterAdaptation.html#a7c2b1a6c3ae09624a722fbeece81b96c">fromUserValue</a>(<span class="keywordtype">double</span> dValue) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">double</span> <a class="code" href="classCLinearParameterAdaptation.html#a73a4a83aca65a6d339bc83a259659864">toUserValue</a>(int64_t iValue) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    int64_t <a class="code" href="classCLinearParameterAdaptation.html#ac9ab066a2403bafee63dc96f05bfb978">fromUserValue</a>(<span class="keywordtype">double</span> dValue) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classCLinearParameterAdaptation.html#af8906d64e91b6f15990b546761dabccd">toUserValue</a>(int64_t iValue) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Element properties</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCLinearParameterAdaptation.html#a572f6d34392375d3c51ea131a6f5e6f4">showProperties</a>(std::string &amp;strResult) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCLinearParameterAdaptation.html#a31e76070b1fd203905eedde08a6a9381">showProperties</a>(std::string &amp;strResult) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Slope attributes</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">double</span> _dSlopeNumerator{1};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">double</span> _dSlopeDenominator{1};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCLinearParameterAdaptation.html#a48805c5ccc995e73c5b387724845e6f7">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                 <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Slope attributes</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">double</span> _dSlopeNumerator{1};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">double</span> _dSlopeDenominator{1};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
-<div class="ttc" id="classCLinearParameterAdaptation_html_a7c2b1a6c3ae09624a722fbeece81b96c"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a7c2b1a6c3ae09624a722fbeece81b96c">CLinearParameterAdaptation::fromUserValue</a></div><div class="ttdeci">virtual int64_t fromUserValue(double dValue) const </div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00082">LinearParameterAdaptation.cpp:82</a></div></div>
+<div class="ttc" id="classCLinearParameterAdaptation_html_a31e76070b1fd203905eedde08a6a9381"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a31e76070b1fd203905eedde08a6a9381">CLinearParameterAdaptation::showProperties</a></div><div class="ttdeci">void showProperties(std::string &amp;strResult) const override</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00045">LinearParameterAdaptation.cpp:45</a></div></div>
 <div class="ttc" id="classCLinearParameterAdaptation_html_a9c25f9577e81ed89304bddb13e445bb8"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a9c25f9577e81ed89304bddb13e445bb8">CLinearParameterAdaptation::CLinearParameterAdaptation</a></div><div class="ttdeci">CLinearParameterAdaptation()</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00036">LinearParameterAdaptation.cpp:36</a></div></div>
 <div class="ttc" id="classCLinearParameterAdaptation_html"><div class="ttname"><a href="classCLinearParameterAdaptation.html">CLinearParameterAdaptation</a></div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8h_source.html#l00036">LinearParameterAdaptation.h:36</a></div></div>
-<div class="ttc" id="classCLinearParameterAdaptation_html_a572f6d34392375d3c51ea131a6f5e6f4"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a572f6d34392375d3c51ea131a6f5e6f4">CLinearParameterAdaptation::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00045">LinearParameterAdaptation.cpp:45</a></div></div>
+<div class="ttc" id="classCLinearParameterAdaptation_html_ac9ab066a2403bafee63dc96f05bfb978"><div class="ttname"><a href="classCLinearParameterAdaptation.html#ac9ab066a2403bafee63dc96f05bfb978">CLinearParameterAdaptation::fromUserValue</a></div><div class="ttdeci">int64_t fromUserValue(double dValue) const override</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00082">LinearParameterAdaptation.cpp:82</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCLinearParameterAdaptation_html_a3dfe0a5f0d6ddc9ca72f159bc066354e"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e">CLinearParameterAdaptation::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00061">LinearParameterAdaptation.cpp:61</a></div></div>
-<div class="ttc" id="ParameterAdaptation_8h_html"><div class="ttname"><a href="ParameterAdaptation_8h.html">ParameterAdaptation.h</a></div></div>
+<div class="ttc" id="classCLinearParameterAdaptation_html_af8906d64e91b6f15990b546761dabccd"><div class="ttname"><a href="classCLinearParameterAdaptation.html#af8906d64e91b6f15990b546761dabccd">CLinearParameterAdaptation::toUserValue</a></div><div class="ttdeci">double toUserValue(int64_t iValue) const override</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00087">LinearParameterAdaptation.cpp:87</a></div></div>
+<div class="ttc" id="classCLinearParameterAdaptation_html_a2394637874e9d1f9fe7caf388c91a782"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a2394637874e9d1f9fe7caf388c91a782">CLinearParameterAdaptation::CLinearParameterAdaptation</a></div><div class="ttdeci">CLinearParameterAdaptation(const std::string &amp;strType)</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00040">LinearParameterAdaptation.cpp:40</a></div></div>
+<div class="ttc" id="classCLinearParameterAdaptation_html_a48805c5ccc995e73c5b387724845e6f7"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a48805c5ccc995e73c5b387724845e6f7">CLinearParameterAdaptation::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00061">LinearParameterAdaptation.cpp:61</a></div></div>
 <div class="ttc" id="classCParameterAdaptation_html"><div class="ttname"><a href="classCParameterAdaptation.html">CParameterAdaptation</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAdaptation_8h_source.html#l00036">ParameterAdaptation.h:36</a></div></div>
-<div class="ttc" id="classCLinearParameterAdaptation_html_a73a4a83aca65a6d339bc83a259659864"><div class="ttname"><a href="classCLinearParameterAdaptation.html#a73a4a83aca65a6d339bc83a259659864">CLinearParameterAdaptation::toUserValue</a></div><div class="ttdeci">virtual double toUserValue(int64_t iValue) const </div><div class="ttdef"><b>Definition:</b> <a href="LinearParameterAdaptation_8cpp_source.html#l00087">LinearParameterAdaptation.cpp:87</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

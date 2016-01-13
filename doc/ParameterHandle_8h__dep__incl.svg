@@ -17,31 +17,31 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="ParameterMgrFullConnector_8h.html" target="_top" xlink:title="parameter/include/Parameter\lMgrFullConnector.h">
-<polygon fill="white" stroke="black" points="0,-67.5 0,-97.5 158,-97.5 158,-67.5 0,-67.5"/>
-<text text-anchor="start" x="8" y="-85.5" font-family="Verdana" font-size="10.00">parameter/include/Parameter</text>
-<text text-anchor="middle" x="79" y="-74.5" font-family="Verdana" font-size="10.00">MgrFullConnector.h</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node2 -->
-<g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M235.049,-196.406C218.821,-187.399 199.608,-176.189 183,-165 150.658,-143.212 115.408,-114.421 95.3749,-97.5366"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="233.766,-199.694 244.216,-201.437 237.134,-193.557 233.766,-199.694"/>
-</g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="ParameterMgrPlatformConnector_8h.html" target="_top" xlink:title="parameter/include/Parameter\lMgrPlatformConnector.h">
+<g id="a_node2"><a xlink:href="ParameterMgrPlatformConnector_8h.html" target="_top" xlink:title="parameter/include/Parameter\lMgrPlatformConnector.h">
 <polygon fill="white" stroke="black" points="192,-134.5 192,-164.5 350,-164.5 350,-134.5 192,-134.5"/>
 <text text-anchor="start" x="200" y="-152.5" font-family="Verdana" font-size="10.00">parameter/include/Parameter</text>
 <text text-anchor="middle" x="271" y="-141.5" font-family="Verdana" font-size="10.00">MgrPlatformConnector.h</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<!-- Node1&#45;&gt;Node2 -->
+<g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
 <path fill="none" stroke="midnightblue" d="M271,-191.108C271,-182.154 271,-172.323 271,-164.577"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="267.5,-191.396 271,-201.396 274.5,-191.396 267.5,-191.396"/>
+</g>
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="ParameterMgrFullConnector_8h.html" target="_top" xlink:title="parameter/include/Parameter\lMgrFullConnector.h">
+<polygon fill="white" stroke="black" points="0,-67.5 0,-97.5 158,-97.5 158,-67.5 0,-67.5"/>
+<text text-anchor="start" x="8" y="-85.5" font-family="Verdana" font-size="10.00">parameter/include/Parameter</text>
+<text text-anchor="middle" x="79" y="-74.5" font-family="Verdana" font-size="10.00">MgrFullConnector.h</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge10" class="edge"><title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M235.049,-196.406C218.821,-187.399 199.608,-176.189 183,-165 150.658,-143.212 115.408,-114.421 95.3749,-97.5366"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="233.766,-199.694 244.216,-201.437 237.134,-193.557 233.766,-199.694"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
@@ -52,41 +52,27 @@
 </g>
 </g>
 <!-- Node1&#45;&gt;Node10 -->
-<g id="edge10" class="edge"><title>Node1&#45;&gt;Node10</title>
+<g id="edge9" class="edge"><title>Node1&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M318.97,-197.784C353.095,-185.181 397.427,-168.808 423.966,-159.007"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="317.357,-194.648 309.189,-201.396 319.783,-201.215 317.357,-194.648"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="ParameterMgrFullConnector_8cpp.html" target="_top" xlink:title="parameter/ParameterMgrFull\lConnector.cpp">
-<polygon fill="white" stroke="black" points="2,-0.5 2,-30.5 156,-30.5 156,-0.5 2,-0.5"/>
-<text text-anchor="start" x="10" y="-18.5" font-family="Verdana" font-size="10.00">parameter/ParameterMgrFull</text>
-<text text-anchor="middle" x="79" y="-7.5" font-family="Verdana" font-size="10.00">Connector.cpp</text>
-</a>
-</g>
-</g>
-<!-- Node2&#45;&gt;Node3 -->
-<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M79,-57.1081C79,-48.1539 79,-38.3227 79,-30.5765"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="75.5001,-57.3959 79,-67.396 82.5001,-57.396 75.5001,-57.3959"/>
-</g>
-<!-- Node4&#45;&gt;Node2 -->
-<g id="edge5" class="edge"><title>Node4&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M219.578,-131.092C188.584,-120.599 149.621,-107.408 120.58,-97.5765"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="218.745,-134.504 229.339,-134.396 220.989,-127.874 218.745,-134.504"/>
-</g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="ParameterFramework_8cpp.html" target="_top" xlink:title="bindings/c/ParameterFramework.cpp">
+<g id="a_node3"><a xlink:href="ParameterFramework_8cpp.html" target="_top" xlink:title="bindings/c/ParameterFramework.cpp">
 <polygon fill="white" stroke="black" points="176,-73 176,-92 366,-92 366,-73 176,-73"/>
 <text text-anchor="middle" x="271" y="-80" font-family="Verdana" font-size="10.00">bindings/c/ParameterFramework.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
+<!-- Node2&#45;&gt;Node3 -->
+<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
 <path fill="none" stroke="midnightblue" d="M271,-124.25C271,-113.017 271,-100.377 271,-92.1945"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="267.5,-124.396 271,-134.396 274.5,-124.396 267.5,-124.396"/>
+</g>
+<!-- Node2&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node2&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M219.578,-131.092C188.584,-120.599 149.621,-107.408 120.58,-97.5765"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="218.745,-134.504 229.339,-134.396 220.989,-127.874 218.745,-134.504"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
@@ -97,8 +83,8 @@
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node6 -->
-<g id="edge6" class="edge"><title>Node4&#45;&gt;Node6</title>
+<!-- Node2&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node2&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M324.942,-131.228C357.781,-120.713 399.2,-107.451 430.038,-97.5765"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="323.504,-128.013 315.048,-134.396 325.639,-134.68 323.504,-128.013"/>
 </g>
@@ -111,10 +97,24 @@
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node7 -->
-<g id="edge7" class="edge"><title>Node4&#45;&gt;Node7</title>
+<!-- Node2&#45;&gt;Node7 -->
+<g id="edge6" class="edge"><title>Node2&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M360.081,-133.712C445.019,-119.588 561.545,-100.138 572,-98 575.045,-97.3775 578.17,-96.7099 581.318,-96.0155"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="359.44,-130.271 350.149,-135.364 360.588,-137.176 359.44,-130.271"/>
+</g>
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="ParameterMgrFullConnector_8cpp.html" target="_top" xlink:title="parameter/ParameterMgrFull\lConnector.cpp">
+<polygon fill="white" stroke="black" points="2,-0.5 2,-30.5 156,-30.5 156,-0.5 2,-0.5"/>
+<text text-anchor="start" x="10" y="-18.5" font-family="Verdana" font-size="10.00">parameter/ParameterMgrFull</text>
+<text text-anchor="middle" x="79" y="-7.5" font-family="Verdana" font-size="10.00">Connector.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M79,-57.1081C79,-48.1539 79,-38.3227 79,-30.5765"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="75.5001,-57.3959 79,-67.396 82.5001,-57.396 75.5001,-57.3959"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
@@ -126,7 +126,7 @@
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
-<g id="edge8" class="edge"><title>Node7&#45;&gt;Node8</title>
+<g id="edge7" class="edge"><title>Node7&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M612.176,-60.0243C603.237,-50.3398 592.93,-39.1739 584.994,-30.5765"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="609.626,-62.4219 618.981,-67.396 614.77,-57.6739 609.626,-62.4219"/>
 </g>
@@ -140,7 +140,7 @@
 </g>
 </g>
 <!-- Node7&#45;&gt;Node9 -->
-<g id="edge9" class="edge"><title>Node7&#45;&gt;Node9</title>
+<g id="edge8" class="edge"><title>Node7&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M651.755,-59.7362C660.484,-50.119 670.496,-39.0888 678.223,-30.5765"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="648.932,-57.639 644.802,-67.396 654.115,-62.3438 648.932,-57.639"/>
 </g>

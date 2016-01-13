@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" target="_top" xlink:title="Format the items of a map into a string as a list of key&#45;value pairs. ">
+<g id="a_node2"><a xlink:href="namespaceutility.html#ad1a5fc9a6a732edf346e956f8fef957d" target="_top" xlink:title="Format the items of a sequence container of strings into a string. ">
 <polygon fill="white" stroke="black" points="96,-0.5 96,-19.5 183,-19.5 183,-0.5 96,-0.5"/>
 <text text-anchor="middle" x="139.5" y="-7.5" font-family="Verdana" font-size="10.00">utility::asString</text>
 </a>

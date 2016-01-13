@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,22 +121,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ElementLocator_8h.html">ElementLocator.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PathNavigator_8h.html">PathNavigator.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ElementLocator_8h.html">&quot;ElementLocator.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="PathNavigator_8h.html">&quot;PathNavigator.h&quot;</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCElementLocator.html#ae12e23e03fd443e9c4cf629659477df6">   35</a></span>&#160;<a class="code" href="classCElementLocator.html#ae12e23e03fd443e9c4cf629659477df6">CElementLocator::CElementLocator</a>(<a class="code" href="classCElement.html">CElement</a> *pSubRootElement, <span class="keywordtype">bool</span> bStrict)</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCElementLocator.html#ae12e23e03fd443e9c4cf629659477df6">   35</a></span>&#160;<a class="code" href="classCElementLocator.html">CElementLocator</a>::<a class="code" href="classCElementLocator.html#ae12e23e03fd443e9c4cf629659477df6">CElementLocator</a>(<a class="code" href="classCElement.html">CElement</a> *pSubRootElement, <span class="keywordtype">bool</span> bStrict)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    : _pSubRootElement(pSubRootElement), _bStrict(bStrict)</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Locate element</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36">   41</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36">CElementLocator::locate</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strPath, <a class="code" href="classCElement.html">CElement</a> **ppElement, <span class="keywordtype">string</span> &amp;strError)</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36">   41</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCElementLocator.html">CElementLocator</a>::<a class="code" href="classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36">locate</a>(<span class="keyword">const</span> string &amp;strPath, <a class="code" href="classCElement.html">CElement</a> **ppElement, string &amp;strError)</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCPathNavigator.html">CPathNavigator</a> pathNavigator(strPath);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCPathNavigator.html">CPathNavigator</a> pathNavigator<a class="code" href="classCPathNavigator.html#a2b97d3d8699bf03b683684d251032a1f">(</a>strPath<a class="code" href="classCPathNavigator.html#a2b97d3d8699bf03b683684d251032a1f">)</a>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (!pathNavigator.<a class="code" href="classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8">isPathValid</a>()) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (!pathNavigator<a class="code" href="classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8">.</a><a class="code" href="classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8">isPathValid</a><a class="code" href="classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8">(</a><a class="code" href="classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8">)</a>) {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        strError = <span class="stringliteral">&quot;Invalid Path&quot;</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
@@ -145,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Sub root element?</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">string</span> *pStrChildName = pathNavigator.<a class="code" href="classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589">next</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    string *pStrChildName = pathNavigator<a class="code" href="classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589">.</a><a class="code" href="classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589">next</a><a class="code" href="classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589">(</a><a class="code" href="classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589">)</a>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span> (!pStrChildName) {</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
@@ -159,7 +158,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (*pStrChildName != _pSubRootElement-&gt;<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>()) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (*pStrChildName != _pSubRootElement<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">-&gt;</a><a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a><a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">(</a><a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">)</a>) {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        strError = <span class="stringliteral">&quot;Path not found: &quot;</span> + strPath;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
@@ -167,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Find in tree</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    *ppElement = _pSubRootElement-&gt;<a class="code" href="classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5">findDescendant</a>(pathNavigator);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    *ppElement = _pSubRootElement<a class="code" href="classCElement.html#ae0fcf9bbc9468a4372a9383299057e7a">-&gt;</a><a class="code" href="classCElement.html#ae0fcf9bbc9468a4372a9383299057e7a">findDescendant</a><a class="code" href="classCElement.html#ae0fcf9bbc9468a4372a9383299057e7a">(</a>pathNavigator<a class="code" href="classCElement.html#ae0fcf9bbc9468a4372a9383299057e7a">)</a>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span> (!*ppElement) {</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
@@ -179,13 +178,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 <div class="ttc" id="classCElementLocator_html_ae12e23e03fd443e9c4cf629659477df6"><div class="ttname"><a href="classCElementLocator.html#ae12e23e03fd443e9c4cf629659477df6">CElementLocator::CElementLocator</a></div><div class="ttdeci">CElementLocator(CElement *pSubRootElement, bool bStrict=true)</div><div class="ttdef"><b>Definition:</b> <a href="ElementLocator_8cpp_source.html#l00035">ElementLocator.cpp:35</a></div></div>
-<div class="ttc" id="PathNavigator_8h_html"><div class="ttname"><a href="PathNavigator_8h.html">PathNavigator.h</a></div></div>
-<div class="ttc" id="ElementLocator_8h_html"><div class="ttname"><a href="ElementLocator_8h.html">ElementLocator.h</a></div></div>
+<div class="ttc" id="classCPathNavigator_html_a2b97d3d8699bf03b683684d251032a1f"><div class="ttname"><a href="classCPathNavigator.html#a2b97d3d8699bf03b683684d251032a1f">CPathNavigator::CPathNavigator</a></div><div class="ttdeci">CPathNavigator(const std::string &amp;strPath)</div><div class="ttdef"><b>Definition:</b> <a href="PathNavigator_8cpp_source.html#l00033">PathNavigator.cpp:33</a></div></div>
 <div class="ttc" id="classCPathNavigator_html"><div class="ttname"><a href="classCPathNavigator.html">CPathNavigator</a></div><div class="ttdef"><b>Definition:</b> <a href="PathNavigator_8h_source.html#l00036">PathNavigator.h:36</a></div></div>
 <div class="ttc" id="classCElementLocator_html_a94ddc34b50d96cd1cc78f43e3014ce36"><div class="ttname"><a href="classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36">CElementLocator::locate</a></div><div class="ttdeci">bool locate(const std::string &amp;strPath, CElement **ppElement, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ElementLocator_8cpp_source.html#l00041">ElementLocator.cpp:41</a></div></div>
 <div class="ttc" id="classCElement_html_a49581fb6412e29e932962acd82d52d6a"><div class="ttname"><a href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">CElement::getName</a></div><div class="ttdeci">const std::string &amp; getName() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00236">Element.cpp:236</a></div></div>
-<div class="ttc" id="classCElement_html_a182dcfb7ab154cc97cff047c5f5539f5"><div class="ttname"><a href="classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5">CElement::findDescendant</a></div><div class="ttdeci">const CElement * findDescendant(CPathNavigator &amp;pathNavigator) const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00409">Element.cpp:409</a></div></div>
 <div class="ttc" id="classCPathNavigator_html_a06f35d45c0bf392e11de0bf1197cc589"><div class="ttname"><a href="classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589">CPathNavigator::next</a></div><div class="ttdeci">std::string * next()</div><div class="ttdef"><b>Definition:</b> <a href="PathNavigator_8cpp_source.html#l00083">PathNavigator.cpp:83</a></div></div>
+<div class="ttc" id="classCElementLocator_html"><div class="ttname"><a href="classCElementLocator.html">CElementLocator</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLocator_8h_source.html#l00036">ElementLocator.h:36</a></div></div>
+<div class="ttc" id="classCElement_html_ae0fcf9bbc9468a4372a9383299057e7a"><div class="ttname"><a href="classCElement.html#ae0fcf9bbc9468a4372a9383299057e7a">CElement::findDescendant</a></div><div class="ttdeci">CElement * findDescendant(CPathNavigator &amp;pathNavigator)</div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00428">Element.cpp:428</a></div></div>
 <div class="ttc" id="classCPathNavigator_html_ac63504ec6203e15a9ca4a15e9775bfe8"><div class="ttname"><a href="classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8">CPathNavigator::isPathValid</a></div><div class="ttdeci">bool isPathValid() const </div><div class="ttdef"><b>Definition:</b> <a href="PathNavigator_8cpp_source.html#l00047">PathNavigator.cpp:47</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

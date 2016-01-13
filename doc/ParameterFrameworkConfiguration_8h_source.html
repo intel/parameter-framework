@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,13 +121,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Element_8h.html">Element.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Element_8h.html">&quot;Element.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterFrameworkConfiguration.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterFrameworkConfiguration.html">CParameterFrameworkConfiguration</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterFrameworkConfiguration.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCParameterFrameworkConfiguration.html">CParameterFrameworkConfiguration</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// System class name</span></div>
@@ -141,27 +140,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    uint16_t <a class="code" href="classCParameterFrameworkConfiguration.html#a056b4bd281d97953c42cfa0c2f8e98d2">getServerPort</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> std::string getKind() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// System class name</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::string _strSystemClassName;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// Tuning allowed</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> _bTuningAllowed{<span class="keyword">false</span>};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Server port</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    uint16_t _uiServerPort{0};</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
-<div class="ttc" id="classCParameterFrameworkConfiguration_html_a9d9882f3de792f4f5a84e8a3c095e2dd"><div class="ttname"><a href="classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd">CParameterFrameworkConfiguration::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFrameworkConfiguration_8cpp_source.html#l00063">ParameterFrameworkConfiguration.cpp:63</a></div></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCParameterFrameworkConfiguration.html#a911f494edd7e2e929bec95e6a294241f">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                 <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::string getKind() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// System class name</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::string _strSystemClassName;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Tuning allowed</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> _bTuningAllowed{<span class="keyword">false</span>};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Server port</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    uint16_t _uiServerPort{0};</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
+<div class="ttc" id="classCParameterFrameworkConfiguration_html_a911f494edd7e2e929bec95e6a294241f"><div class="ttname"><a href="classCParameterFrameworkConfiguration.html#a911f494edd7e2e929bec95e6a294241f">CParameterFrameworkConfiguration::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFrameworkConfiguration_8cpp_source.html#l00063">ParameterFrameworkConfiguration.cpp:63</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
 <div class="ttc" id="classCParameterFrameworkConfiguration_html_ab25cd7647d7caa81e8f51edb74359b70"><div class="ttname"><a href="classCParameterFrameworkConfiguration.html#ab25cd7647d7caa81e8f51edb74359b70">CParameterFrameworkConfiguration::isTuningAllowed</a></div><div class="ttdeci">bool isTuningAllowed() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFrameworkConfiguration_8cpp_source.html#l00051">ParameterFrameworkConfiguration.cpp:51</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
 <div class="ttc" id="classCParameterFrameworkConfiguration_html_a056b4bd281d97953c42cfa0c2f8e98d2"><div class="ttname"><a href="classCParameterFrameworkConfiguration.html#a056b4bd281d97953c42cfa0c2f8e98d2">CParameterFrameworkConfiguration::getServerPort</a></div><div class="ttdeci">uint16_t getServerPort() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFrameworkConfiguration_8cpp_source.html#l00057">ParameterFrameworkConfiguration.cpp:57</a></div></div>
 <div class="ttc" id="classCParameterFrameworkConfiguration_html"><div class="ttname"><a href="classCParameterFrameworkConfiguration.html">CParameterFrameworkConfiguration</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFrameworkConfiguration_8h_source.html#l00036">ParameterFrameworkConfiguration.h:36</a></div></div>
 <div class="ttc" id="classCParameterFrameworkConfiguration_html_a2d5b814e956ab15e96e50d8c60c09010"><div class="ttname"><a href="classCParameterFrameworkConfiguration.html#a2d5b814e956ab15e96e50d8c60c09010">CParameterFrameworkConfiguration::getSystemClassName</a></div><div class="ttdeci">const std::string &amp; getSystemClassName() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFrameworkConfiguration_8cpp_source.html#l00045">ParameterFrameworkConfiguration.cpp:45</a></div></div>
-<div class="ttc" id="Element_8h_html"><div class="ttname"><a href="Element_8h.html">Element.h</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

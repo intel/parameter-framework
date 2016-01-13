@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="ParameterFramework_8h.html" target="_top" xlink:title="ParameterFramework.h">
+<g id="a_node2"><a xlink:href="ParameterFramework_8h.html" target="_top" xlink:title="Simplified parameter framework C API. ">
 <polygon fill="white" stroke="black" points="140,-56.5 140,-75.5 268,-75.5 268,-56.5 140,-56.5"/>
 <text text-anchor="middle" x="204" y="-63.5" font-family="Verdana" font-size="10.00">ParameterFramework.h</text>
 </a>

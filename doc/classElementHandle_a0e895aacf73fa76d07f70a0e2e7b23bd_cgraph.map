@@ -1,6 +1,6 @@
 <map id="ElementHandle::isRogue" name="ElementHandle::isRogue">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a" title="CConfigurableElement\l::isRogue" alt="" coords="231,71,395,112"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#aef6b3524cacbbfdf7829b9126c8a8307" title="CConfigurableElement\l::getBelongingDomainCount" alt="" coords="459,5,662,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a08cbc876b52d1e58ade956a8191b1ee3" title="CConfigurableElement\l::hasNoDomainAssociated" alt="" coords="465,71,656,112"/>
-<area shape="rect" id="node5" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="443,136,679,177"/>
+<area shape="rect" id="node3" href="$classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a" title="CConfigurableElementAggregator\l::CConfigurableElementAggregator" alt="" coords="443,5,687,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a08cbc876b52d1e58ade956a8191b1ee3" title="CConfigurableElement\l::hasNoDomainAssociated" alt="" coords="469,71,660,112"/>
+<area shape="rect" id="node5" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="447,136,683,177"/>
 </map>

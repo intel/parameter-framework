@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,37 +121,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ParameterAccessContext_8h.html">&quot;ParameterAccessContext.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCConfigurationAccessContext.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a> : <span class="keyword">public</span> <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCConfigurationAccessContext.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a> : <span class="keyword">public</span> <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classCConfigurationAccessContext.html#a000724cf285f05a578b0025e9d58c055">CConfigurationAccessContext</a>(std::string &amp;strError, <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard,</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                <span class="keywordtype">bool</span> bValueSpaceIsRaw, <span class="keywordtype">bool</span> bOutputRawFormatIsHex,</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                                <span class="keywordtype">bool</span> bSerializeOut);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCConfigurationAccessContext.html#a000724cf285f05a578b0025e9d58c055">CConfigurationAccessContext</a>(std::string &amp;strError, <span class="keywordtype">bool</span> bSerializeOut);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCConfigurationAccessContext.html#adaaceedaa7126310911f3d7b308c05b6">CConfigurationAccessContext</a>(std::string &amp;strError, <span class="keywordtype">bool</span> bSerializeOut);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Serialization direction</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc">serializeOut</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCConfigurationAccessContext.html#ad8b826c499b83f023ee5a85e2502e11a">   48</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCConfigurationAccessContext.html#ad8b826c499b83f023ee5a85e2502e11a">serializeSettings</a>() const override final { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCConfigurationAccessContext.html#a395bcfd96dff4021183d6980dd2aa963">   48</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCConfigurationAccessContext.html#a395bcfd96dff4021183d6980dd2aa963">serializeSettings</a>() <span class="keyword">const</span> <span class="keyword">final</span> { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Serialization direction</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> _bSerializeOut;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
-<div class="ttc" id="ParameterAccessContext_8h_html"><div class="ttname"><a href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a></div></div>
 <div class="ttc" id="classCConfigurationAccessContext_html"><div class="ttname"><a href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8h_source.html#l00036">ConfigurationAccessContext.h:36</a></div></div>
-<div class="ttc" id="classCConfigurationAccessContext_html_ad8b826c499b83f023ee5a85e2502e11a"><div class="ttname"><a href="classCConfigurationAccessContext.html#ad8b826c499b83f023ee5a85e2502e11a">CConfigurationAccessContext::serializeSettings</a></div><div class="ttdeci">bool serializeSettings() const overridefinal</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8h_source.html#l00048">ConfigurationAccessContext.h:48</a></div></div>
+<div class="ttc" id="classCConfigurationAccessContext_html_a395bcfd96dff4021183d6980dd2aa963"><div class="ttname"><a href="classCConfigurationAccessContext.html#a395bcfd96dff4021183d6980dd2aa963">CConfigurationAccessContext::serializeSettings</a></div><div class="ttdeci">bool serializeSettings() const final</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8h_source.html#l00048">ConfigurationAccessContext.h:48</a></div></div>
 <div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 <div class="ttc" id="classCConfigurationAccessContext_html_a000724cf285f05a578b0025e9d58c055"><div class="ttname"><a href="classCConfigurationAccessContext.html#a000724cf285f05a578b0025e9d58c055">CConfigurationAccessContext::CConfigurationAccessContext</a></div><div class="ttdeci">CConfigurationAccessContext(std::string &amp;strError, CParameterBlackboard *pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex, bool bSerializeOut)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8cpp_source.html#l00036">ConfigurationAccessContext.cpp:36</a></div></div>
 <div class="ttc" id="classCConfigurationAccessContext_html_ac0a975afc840488e5e82345441de56cc"><div class="ttname"><a href="classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc">CConfigurationAccessContext::serializeOut</a></div><div class="ttdeci">bool serializeOut() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8cpp_source.html#l00052">ConfigurationAccessContext.cpp:52</a></div></div>
+<div class="ttc" id="classCConfigurationAccessContext_html_adaaceedaa7126310911f3d7b308c05b6"><div class="ttname"><a href="classCConfigurationAccessContext.html#adaaceedaa7126310911f3d7b308c05b6">CConfigurationAccessContext::CConfigurationAccessContext</a></div><div class="ttdeci">CConfigurationAccessContext(std::string &amp;strError, bool bSerializeOut)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8cpp_source.html#l00046">ConfigurationAccessContext.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

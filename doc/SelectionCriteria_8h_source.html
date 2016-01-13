@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,21 +121,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Element_8h.html">Element.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SelectionCriterionType_8h.html">SelectionCriterionType.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SelectionCriterion_8h.html">SelectionCriterion.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Logger_8h.html">log/Logger.h</a>&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">list</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Element_8h.html">&quot;Element.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SelectionCriterionType_8h.html">&quot;SelectionCriterionType.h&quot;</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SelectionCriterion_8h.html">&quot;SelectionCriterion.h&quot;</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">log</span><span class="preprocessor">/</span><span class="preprocessor">Logger</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class </span><a class="code" href="classCSelectionCriterionLibrary.html">CSelectionCriterionLibrary</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">class </span><a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">class </span>ISelectionCriterionObserver;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class</span> <a class="code" href="classCSelectionCriterionLibrary.html">CSelectionCriterionLibrary</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">class</span> <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">class</span> ISelectionCriterionObserver;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCSelectionCriteria.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSelectionCriteria.html">CSelectionCriteria</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCSelectionCriteria.html">   44</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCSelectionCriteria.html">CSelectionCriteria</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">enum</span> ChildElementType</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
@@ -151,7 +150,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classCSelectionCriterionType.html">CSelectionCriterionType</a> *<a class="code" href="classCSelectionCriteria.html#a450f1208de1f19ad99740510b896a3af">createSelectionCriterionType</a>(<span class="keywordtype">bool</span> bIsInclusive);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classCSelectionCriterion.html">CSelectionCriterion</a> *<a class="code" href="classCSelectionCriteria.html#a8ae57add042140f555532ed8c6b35221">createSelectionCriterion</a>(<span class="keyword">const</span> std::string &amp;strName,</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                  <span class="keyword">const</span> <a class="code" href="classCSelectionCriterionType.html">CSelectionCriterionType</a> *pType,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                  <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                  <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Selection criterion retrieval</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classCSelectionCriterion.html">CSelectionCriterion</a> *<a class="code" href="classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad">getSelectionCriterion</a>(<span class="keyword">const</span> std::string &amp;strName);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
@@ -163,7 +162,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                               <span class="keywordtype">bool</span> bHumanReadable) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// Base</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCSelectionCriteria.html#a3aa8b452fc4812093c6ca65f31ea2729">getKind</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string <a class="code" href="classCSelectionCriteria.html#a5f508d5c917041ca13eedc1c658466a7">getKind</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Reset the modified status of the children</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSelectionCriteria.html#a8470a08d025d7d9f06e7f2193bb57a49">resetModifiedStatus</a>();</div>
@@ -171,25 +170,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Children access</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classCSelectionCriterionLibrary.html">CSelectionCriterionLibrary</a> *getSelectionCriterionLibrary();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *<a class="code" href="classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08">getSelectionCriteriaDefinition</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a> *getSelectionCriteriaDefinition();</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
 <div class="ttc" id="classCSelectionCriteria_html_a450f1208de1f19ad99740510b896a3af"><div class="ttname"><a href="classCSelectionCriteria.html#a450f1208de1f19ad99740510b896a3af">CSelectionCriteria::createSelectionCriterionType</a></div><div class="ttdeci">CSelectionCriterionType * createSelectionCriterionType(bool bIsInclusive)</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00048">SelectionCriteria.cpp:48</a></div></div>
-<div class="ttc" id="SelectionCriterion_8h_html"><div class="ttname"><a href="SelectionCriterion_8h.html">SelectionCriterion.h</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html_ad95866d8f8615b75a6b68daeddb561ad"><div class="ttname"><a href="classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad">CSelectionCriteria::getSelectionCriterion</a></div><div class="ttdeci">CSelectionCriterion * getSelectionCriterion(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00060">SelectionCriteria.cpp:60</a></div></div>
-<div class="ttc" id="SelectionCriterionType_8h_html"><div class="ttname"><a href="SelectionCriterionType_8h.html">SelectionCriterionType.h</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
+<div class="ttc" id="classCSelectionCriteria_html_a5f508d5c917041ca13eedc1c658466a7"><div class="ttname"><a href="classCSelectionCriteria.html#a5f508d5c917041ca13eedc1c658466a7">CSelectionCriteria::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00042">SelectionCriteria.cpp:42</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html"><div class="ttname"><a href="classCSelectionCriteria.html">CSelectionCriteria</a></div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8h_source.html#l00044">SelectionCriteria.h:44</a></div></div>
 <div class="ttc" id="classCSelectionCriteriaDefinition_html"><div class="ttname"><a href="classCSelectionCriteriaDefinition.html">CSelectionCriteriaDefinition</a></div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteriaDefinition_8h_source.html#l00038">SelectionCriteriaDefinition.h:38</a></div></div>
 <div class="ttc" id="classCSelectionCriterion_html"><div class="ttname"><a href="classCSelectionCriterion.html">CSelectionCriterion</a></div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriterion_8h_source.html#l00040">SelectionCriterion.h:40</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html_a5c8850871021dbb3f23354130304ae0e"><div class="ttname"><a href="classCSelectionCriteria.html#a5c8850871021dbb3f23354130304ae0e">CSelectionCriteria::CSelectionCriteria</a></div><div class="ttdeci">CSelectionCriteria()</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00036">SelectionCriteria.cpp:36</a></div></div>
 <div class="ttc" id="classCSelectionCriterionType_html"><div class="ttname"><a href="classCSelectionCriterionType.html">CSelectionCriterionType</a></div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriterionType_8h_source.html#l00037">SelectionCriterionType.h:37</a></div></div>
-<div class="ttc" id="classCSelectionCriteria_html_a3aa8b452fc4812093c6ca65f31ea2729"><div class="ttname"><a href="classCSelectionCriteria.html#a3aa8b452fc4812093c6ca65f31ea2729">CSelectionCriteria::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00042">SelectionCriteria.cpp:42</a></div></div>
-<div class="ttc" id="Logger_8h_html"><div class="ttname"><a href="Logger_8h.html">Logger.h</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html_aa87e3488047e305e72d84d5aa0ed3e08"><div class="ttname"><a href="classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08">CSelectionCriteria::getSelectionCriteriaDefinition</a></div><div class="ttdeci">const CSelectionCriteriaDefinition * getSelectionCriteriaDefinition() const </div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00090">SelectionCriteria.cpp:90</a></div></div>
 <div class="ttc" id="classCSelectionCriterionLibrary_html"><div class="ttname"><a href="classCSelectionCriterionLibrary.html">CSelectionCriterionLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriterionLibrary_8h_source.html#l00035">SelectionCriterionLibrary.h:35</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html_a25ca6671e46d02c906f512f6b33a44e4"><div class="ttname"><a href="classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4">CSelectionCriteria::listSelectionCriteria</a></div><div class="ttdeci">void listSelectionCriteria(std::list&lt; std::string &gt; &amp;strResult, bool bWithTypeInfo, bool bHumanReadable) const </div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00066">SelectionCriteria.cpp:66</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html_a8470a08d025d7d9f06e7f2193bb57a49"><div class="ttname"><a href="classCSelectionCriteria.html#a8470a08d025d7d9f06e7f2193bb57a49">CSelectionCriteria::resetModifiedStatus</a></div><div class="ttdeci">void resetModifiedStatus()</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00074">SelectionCriteria.cpp:74</a></div></div>
-<div class="ttc" id="Element_8h_html"><div class="ttname"><a href="Element_8h.html">Element.h</a></div></div>
 <div class="ttc" id="classCSelectionCriteria_html_a8ae57add042140f555532ed8c6b35221"><div class="ttname"><a href="classCSelectionCriteria.html#a8ae57add042140f555532ed8c6b35221">CSelectionCriteria::createSelectionCriterion</a></div><div class="ttdeci">CSelectionCriterion * createSelectionCriterion(const std::string &amp;strName, const CSelectionCriterionType *pType, core::log::Logger &amp;logger)</div><div class="ttdef"><b>Definition:</b> <a href="SelectionCriteria_8cpp_source.html#l00053">SelectionCriteria.cpp:53</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -1,10 +1,8 @@
 <map id="CParameterMgrFullConnector::importSingleDomainXml" name="CParameterMgrFullConnector::importSingleDomainXml">
-<area shape="rect" id="node2" href="$classCParameterMgrFullConnector.html#aabb2c632ebbc334427a78b51225082c4" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="261,78,469,119"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="517,78,728,119"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="776,78,944,119"/>
-<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1000,5,1152,32"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="1208,78,1391,119"/>
-<area shape="rect" id="node8" href="$classCConfigurableDomains.html#a26ae82c8fd65751062ea4fcffa69944f" title="Delete a domain by name. " alt="" coords="992,107,1160,149"/>
-<area shape="rect" id="node9" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="1003,173,1149,200"/>
-<area shape="rect" id="node7" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1439,85,1585,112"/>
+<area shape="rect" id="node2" href="$classCParameterMgrFullConnector.html#a5401b196d6bb5a28a8f59def396d5817" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="261,27,469,69"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="517,27,728,69"/>
+<area shape="rect" id="node4" href="$namespaceutility.html#a301c7f13096a34ad739625a71ae64ccf" title="Implementation of C++14&#39;s std::make_unique. " alt="" coords="785,5,935,32"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="776,57,944,98"/>
+<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="992,39,1144,65"/>
+<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="995,89,1141,116"/>
 </map>

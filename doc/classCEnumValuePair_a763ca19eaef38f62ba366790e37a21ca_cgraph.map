@@ -1,0 +1,12 @@
+<map id="CEnumValuePair::toXml" name="CEnumValuePair::toXml">
+<area shape="rect" id="node2" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="1025,53,1217,80"/>
+<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="258,45,410,72"/>
+<area shape="rect" id="node4" href="$classCEnumValuePair.html#a8936c702786702895a231eac2137f518" title="CEnumValuePair::getNumerical\lAsString" alt="" coords="224,97,444,138"/>
+<area shape="rect" id="node5" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="245,163,423,189"/>
+<area shape="rect" id="node6" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="513,61,701,88"/>
+<area shape="rect" id="node7" href="$classCElement.html#abd9e5e3b9b21652902a6fc151cce76f7" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="492,112,721,139"/>
+<area shape="rect" id="node9" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="542,163,671,189"/>
+<area shape="rect" id="node8" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="803,104,943,131"/>
+<area shape="rect" id="node10" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="769,155,977,197"/>
+<area shape="rect" id="node11" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="1029,163,1214,189"/>
+</map>

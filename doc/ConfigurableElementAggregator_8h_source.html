@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,22 +121,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElement_8h.html">ConfigurableElement.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ConfigurableElement_8h.html">&quot;ConfigurableElement.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="NonCopyable_8hpp.html">&quot;NonCopyable.hpp&quot;</a></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">list</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a> : <span class="keyword">private</span> <a class="code" href="namespaceutility.html">utility</a>::<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Matching check method type</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">   42</a></span>&#160;    <span class="keyword">typedef</span> bool (<a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>::*<a class="code" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">MatchesAggregationCriterion</a>)() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">   42</a></span>&#160;    <span class="keyword">typedef</span> <span class="keywordtype">bool</span> (<a class="code" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">CConfigurableElement</a>::*<a class="code" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">MatchesAggregationCriterion</a>)() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Constructor</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator</a>(std::list&lt;const CConfigurableElement *&gt; &amp;aggregateList,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator</a>(std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; &amp;aggregateList,</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                   <a class="code" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">MatchesAggregationCriterion</a> pfnMatchesAggregationCriterion);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Aggregate</span></div>
@@ -146,22 +145,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Recursive aggregate</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span> doAggregate(<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                     std::list&lt;const CConfigurableElement *&gt; &amp;aggregateList);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                     std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; &amp;aggregateList);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Aggegate list</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::list&lt;const CConfigurableElement *&gt; &amp;_aggregateList;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::list&lt;<span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> *&gt; &amp;_aggregateList;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Matching check method</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">MatchesAggregationCriterion</a> _pfnMatchesAggregationCriterion;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
 <div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00046">NonCopyable.hpp:46</a></div></div>
-<div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_acbfdb8633112b9e3a3708d448c3b6587"><div class="ttname"><a href="classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587">CConfigurableElementAggregator::MatchesAggregationCriterion</a></div><div class="ttdeci">bool(CConfigurableElement::* MatchesAggregationCriterion)() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8h_source.html#l00042">ConfigurableElementAggregator.h:42</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html"><div class="ttname"><a href="classCConfigurableElementAggregator.html">CConfigurableElementAggregator</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8h_source.html#l00038">ConfigurableElementAggregator.h:38</a></div></div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
-<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a2cc804d11a5ec48d098ecb34be7c9c36"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">CConfigurableElementAggregator::aggegate</a></div><div class="ttdeci">void aggegate(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00041">ConfigurableElementAggregator.cpp:41</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a904bebdafd6cf776a60882f60e0ea44a"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator::CConfigurableElementAggregator</a></div><div class="ttdeci">CConfigurableElementAggregator(std::list&lt; const CConfigurableElement * &gt; &amp;aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00033">ConfigurableElementAggregator.cpp:33</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

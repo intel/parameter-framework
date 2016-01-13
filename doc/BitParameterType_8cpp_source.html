@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,32 +121,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BitParameterType_8h.html">BitParameterType.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BitParameter_8h.html">BitParameter.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BitParameterBlockType_8h.html">BitParameterBlockType.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Utility_8h.html">Utility.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="BitParameterType_8h.html">&quot;BitParameterType.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="BitParameter_8h.html">&quot;BitParameter.h&quot;</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdlib</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">sstream</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ParameterAccessContext_8h.html">&quot;ParameterAccessContext.h&quot;</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="BitParameterBlockType_8h.html">&quot;BitParameterBlockType.h&quot;</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Utility_8h.html">&quot;Utility.h&quot;</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="BitParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   38</a></span>&#160;<span class="preprocessor">#define base CTypeElement</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="BitParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   38</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CTypeElement</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ab492a6713724137b5476a7291f0ee6d7">   42</a></span>&#160;<a class="code" href="classCBitParameterType.html#ab492a6713724137b5476a7291f0ee6d7">CBitParameterType::CBitParameterType</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strName) : <a class="code" href="BitParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(strName)</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ab492a6713724137b5476a7291f0ee6d7">   42</a></span>&#160;<a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#ab492a6713724137b5476a7291f0ee6d7">CBitParameterType</a>(<span class="keyword">const</span> string &amp;strName) : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">(</a>strName<a class="code" href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">)</a></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// CElement</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">   47</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">CBitParameterType::getKind</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">   47</a></span>&#160;string <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">getKind</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;BitParameter&quot;</span>;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// Element properties</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#adbdd6083b3160709a994864d4b93c809">   53</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html#adbdd6083b3160709a994864d4b93c809">CBitParameterType::showProperties</a>(<span class="keywordtype">string</span> &amp;strResult)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    base::showProperties(strResult);</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a0e63060dcf8444822fb8e13c23fd3903">   53</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#a0e63060dcf8444822fb8e13c23fd3903">showProperties</a>(string &amp;strResult) <span class="keyword">const</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>::showProperties(strResult);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// Bit Pos</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    strResult += <span class="stringliteral">&quot;Bit pos: &quot;</span>;</div>
@@ -166,20 +165,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a76b208c42677a4a7a90494f348924403">   74</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCBitParameterType.html#a76b208c42677a4a7a90494f348924403">CBitParameterType::fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a1c57dae63570fbb8dc7f6dddcbb28148">   74</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#a1c57dae63570fbb8dc7f6dddcbb28148">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Pos</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    xmlElement.<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a>(<span class="stringliteral">&quot;Pos&quot;</span>, _bitPos);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    xmlElement.getAttribute(<span class="stringliteral">&quot;Pos&quot;</span>, _bitPos);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Size</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    xmlElement.<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a>(<span class="stringliteral">&quot;Size&quot;</span>, _uiBitSize);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    xmlElement.getAttribute(<span class="stringliteral">&quot;Size&quot;</span>, _uiBitSize);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">// Validate bit pos and size still fit into parent type</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCBitParameterBlockType.html">CBitParameterBlockType</a> *pBitParameterBlockType =</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classCBitParameterBlockType.html">CBitParameterBlockType</a> *<span class="keyword">&gt;</span>(<a class="code" href="classCElement.html#a7987056bec3cbc71bed07cc88b060cf0">getParent</a>());</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> CBitParameterBlockType *&gt;(getParent());</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">size_t</span> uiParentBlockBitSize = pBitParameterBlockType-&gt;<a class="code" href="classCBitParameterBlockType.html#a7ae9531134d4011dc601c71e9c5e36de">getSize</a>() * 8;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    size_t uiParentBlockBitSize = pBitParameterBlockType-&gt;getSize() * 8;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">if</span> (_bitPos + _uiBitSize &gt; uiParentBlockBitSize) {</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
@@ -187,38 +186,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        std::ostringstream strStream;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        strStream &lt;&lt; <span class="stringliteral">&quot;Pos and Size attributes inconsistent with maximum container element size (&quot;</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  &lt;&lt; uiParentBlockBitSize &lt;&lt; <span class="stringliteral">&quot; bits) for &quot;</span> + <a class="code" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">getKind</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  &lt;&lt; uiParentBlockBitSize &lt;&lt; <span class="stringliteral">&quot; bits) for &quot;</span> + getKind();</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(strStream.str());</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        serializingContext.setError(strStream.str());</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Max</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    _uiMax = getMaxEncodableValue();</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (xmlElement.<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a>(<span class="stringliteral">&quot;Max&quot;</span>, _uiMax) &amp;&amp; (_uiMax &gt; getMaxEncodableValue())) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (xmlElement<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">.</a><a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a><a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">(</a><span class="stringliteral">&quot;Max&quot;</span><a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">,</a> _uiMax<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">)</a> &amp;&amp; (_uiMax &gt; getMaxEncodableValue())) {</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="comment">// Max value exceeded</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        std::ostringstream strStream;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        strStream &lt;&lt; <span class="stringliteral">&quot;Max attribute inconsistent with maximum encodable size (&quot;</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  &lt;&lt; getMaxEncodableValue() &lt;&lt; <span class="stringliteral">&quot;) for &quot;</span> + <a class="code" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">getKind</a>();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  &lt;&lt; getMaxEncodableValue() &lt;&lt; <span class="stringliteral">&quot;) for &quot;</span> + <a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">getKind</a><a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">(</a><a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">)</a>;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(strStream.str());</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        serializingContext<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">.</a><a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a><a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">(</a>strStream.str()<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">)</a>;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// Base</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> base::fromXml(xmlElement, serializingContext);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>::fromXml(xmlElement, serializingContext);</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">// Conversion</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a0398ded8b86ec6471305ac9cafa1b378">  122</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCBitParameterType.html#a0398ded8b86ec6471305ac9cafa1b378">CBitParameterType::toBlackboard</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strValue, uint64_t &amp;uiValue,</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                                     <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a0398ded8b86ec6471305ac9cafa1b378">  122</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#a0398ded8b86ec6471305ac9cafa1b378">toBlackboard</a>(<span class="keyword">const</span> string &amp;strValue, uint64_t &amp;uiValue,</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                                     <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext) <span class="keyword">const</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="comment">// Get value</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    uint64_t uiConvertedValue = strtoull(strValue.c_str(), NULL, 0);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    uint64_t uiConvertedValue = strtoull(strValue.c_str(), <span class="keywordtype">nullptr</span>, 0);</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">if</span> (uiConvertedValue &gt; _uiMax) {</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
@@ -227,7 +226,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        strStream &lt;&lt; <span class="stringliteral">&quot;Value &quot;</span> &lt;&lt; strValue &lt;&lt; <span class="stringliteral">&quot; standing out of admitted range [&quot;</span>;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="namespaceutility.html#af26524fd398a870267af79c918862662">utility::isHexadecimal</a>(strValue)) {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="namespaceutility.html">utility</a><a class="code" href="namespaceutility.html#af26524fd398a870267af79c918862662">::</a><a class="code" href="namespaceutility.html#af26524fd398a870267af79c918862662">isHexadecimal</a><a class="code" href="namespaceutility.html#af26524fd398a870267af79c918862662">(</a>strValue<a class="code" href="namespaceutility.html#af26524fd398a870267af79c918862662">)</a>) {</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            strStream &lt;&lt; <span class="stringliteral">&quot;0x0, &quot;</span></div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                      &lt;&lt; <span class="stringliteral">&quot;0x&quot;</span> &lt;&lt; std::hex &lt;&lt; std::uppercase;</div>
@@ -235,9 +234,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            strStream &lt;&lt; <span class="stringliteral">&quot;0, &quot;</span>;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        strStream &lt;&lt; _uiMax &lt;&lt; <span class="stringliteral">&quot;] for &quot;</span> + <a class="code" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">getKind</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        strStream &lt;&lt; _uiMax &lt;&lt; <span class="stringliteral">&quot;] for &quot;</span> + <a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">getKind</a><a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">(</a><a class="code" href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">)</a>;</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(strStream.str());</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        parameterAccessContext.setError(strStream.str());</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
@@ -248,16 +247,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039">  156</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039">CBitParameterType::fromBlackboard</a>(<span class="keywordtype">string</span> &amp;strValue, <span class="keyword">const</span> uint64_t &amp;uiValue,</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                                       <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039">  156</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039">fromBlackboard</a>(string &amp;strValue, <span class="keyword">const</span> uint64_t &amp;uiValue,</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                                       <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext) <span class="keyword">const</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    uint64_t uiConvertedValue = (uiValue &amp; getMask()) &gt;&gt; _bitPos;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">// Format</span></div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    std::ostringstream strStream;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment">// Take care of format</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">if</span> (parameterAccessContext.<a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">valueSpaceIsRaw</a>() &amp;&amp; parameterAccessContext.<a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">outputRawFormatIsHex</a>()) {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">if</span> (parameterAccessContext<a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">.</a><a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">valueSpaceIsRaw</a><a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">(</a><a class="code" href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">)</a> &amp;&amp; parameterAccessContext<a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">.</a><a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">outputRawFormatIsHex</a><a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">(</a><a class="code" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">)</a>) {</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        strStream &lt;&lt; <span class="stringliteral">&quot;0x&quot;</span> &lt;&lt; std::hex &lt;&lt; std::uppercase;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
@@ -269,12 +268,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">// Value access</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">// Integer</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ad42e067220802c86087755fb812ed684">  177</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCBitParameterType.html#a0398ded8b86ec6471305ac9cafa1b378">CBitParameterType::toBlackboard</a>(uint64_t uiUserValue, uint64_t &amp;uiValue,</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                                     <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#ad42e067220802c86087755fb812ed684">  177</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#ad42e067220802c86087755fb812ed684">toBlackboard</a>(uint64_t uiUserValue, uint64_t &amp;uiValue,</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                                     <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext) <span class="keyword">const</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;{</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (uiUserValue &gt; _uiMax) {</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Value out of range&quot;</span>);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        parameterAccessContext.setError(<span class="stringliteral">&quot;Value out of range&quot;</span>);</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
@@ -285,100 +284,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a4b9433567e4543e30511ce14cb8b866f">  193</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039">CBitParameterType::fromBlackboard</a>(uint32_t &amp;userValue, uint64_t value,</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                                       <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp; <span class="comment">/*ctx*/</span>)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    userValue = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>((value &amp; getMask()) &gt;&gt; _bitPos);</div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a4b9433567e4543e30511ce14cb8b866f">  193</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#a4b9433567e4543e30511ce14cb8b866f">fromBlackboard</a>(uint32_t &amp;userValue, uint64_t value,</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                                       <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp; <span class="comment">/*ctx*/</span>) <span class="keyword">const</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;{</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    userValue = <span class="keyword">static_cast</span>&lt;uint32_t&gt;((value &amp; getMask()) &gt;&gt; _bitPos);</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">// Access from area configuration</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3">  200</a></span>&#160;uint64_t <a class="code" href="classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3">CBitParameterType::merge</a>(uint64_t uiOriginData, uint64_t uiNewData)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3">  200</a></span>&#160;uint64_t <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3">merge</a>(uint64_t uiOriginData, uint64_t uiNewData) <span class="keyword">const</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;{</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">return</span> (uiOriginData &amp; ~getMask()) | (uiNewData &amp; getMask());</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">// Bit Size</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#abc4aa432a054b543654a80433439cd66">  206</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classCBitParameterType.html#abc4aa432a054b543654a80433439cd66">CBitParameterType::getBitSize</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#abc4aa432a054b543654a80433439cd66">  206</a></span>&#160;<a class="code" href="classCBitParameterType.html#abc4aa432a054b543654a80433439cd66">size_t</a> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#abc4aa432a054b543654a80433439cd66">getBitSize</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;{</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordflow">return</span> _uiBitSize;</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;}</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *CBitParameterType::doInstantiate()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCBitParameter.html">CBitParameter</a>(<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>(), <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *<a class="code" href="classCBitParameterType.html">CBitParameterType</a>::doInstantiate() <span class="keyword">const</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;{</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> CBitParameter(getName(), <span class="keyword">this</span>);</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">// Max value</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;uint64_t CBitParameterType::getMaxEncodableValue()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;uint64_t <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::getMaxEncodableValue() <span class="keyword">const</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">return</span> (uint64_t)-1L &gt;&gt; (8 * <span class="keyword">sizeof</span>(uint64_t) - _uiBitSize);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">// Biwise mask</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;uint64_t CBitParameterType::getMask()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;uint64_t <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::getMask() <span class="keyword">const</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;{</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">return</span> getMaxEncodableValue() &lt;&lt; _bitPos;</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">// Check data has no bit set outside available range</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keywordtype">bool</span> CBitParameterType::isEncodable(uint64_t uiData)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordtype">size_t</span> uiShift = 8 * <span class="keyword">sizeof</span>(uiData) - _uiBitSize;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">if</span> (uiShift) {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">// From IXmlSource</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#a1705f014ee909507106c1708f5549e01">  229</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html">CBitParameterType</a>::<a class="code" href="classCBitParameterType.html#a1705f014ee909507106c1708f5549e01">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                              <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">const</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;{</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="comment">// Position</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    xmlElement.setAttribute(<span class="stringliteral">&quot;Pos&quot;</span>, _bitPos);</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="comment">// Check high bits are clean</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keywordflow">return</span> !(uiData &gt;&gt; uiShift);</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">// From IXmlSource</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05">  243</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05">CBitParameterType::toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                              <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="comment">// Position</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    xmlElement.<a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">setAttribute</a>(<span class="stringliteral">&quot;Pos&quot;</span>, _bitPos);</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="comment">// Size</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    xmlElement.<a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">setAttribute</a>(<span class="stringliteral">&quot;Size&quot;</span>, _uiBitSize);</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment">// Maximum</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    xmlElement.<a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">setAttribute</a>(<span class="stringliteral">&quot;Max&quot;</span>, _uiMax);</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    base::toXml(xmlElement, serializingContext);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;}</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="comment">// Size</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    xmlElement.setAttribute(<span class="stringliteral">&quot;Size&quot;</span>, _uiBitSize);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="comment">// Maximum</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    xmlElement<a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">.</a><a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">setAttribute</a><a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">(</a><span class="stringliteral">&quot;Max&quot;</span><a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">,</a> _uiMax<a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">)</a>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>::toXml(xmlElement, serializingContext);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;}</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
 <div class="ttc" id="classCBitParameterType_html_a0398ded8b86ec6471305ac9cafa1b378"><div class="ttname"><a href="classCBitParameterType.html#a0398ded8b86ec6471305ac9cafa1b378">CBitParameterType::toBlackboard</a></div><div class="ttdeci">bool toBlackboard(const std::string &amp;strValue, uint64_t &amp;uiValue, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdoc">Conversion. </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00122">BitParameterType.cpp:122</a></div></div>
-<div class="ttc" id="ParameterAccessContext_8h_html"><div class="ttname"><a href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a></div></div>
+<div class="ttc" id="classCBitParameterType_html_ad42e067220802c86087755fb812ed684"><div class="ttname"><a href="classCBitParameterType.html#ad42e067220802c86087755fb812ed684">CBitParameterType::toBlackboard</a></div><div class="ttdeci">bool toBlackboard(uint64_t uiUserValue, uint64_t &amp;uiValue, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00177">BitParameterType.cpp:177</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_aa36964a7a0cc063c1a5589adb29ed5a7"><div class="ttname"><a href="classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7">CParameterAccessContext::valueSpaceIsRaw</a></div><div class="ttdeci">bool valueSpaceIsRaw() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00084">ParameterAccessContext.cpp:84</a></div></div>
-<div class="ttc" id="classCBitParameterType_html_a76b208c42677a4a7a90494f348924403"><div class="ttname"><a href="classCBitParameterType.html#a76b208c42677a4a7a90494f348924403">CBitParameterType::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00074">BitParameterType.cpp:74</a></div></div>
+<div class="ttc" id="classCBitParameterType_html"><div class="ttname"><a href="classCBitParameterType.html">CBitParameterType</a></div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8h_source.html#l00041">BitParameterType.h:41</a></div></div>
 <div class="ttc" id="classCParameterAccessContext_html_adc2c2dabdfb9af278c0f5237ddcd3643"><div class="ttname"><a href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">CParameterAccessContext::outputRawFormatIsHex</a></div><div class="ttdeci">bool outputRawFormatIsHex() const </div><div class="ttdoc">Returns Output Raw Format for user get value interpretation. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8cpp_source.html#l00095">ParameterAccessContext.cpp:95</a></div></div>
+<div class="ttc" id="classCTypeElement_html_aaf598b31938a8ba37fa306ee8847ed0d"><div class="ttname"><a href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">CTypeElement::CTypeElement</a></div><div class="ttdeci">CTypeElement(const std::string &amp;strName=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00040">TypeElement.cpp:40</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
 <div class="ttc" id="classCBitParameterType_html_af1457a2d1fcce712963f2a00f697d9b3"><div class="ttname"><a href="classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3">CBitParameterType::merge</a></div><div class="ttdeci">uint64_t merge(uint64_t uiOriginData, uint64_t uiNewData) const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00200">BitParameterType.cpp:200</a></div></div>
+<div class="ttc" id="classCBitParameterType_html_a4b9433567e4543e30511ce14cb8b866f"><div class="ttname"><a href="classCBitParameterType.html#a4b9433567e4543e30511ce14cb8b866f">CBitParameterType::fromBlackboard</a></div><div class="ttdeci">void fromBlackboard(uint32_t &amp;uiUserValue, uint64_t uiValue, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00193">BitParameterType.cpp:193</a></div></div>
 <div class="ttc" id="classCBitParameterType_html_ab492a6713724137b5476a7291f0ee6d7"><div class="ttname"><a href="classCBitParameterType.html#ab492a6713724137b5476a7291f0ee6d7">CBitParameterType::CBitParameterType</a></div><div class="ttdeci">CBitParameterType(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00042">BitParameterType.cpp:42</a></div></div>
 <div class="ttc" id="classCBitParameterType_html_abc4aa432a054b543654a80433439cd66"><div class="ttname"><a href="classCBitParameterType.html#abc4aa432a054b543654a80433439cd66">CBitParameterType::getBitSize</a></div><div class="ttdeci">size_t getBitSize() const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00206">BitParameterType.cpp:206</a></div></div>
 <div class="ttc" id="classCBitParameterBlockType_html"><div class="ttname"><a href="classCBitParameterBlockType.html">CBitParameterBlockType</a></div><div class="ttdef"><b>Definition:</b> <a href="BitParameterBlockType_8h_source.html#l00036">BitParameterBlockType.h:36</a></div></div>
-<div class="ttc" id="classCBitParameter_html"><div class="ttname"><a href="classCBitParameter.html">CBitParameter</a></div><div class="ttdef"><b>Definition:</b> <a href="BitParameter_8h_source.html#l00036">BitParameter.h:36</a></div></div>
-<div class="ttc" id="BitParameterType_8h_html"><div class="ttname"><a href="BitParameterType_8h.html">BitParameterType.h</a></div></div>
-<div class="ttc" id="classCBitParameterType_html_a869a8ec74c4c3566ea658a01dde70824"><div class="ttname"><a href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">CBitParameterType::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00047">BitParameterType.cpp:47</a></div></div>
 <div class="ttc" id="classCXmlElement_html_a6198359168c744489018bc2b8d732dc3"><div class="ttname"><a href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">CXmlElement::getAttribute</a></div><div class="ttdeci">bool getAttribute(const std::string &amp;name, T &amp;value) const </div><div class="ttdoc">Get attribute. </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00101">XmlElement.cpp:101</a></div></div>
 <div class="ttc" id="classCBitParameterType_html_ac5ad1a455f0963dc23020bc989105039"><div class="ttname"><a href="classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039">CBitParameterType::fromBlackboard</a></div><div class="ttdeci">void fromBlackboard(std::string &amp;strValue, const uint64_t &amp;uiValue, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00156">BitParameterType.cpp:156</a></div></div>
-<div class="ttc" id="classCElement_html_a7987056bec3cbc71bed07cc88b060cf0"><div class="ttname"><a href="classCElement.html#a7987056bec3cbc71bed07cc88b060cf0">CElement::getParent</a></div><div class="ttdeci">const CElement * getParent() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00373">Element.cpp:373</a></div></div>
 <div class="ttc" id="classutility_1_1ErrorContext_html_afc2e1af8c4a81e36e5013bf31127c15f"><div class="ttname"><a href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">utility::ErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00043">ErrorContext.hpp:43</a></div></div>
+<div class="ttc" id="classCBitParameterType_html_a1c57dae63570fbb8dc7f6dddcbb28148"><div class="ttname"><a href="classCBitParameterType.html#a1c57dae63570fbb8dc7f6dddcbb28148">CBitParameterType::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00074">BitParameterType.cpp:74</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
-<div class="ttc" id="classCElement_html_a49581fb6412e29e932962acd82d52d6a"><div class="ttname"><a href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">CElement::getName</a></div><div class="ttdeci">const std::string &amp; getName() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00236">Element.cpp:236</a></div></div>
-<div class="ttc" id="classCBitParameterBlockType_html_a7ae9531134d4011dc601c71e9c5e36de"><div class="ttname"><a href="classCBitParameterBlockType.html#a7ae9531134d4011dc601c71e9c5e36de">CBitParameterBlockType::getSize</a></div><div class="ttdeci">size_t getSize() const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterBlockType_8cpp_source.html#l00053">BitParameterBlockType.cpp:53</a></div></div>
-<div class="ttc" id="BitParameterBlockType_8h_html"><div class="ttname"><a href="BitParameterBlockType_8h.html">BitParameterBlockType.h</a></div></div>
+<div class="ttc" id="classCBitParameterType_html_a1705f014ee909507106c1708f5549e01"><div class="ttname"><a href="classCBitParameterType.html#a1705f014ee909507106c1708f5549e01">CBitParameterType::toXml</a></div><div class="ttdeci">void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const override</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00229">BitParameterType.cpp:229</a></div></div>
+<div class="ttc" id="ArrayParameter_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8cpp_source.html#l00040">ArrayParameter.cpp:40</a></div></div>
 <div class="ttc" id="classCXmlElement_html_ac5f4a8f3f29497167af496dccb7fa846"><div class="ttname"><a href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">CXmlElement::setAttribute</a></div><div class="ttdeci">void setAttribute(const std::string &amp;name, const T &amp;value)</div><div class="ttdoc">Set attribute. </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00218">XmlElement.cpp:218</a></div></div>
-<div class="ttc" id="namespaceutility_html_af26524fd398a870267af79c918862662"><div class="ttname"><a href="namespaceutility.html#af26524fd398a870267af79c918862662">utility::isHexadecimal</a></div><div class="ttdeci">bool isHexadecimal(const string &amp;strValue)</div><div class="ttdoc">Checks if a string has the written representation of an hexadecimal number (Which is the prefix "0x" ...</div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00068">Utility.cpp:68</a></div></div>
-<div class="ttc" id="BitParameter_8h_html"><div class="ttname"><a href="BitParameter_8h.html">BitParameter.h</a></div></div>
-<div class="ttc" id="classCBitParameterType_html_adbdd6083b3160709a994864d4b93c809"><div class="ttname"><a href="classCBitParameterType.html#adbdd6083b3160709a994864d4b93c809">CBitParameterType::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00053">BitParameterType.cpp:53</a></div></div>
-<div class="ttc" id="Utility_8h_html"><div class="ttname"><a href="Utility_8h.html">Utility.h</a></div></div>
-<div class="ttc" id="BitParameterType_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="BitParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00038">BitParameterType.cpp:38</a></div></div>
-<div class="ttc" id="classCBitParameterType_html_aec2c699920b9ab28fa560721b0fb9e05"><div class="ttname"><a href="classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05">CBitParameterType::toXml</a></div><div class="ttdeci">virtual void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00243">BitParameterType.cpp:243</a></div></div>
+<div class="ttc" id="namespaceutility_html_af26524fd398a870267af79c918862662"><div class="ttname"><a href="namespaceutility.html#af26524fd398a870267af79c918862662">utility::isHexadecimal</a></div><div class="ttdeci">bool isHexadecimal(const std::string &amp;strValue)</div><div class="ttdoc">Checks if a string has the written representation of an hexadecimal number (Which is the prefix "0x" ...</div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00060">Utility.cpp:60</a></div></div>
+<div class="ttc" id="classCBitParameterType_html_a0e63060dcf8444822fb8e13c23fd3903"><div class="ttname"><a href="classCBitParameterType.html#a0e63060dcf8444822fb8e13c23fd3903">CBitParameterType::showProperties</a></div><div class="ttdeci">void showProperties(std::string &amp;strResult) const override</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00053">BitParameterType.cpp:53</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
+<div class="ttc" id="classCBitParameterType_html_ae6b87443ac9594cf0febd4595087a042"><div class="ttname"><a href="classCBitParameterType.html#ae6b87443ac9594cf0febd4595087a042">CBitParameterType::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="BitParameterType_8cpp_source.html#l00047">BitParameterType.cpp:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

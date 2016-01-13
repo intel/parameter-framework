@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -123,36 +122,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="FormattedSubsystemObject_8h.html">FormattedSubsystemObject.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="InstanceConfigurableElement_8h.html">InstanceConfigurableElement.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MappingContext_8h.html">MappingContext.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="FormattedSubsystemObject_8h.html">&quot;FormattedSubsystemObject.h&quot;</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="InstanceConfigurableElement_8h.html">&quot;InstanceConfigurableElement.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="MappingContext_8h.html">&quot;MappingContext.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">assert</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="FormattedSubsystemObject_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   36</a></span>&#160;<span class="preprocessor">#define base CSubsystemObject</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="FormattedSubsystemObject_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   36</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CSubsystemObject</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">   40</a></span>&#160;<a class="code" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject::CFormattedSubsystemObject</a>(</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    : <a class="code" href="FormattedSubsystemObject_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(pInstanceConfigurableElement, logger)</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">   40</a></span>&#160;<a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>::<a class="code" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject</a>(</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">(</a>pInstanceConfigurableElement<a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">,</a> logger<a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">)</a></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#a009af50dc3f846b8c6250d1e9f9e67b3">   46</a></span>&#160;<a class="code" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject::CFormattedSubsystemObject</a>(</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strMappingValue)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    : <a class="code" href="FormattedSubsystemObject_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#a009af50dc3f846b8c6250d1e9f9e67b3">   46</a></span>&#160;<a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>::<a class="code" href="classCFormattedSubsystemObject.html#a009af50dc3f846b8c6250d1e9f9e67b3">CFormattedSubsystemObject</a>(</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> string &amp;strMappingValue)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">(</a>pInstanceConfigurableElement<a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">,</a> logger<a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">)</a>, _strFormattedMappingValue(strMappingValue)</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#a276d72835f5a24baa4b5540215c9a205">   53</a></span>&#160;<a class="code" href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject::CFormattedSubsystemObject</a>(</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strMappingValue, <span class="keywordtype">size_t</span> firstAmendKey, <span class="keywordtype">size_t</span> nbAmendKeys,</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#a276d72835f5a24baa4b5540215c9a205">   53</a></span>&#160;<a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>::<a class="code" href="classCFormattedSubsystemObject.html#a276d72835f5a24baa4b5540215c9a205">CFormattedSubsystemObject</a>(</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> string &amp;strMappingValue, size_t firstAmendKey, size_t nbAmendKeys,</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a> &amp;context)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    : <a class="code" href="FormattedSubsystemObject_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">(</a>pInstanceConfigurableElement<a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">,</a> logger<a class="code" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">)</a>, _strFormattedMappingValue(strMappingValue)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Cope with quotes in the name</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">if</span> (strMappingValue[0] == <span class="charliteral">&#39;\&#39;&#39;</span> &amp;&amp; strMappingValue.length() &gt;= 2) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">if</span> (strMappingValue[0] == <span class="stringliteral">&#39;\&#39;&#39;</span> &amp;&amp; strMappingValue.length() &gt;= 2) {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        _strFormattedMappingValue = strMappingValue.substr(1, strMappingValue.length() - 2);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
@@ -160,25 +159,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        formatMappingValue(_strFormattedMappingValue, firstAmendKey, nbAmendKeys, context);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#ae77fbb306a3786f569e2c304b94584f2">   68</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCFormattedSubsystemObject.html#ae77fbb306a3786f569e2c304b94584f2">CFormattedSubsystemObject::getFormattedMappingValue</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classCFormattedSubsystemObject.html#ad24bb993e451e0ee7d6bccb6c8dd010e">   68</a></span>&#160;string <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>::<a class="code" href="classCFormattedSubsystemObject.html#ad24bb993e451e0ee7d6bccb6c8dd010e">getFormattedMappingValue</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> _strFormattedMappingValue;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">bool</span> CFormattedSubsystemObject::isAmendKeyValid(<span class="keywordtype">size_t</span> uiAmendKey)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>::isAmendKeyValid(size_t uiAmendKey)</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> (uiAmendKey &gt; 0) &amp;&amp; (uiAmendKey &lt;= 9);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">string</span> CFormattedSubsystemObject::formatMappingValue(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strMappingValue,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                                     <span class="keywordtype">size_t</span> firstAmendKey, <span class="keywordtype">size_t</span> nbAmendKeys,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;string <a class="code" href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a>::formatMappingValue(<span class="keyword">const</span> string &amp;strMappingValue,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                                     size_t firstAmendKey, size_t nbAmendKeys,</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                                     <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a> &amp;context)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">string</span> strFormattedValue = strMappingValue;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    string strFormattedValue = strMappingValue;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Search for amendment (only one supported for now)</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    string::size_type uiPercentPos = strFormattedValue.find(<span class="charliteral">&#39;%&#39;</span>, 0);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    string::size_type uiPercentPos = strFormattedValue.find(<span class="stringliteral">&#39;%&#39;</span>, 0);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Amendment limited to one digit (values from 1 to 9)</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    assert(isAmendKeyValid(nbAmendKeys));</div>
@@ -187,24 +186,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (uiPercentPos != string::npos &amp;&amp; uiPercentPos &lt; strFormattedValue.size() - 1) {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="comment">// Get Amend number</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">size_t</span> uiAmendNumber = strFormattedValue[uiPercentPos + 1] - <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        size_t uiAmendNumber = strFormattedValue[uiPercentPos + 1] - <span class="stringliteral">&#39;0&#39;</span>;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">// Check if current Amend number is Valid</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span> ((uiAmendNumber &gt; 0) &amp;&amp; (uiAmendNumber &lt;= nbAmendKeys)) {</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordtype">size_t</span> uiAmendType = firstAmendKey + uiAmendNumber - 1;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            size_t uiAmendType = firstAmendKey + uiAmendNumber - 1;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="comment">// Check if current Amend type is Set in the context</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">if</span> (context.<a class="code" href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">iSet</a>(uiAmendType)) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">if</span> (context.iSet(uiAmendType)) {</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="comment">// Make the amendment on the part of the string after the current Amend</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="keywordtype">string</span> strEndOfLine = strFormattedValue.substr(</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                string strEndOfLine = strFormattedValue.substr(</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    uiPercentPos + 2, strFormattedValue.size() - uiPercentPos - 2);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordtype">string</span> strEndOfLineAmended =</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                string strEndOfLineAmended =</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    formatMappingValue(strEndOfLine, firstAmendKey, nbAmendKeys, context);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="comment">// Get current Amend value</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordtype">string</span> strAmendValue = context.<a class="code" href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">getItem</a>(uiAmendType);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                string strAmendValue = context.getItem(uiAmendType);</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="comment">// Make the amendment</span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                strFormattedValue =</div>
@@ -214,17 +213,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">return</span> strFormattedValue;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_a009af50dc3f846b8c6250d1e9f9e67b3"><div class="ttname"><a href="classCFormattedSubsystemObject.html#a009af50dc3f846b8c6250d1e9f9e67b3">CFormattedSubsystemObject::CFormattedSubsystemObject</a></div><div class="ttdeci">CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger, const std::string &amp;strFormattedMapping)</div><div class="ttdoc">Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends...</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00046">FormattedSubsystemObject.cpp:46</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
-<div class="ttc" id="classCFormattedSubsystemObject_html_ae77fbb306a3786f569e2c304b94584f2"><div class="ttname"><a href="classCFormattedSubsystemObject.html#ae77fbb306a3786f569e2c304b94584f2">CFormattedSubsystemObject::getFormattedMappingValue</a></div><div class="ttdeci">virtual std::string getFormattedMappingValue() const </div><div class="ttdoc">Returns the formatted mapping value associated to the element. </div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00068">FormattedSubsystemObject.cpp:68</a></div></div>
-<div class="ttc" id="FormattedSubsystemObject_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="FormattedSubsystemObject_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00036">FormattedSubsystemObject.cpp:36</a></div></div>
-<div class="ttc" id="classCMappingContext_html_a899cd7fc2bdd4f40a0e62ef8101c6e80"><div class="ttname"><a href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">CMappingContext::getItem</a></div><div class="ttdeci">const std::string &amp; getItem(size_t itemType) const </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00054">MappingContext.cpp:54</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_ad24bb993e451e0ee7d6bccb6c8dd010e"><div class="ttname"><a href="classCFormattedSubsystemObject.html#ad24bb993e451e0ee7d6bccb6c8dd010e">CFormattedSubsystemObject::getFormattedMappingValue</a></div><div class="ttdeci">std::string getFormattedMappingValue() const override</div><div class="ttdoc">Returns the formatted mapping value associated to the element. </div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00068">FormattedSubsystemObject.cpp:68</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html_a276d72835f5a24baa4b5540215c9a205"><div class="ttname"><a href="classCFormattedSubsystemObject.html#a276d72835f5a24baa4b5540215c9a205">CFormattedSubsystemObject::CFormattedSubsystemObject</a></div><div class="ttdeci">CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger, const std::string &amp;strMappingValue, size_t firstAmendKey, size_t nbAmendKeys, const CMappingContext &amp;context)</div><div class="ttdoc">Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends...</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00053">FormattedSubsystemObject.cpp:53</a></div></div>
 <div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00038">MappingContext.h:38</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
-<div class="ttc" id="MappingContext_8h_html"><div class="ttname"><a href="MappingContext_8h.html">MappingContext.h</a></div></div>
+<div class="ttc" id="classCFormattedSubsystemObject_html"><div class="ttname"><a href="classCFormattedSubsystemObject.html">CFormattedSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8h_source.html#l00036">FormattedSubsystemObject.h:36</a></div></div>
+<div class="ttc" id="ArrayParameter_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8cpp_source.html#l00040">ArrayParameter.cpp:40</a></div></div>
 <div class="ttc" id="classCFormattedSubsystemObject_html_aee3dcf053d429fd037d94024a475e24e"><div class="ttname"><a href="classCFormattedSubsystemObject.html#aee3dcf053d429fd037d94024a475e24e">CFormattedSubsystemObject::CFormattedSubsystemObject</a></div><div class="ttdeci">CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger)</div><div class="ttdoc">Builds a new CFormattedSubsystemObject instance, without any mapping information. ...</div><div class="ttdef"><b>Definition:</b> <a href="FormattedSubsystemObject_8cpp_source.html#l00040">FormattedSubsystemObject.cpp:40</a></div></div>
-<div class="ttc" id="classCMappingContext_html_aa17f30152ab8462e1ccc644be75f0f65"><div class="ttname"><a href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">CMappingContext::iSet</a></div><div class="ttdeci">bool iSet(size_t itemType) const </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00077">MappingContext.cpp:77</a></div></div>
-<div class="ttc" id="InstanceConfigurableElement_8h_html"><div class="ttname"><a href="InstanceConfigurableElement_8h.html">InstanceConfigurableElement.h</a></div></div>
-<div class="ttc" id="FormattedSubsystemObject_8h_html"><div class="ttname"><a href="FormattedSubsystemObject_8h.html">FormattedSubsystemObject.h</a></div></div>
+<div class="ttc" id="classCSubsystemObject_html_ab693a002d30474f33bce4ba96a3d529f"><div class="ttname"><a href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">CSubsystemObject::CSubsystemObject</a></div><div class="ttdeci">CSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &amp;logger)</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8cpp_source.html#l00046">SubsystemObject.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

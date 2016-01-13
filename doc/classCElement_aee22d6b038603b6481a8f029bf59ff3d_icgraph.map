@@ -1,5 +1,9 @@
 <map id="CElement::childrenToXml" name="CElement::childrenToXml">
-<area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="232,13,361,39"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#aae8cc511624bd2cee5d204815178299b" title="Serialize the structure to xml. " alt="" coords="409,5,573,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="621,5,785,47"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#ae44f433af0f092a42a61a9896e064884" title="CConfigurableDomains\l::toXml" alt="" coords="233,27,401,69"/>
+<area shape="rect" id="node3" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="253,93,382,120"/>
+<area shape="rect" id="node8" href="$classCEnumValuePair.html#a763ca19eaef38f62ba366790e37a21ca" title="CEnumValuePair::toXml" alt="" coords="232,144,403,171"/>
+<area shape="rect" id="node4" href="$classCCompoundRule.html#a58e6aac0b9a43fd0f357bbc3c170fa1e" title="CCompoundRule::toXml" alt="" coords="451,5,623,32"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#aeb71f15ffa4899575fba06911b8aa22a" title="CConfigurableDomain\l::toXml" alt="" coords="456,57,617,98"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterion.html#a70f0e613ec0b6d6fa03d2db2b6150898" title="Export to XML. " alt="" coords="671,145,815,186"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#aa192b57f7757524c619c41edf942d642" title="Export to XML. " alt="" coords="451,174,623,215"/>
 </map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,18 +121,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCommandHandlerInterface.html">   48</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCommandHandlerInterface.html">CommandHandlerInterface</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/** Class used to send commands to a parameter framework.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * @see the help command for more information on which command can be sent.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * @see ParameterMgrFullConnector::createCommandHandler to create an instance.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * This interface is primary designed to send commands without using a</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * tcp socket for test purposes.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> * Note: the fact that this class must be deleted by the client is because the</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> *       PF interface is not c++11.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * TODO: When the interface will transition to C++11, return directly the</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> *       CommandHandlerWrapper as this base class only use is to hide the</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> *       move semantic that is not supported in C++03.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCommandHandlerInterface.html">   48</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCommandHandlerInterface.html">CommandHandlerInterface</a></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">/** Send a command synchronously and receive it&#39;s result.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">     * @see CParameterMgr::gastRemoteCommandParserItems for the list of possible</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">     *      command and their description.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">     * @param[in] command the command to execute.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">     * @param[in] arguments the command arguments.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">     * @param[out] output the result of the command.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     * return true in the command executed succesfuly,</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">     *        false otherwise.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCommandHandlerInterface.html#afef43f702d31514b40c1b7ed6b70a4b8">process</a>(<span class="keyword">const</span> std::string &amp;command, <span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;arguments,</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                         std::string &amp;output) = 0;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classCommandHandlerInterface.html#a175bba4a598257d5183384533a33f814">   66</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCommandHandlerInterface.html#a175bba4a598257d5183384533a33f814">~CommandHandlerInterface</a>(){};</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classCommandHandlerInterface.html#a175bba4a598257d5183384533a33f814">   66</a></span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCommandHandlerInterface.html#a175bba4a598257d5183384533a33f814">CommandHandlerInterface</a>(){};</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
 <div class="ttc" id="classCommandHandlerInterface_html_a175bba4a598257d5183384533a33f814"><div class="ttname"><a href="classCommandHandlerInterface.html#a175bba4a598257d5183384533a33f814">CommandHandlerInterface::~CommandHandlerInterface</a></div><div class="ttdeci">virtual ~CommandHandlerInterface()</div><div class="ttdef"><b>Definition:</b> <a href="CommandHandlerInterface_8h_source.html#l00066">CommandHandlerInterface.h:66</a></div></div>
 <div class="ttc" id="classCommandHandlerInterface_html_afef43f702d31514b40c1b7ed6b70a4b8"><div class="ttname"><a href="classCommandHandlerInterface.html#afef43f702d31514b40c1b7ed6b70a4b8">CommandHandlerInterface::process</a></div><div class="ttdeci">virtual bool process(const std::string &amp;command, const std::vector&lt; std::string &gt; &amp;arguments, std::string &amp;output)=0</div><div class="ttdoc">Send a command synchronously and receive it&#39;s result. </div></div>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,22 +121,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ElementLibrary_8h.html">ElementLibrary.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ElementLibrary_8h.html">&quot;ElementLibrary.h&quot;</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">vector</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCElementLibrarySet.html">CElementLibrarySet</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html">   34</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCElementLibrarySet.html">CElementLibrarySet</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classCElementLibrarySet.html#a6af614ba3d28859ef6fb0ab08bb14016">~CElementLibrarySet</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    ~<a class="code" href="classCElementLibrarySet.html#a6af614ba3d28859ef6fb0ab08bb14016">CElementLibrarySet</a>();</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">addElementLibrary</a>(<a class="code" href="classCElementLibrary.html">CElementLibrary</a> *pElementLibrary);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classCElementLibrary.html">CElementLibrary</a> *<a class="code" href="classCElementLibrarySet.html#a35c69bc5a5e264a8b7e53fe1da5dcc87">getElementLibrary</a>(<span class="keywordtype">size_t</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classCElementLibrary.html">CElementLibrary</a> *<a class="code" href="classCElementLibrarySet.html#a35c69bc5a5e264a8b7e53fe1da5dcc87">getElementLibrary</a>(size_t index) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::vector&lt;CElementLibrary *&gt; _elementLibraryArray;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::vector&lt;<a class="code" href="classCElementLibrary.html">CElementLibrary</a> *&gt; _elementLibraryArray;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="ttc" id="ElementLibrary_8h_html"><div class="ttname"><a href="ElementLibrary_8h.html">ElementLibrary.h</a></div></div>
 <div class="ttc" id="classCElementLibrarySet_html"><div class="ttname"><a href="classCElementLibrarySet.html">CElementLibrarySet</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8h_source.html#l00034">ElementLibrarySet.h:34</a></div></div>
 <div class="ttc" id="classCElementLibrarySet_html_a35c69bc5a5e264a8b7e53fe1da5dcc87"><div class="ttname"><a href="classCElementLibrarySet.html#a35c69bc5a5e264a8b7e53fe1da5dcc87">CElementLibrarySet::getElementLibrary</a></div><div class="ttdeci">CElementLibrary * getElementLibrary(size_t index) const </div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00047">ElementLibrarySet.cpp:47</a></div></div>
 <div class="ttc" id="classCElementLibrary_html"><div class="ttname"><a href="classCElementLibrary.html">CElementLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrary_8h_source.html#l00041">ElementLibrary.h:41</a></div></div>

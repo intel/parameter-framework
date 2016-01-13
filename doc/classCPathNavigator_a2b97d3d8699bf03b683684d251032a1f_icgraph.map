@@ -1,0 +1,13 @@
+<map id="CPathNavigator::CPathNavigator" name="CPathNavigator::CPathNavigator">
+<area shape="rect" id="node2" href="$classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36" title="CElementLocator::locate" alt="" coords="307,53,486,79"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="const version of getConfigurableElement " alt="" coords="281,104,512,145"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#ac1bab2b988587697b516037577bbb30f" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="560,71,791,112"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="566,136,785,177"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="839,5,1077,47"/>
+<area shape="rect" id="node9" href="$classCParameterMgr.html#ab2c4c48ccf11b35c5e2f681b24852941" title="Creates a handle to a configurable element. " alt="" coords="846,71,1070,112"/>
+<area shape="rect" id="node6" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="1125,5,1368,47"/>
+<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="1416,13,1555,39"/>
+<area shape="rect" id="node8" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1603,13,1761,39"/>
+<area shape="rect" id="node10" href="$classCParameterMgrPlatformConnector.html#abc0e4517c5b64770f493dbba77eea27b" title="Creates a handle to a configurable element. " alt="" coords="1125,71,1368,112"/>
+<area shape="rect" id="node12" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="854,136,1062,177"/>
+</map>

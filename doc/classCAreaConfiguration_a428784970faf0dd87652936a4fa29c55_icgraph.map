@@ -1,0 +1,9 @@
+<map id="CAreaConfiguration::restore" name="CAreaConfiguration::restore">
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a0b7c7c014a797b2bfa9235470d97944b" title="Restore the configuration. " alt="" coords="200,39,367,80"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#acae72e3fb09dc016cc7ad903ca93b576" title="Apply the configuration if required. " alt="" coords="415,5,576,47"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#aa07e34aa3fabe688ae8034ff0578c1c7" title="Restore a configuration. " alt="" coords="415,71,576,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a31ba1cd1d2e6df79e4050554fbbc6888" title="Apply the configuration if required. " alt="" coords="624,5,792,47"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomains.html#a01b9dfe37a4a21b2998ec007f46fecf1" title="Restore a configuration. " alt="" coords="624,71,792,112"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#a15436462aba339ed82ed9d25ae08cfdb" title="Restore a configuration. " alt="" coords="840,78,1101,105"/>
+<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#ad13cd4bc49b78b24f3c90da3b0a71aff" title="Restore a configuration. " alt="" coords="1149,71,1357,112"/>
+</map>

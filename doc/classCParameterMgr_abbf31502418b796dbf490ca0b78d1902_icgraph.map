@@ -1,3 +1,4 @@
 <map id="CParameterMgr::setFailureOnFailedSettingsLoad" name="CParameterMgr::setFailureOnFailedSettingsLoad">
 <area shape="rect" id="node2" href="$classCParameterMgrPlatformConnector.html#ad7c0df8d1b3db61efba09222ec443e14" title="Should start fail in failed settings load. " alt="" coords="244,5,487,47"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#a494e2ee62fbf707e42fce75e14789833" title="CParameterMgrFullConnector\l::setFailureOnFailedSettingsLoad" alt="" coords="535,5,764,47"/>
 </map>

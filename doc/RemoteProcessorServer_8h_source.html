@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,26 +121,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;remote_processor_export.h&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;remote_processor_export.h&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="RemoteProcessorServerInterface_8h.html">RemoteProcessorServerInterface.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;asio.hpp&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdint</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="RemoteProcessorServerInterface_8h.html">&quot;RemoteProcessorServerInterface.h&quot;</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">asio</span><span class="preprocessor">.</span><span class="preprocessor">hpp</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class </span><a class="code" href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class</span> <a class="code" href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCRemoteProcessorServer.html">   40</a></span>&#160;<span class="keyword">class </span>REMOTE_PROCESSOR_EXPORT <a class="code" href="classCRemoteProcessorServer.html">CRemoteProcessorServer</a> : <span class="keyword">public</span> <a class="code" href="classIRemoteProcessorServerInterface.html">IRemoteProcessorServerInterface</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCRemoteProcessorServer.html">   40</a></span>&#160;<span class="keyword">class</span> REMOTE_PROCESSOR_EXPORT <a class="code" href="classCRemoteProcessorServer.html">CRemoteProcessorServer</a> : <span class="keyword">public</span> <a class="code" href="classIRemoteProcessorServerInterface.html">IRemoteProcessorServerInterface</a></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCRemoteProcessorServer.html">CRemoteProcessorServer</a>(uint16_t uiPort);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCRemoteProcessorServer.html">CRemoteProcessorServer</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCRemoteProcessorServer.html#a173803573bffc2d060a6449b478e2b66">CRemoteProcessorServer</a>(uint16_t uiPort);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCRemoteProcessorServer.html#a36dfb20db5e7228937a04bf2ba41a0c8">CRemoteProcessorServer</a>();</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// State</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classIRemoteProcessorServerInterface.html#abd7a2063075d6e629adc359049ac9154">start</a>(std::string &amp;error);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classIRemoteProcessorServerInterface.html#a8ee4cecb385515eda5148ace41e080f0">stop</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> process(<a class="code" href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a> &amp;commandHandler);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c">start</a>(std::string &amp;error);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCRemoteProcessorServer.html#a87e40e998885f6f2f9e72ba53656b2a7">stop</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCRemoteProcessorServer.html#af1225610b1fbca5f6484fa37adbcf360">process</a>(<a class="code" href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a> &amp;commandHandler);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> acceptRegister(<a class="code" href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a> &amp;commandHandler);</div>
@@ -157,11 +156,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    asio::ip::tcp::socket _socket;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
 <div class="ttc" id="classIRemoteCommandHandler_html"><div class="ttname"><a href="classIRemoteCommandHandler.html">IRemoteCommandHandler</a></div><div class="ttdef"><b>Definition:</b> <a href="RemoteCommandHandler_8h_source.html#l00035">RemoteCommandHandler.h:35</a></div></div>
+<div class="ttc" id="classCRemoteProcessorServer_html_a87e40e998885f6f2f9e72ba53656b2a7"><div class="ttname"><a href="classCRemoteProcessorServer.html#a87e40e998885f6f2f9e72ba53656b2a7">CRemoteProcessorServer::stop</a></div><div class="ttdeci">virtual bool stop()</div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServer_8cpp_source.html#l00076">RemoteProcessorServer.cpp:76</a></div></div>
+<div class="ttc" id="classCRemoteProcessorServer_html_a36dfb20db5e7228937a04bf2ba41a0c8"><div class="ttname"><a href="classCRemoteProcessorServer.html#a36dfb20db5e7228937a04bf2ba41a0c8">CRemoteProcessorServer::~CRemoteProcessorServer</a></div><div class="ttdeci">virtual ~CRemoteProcessorServer()</div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServer_8cpp_source.html#l00047">RemoteProcessorServer.cpp:47</a></div></div>
+<div class="ttc" id="classCRemoteProcessorServer_html_a173803573bffc2d060a6449b478e2b66"><div class="ttname"><a href="classCRemoteProcessorServer.html#a173803573bffc2d060a6449b478e2b66">CRemoteProcessorServer::CRemoteProcessorServer</a></div><div class="ttdeci">CRemoteProcessorServer(uint16_t uiPort)</div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServer_8cpp_source.html#l00042">RemoteProcessorServer.cpp:42</a></div></div>
+<div class="ttc" id="classCRemoteProcessorServer_html_af1225610b1fbca5f6484fa37adbcf360"><div class="ttname"><a href="classCRemoteProcessorServer.html#af1225610b1fbca5f6484fa37adbcf360">CRemoteProcessorServer::process</a></div><div class="ttdeci">bool process(IRemoteCommandHandler &amp;commandHandler)</div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServer_8cpp_source.html#l00102">RemoteProcessorServer.cpp:102</a></div></div>
 <div class="ttc" id="classIRemoteProcessorServerInterface_html"><div class="ttname"><a href="classIRemoteProcessorServerInterface.html">IRemoteProcessorServerInterface</a></div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServerInterface_8h_source.html#l00035">RemoteProcessorServerInterface.h:35</a></div></div>
-<div class="ttc" id="classIRemoteProcessorServerInterface_html_abd7a2063075d6e629adc359049ac9154"><div class="ttname"><a href="classIRemoteProcessorServerInterface.html#abd7a2063075d6e629adc359049ac9154">IRemoteProcessorServerInterface::start</a></div><div class="ttdeci">virtual bool start(std::string &amp;strError)=0</div></div>
-<div class="ttc" id="RemoteProcessorServerInterface_8h_html"><div class="ttname"><a href="RemoteProcessorServerInterface_8h.html">RemoteProcessorServerInterface.h</a></div></div>
+<div class="ttc" id="classCRemoteProcessorServer_html_ae2ba625b835446b5fa5f1d1a244da43c"><div class="ttname"><a href="classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c">CRemoteProcessorServer::start</a></div><div class="ttdeci">virtual bool start(std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServer_8cpp_source.html#l00053">RemoteProcessorServer.cpp:53</a></div></div>
 <div class="ttc" id="classCRemoteProcessorServer_html"><div class="ttname"><a href="classCRemoteProcessorServer.html">CRemoteProcessorServer</a></div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorServer_8h_source.html#l00040">RemoteProcessorServer.h:40</a></div></div>
-<div class="ttc" id="classIRemoteProcessorServerInterface_html_a8ee4cecb385515eda5148ace41e080f0"><div class="ttname"><a href="classIRemoteProcessorServerInterface.html#a8ee4cecb385515eda5148ace41e080f0">IRemoteProcessorServerInterface::stop</a></div><div class="ttdeci">virtual bool stop()=0</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

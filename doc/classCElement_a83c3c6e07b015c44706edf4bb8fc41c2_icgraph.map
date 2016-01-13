@@ -1,13 +1,13 @@
 <map id="CElement::getDescription" name="CElement::getDescription">
-<area shape="rect" id="node2" href="$classCElement.html#afce045b488b7c243f52a30269dae8f62" title="Appends if found human readable description property. " alt="" coords="251,49,447,90"/>
-<area shape="rect" id="node6" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="245,114,453,155"/>
-<area shape="rect" id="node12" href="$classElementHandle.html#ae1be32bd0c143cbf45784c3e81edb04b" title="ElementHandle::getDescription" alt="" coords="239,180,460,207"/>
-<area shape="rect" id="node3" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="523,5,712,32"/>
-<area shape="rect" id="node4" href="$classCTypeElement.html#a71898c707fb687b3a90c06fe25c3e171" title="CTypeElement::showProperties" alt="" coords="509,56,726,83"/>
-<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#a47a5949cc354fc3bb11cefef76f87ea7" title="CInstanceConfigurableElement\l::showProperties" alt="" coords="775,49,993,90"/>
-<area shape="rect" id="node7" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="553,121,682,148"/>
-<area shape="rect" id="node10" href="$classCInstanceConfigurableElement.html#a9fc955181503bd0cfd5a148dd5653905" title="Serialize the structure to xml. " alt="" coords="508,175,727,217"/>
-<area shape="rect" id="node8" href="$classCConfigurableElement.html#aae8cc511624bd2cee5d204815178299b" title="Serialize the structure to xml. " alt="" coords="802,114,966,155"/>
-<area shape="rect" id="node9" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="1041,114,1205,155"/>
-<area shape="rect" id="node11" href="$classCBitParameterBlock.html#ae8f1443ff248a9b5cb783bea475157f3" title="Serialize the structure to xml. " alt="" coords="809,179,959,221"/>
+<area shape="rect" id="node2" href="$classCElement.html#afce045b488b7c243f52a30269dae8f62" title="Appends if found human readable description property. " alt="" coords="245,50,441,91"/>
+<area shape="rect" id="node4" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="239,115,447,157"/>
+<area shape="rect" id="node3" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="495,57,684,84"/>
+<area shape="rect" id="node5" href="$classCElement.html#a411078c34f3257bbda1ecaba79c8488c" title="CElement::toXml" alt="" coords="525,123,654,149"/>
+<area shape="rect" id="node6" href="$classCCompoundRule.html#a58e6aac0b9a43fd0f357bbc3c170fa1e" title="CCompoundRule::toXml" alt="" coords="735,5,907,32"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomain.html#aeb71f15ffa4899575fba06911b8aa22a" title="CConfigurableDomain\l::toXml" alt="" coords="741,57,902,98"/>
+<area shape="rect" id="node8" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="732,123,911,149"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterion.html#a70f0e613ec0b6d6fa03d2db2b6150898" title="Export to XML. " alt="" coords="972,199,1116,241"/>
+<area shape="rect" id="node12" href="$classCSelectionCriterionType.html#aa192b57f7757524c619c41edf942d642" title="Export to XML. " alt="" coords="735,225,907,266"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomains.html#ae44f433af0f092a42a61a9896e064884" title="CConfigurableDomains\l::toXml" alt="" coords="960,70,1128,111"/>
+<area shape="rect" id="node10" href="$classCEnumValuePair.html#a763ca19eaef38f62ba366790e37a21ca" title="CEnumValuePair::toXml" alt="" coords="959,136,1129,163"/>
 </map>

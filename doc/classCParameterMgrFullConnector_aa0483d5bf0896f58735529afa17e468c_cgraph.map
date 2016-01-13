@@ -1,3 +1,7 @@
 <map id="CParameterMgrFullConnector::saveConfiguration" name="CParameterMgrFullConnector::saveConfiguration">
 <area shape="rect" id="node2" href="$classCParameterMgr.html#aabb760bc56ad6e76f32bf732005730cb" title="CParameterMgr::saveConfiguration" alt="" coords="261,13,507,39"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a1be81268a7220733d7aed82e75e8253c" title="CConfigurableDomains\l::saveConfiguration" alt="" coords="555,5,723,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a7656ea4134ae47e8a19e1565c16323f0" title="CConfigurableDomain\l::saveConfiguration" alt="" coords="771,5,932,47"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="980,5,1147,47"/>
+<area shape="rect" id="node6" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1195,5,1341,47"/>
 </map>

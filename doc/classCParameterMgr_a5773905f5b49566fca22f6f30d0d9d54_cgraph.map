@@ -1,7 +1,5 @@
 <map id="CParameterMgr::clearApplicationRule" name="CParameterMgr::clearApplicationRule">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a72aa8a377bbb1a887e9d753195f59603" title="CConfigurableDomains\l::clearApplicationRule" alt="" coords="311,39,479,80"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="527,5,709,47"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#aa6c2f539bef4c64d1751e6454c6114ee" title="CConfigurableDomain\l::clearApplicationRule" alt="" coords="537,71,699,112"/>
-<area shape="rect" id="node4" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="767,13,914,39"/>
-<area shape="rect" id="node6" href="$classCDomainConfiguration.html#ac733a8c164fc16fa94cc98eda37b255f" title="CDomainConfiguration\l::clearApplicationRule" alt="" coords="757,71,924,112"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a72aa8a377bbb1a887e9d753195f59603" title="CConfigurableDomains\l::clearApplicationRule" alt="" coords="311,5,479,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#aa6c2f539bef4c64d1751e6454c6114ee" title="CConfigurableDomain\l::clearApplicationRule" alt="" coords="527,5,688,47"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#ac733a8c164fc16fa94cc98eda37b255f" title="CDomainConfiguration\l::clearApplicationRule" alt="" coords="736,5,903,47"/>
 </map>

@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classStatus.html#a02f271ac768f84947beb80573366de26" target="_top" xlink:title="Fail without an instance of status. ">
+<g id="a_node2"><a xlink:href="classStatus.html#af094cfd33ddfae117f710778ef648af5" target="_top" xlink:title="Fail with the given error msg. ">
 <polygon fill="white" stroke="black" points="156.5,-126.5 156.5,-145.5 239.5,-145.5 239.5,-126.5 156.5,-126.5"/>
 <text text-anchor="middle" x="198" y="-133.5" font-family="Verdana" font-size="10.00">Status::failure</text>
 </a>

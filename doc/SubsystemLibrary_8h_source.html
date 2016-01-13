@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,34 +121,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DefaultElementLibrary_8h.html">DefaultElementLibrary.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="VirtualSubsystem_8h.html">VirtualSubsystem.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggingElementBuilderTemplate_8h.html">LoggingElementBuilderTemplate.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="DefaultElementLibrary_8h.html">&quot;DefaultElementLibrary.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="VirtualSubsystem_8h.html">&quot;VirtualSubsystem.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="LoggingElementBuilderTemplate_8h.html">&quot;LoggingElementBuilderTemplate.h&quot;</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="SubsystemLibrary_8h.html#a8969359f34e45a4913cef36269664805">   44</a></span>&#160;<span class="preprocessor">#define PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 ParameterFrameworkPluginEntryPointMagicV1</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/** Plugin entry point symbol</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * Needs to be implemented by plugin libraries. This function&#39;s purpose is to</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * register element builders;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> * &quot;V1&quot; refers to the version of this entry-point API.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="SubsystemLibrary_8h.html#a8969359f34e45a4913cef36269664805">   44</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1</span> <span class="preprocessor">ParameterFrameworkPluginEntryPointMagicV1</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCSubsystemLibrary.html">   46</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    : <span class="keyword">public</span> <a class="code" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt;TLoggingElementBuilderTemplate&lt;CVirtualSubsystem&gt;&gt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCSubsystemLibrary.html">   46</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    : <span class="keyword">public</span> <a class="code" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt;<a class="code" href="classTLoggingElementBuilderTemplate.html">TLoggingElementBuilderTemplate</a>&lt;CVirtualSubsystem&gt;&gt;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Builder type (based on element&#39;s name attribute)</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> std::string getBuilderType(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string getBuilderType(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) <span class="keyword">const</span> <span class="keyword">override</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// Xml element&#39;s name attribute</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        std::string type;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        xmlElement.<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a>(<span class="stringliteral">&quot;Type&quot;</span>, type);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        xmlElement<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">.</a><a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a><a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">(</a><span class="stringliteral">&quot;Type&quot;</span><a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">,</a> type<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">)</a>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> type;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
-<div class="ttc" id="LoggingElementBuilderTemplate_8h_html"><div class="ttname"><a href="LoggingElementBuilderTemplate_8h.html">LoggingElementBuilderTemplate.h</a></div></div>
-<div class="ttc" id="DefaultElementLibrary_8h_html"><div class="ttname"><a href="DefaultElementLibrary_8h.html">DefaultElementLibrary.h</a></div></div>
+<div class="ttc" id="classTLoggingElementBuilderTemplate_html"><div class="ttname"><a href="classTLoggingElementBuilderTemplate.html">TLoggingElementBuilderTemplate</a></div><div class="ttdoc">Builder for elements which need logger at construction. </div><div class="ttdef"><b>Definition:</b> <a href="LoggingElementBuilderTemplate_8h_source.html#l00069">LoggingElementBuilderTemplate.h:69</a></div></div>
 <div class="ttc" id="classCXmlElement_html_a6198359168c744489018bc2b8d732dc3"><div class="ttname"><a href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">CXmlElement::getAttribute</a></div><div class="ttdeci">bool getAttribute(const std::string &amp;name, T &amp;value) const </div><div class="ttdoc">Get attribute. </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00101">XmlElement.cpp:101</a></div></div>
 <div class="ttc" id="classCSubsystemLibrary_html"><div class="ttname"><a href="classCSubsystemLibrary.html">CSubsystemLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemLibrary_8h_source.html#l00046">SubsystemLibrary.h:46</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="VirtualSubsystem_8h_html"><div class="ttname"><a href="VirtualSubsystem_8h.html">VirtualSubsystem.h</a></div></div>
 <div class="ttc" id="classCDefaultElementLibrary_html"><div class="ttname"><a href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a></div><div class="ttdoc">Factory that creates an element given an xml element. </div><div class="ttdef"><b>Definition:</b> <a href="DefaultElementLibrary_8h_source.html#l00047">DefaultElementLibrary.h:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

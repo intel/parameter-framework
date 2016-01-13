@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,53 +121,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdint</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TypeElement_8h.html">TypeElement.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="TypeElement_8h.html">&quot;TypeElement.h&quot;</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCStringParameterType.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCStringParameterType.html">CStringParameterType</a> : <span class="keyword">public</span> <a class="code" href="classCTypeElement.html">CTypeElement</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCStringParameterType.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCStringParameterType.html">CStringParameterType</a> : <span class="keyword">public</span> <a class="code" href="classCTypeElement.html">CTypeElement</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classCStringParameterType.html#afb9f456fe6a9903e7fc1811d7f1615f6">CStringParameterType</a>(<span class="keyword">const</span> std::string &amp;strName);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Max length</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classCStringParameterType.html#a188c10bf5032f4f56a4b692dad61ea09">getMaxLength</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classCStringParameterType.html#a188c10bf5032f4f56a4b692dad61ea09">size_t</a> <a class="code" href="classCStringParameterType.html#a188c10bf5032f4f56a4b692dad61ea09">getMaxLength</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCStringParameterType.html#a756cad076226c0ef05f99e4d19efae53">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// From IXmlSource</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCStringParameterType.html#ab655874731579f60d025ae601920e463">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Element properties</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCStringParameterType.html#a0c40b42d73bd6f3ced36f4516ad999e3">showProperties</a>(std::string &amp;strResult) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// CElement</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCStringParameterType.html#a5481926e10b7c56325e1ca923cb62050">getKind</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Instantiation</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *doInstantiate() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Max length in bytes</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">size_t</span> _maxLength{0};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
-<div class="ttc" id="classCStringParameterType_html_a5481926e10b7c56325e1ca923cb62050"><div class="ttname"><a href="classCStringParameterType.html#a5481926e10b7c56325e1ca923cb62050">CStringParameterType::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00043">StringParameterType.cpp:43</a></div></div>
-<div class="ttc" id="classCStringParameterType_html_ab655874731579f60d025ae601920e463"><div class="ttname"><a href="classCStringParameterType.html#ab655874731579f60d025ae601920e463">CStringParameterType::toXml</a></div><div class="ttdeci">virtual void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const </div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00082">StringParameterType.cpp:82</a></div></div>
-<div class="ttc" id="classCStringParameterType_html_a756cad076226c0ef05f99e4d19efae53"><div class="ttname"><a href="classCStringParameterType.html#a756cad076226c0ef05f99e4d19efae53">CStringParameterType::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00060">StringParameterType.cpp:60</a></div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCStringParameterType.html#aa17580157665cfe6b80d3dffc130ab3d">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                 <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// From IXmlSource</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCStringParameterType.html#ac6cc0cc3f67a2e5a64843c27e499aae7">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Element properties</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCStringParameterType.html#afe14857f933c28b7f34e3c00cda43927">showProperties</a>(std::string &amp;strResult) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// CElement</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::string <a class="code" href="classCStringParameterType.html#aa27d515da23ef2ae43acac61c5da441d">getKind</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Instantiation</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *doInstantiate() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Max length in bytes</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    size_t _maxLength{0};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="ttc" id="classCStringParameterType_html_ac6cc0cc3f67a2e5a64843c27e499aae7"><div class="ttname"><a href="classCStringParameterType.html#ac6cc0cc3f67a2e5a64843c27e499aae7">CStringParameterType::toXml</a></div><div class="ttdeci">void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const override</div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00082">StringParameterType.cpp:82</a></div></div>
+<div class="ttc" id="classCStringParameterType_html_aa27d515da23ef2ae43acac61c5da441d"><div class="ttname"><a href="classCStringParameterType.html#aa27d515da23ef2ae43acac61c5da441d">CStringParameterType::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00043">StringParameterType.cpp:43</a></div></div>
 <div class="ttc" id="classCStringParameterType_html_afb9f456fe6a9903e7fc1811d7f1615f6"><div class="ttname"><a href="classCStringParameterType.html#afb9f456fe6a9903e7fc1811d7f1615f6">CStringParameterType::CStringParameterType</a></div><div class="ttdeci">CStringParameterType(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00038">StringParameterType.cpp:38</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
 <div class="ttc" id="classCStringParameterType_html"><div class="ttname"><a href="classCStringParameterType.html">CStringParameterType</a></div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8h_source.html#l00038">StringParameterType.h:38</a></div></div>
+<div class="ttc" id="classCStringParameterType_html_aa17580157665cfe6b80d3dffc130ab3d"><div class="ttname"><a href="classCStringParameterType.html#aa17580157665cfe6b80d3dffc130ab3d">CStringParameterType::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00060">StringParameterType.cpp:60</a></div></div>
 <div class="ttc" id="classCTypeElement_html"><div class="ttname"><a href="classCTypeElement.html">CTypeElement</a></div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8h_source.html#l00040">TypeElement.h:40</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
 <div class="ttc" id="classCStringParameterType_html_a188c10bf5032f4f56a4b692dad61ea09"><div class="ttname"><a href="classCStringParameterType.html#a188c10bf5032f4f56a4b692dad61ea09">CStringParameterType::getMaxLength</a></div><div class="ttdeci">size_t getMaxLength() const </div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00076">StringParameterType.cpp:76</a></div></div>
-<div class="ttc" id="TypeElement_8h_html"><div class="ttname"><a href="TypeElement_8h.html">TypeElement.h</a></div></div>
-<div class="ttc" id="classCStringParameterType_html_a0c40b42d73bd6f3ced36f4516ad999e3"><div class="ttname"><a href="classCStringParameterType.html#a0c40b42d73bd6f3ced36f4516ad999e3">CStringParameterType::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00049">StringParameterType.cpp:49</a></div></div>
+<div class="ttc" id="classCStringParameterType_html_afe14857f933c28b7f34e3c00cda43927"><div class="ttname"><a href="classCStringParameterType.html#afe14857f933c28b7f34e3c00cda43927">CStringParameterType::showProperties</a></div><div class="ttdeci">void showProperties(std::string &amp;strResult) const override</div><div class="ttdef"><b>Definition:</b> <a href="StringParameterType_8cpp_source.html#l00049">StringParameterType.cpp:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

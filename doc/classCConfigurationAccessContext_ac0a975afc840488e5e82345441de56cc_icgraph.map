@@ -1,9 +1,9 @@
 <map id="CConfigurationAccessContext::serializeOut" name="CConfigurationAccessContext::serializeOut">
 <area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="523,5,681,47"/>
-<area shape="rect" id="node3" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="273,43,463,84"/>
+<area shape="rect" id="node3" href="$classCBaseParameter.html#a9ee4a12b62beb7b6c2e758a511593bfa" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="273,43,463,84"/>
 <area shape="rect" id="node4" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="286,132,450,173"/>
-<area shape="rect" id="node7" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="Value space handling for settings import/export from/to XML. " alt="" coords="266,197,470,239"/>
-<area shape="rect" id="node8" href="$classCFloatingPointParameterType.html#a5fcda53d3c5e9e2cdab424158c808f19" title="Value space handling for settings import/export from/to XML. " alt="" coords="264,263,472,304"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="520,112,684,153"/>
-<area shape="rect" id="node6" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="520,177,684,219"/>
+<area shape="rect" id="node7" href="$classCFixedPointParameterType.html#aca47fb5fa4a1e4f6d4b044aa9e0a9bec" title="Value space handling for settings import/export from/to XML. " alt="" coords="266,197,470,239"/>
+<area shape="rect" id="node8" href="$classCFloatingPointParameterType.html#a9f7b50fa94f959f90ff96b341c03c542" title="Value space handling for settings import/export from/to XML. " alt="" coords="264,263,472,304"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a471ef22f0f314e7813d2f7eca78fdb2d" title="CConfigurableElement\l::fromXml" alt="" coords="520,112,684,153"/>
+<area shape="rect" id="node6" href="$classCConfigurableElement.html#ad4597087c2be2840b9ebe2463bf68a24" title="CConfigurableElement\l::toXml" alt="" coords="520,177,684,219"/>
 </map>

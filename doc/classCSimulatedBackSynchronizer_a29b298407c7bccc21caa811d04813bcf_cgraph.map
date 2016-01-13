@@ -1,3 +1,9 @@
 <map id="CSimulatedBackSynchronizer::CSimulatedBackSynchronizer" name="CSimulatedBackSynchronizer::CSimulatedBackSynchronizer">
-<area shape="rect" id="node2" href="$classCParameterAccessContext.html#a5c8a052ad42c4e93476715cd85f1d6e3" title="CParameterAccessContext\l::setParameterBlackboard" alt="" coords="272,5,465,47"/>
+<area shape="rect" id="node2" href="$classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7" title="CBackSynchronizer::\lCBackSynchronizer" alt="" coords="272,71,425,112"/>
+<area shape="rect" id="node3" href="$classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a" title="CConfigurableElementAggregator\l::CConfigurableElementAggregator" alt="" coords="473,5,717,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="485,71,706,112"/>
+<area shape="rect" id="node8" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="477,136,713,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="765,63,956,119"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="1004,71,1171,112"/>
+<area shape="rect" id="node7" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="1219,71,1365,112"/>
 </map>

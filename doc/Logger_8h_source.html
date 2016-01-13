@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,51 +121,66 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ILogger_8h.html">log/ILogger.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LogWrapper_8h.html">log/LogWrapper.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;log/ILogger.h&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;log/LogWrapper.h&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="NonCopyable_8hpp.html">&quot;NonCopyable.hpp&quot;</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacecore.html">core</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace</span> <a class="code" href="namespacecore.html">core</a></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span>log</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespacecore_1_1log.html">   39</a></span>&#160;<span class="keyword">namespace</span> <a class="code" href="namespacecore_1_1log.html">log</a></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html">   48</a></span>&#160;<span class="keyword">class </span><a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/** Application logger object (Thread unsafe)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * Provide contextualisable logging API.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * Streams can be used through Info and Warning objects returned by dedicated</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> * methods.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> * This is the class you want to use to log in the project.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html">   48</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> : <span class="keyword">private</span> <a class="code" href="namespaceutility.html">utility</a>::<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#ac26c806e60ca4a0547680edb68f6e39b">   52</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classcore_1_1log_1_1Context.html">Context</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">/** Context class is friend let the prolog by externally modified */</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#ac26c806e60ca4a0547680edb68f6e39b">   52</a></span>&#160;    <span class="keyword">friend</span> <span class="keyword">class</span> Context;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">/** @param[in] logger raw logger provided by client */</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#a8a82b2c6ec09ee267380ed4e05310355">   55</a></span>&#160;    <a class="code" href="classcore_1_1log_1_1Logger.html#a8a82b2c6ec09ee267380ed4e05310355">Logger</a>(<a class="code" href="classcore_1_1log_1_1ILogger.html">ILogger</a> &amp;logger) : mLogger(logger) {}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">   62</a></span>&#160;    <a class="code" href="classcore_1_1log_1_1details_1_1LogWrapper.html">details::Info</a> <a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">info</a>() { <span class="keywordflow">return</span> <a class="code" href="namespacecore_1_1log_1_1details.html#a4f628b0a303ff9bd5fc7252bbf7096ed">details::Info</a>(mLogger, mProlog); }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">     * Retrieve wrapped information logger</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     * @return Info logger</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">   62</a></span>&#160;    details::Info <a class="code" href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">info</a>() { <span class="keywordflow">return</span> details::Info(mLogger, mProlog); }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">   69</a></span>&#160;    <a class="code" href="classcore_1_1log_1_1details_1_1LogWrapper.html">details::Warning</a> <a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">warning</a>() { <span class="keywordflow">return</span> <a class="code" href="namespacecore_1_1log_1_1details.html#aabb351b065b66587baaf38137dd8dee5">details::Warning</a>(mLogger, mProlog); }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">     * Retrieve wrapped warning logger</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">     * @return Warning logger</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">   69</a></span>&#160;    details::Warning <a class="code" href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">warning</a>() { <span class="keywordflow">return</span> details::Warning(mLogger, mProlog); }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">/** Raw logger provided by client */</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classcore_1_1log_1_1ILogger.html">ILogger</a> &amp;mLogger;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">/** Log prolog, owns the context indentation */</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::string mProlog;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// namespace log</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <span class="comment">// namespace core</span></div>
 <div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00046">NonCopyable.hpp:46</a></div></div>
-<div class="ttc" id="ILogger_8h_html"><div class="ttname"><a href="ILogger_8h.html">ILogger.h</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
-<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Context_8h_source.html#l00035">Context.h:35</a></div></div>
-<div class="ttc" id="namespacecore_1_1log_1_1details_html_a4f628b0a303ff9bd5fc7252bbf7096ed"><div class="ttname"><a href="namespacecore_1_1log_1_1details.html#a4f628b0a303ff9bd5fc7252bbf7096ed">core::log::details::Info</a></div><div class="ttdeci">details::LogWrapper&lt; false &gt; Info</div><div class="ttdoc">Default information logger type. </div><div class="ttdef"><b>Definition:</b> <a href="LogWrapper_8h_source.html#l00129">LogWrapper.h:129</a></div></div>
-<div class="ttc" id="classcore_1_1log_1_1details_1_1LogWrapper_html"><div class="ttname"><a href="classcore_1_1log_1_1details_1_1LogWrapper.html">core::log::details::LogWrapper</a></div><div class="ttdoc">Template log wrapper Simulate a stream which can be used instead of basic ILogger API...</div><div class="ttdef"><b>Definition:</b> <a href="LogWrapper_8h_source.html#l00053">LogWrapper.h:53</a></div></div>
-<div class="ttc" id="classcore_1_1log_1_1Context_html"><div class="ttname"><a href="classcore_1_1log_1_1Context.html">core::log::Context</a></div><div class="ttdoc">Log formatter which provide context indentation. </div><div class="ttdef"><b>Definition:</b> <a href="Context_8h_source.html#l00041">Context.h:41</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html_a6f9d18ae0fd8ee47f0d1ad3b204cee5c"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c">core::log::Logger::info</a></div><div class="ttdeci">details::Info info()</div><div class="ttdoc">Retrieve wrapped information logger. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00062">Logger.h:62</a></div></div>
-<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
-<div class="ttc" id="namespacecore_1_1log_1_1details_html_aabb351b065b66587baaf38137dd8dee5"><div class="ttname"><a href="namespacecore_1_1log_1_1details.html#aabb351b065b66587baaf38137dd8dee5">core::log::details::Warning</a></div><div class="ttdeci">details::LogWrapper&lt; true &gt; Warning</div><div class="ttdoc">Default warning logger type. </div><div class="ttdef"><b>Definition:</b> <a href="LogWrapper_8h_source.html#l00132">LogWrapper.h:132</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1ILogger_html"><div class="ttname"><a href="classcore_1_1log_1_1ILogger.html">core::log::ILogger</a></div><div class="ttdoc">Logger interface provided by client. </div><div class="ttdef"><b>Definition:</b> <a href="ILogger_8h_source.html#l00040">ILogger.h:40</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html_a8a82b2c6ec09ee267380ed4e05310355"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html#a8a82b2c6ec09ee267380ed4e05310355">core::log::Logger::Logger</a></div><div class="ttdeci">Logger(ILogger &amp;logger)</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00055">Logger.h:55</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html_a2df9464630e1079288e5f04eb90cbdca"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca">core::log::Logger::warning</a></div><div class="ttdeci">details::Warning warning()</div><div class="ttdoc">Retrieve wrapped warning logger. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00069">Logger.h:69</a></div></div>
-<div class="ttc" id="LogWrapper_8h_html"><div class="ttname"><a href="LogWrapper_8h.html">LogWrapper.h</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

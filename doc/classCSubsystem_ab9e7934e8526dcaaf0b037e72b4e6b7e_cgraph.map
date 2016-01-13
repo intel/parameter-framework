@@ -1,0 +1,25 @@
+<map id="CSubsystem::structureFromXml" name="CSubsystem::structureFromXml">
+<area shape="rect" id="node2" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="1621,331,1815,358"/>
+<area shape="rect" id="node3" href="$classCXmlParameterSerializingContext.html#a6aa9745f2951dc85c1a5d44f5e5e785c" title="CXmlParameterSerializing\lContext::setComponentLibrary" alt="" coords="279,55,497,96"/>
+<area shape="rect" id="node4" href="$classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8" title="Initialize mapping data through a raw value. " alt="" coords="317,121,459,147"/>
+<area shape="rect" id="node7" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="1107,97,1251,139"/>
+<area shape="rect" id="node8" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="1097,406,1262,433"/>
+<area shape="rect" id="node13" href="$classCXmlElement.html#abffb4b3c9d2ac6c552b3222a92bf0d8a" title="CXmlElement::getChildElement" alt="" coords="545,625,767,651"/>
+<area shape="rect" id="node16" href="$classCComponentLibrary.html#a655b53ad8035a9cc519dc260b18b9c27" title="CComponentLibrary::\lfromXml" alt="" coords="310,453,466,495"/>
+<area shape="rect" id="node5" href="$classTokenizer.html#acdbff327e154738f1553d722dbf71fa5" title="Constructs a Tokenizer. " alt="" coords="582,121,730,147"/>
+<area shape="rect" id="node6" href="$classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec" title="Return a vector of all tokens. " alt="" coords="599,70,713,97"/>
+<area shape="rect" id="node9" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="1375,611,1540,638"/>
+<area shape="rect" id="node10" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="1360,433,1555,459"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="1341,483,1573,510"/>
+<area shape="rect" id="node12" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="1342,382,1573,409"/>
+<area shape="rect" id="node14" href="$classCXmlElement_1_1CChildIterator.html#a0f5dd314825ba2a437cd6098749b0fd6" title="CXmlElement::CChildIterator\l::CChildIterator" alt="" coords="815,624,1017,665"/>
+<area shape="rect" id="node15" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="815,535,1017,576"/>
+<area shape="rect" id="node17" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="834,230,998,257"/>
+<area shape="rect" id="node22" href="$classCElement.html#a9cc62393370848bda4c0591e6698ebe8" title="CElement::fromXml" alt="" coords="583,433,729,459"/>
+<area shape="rect" id="node18" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="1068,215,1291,256"/>
+<area shape="rect" id="node19" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="1065,281,1293,307"/>
+<area shape="rect" id="node21" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="1106,163,1253,190"/>
+<area shape="rect" id="node20" href="$classCElementBuilder.html#a238e661579bbcc3a7c45501acd048bbb" title="CElementBuilder::createElement" alt="" coords="1342,281,1573,307"/>
+<area shape="rect" id="node23" href="$classCElement.html#acee1af3e8516a211731a59b85727c6b9" title="CElement::findChildOfKind" alt="" coords="823,483,1009,510"/>
+<area shape="rect" id="node24" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="1109,507,1249,534"/>
+</map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,42 +121,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlElementSerializingContext_8h.html">XmlElementSerializingContext.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="XmlElementSerializingContext_8h.html">&quot;XmlElementSerializingContext.h&quot;</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="XmlElementSerializingContext_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   32</a></span>&#160;<span class="preprocessor">#define base CXmlSerializingContext</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="XmlElementSerializingContext_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   32</a></span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">base</span> <span class="preprocessor">CXmlSerializingContext</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a8d5b056f2307ffc803875f27c5496e73">   36</a></span>&#160;<a class="code" href="classCXmlElementSerializingContext.html#a8d5b056f2307ffc803875f27c5496e73">CXmlElementSerializingContext::CXmlElementSerializingContext</a>(<span class="keywordtype">string</span> &amp;strError) : <a class="code" href="XmlElementSerializingContext_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(strError)</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a8d5b056f2307ffc803875f27c5496e73">   36</a></span>&#160;<a class="code" href="classCXmlElementSerializingContext.html">CXmlElementSerializingContext</a>::<a class="code" href="classCXmlElementSerializingContext.html#a8d5b056f2307ffc803875f27c5496e73">CXmlElementSerializingContext</a>(string &amp;strError) : <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a><a class="code" href="classCXmlSerializingContext.html#a5e31cd8b7cde411207f55616dbc8c26b">(</a>strError<a class="code" href="classCXmlSerializingContext.html#a5e31cd8b7cde411207f55616dbc8c26b">)</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Init</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">CXmlElementSerializingContext::set</a>(<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a> *pElementLibrary,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                        <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;xmlUri)</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCXmlElementSerializingContext.html">CXmlElementSerializingContext</a>::<a class="code" href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">set</a>(<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a> *pElementLibrary,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                        <span class="keyword">const</span> string &amp;xmlUri)</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    _pElementLibrary = pElementLibrary;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    _xmlUri = xmlUri;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// ElementLibrary</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">   49</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a> *<a class="code" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">CXmlElementSerializingContext::getElementLibrary</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">   49</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a> *<a class="code" href="classCXmlElementSerializingContext.html">CXmlElementSerializingContext</a>::<a class="code" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">getElementLibrary</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> _pElementLibrary;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">// XML Folder Path</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">   55</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;<a class="code" href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">CXmlElementSerializingContext::getXmlUri</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">   55</a></span>&#160;<span class="keyword">const</span> string &amp;<a class="code" href="classCXmlElementSerializingContext.html">CXmlElementSerializingContext</a>::<a class="code" href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">getXmlUri</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> _xmlUri;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="ttc" id="XmlElementSerializingContext_8h_html"><div class="ttname"><a href="XmlElementSerializingContext_8h.html">XmlElementSerializingContext.h</a></div></div>
 <div class="ttc" id="classCXmlElementSerializingContext_html_a8d5b056f2307ffc803875f27c5496e73"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a8d5b056f2307ffc803875f27c5496e73">CXmlElementSerializingContext::CXmlElementSerializingContext</a></div><div class="ttdeci">CXmlElementSerializingContext(std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00036">XmlElementSerializingContext.cpp:36</a></div></div>
 <div class="ttc" id="classCXmlElementSerializingContext_html_aca106ed9055eaa1621d9fc70e5c7cf6c"><div class="ttname"><a href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">CXmlElementSerializingContext::set</a></div><div class="ttdeci">void set(const CElementLibrary *pElementLibrary, const std::string &amp;xmlUri)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00041">XmlElementSerializingContext.cpp:41</a></div></div>
-<div class="ttc" id="XmlElementSerializingContext_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="XmlElementSerializingContext_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00032">XmlElementSerializingContext.cpp:32</a></div></div>
 <div class="ttc" id="classCXmlElementSerializingContext_html_a6c36b7e23b9968c6ea898612d2a55ee9"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">CXmlElementSerializingContext::getElementLibrary</a></div><div class="ttdeci">const CElementLibrary * getElementLibrary() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00049">XmlElementSerializingContext.cpp:49</a></div></div>
 <div class="ttc" id="classCXmlElementSerializingContext_html_a257b1df29ae5417c3a0dab5a0b3feb5e"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">CXmlElementSerializingContext::getXmlUri</a></div><div class="ttdeci">const std::string &amp; getXmlUri() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00055">XmlElementSerializingContext.cpp:55</a></div></div>
 <div class="ttc" id="classCElementLibrary_html"><div class="ttname"><a href="classCElementLibrary.html">CElementLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrary_8h_source.html#l00041">ElementLibrary.h:41</a></div></div>
+<div class="ttc" id="ArrayParameter_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8cpp_source.html#l00040">ArrayParameter.cpp:40</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html_a5e31cd8b7cde411207f55616dbc8c26b"><div class="ttname"><a href="classCXmlSerializingContext.html#a5e31cd8b7cde411207f55616dbc8c26b">CXmlSerializingContext::CXmlSerializingContext</a></div><div class="ttdeci">CXmlSerializingContext(std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00034">XmlSerializingContext.cpp:34</a></div></div>
+<div class="ttc" id="classCXmlElementSerializingContext_html"><div class="ttname"><a href="classCXmlElementSerializingContext.html">CXmlElementSerializingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8h_source.html#l00038">XmlElementSerializingContext.h:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -15,7 +15,7 @@ var searchData=
   ['mappingcontext_2eh',['MappingContext.h',['../MappingContext_8h.html',1,'']]],
   ['mappingdata_2ecpp',['MappingData.cpp',['../MappingData_8cpp.html',1,'']]],
   ['mappingdata_2eh',['MappingData.h',['../MappingData_8h.html',1,'']]],
-  ['matches',['matches',['../classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8',1,'CCompoundRule::matches()'],['../classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a',1,'CRule::matches()'],['../classCSelectionCriterionRule.html#ab0a5ffe0188207742a55f443493b08a0',1,'CSelectionCriterionRule::matches()']]],
+  ['matches',['matches',['../classCCompoundRule.html#a6e471834a8df99b4be7e30e45deb8b8f',1,'CCompoundRule::matches()'],['../classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a',1,'CRule::matches()'],['../classCSelectionCriterionRule.html#a0598057b206f6d4f9e11ca4a35ba0845',1,'CSelectionCriterionRule::matches()']]],
   ['matchesaggregationcriterion',['MatchesAggregationCriterion',['../classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587',1,'CConfigurableElementAggregator']]],
   ['memory_2ehpp',['Memory.hpp',['../Memory_8hpp.html',1,'']]],
   ['merge',['merge',['../classCBitParameter.html#a0527dce697f0e4bda7daec7055f5f9de',1,'CBitParameter::merge()'],['../classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3',1,'CBitParameterType::merge()'],['../classCDomainConfiguration.html#ade8c66e62cc6a64ad6e1066f4a57eaa2',1,'CDomainConfiguration::merge()']]],

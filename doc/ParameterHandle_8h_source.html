@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,27 +121,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;parameter_export.h&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;parameter_export.h&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ElementHandle_8h.html">ElementHandle.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ElementHandle_8h.html">&quot;ElementHandle.h&quot;</a></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCParameterHandle.html">   45</a></span>&#160;<span class="keyword">class </span>PARAMETER_EXPORT <a class="code" href="classCParameterHandle.html">CParameterHandle</a> : <span class="keyword">public</span> <a class="code" href="classElementHandle.html">ElementHandle</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/** Pre v3.1 Handle to a parameter. Kept for retro-compatibility.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * @deprecated This class has been deprecated in favor of ElementHandle,</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> *             Use ElementHandle instead of CParameterHandle.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> *             It is a api retro-compatible superset of the pre v3.1</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> *             CParameterHandle class.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * @note Achieve retro-compatibility with a derived class instead of an alias</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> *       (`typedef ElementHandle CParameterHandle`) as the later would break</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> *       client compilation in case of client forward declaration.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCParameterHandle.html">   45</a></span>&#160;<span class="keyword">class</span> PARAMETER_EXPORT <a class="code" href="classCParameterHandle.html">CParameterHandle</a> : <span class="keyword">public</span> <a class="code" href="classElementHandle.html">ElementHandle</a></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classCParameterHandle.html">CParameterHandle</a>(<a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> &amp;element, <a class="code" href="classCParameterMgr.html">CParameterMgr</a> &amp;parameterMgr)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        : <a class="code" href="classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec">ElementHandle</a>(element, parameterMgr)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    CParameterHandle(<a class="code" href="classCConfigurableElement.html">CConfigurableElement</a> &amp;element, <a class="code" href="classCParameterMgr.html">CParameterMgr</a> &amp;parameterMgr)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        : <a class="code" href="classElementHandle.html">ElementHandle</a><a class="code" href="classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec">(</a>element<a class="code" href="classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec">,</a> parameterMgr<a class="code" href="classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec">)</a></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">friend</span> <a class="code" href="classElementHandle.html#a2d8600d96eaaa6e3212b90d96cdcb4ae">CParameterMgr</a>; <span class="comment">// So that it can build the handler</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">friend</span> CParameterMgr; <span class="comment">// So that it can build the handler</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
-<div class="ttc" id="classElementHandle_html_a2d8600d96eaaa6e3212b90d96cdcb4ae"><div class="ttname"><a href="classElementHandle.html#a2d8600d96eaaa6e3212b90d96cdcb4ae">ElementHandle::CParameterMgr</a></div><div class="ttdeci">friend CParameterMgr</div><div class="ttdef"><b>Definition:</b> <a href="ElementHandle_8h_source.html#l00231">ElementHandle.h:231</a></div></div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
 <div class="ttc" id="classElementHandle_html"><div class="ttname"><a href="classElementHandle.html">ElementHandle</a></div><div class="ttdoc">TODO. </div><div class="ttdef"><b>Definition:</b> <a href="ElementHandle_8h_source.html#l00049">ElementHandle.h:49</a></div></div>
-<div class="ttc" id="classElementHandle_html_ae17fa03de09d2f9b1a318e3cc79cc6ec"><div class="ttname"><a href="classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec">ElementHandle::ElementHandle</a></div><div class="ttdeci">ElementHandle(CConfigurableElement &amp;element, CParameterMgr &amp;parameterMgr)</div><div class="ttdef"><b>Definition:</b> <a href="ElementHandle_8cpp_source.html#l00044">ElementHandle.cpp:44</a></div></div>
+<div class="ttc" id="classElementHandle_html_ae17fa03de09d2f9b1a318e3cc79cc6ec"><div class="ttname"><a href="classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec">ElementHandle::ElementHandle</a></div><div class="ttdeci">ElementHandle(CConfigurableElement &amp;element, CParameterMgr &amp;parameterMgr)</div><div class="ttdef"><b>Definition:</b> <a href="ElementHandle_8cpp_source.html#l00058">ElementHandle.cpp:58</a></div></div>
 <div class="ttc" id="classCParameterMgr_html"><div class="ttname"><a href="classCParameterMgr.html">CParameterMgr</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterMgr_8h_source.html#l00066">ParameterMgr.h:66</a></div></div>
-<div class="ttc" id="ElementHandle_8h_html"><div class="ttname"><a href="ElementHandle_8h.html">ElementHandle.h</a></div></div>
 <div class="ttc" id="classCParameterHandle_html"><div class="ttname"><a href="classCParameterHandle.html">CParameterHandle</a></div><div class="ttdoc">Pre v3.1 Handle to a parameter. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8h_source.html#l00045">ParameterHandle.h:45</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,5 @@
 <map id="CAreaConfiguration::getConfigurableElement" name="CAreaConfiguration::getConfigurableElement">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration\l::copyToOuter" alt="" coords="237,5,384,47"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="237,71,384,112"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a39c907e9023554f7a86836ac9f8da32f" title="CDomainConfiguration\l::composeSettings" alt="" coords="237,5,404,47"/>
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#af62bcfe2b30d19e292a8aa4ddba3cd89" title="Get the Configuration Blackboard. " alt="" coords="237,71,404,112"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a30e09c1bbf837e1f1536c0747a2fadee" title="CDomainConfiguration\l::validateAgainst" alt="" coords="237,136,404,177"/>
 </map>

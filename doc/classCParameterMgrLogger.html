@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -95,21 +94,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="ParameterMgrLoggerForward_8h_source.html">ParameterMgrLoggerForward.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CParameterMgrLogger&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrLogger__inherit__graph.svg" width="414" height="218"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrLogger__inherit__graph.svg" width="414" height="218"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8d08a1e71a9d7556f0697cefd9040d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrLogger.html#ae8d08a1e71a9d7556f0697cefd9040d1">CParameterMgrLogger</a> (T &amp;parameterMgrConnector)</td></tr>
 <tr class="separator:ae8d08a1e71a9d7556f0697cefd9040d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68dff8499e2a4994aded4217268ff358"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrLogger.html#a68dff8499e2a4994aded4217268ff358">info</a> (const std::string &amp;log)</td></tr>
-<tr class="separator:a68dff8499e2a4994aded4217268ff358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff519c9d4d89c0ac04c7da32562cc167"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrLogger.html#aff519c9d4d89c0ac04c7da32562cc167">warning</a> (const std::string &amp;log)</td></tr>
-<tr class="separator:aff519c9d4d89c0ac04c7da32562cc167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1beb393df0302b1b0384be4fba78fa7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrLogger.html#a1beb393df0302b1b0384be4fba78fa7e">info</a> (const std::string &amp;log) override</td></tr>
+<tr class="separator:a1beb393df0302b1b0384be4fba78fa7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb215310e89387725f2f2e3705bc8893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrLogger.html#acb215310e89387725f2f2e3705bc8893">warning</a> (const std::string &amp;log) override</td></tr>
+<tr class="separator:acb215310e89387725f2f2e3705bc8893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -122,7 +122,7 @@ Additional Inherited Members</h2></td></tr>
 class CParameterMgrLogger&lt; T &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="ParameterMgrLoggerForward_8h_source.html#l00034">34</a> of file <a class="el" href="ParameterMgrLoggerForward_8h_source.html">ParameterMgrLoggerForward.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00041">41</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae8d08a1e71a9d7556f0697cefd9040d1"></a>
 <div class="memitem">
@@ -150,10 +150,18 @@ template&lt;class T&gt; </div>
 
 <p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00044">44</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrLogger_ae8d08a1e71a9d7556f0697cefd9040d1_icgraph.svg" width="851" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a68dff8499e2a4994aded4217268ff358"></a>
+<a class="anchor" id="a1beb393df0302b1b0384be4fba78fa7e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -163,7 +171,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="classCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::info </td>
+          <td class="memname">void <a class="el" href="classCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::info </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>log</em></td><td>)</td>
@@ -172,7 +180,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -183,7 +191,7 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aff519c9d4d89c0ac04c7da32562cc167"></a>
+<a class="anchor" id="acb215310e89387725f2f2e3705bc8893"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -193,7 +201,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="classCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::warning </td>
+          <td class="memname">void <a class="el" href="classCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::warning </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>log</em></td><td>)</td>
@@ -202,7 +210,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -213,8 +221,7 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>parameter/include/<a class="el" href="ParameterMgrLoggerForward_8h_source.html">ParameterMgrLoggerForward.h</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>parameter/<a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a></li>
 </ul>
 </div><!-- contents -->

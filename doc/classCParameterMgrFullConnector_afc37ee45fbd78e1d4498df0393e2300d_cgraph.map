@@ -1,3 +1,5 @@
 <map id="CParameterMgrFullConnector::setSequenceAwareness" name="CParameterMgrFullConnector::setSequenceAwareness">
 <area shape="rect" id="node2" href="$classCParameterMgr.html#a8392607ed686806362c9a8882a471553" title="CParameterMgr::setSequence\lAwareness" alt="" coords="261,5,476,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#aa41f38a45f556c4b6c3c80609d8ad2b1" title="CConfigurableDomains\l::setSequenceAwareness" alt="" coords="524,5,707,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a3a77775be8a0df31842b5857a238789e" title="CConfigurableDomain\l::setSequenceAwareness" alt="" coords="755,5,937,47"/>
 </map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,42 +121,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="NonCopyable_8hpp.html">&quot;NonCopyable.hpp&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classDynamicLibrary.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDynamicLibrary.html">DynamicLibrary</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classDynamicLibrary.html">   36</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classDynamicLibrary.html">DynamicLibrary</a> : <span class="keyword">private</span> <a class="code" href="namespaceutility.html">utility</a>::<a class="code" href="classutility_1_1NonCopyable.html">NonCopyable</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">    * @param[in] path the library path which can be provided either in absolute path or</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">    *            or OS agnostic (ie. generic) name.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">    * Note:</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">    * If generic name provided, OS specific prefix, suffix are added automatically</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classDynamicLibrary.html#aa292608386c24e316bc86ea29a2ad31c">DynamicLibrary</a>(<span class="keyword">const</span> std::string &amp;path);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classDynamicLibrary.html#a25dd7a7cd386fbc1c8abde597c39c881">~DynamicLibrary</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ~<a class="code" href="classDynamicLibrary.html#a25dd7a7cd386fbc1c8abde597c39c881">DynamicLibrary</a>();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">    * Get a symbol from library</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">    *</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">    * @param[in] symbol the symbol name</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">    * @return a symbol&#39;s address in the library if it exists, NULL otherwise</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> SymbolType&gt;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classDynamicLibrary.html#a668632d0f3db02c598640c0692cc4c39">   55</a></span>&#160;    SymbolType <a class="code" href="classDynamicLibrary.html#a668632d0f3db02c598640c0692cc4c39">getSymbol</a>(<span class="keyword">const</span> std::string &amp;symbol)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span>SymbolType<span class="keyword">&gt;</span>(osGetSymbol(symbol));</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classDynamicLibrary.html#a668632d0f3db02c598640c0692cc4c39">   55</a></span>&#160;    SymbolType <a class="code" href="classDynamicLibrary.html#a668632d0f3db02c598640c0692cc4c39">getSymbol</a>(<span class="keyword">const</span> std::string &amp;symbol) <span class="keyword">const</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast</span>&lt;SymbolType&gt;(osGetSymbol(symbol));</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    * OS secific helper to get a symbol from library</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    *</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    * @param[in] symbol the symbol name</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    * @return symbol&#39;s address in the library if it exists, NULL otherwise</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> *osGetSymbol(<span class="keyword">const</span> std::string &amp;symbol) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">    * Sanitize library path</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    *</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    * @param[in] path library stripped path (eg. no prefix, no suffix)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    * @return OS specific library path including prefix and suffix</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">static</span> std::string osSanitizePathName(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">    * Opaque object for library handling</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> *_handle;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">     * Path to the library</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">const</span> std::string _path;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">    * OS Specific library name patterns</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">    * @{</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> std::string _osLibraryPrefix;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> std::string _osLibrarySuffix;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">/** @}*/</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;};</div>
 <div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00046">NonCopyable.hpp:46</a></div></div>
 <div class="ttc" id="classDynamicLibrary_html_a668632d0f3db02c598640c0692cc4c39"><div class="ttname"><a href="classDynamicLibrary.html#a668632d0f3db02c598640c0692cc4c39">DynamicLibrary::getSymbol</a></div><div class="ttdeci">SymbolType getSymbol(const std::string &amp;symbol) const </div><div class="ttdoc">Get a symbol from library. </div><div class="ttdef"><b>Definition:</b> <a href="DynamicLibrary_8hpp_source.html#l00055">DynamicLibrary.hpp:55</a></div></div>
-<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
 <div class="ttc" id="classDynamicLibrary_html"><div class="ttname"><a href="classDynamicLibrary.html">DynamicLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="DynamicLibrary_8hpp_source.html#l00036">DynamicLibrary.hpp:36</a></div></div>
 <div class="ttc" id="classDynamicLibrary_html_a25dd7a7cd386fbc1c8abde597c39c881"><div class="ttname"><a href="classDynamicLibrary.html#a25dd7a7cd386fbc1c8abde597c39c881">DynamicLibrary::~DynamicLibrary</a></div><div class="ttdeci">~DynamicLibrary()</div><div class="ttdef"><b>Definition:</b> <a href="posix_2DynamicLibrary_8cpp_source.html#l00051">DynamicLibrary.cpp:51</a></div></div>
 <div class="ttc" id="classDynamicLibrary_html_aa292608386c24e316bc86ea29a2ad31c"><div class="ttname"><a href="classDynamicLibrary.html#aa292608386c24e316bc86ea29a2ad31c">DynamicLibrary::DynamicLibrary</a></div><div class="ttdeci">DynamicLibrary(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> <a href="posix_2DynamicLibrary_8cpp_source.html#l00040">DynamicLibrary.cpp:40</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,4 +1,7 @@
 <map id="CDomainConfiguration::isValid" name="CDomainConfiguration::isValid">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="220,5,411,61"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="459,13,680,54"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="220,43,411,99"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="459,51,680,92"/>
+<area shape="rect" id="node4" href="$classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7" title="CBackSynchronizer::\lCBackSynchronizer" alt="" coords="728,51,881,92"/>
+<area shape="rect" id="node5" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="931,5,1146,47"/>
+<area shape="rect" id="node6" href="$classCSimulatedBackSynchronizer.html#a29b298407c7bccc21caa811d04813bcf" title="CSimulatedBackSynchronizer\l::CSimulatedBackSynchronizer" alt="" coords="929,95,1148,136"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="CSelectionCriteria::createSelectionCriterionType" name="CSelectionCriteria::createSelectionCriterionType">
 <area shape="rect" id="node2" href="$classCParameterMgr.html#a4d2a54a91f937ac71a1f7bbea2ffa1c2" title="CParameterMgr::createSelection\lCriterionType" alt="" coords="265,5,496,47"/>
 <area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a025538f1532d26442e0acb7c3ed7497b" title="CParameterMgrPlatformConnector\l::createSelectionCriterionType" alt="" coords="544,5,787,47"/>
+<area shape="rect" id="node4" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="835,13,1029,39"/>
 </map>

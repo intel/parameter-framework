@@ -1,8 +1,13 @@
 <map id="CHardwareBackSynchronizer::CHardwareBackSynchronizer" name="CHardwareBackSynchronizer::CHardwareBackSynchronizer">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="268,51,432,92"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="507,5,671,47"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="480,95,699,136"/>
-<area shape="rect" id="node4" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="761,13,915,39"/>
-<area shape="rect" id="node6" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="747,82,929,109"/>
-<area shape="rect" id="node7" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="766,133,910,159"/>
+<area shape="rect" id="node2" href="$classCBackSynchronizer.html#a8f1d4835d14d4c2a89a093c72ed140b7" title="CBackSynchronizer::\lCBackSynchronizer" alt="" coords="273,104,427,145"/>
+<area shape="rect" id="node9" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="268,255,432,296"/>
+<area shape="rect" id="node3" href="$classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a" title="CConfigurableElementAggregator\l::CConfigurableElementAggregator" alt="" coords="480,5,724,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="491,71,713,112"/>
+<area shape="rect" id="node8" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="484,136,720,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="772,63,963,119"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="1011,71,1177,112"/>
+<area shape="rect" id="node7" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="1225,71,1372,112"/>
+<area shape="rect" id="node10" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="520,225,684,267"/>
+<area shape="rect" id="node11" href="$classCSyncerSet.html#abda7650761df37cecee929c510d70b6f" title="CSyncerSet::operator+=" alt="" coords="511,291,693,318"/>
+<area shape="rect" id="node12" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="493,367,711,408"/>
 </map>

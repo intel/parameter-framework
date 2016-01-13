@@ -1,3 +1,5 @@
 <map id="CDomainConfiguration::validateAgainst" name="CDomainConfiguration::validateAgainst">
-<area shape="rect" id="node2" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="220,29,361,56"/>
+<area shape="rect" id="node2" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="241,29,383,56"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="220,81,404,122"/>
+<area shape="rect" id="node4" href="$classCAreaConfiguration.html#ad655f6277ec602be7fb9ce0f586555df" title="CAreaConfiguration\l::validateAgainst" alt="" coords="239,146,385,187"/>
 </map>

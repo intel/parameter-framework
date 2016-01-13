@@ -1,8 +1,8 @@
 <map id="main" name="main">
-<area shape="rect" id="node2" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="108,5,343,32"/>
-<area shape="rect" id="node3" href="$remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b" title="sendAndDisplayCommand" alt="" coords="130,56,321,83"/>
-<area shape="rect" id="node4" href="$classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6" title="Write or read the message on pSocket. " alt="" coords="421,5,569,32"/>
-<area shape="rect" id="node5" href="$classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce" title="CAnswerMessage::success" alt="" coords="399,56,592,83"/>
-<area shape="rect" id="node7" href="$classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c" title="CAnswerMessage::getAnswer" alt="" coords="391,107,600,133"/>
-<area shape="rect" id="node6" href="$classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998" title="CMessage::getMsgId" alt="" coords="648,56,803,83"/>
+<area shape="rect" id="node2" href="$classCRequestMessage.html#a6c555ce6d4198c825ba2d14785b29639" title="CRequestMessage::CRequest\lMessage" alt="" coords="122,5,329,47"/>
+<area shape="rect" id="node4" href="$classCRequestMessage.html#a908309ac6965bb2b3b8ab27d43f596b3" title="CRequestMessage::addArgument" alt="" coords="108,71,343,98"/>
+<area shape="rect" id="node5" href="$remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b" title="sendAndDisplayCommand" alt="" coords="130,122,321,149"/>
+<area shape="rect" id="node3" href="$classCMessage.html#ac024ca2d84ab9a05e6b3ff5c8f807af5" title="CMessage::CMessage" alt="" coords="414,13,577,39"/>
+<area shape="rect" id="node6" href="$classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce" title="CAnswerMessage::success" alt="" coords="399,97,592,123"/>
+<area shape="rect" id="node7" href="$classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c" title="CAnswerMessage::getAnswer" alt="" coords="391,147,600,174"/>
 </map>

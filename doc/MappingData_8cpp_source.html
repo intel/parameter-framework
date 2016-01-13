@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,20 +121,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MappingData_8h.html">MappingData.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tokenizer_8h.html">Tokenizer.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Utility_8h.html">Utility.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="MappingData_8h.html">&quot;MappingData.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Tokenizer_8h.html">&quot;Tokenizer.h&quot;</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Utility_8h.html">&quot;Utility.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">assert</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8">   35</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8">CMappingData::init</a>(<span class="keyword">const</span> std::string &amp;rawMapping, std::string &amp;error)</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8">   35</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingData.html">CMappingData</a>::<a class="code" href="classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8">init</a>(<span class="keyword">const</span> std::string &amp;rawMapping, std::string &amp;error)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classTokenizer.html">Tokenizer</a> mappingTok(rawMapping, <span class="stringliteral">&quot;,&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classTokenizer.html">Tokenizer</a> mappingTok<a class="code" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">(</a>rawMapping<a class="code" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">,</a> <span class="stringliteral">&quot;,&quot;</span><a class="code" href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">)</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::string strMappingElement;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;strMappingElement : mappingTok.<a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">split</a>()) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;strMappingElement : mappingTok<a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">.</a><a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">split</a><a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">(</a><a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">)</a>) {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        std::string::size_type iFistDelimiterOccurrence = strMappingElement.find_first_of(<span class="charliteral">&#39;:&#39;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        std::string::size_type iFistDelimiterOccurrence = strMappingElement.find_first_of(<span class="stringliteral">&#39;:&#39;</span>);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::string strKey, strValue;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
@@ -166,9 +165,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classCMappingData.html#a7a2d5172201c72ab434175fadc1f3053">   74</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingData.html#a7a2d5172201c72ab434175fadc1f3053">CMappingData::getValue</a>(<span class="keyword">const</span> std::string &amp;strkey, <span class="keyword">const</span> std::string *&amp;pStrValue)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    KeyToValueMapConstIterator it = _keyToValueMap.find(strkey);</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classCMappingData.html#a7a2d5172201c72ab434175fadc1f3053">   74</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingData.html">CMappingData</a>::<a class="code" href="classCMappingData.html#a7a2d5172201c72ab434175fadc1f3053">getValue</a>(<span class="keyword">const</span> std::string &amp;strkey, <span class="keyword">const</span> std::string *&amp;pStrValue) <span class="keyword">const</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">auto</span> it = _keyToValueMap.find(strkey);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (it != _keyToValueMap.end()) {</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
@@ -179,12 +178,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">   87</a></span>&#160;std::string <a class="code" href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">CMappingData::asString</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a>(_keyToValueMap, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;:&quot;</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">   87</a></span>&#160;std::string <a class="code" href="classCMappingData.html">CMappingData</a>::<a class="code" href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">asString</a>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespaceutility.html">utility</a><a class="code" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">::</a><a class="code" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">asString</a><a class="code" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">(</a>_keyToValueMap<a class="code" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">,</a> <span class="stringliteral">&quot;, &quot;</span><a class="code" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">,</a> <span class="stringliteral">&quot;:&quot;</span><a class="code" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">)</a>;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">bool</span> CMappingData::addValue(<span class="keyword">const</span> std::string &amp;strkey, <span class="keyword">const</span> std::string &amp;strValue)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingData.html">CMappingData</a>::addValue(<span class="keyword">const</span> std::string &amp;strkey, <span class="keyword">const</span> std::string &amp;strValue)</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">if</span> (_keyToValueMap.find(strkey) != _keyToValueMap.end()) {</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
@@ -194,15 +193,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="ttc" id="namespaceutility_html_a3fb85a4dbd0307733f0dda49811db6d1"><div class="ttname"><a href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a></div><div class="ttdeci">std::string asString(const std::list&lt; std::string &gt; &amp;lstr, const std::string &amp;strSeparator)</div><div class="ttdoc">Format the items of a map into a string as a list of key-value pairs. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00043">Utility.cpp:43</a></div></div>
+<div class="ttc" id="namespaceutility_html_a0c420c08a1eb41e2b27ed6d28ac5a096"><div class="ttname"><a href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">utility::asString</a></div><div class="ttdeci">std::string asString(const std::map&lt; std::string, std::string &gt; &amp;mapStr, const std::string &amp;strItemSeparator=&quot;, &quot;, const std::string &amp;strKeyValueSeparator=&quot;:&quot;)</div><div class="ttdoc">Format the items of a map into a string as a list of key-value pairs. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00043">Utility.cpp:43</a></div></div>
+<div class="ttc" id="classCMappingData_html"><div class="ttname"><a href="classCMappingData.html">CMappingData</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8h_source.html#l00035">MappingData.h:35</a></div></div>
 <div class="ttc" id="classTokenizer_html"><div class="ttname"><a href="classTokenizer.html">Tokenizer</a></div><div class="ttdoc">Tokenizer class. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00042">Tokenizer.h:42</a></div></div>
 <div class="ttc" id="classCMappingData_html_ae5e7e90a449524a2a623fdc4a0a670f8"><div class="ttname"><a href="classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8">CMappingData::init</a></div><div class="ttdeci">bool init(const std::string &amp;rawMapping, std::string &amp;error)</div><div class="ttdoc">Initialize mapping data through a raw value. </div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8cpp_source.html#l00035">MappingData.cpp:35</a></div></div>
 <div class="ttc" id="classTokenizer_html_ac0873693f9de717d9dbdeb8d6b5429ec"><div class="ttname"><a href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">Tokenizer::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split()</div><div class="ttdoc">Return a vector of all tokens. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00042">Tokenizer.cpp:42</a></div></div>
-<div class="ttc" id="MappingData_8h_html"><div class="ttname"><a href="MappingData_8h.html">MappingData.h</a></div></div>
-<div class="ttc" id="Tokenizer_8h_html"><div class="ttname"><a href="Tokenizer_8h.html">Tokenizer.h</a></div></div>
+<div class="ttc" id="classTokenizer_html_acdbff327e154738f1553d722dbf71fa5"><div class="ttname"><a href="classTokenizer.html#acdbff327e154738f1553d722dbf71fa5">Tokenizer::Tokenizer</a></div><div class="ttdeci">Tokenizer(const std::string &amp;input, const std::string &amp;delimiters=defaultDelimiters, bool mergeDelimiters=true)</div><div class="ttdoc">Constructs a Tokenizer. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00037">Tokenizer.cpp:37</a></div></div>
 <div class="ttc" id="classCMappingData_html_a47f8683f2a0ec019a5e461254f54d411"><div class="ttname"><a href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">CMappingData::asString</a></div><div class="ttdeci">std::string asString() const </div><div class="ttdoc">Formats the mapping as a list of comma-space separated key:value pairs. </div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8cpp_source.html#l00087">MappingData.cpp:87</a></div></div>
 <div class="ttc" id="classCMappingData_html_a7a2d5172201c72ab434175fadc1f3053"><div class="ttname"><a href="classCMappingData.html#a7a2d5172201c72ab434175fadc1f3053">CMappingData::getValue</a></div><div class="ttdeci">bool getValue(const std::string &amp;strkey, const std::string *&amp;pStrValue) const </div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8cpp_source.html#l00074">MappingData.cpp:74</a></div></div>
-<div class="ttc" id="Utility_8h_html"><div class="ttname"><a href="Utility_8h.html">Utility.h</a></div></div>
+<div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00032">NonCopyable.hpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

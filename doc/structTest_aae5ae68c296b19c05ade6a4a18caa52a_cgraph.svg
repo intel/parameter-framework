@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="ParameterFramework_8cpp.html#a9b9fb986ebe5c70e84df2d781b789e28" target="_top" xlink:title="pfwGetLastError">
+<g id="a_node2"><a xlink:href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69" target="_top" xlink:title="pfwGetLastError">
 <polygon fill="white" stroke="black" points="171,-38.5 171,-57.5 264,-57.5 264,-38.5 171,-38.5"/>
 <text text-anchor="middle" x="217.5" y="-45.5" font-family="Verdana" font-size="10.00">pfwGetLastError</text>
 </a>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['pfw',['Pfw',['../namespacepfw.html#a6daebfe34409761c5c8114b88f9d4697',1,'pfw']]],
-  ['pfwhandler',['PfwHandler',['../ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572',1,'ParameterFramework.h']]],
-  ['pfwlogcb',['PfwLogCb',['../ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71',1,'ParameterFramework.h']]],
-  ['pfwparameterhandler',['PfwParameterHandler',['../ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058',1,'ParameterFramework.h']]],
-  ['pluginentrypointv1',['PluginEntryPointV1',['../SystemClass_8cpp.html#a5087be5f22b6e2d8c029649b806bc701',1,'SystemClass.cpp']]]
+  ['remotecommandparser',['RemoteCommandParser',['../classTRemoteCommandHandlerTemplate.html#ac0f5bf285f49a7d73f4c243b2e2e867a',1,'TRemoteCommandHandlerTemplate']]],
+  ['results',['Results',['../classCParameterMgrFullConnector.html#a54ba0a3d5d8a2a877feb0e6d4de82e1a',1,'CParameterMgrFullConnector::Results()'],['../namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c',1,'core::Results()']]]
 ];

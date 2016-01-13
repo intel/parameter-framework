@@ -1,3 +1,8 @@
 <map id="CTestPlatform::CTestPlatform" name="CTestPlatform::CTestPlatform">
-<area shape="rect" id="node2" href="$classCParameterMgrPlatformConnector.html#a40a3fc96419a1c3a39fc23be2e224927" title="CParameterMgrPlatformConnector\l::setLogger" alt="" coords="260,5,503,47"/>
+<area shape="rect" id="node2" href="$classCParameterMgrPlatformConnector.html#a99b164b53bcc43f20d06efc062422a2d" title="CParameterMgrPlatformConnector\l::CParameterMgrPlatformConnector" alt="" coords="260,35,511,76"/>
+<area shape="rect" id="node7" href="$classCParameterMgrPlatformConnector.html#a40a3fc96419a1c3a39fc23be2e224927" title="CParameterMgrPlatformConnector\l::setLogger" alt="" coords="264,100,507,141"/>
+<area shape="rect" id="node3" href="$classCParameterMgrLogger.html#ae8d08a1e71a9d7556f0697cefd9040d1" title="CParameterMgrLogger\l::CParameterMgrLogger" alt="" coords="587,5,761,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#ae7738edec2c505ffa54a9f0f42975586" title="CParameterMgr::CParameterMgr" alt="" coords="559,71,789,98"/>
+<area shape="rect" id="node5" href="$classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0" title="Helper method to build final URI from base and relative uri/path. " alt="" coords="837,42,1008,69"/>
+<area shape="rect" id="node6" href="$classcore_1_1log_1_1Logger.html#a8a82b2c6ec09ee267380ed4e05310355" title="core::log::Logger::\lLogger" alt="" coords="854,93,991,135"/>
 </map>

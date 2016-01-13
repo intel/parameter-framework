@@ -1,0 +1,7 @@
+<map id="utility::make_unique" name="utility::make_unique">
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="217,5,427,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a64c7c61bd7374bae97d4ace124e98fb2" title="Create and return a command handler for this ParameterMgr instance. " alt="" coords="203,71,441,112"/>
+<area shape="rect" id="node6" href="$classCSystemClass.html#a3264a476e689e33f8c30c6596e3f0d16" title="Load subsystem plugin and fill the corresponding libraries. " alt="" coords="208,137,436,163"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#a5401b196d6bb5a28a8f59def396d5817" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="489,5,697,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#acafa558d331e578fadff98def13d2bc6" title="Method that imports a single Configurable Domain from an string describing an Xml source..." alt="" coords="745,5,953,47"/>
+</map>

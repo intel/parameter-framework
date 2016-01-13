@@ -1,0 +1,7 @@
+<map id="CParameterMgrFullConnector::importSingleDomainXml" name="CParameterMgrFullConnector::importSingleDomainXml">
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="261,27,472,69"/>
+<area shape="rect" id="node3" href="$namespaceutility.html#a301c7f13096a34ad739625a71ae64ccf" title="Implementation of C++14&#39;s std::make_unique. " alt="" coords="529,5,679,32"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="520,57,688,98"/>
+<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="736,39,888,65"/>
+<area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="739,89,885,116"/>
+</map>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,13 +101,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CDefaultElementLibrary&lt; CDefaultElementBuilder &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary__inherit__graph.svg" width="362" height="338"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary__inherit__graph.svg" width="362" height="338"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6f6bf437d7d60cd2cc9e128d9b18a7e5"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#a6f6bf437d7d60cd2cc9e128d9b18a7e5">~CDefaultElementLibrary</a> ()=default</td></tr>
-<tr class="separator:a6f6bf437d7d60cd2cc9e128d9b18a7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a13a90b6f17f66f8936f8c22c1f1d6e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#a3a13a90b6f17f66f8936f8c22c1f1d6e">~CDefaultElementLibrary</a> () override=default</td></tr>
+<tr class="separator:a3a13a90b6f17f66f8936f8c22c1f1d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb350f81719eaacb86a7c09e497d198e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#afb350f81719eaacb86a7c09e497d198e">setDefaultBuilder</a> (std::unique_ptr&lt; CDefaultElementBuilder &gt; defaultBuilder)</td></tr>
 <tr class="memdesc:afb350f81719eaacb86a7c09e497d198e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the default builder used in fallback mechanism.  <a href="#afb350f81719eaacb86a7c09e497d198e">More...</a><br /></td></tr>
 <tr class="separator:afb350f81719eaacb86a7c09e497d198e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,7 +141,7 @@ class CDefaultElementLibrary&lt; CDefaultElementBuilder &gt;</h3>
 
 <p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00047">47</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a6f6bf437d7d60cd2cc9e128d9b18a7e5"></a>
+<a class="anchor" id="a3a13a90b6f17f66f8936f8c22c1f1d6e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -151,7 +151,7 @@ template&lt;class CDefaultElementBuilder&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt; CDefaultElementBuilder &gt;::~<a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a> </td>
+          <td class="memname"><a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt; CDefaultElementBuilder &gt;::~<a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -159,7 +159,7 @@ template&lt;class CDefaultElementBuilder&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -198,14 +198,16 @@ template&lt;class CDefaultElementBuilder &gt; </div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_a77f617162a83a4129d8355b4299b13ec_cgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_a77f617162a83a4129d8355b4299b13ec_cgraph.svg" width="739" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_a77f617162a83a4129d8355b4299b13ec_icgraph.svg" width="432" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_a77f617162a83a4129d8355b4299b13ec_icgraph.svg" width="432" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -236,7 +238,7 @@ template&lt;class CDefaultElementBuilder&gt; </div>
 </div><div class="memdoc">
 
 <p>Set the default builder used in fallback mechanism. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec" title="Create and return an element instanciated depending on an xmlElement. ">createElement()</a> for more <a class="el" href="namespacedetail.html">detail</a> on this mechanism.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec" title="Create and return an element instanciated depending on an xmlElement. ">createElement()</a> for more detail on this mechanism.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">defaultBuilder</td><td>if NULL default builder mechanism, else provided builder is used. </td></tr>
@@ -249,7 +251,8 @@ template&lt;class CDefaultElementBuilder&gt; </div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_afb350f81719eaacb86a7c09e497d198e_icgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_afb350f81719eaacb86a7c09e497d198e_icgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 

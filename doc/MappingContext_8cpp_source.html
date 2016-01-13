@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,17 +121,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MappingContext_8h.html">MappingContext.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;cassert&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="MappingContext_8h.html">&quot;MappingContext.h&quot;</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cassert</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">algorithm</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">cstdlib</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// Item access</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCMappingContext.html#ad022735804704e02190c22d8d7a93174">   38</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingContext.html#ad022735804704e02190c22d8d7a93174">CMappingContext::setItem</a>(<span class="keywordtype">size_t</span> itemType, <span class="keyword">const</span> <span class="keywordtype">string</span> *pStrKey, <span class="keyword">const</span> <span class="keywordtype">string</span> *pStrItem)</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCMappingContext.html#ad022735804704e02190c22d8d7a93174">   38</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingContext.html">CMappingContext</a>::<a class="code" href="classCMappingContext.html#ad022735804704e02190c22d8d7a93174">setItem</a>(size_t itemType, <span class="keyword">const</span> string *pStrKey, <span class="keyword">const</span> string *pStrItem)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">iSet</a>(itemType)) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (iSet(itemType)) {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// Already set!</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
@@ -146,37 +145,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">   54</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;<a class="code" href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">CMappingContext::getItem</a>(<span class="keywordtype">size_t</span> itemType)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">   54</a></span>&#160;<span class="keyword">const</span> string &amp;<a class="code" href="classCMappingContext.html">CMappingContext</a>::<a class="code" href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">getItem</a>(size_t itemType) <span class="keyword">const</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> *mItems[itemType].strItem;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">   59</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">CMappingContext::getItemAsInteger</a>(<span class="keywordtype">size_t</span> itemType)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">   59</a></span>&#160;<a class="code" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">size_t</a> <a class="code" href="classCMappingContext.html">CMappingContext</a>::<a class="code" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">getItemAsInteger</a>(<a class="code" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">size_t</a> <a class="code" href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">itemType</a>) <span class="keyword">const</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">if</span> (!mItems[itemType].strItem) {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> strtoul(mItems[itemType].strItem-&gt;c_str(), NULL, 0);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> strtoul(mItems[itemType].strItem-&gt;c_str(), <span class="keywordtype">nullptr</span>, 0);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classCMappingContext.html#a3788d055f942c010760d5ac6d401e2ba">   69</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span> *<a class="code" href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">CMappingContext::getItem</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;strKey)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classCMappingContext.html#a3788d055f942c010760d5ac6d401e2ba">   69</a></span>&#160;<span class="keyword">const</span> string *<a class="code" href="classCMappingContext.html">CMappingContext</a>::<a class="code" href="classCMappingContext.html#a3788d055f942c010760d5ac6d401e2ba">getItem</a>(<span class="keyword">const</span> string &amp;strKey) <span class="keyword">const</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">auto</span> itemFound = find_if(begin(mItems), end(mItems), [&amp;](<span class="keyword">const</span> SItem &amp;item) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> item.strKey != NULL &amp;&amp; strKey == *item.strKey;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> item.strKey != <span class="keywordtype">nullptr</span> &amp;&amp; strKey == *item.strKey;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    });</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> (itemFound != end(mItems)) ? itemFound-&gt;strKey : NULL;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> (itemFound != end(mItems)) ? itemFound-&gt;strKey : <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">   77</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">CMappingContext::iSet</a>(<span class="keywordtype">size_t</span> itemType)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> mItems[itemType].strItem != <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">   77</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCMappingContext.html">CMappingContext</a>::<a class="code" href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">iSet</a>(size_t itemType) <span class="keyword">const</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> mItems[itemType].strItem != <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
 <div class="ttc" id="classCMappingContext_html_ad022735804704e02190c22d8d7a93174"><div class="ttname"><a href="classCMappingContext.html#ad022735804704e02190c22d8d7a93174">CMappingContext::setItem</a></div><div class="ttdeci">bool setItem(size_t itemType, const std::string *pStrKey, const std::string *pStrItem)</div><div class="ttdoc">Set context mapping item key and value. </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00038">MappingContext.cpp:38</a></div></div>
 <div class="ttc" id="classCMappingContext_html_a380df3d3f0758aad149bc50e63dcf8cb"><div class="ttname"><a href="classCMappingContext.html#a380df3d3f0758aad149bc50e63dcf8cb">CMappingContext::getItemAsInteger</a></div><div class="ttdeci">size_t getItemAsInteger(size_t itemType) const </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00059">MappingContext.cpp:59</a></div></div>
 <div class="ttc" id="classCMappingContext_html_a899cd7fc2bdd4f40a0e62ef8101c6e80"><div class="ttname"><a href="classCMappingContext.html#a899cd7fc2bdd4f40a0e62ef8101c6e80">CMappingContext::getItem</a></div><div class="ttdeci">const std::string &amp; getItem(size_t itemType) const </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00054">MappingContext.cpp:54</a></div></div>
-<div class="ttc" id="MappingContext_8h_html"><div class="ttname"><a href="MappingContext_8h.html">MappingContext.h</a></div></div>
+<div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00038">MappingContext.h:38</a></div></div>
+<div class="ttc" id="classCMappingContext_html_a3788d055f942c010760d5ac6d401e2ba"><div class="ttname"><a href="classCMappingContext.html#a3788d055f942c010760d5ac6d401e2ba">CMappingContext::getItem</a></div><div class="ttdeci">const std::string * getItem(const std::string &amp;strKey) const </div><div class="ttdoc">Get mapping item value from its key name. </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00069">MappingContext.cpp:69</a></div></div>
 <div class="ttc" id="classCMappingContext_html_aa17f30152ab8462e1ccc644be75f0f65"><div class="ttname"><a href="classCMappingContext.html#aa17f30152ab8462e1ccc644be75f0f65">CMappingContext::iSet</a></div><div class="ttdeci">bool iSet(size_t itemType) const </div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8cpp_source.html#l00077">MappingContext.cpp:77</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

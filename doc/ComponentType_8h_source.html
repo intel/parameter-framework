@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,54 +121,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TypeElement_8h.html">TypeElement.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="TypeElement_8h.html">&quot;TypeElement.h&quot;</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCComponentType.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCComponentType.html">CComponentType</a> : <span class="keyword">public</span> <a class="code" href="classCTypeElement.html">CTypeElement</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCComponentType.html">   38</a></span>&#160;<span class="keyword">class</span> <a class="code" href="classCComponentType.html">CComponentType</a> : <span class="keyword">public</span> <a class="code" href="classCTypeElement.html">CTypeElement</a></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classCComponentType.html#abd537a00b1292e7ba5149e4f7e0c7355">CComponentType</a>(<span class="keyword">const</span> std::string &amp;strName);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Object creation</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCComponentType.html#a230fdadd8b0378249db4f8a616dc7e0c">populate</a>(<a class="code" href="classCElement.html">CElement</a> *pElement) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCComponentType.html#a37b6982adcd15b7a4494959d944a2bd3">populate</a>(<a class="code" href="classCElement.html">CElement</a> *pElement) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Mapping info</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCComponentType.html#aadf6bd9a839593915d9007d6833af19c">getMappingData</a>(<span class="keyword">const</span> std::string &amp;strKey, <span class="keyword">const</span> std::string *&amp;pStrValue) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCComponentType.html#a9db6f70ee365a95a8e1d502e83c1a36e">hasMappingData</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCComponentType.html#a37b20ab2ead51d728c5a7e7804eaeb2e">getFormattedMapping</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCComponentType.html#a9bf7655d8f621268ec0e45f50df2b09e">getMappingData</a>(<span class="keyword">const</span> std::string &amp;strKey, <span class="keyword">const</span> std::string *&amp;pStrValue) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCComponentType.html#a0561d65e698cc71e486aa2434183629b">hasMappingData</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">     * Returns the mapping associated to the current TypeElement instance</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">     * @return A std::string containing the mapping as a comma separated key value pairs</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::string <a class="code" href="classCComponentType.html#ac426a9c29b2e8863f13f9b161f294b80">getFormattedMapping</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCComponentType.html#a962c2716cd757893d0a1dafc84d538da">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// CElement</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCComponentType.html#a607b1a365fc5806af72772503f36d727">getKind</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// CElement</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Component creation</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *doInstantiate() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Ref</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCComponentType.html">CComponentType</a> *_pExtendsComponentType{<span class="keyword">nullptr</span>};</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCComponentType.html#aab840fe60aee1e0377ae75d64e3c9f95">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                 <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// CElement</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::string <a class="code" href="classCComponentType.html#a5085433b28f8f0071061606045ec8c49">getKind</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// CElement</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Component creation</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *doInstantiate() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Ref</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCComponentType.html">CComponentType</a> *_pExtendsComponentType{<span class="keywordtype">nullptr</span>};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
 <div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
-<div class="ttc" id="classCComponentType_html_a607b1a365fc5806af72772503f36d727"><div class="ttname"><a href="classCComponentType.html#a607b1a365fc5806af72772503f36d727">CComponentType::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00042">ComponentType.cpp:42</a></div></div>
-<div class="ttc" id="classCComponentType_html_a37b20ab2ead51d728c5a7e7804eaeb2e"><div class="ttname"><a href="classCComponentType.html#a37b20ab2ead51d728c5a7e7804eaeb2e">CComponentType::getFormattedMapping</a></div><div class="ttdeci">virtual std::string getFormattedMapping() const </div><div class="ttdoc">Returns the mapping associated to the current TypeElement instance. </div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00066">ComponentType.cpp:66</a></div></div>
-<div class="ttc" id="classCComponentType_html_aadf6bd9a839593915d9007d6833af19c"><div class="ttname"><a href="classCComponentType.html#aadf6bd9a839593915d9007d6833af19c">CComponentType::getMappingData</a></div><div class="ttdeci">virtual bool getMappingData(const std::string &amp;strKey, const std::string *&amp;pStrValue) const </div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00052">ComponentType.cpp:52</a></div></div>
+<div class="ttc" id="classCComponentType_html_ac426a9c29b2e8863f13f9b161f294b80"><div class="ttname"><a href="classCComponentType.html#ac426a9c29b2e8863f13f9b161f294b80">CComponentType::getFormattedMapping</a></div><div class="ttdeci">std::string getFormattedMapping() const override</div><div class="ttdoc">Returns the mapping associated to the current TypeElement instance. </div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00066">ComponentType.cpp:66</a></div></div>
+<div class="ttc" id="classCComponentType_html_a37b6982adcd15b7a4494959d944a2bd3"><div class="ttname"><a href="classCComponentType.html#a37b6982adcd15b7a4494959d944a2bd3">CComponentType::populate</a></div><div class="ttdeci">void populate(CElement *pElement) const override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00114">ComponentType.cpp:114</a></div></div>
+<div class="ttc" id="classCComponentType_html_aab840fe60aee1e0377ae75d64e3c9f95"><div class="ttname"><a href="classCComponentType.html#aab840fe60aee1e0377ae75d64e3c9f95">CComponentType::fromXml</a></div><div class="ttdeci">bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00071">ComponentType.cpp:71</a></div></div>
 <div class="ttc" id="classCComponentType_html"><div class="ttname"><a href="classCComponentType.html">CComponentType</a></div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8h_source.html#l00038">ComponentType.h:38</a></div></div>
+<div class="ttc" id="classCComponentType_html_a5085433b28f8f0071061606045ec8c49"><div class="ttname"><a href="classCComponentType.html#a5085433b28f8f0071061606045ec8c49">CComponentType::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00042">ComponentType.cpp:42</a></div></div>
 <div class="ttc" id="classCTypeElement_html"><div class="ttname"><a href="classCTypeElement.html">CTypeElement</a></div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8h_source.html#l00040">TypeElement.h:40</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCComponentType_html_a962c2716cd757893d0a1dafc84d538da"><div class="ttname"><a href="classCComponentType.html#a962c2716cd757893d0a1dafc84d538da">CComponentType::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00078">ComponentType.cpp:78</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
-<div class="ttc" id="classCComponentType_html_a230fdadd8b0378249db4f8a616dc7e0c"><div class="ttname"><a href="classCComponentType.html#a230fdadd8b0378249db4f8a616dc7e0c">CComponentType::populate</a></div><div class="ttdeci">virtual void populate(CElement *pElement) const </div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00121">ComponentType.cpp:121</a></div></div>
-<div class="ttc" id="TypeElement_8h_html"><div class="ttname"><a href="TypeElement_8h.html">TypeElement.h</a></div></div>
-<div class="ttc" id="classCComponentType_html_a9db6f70ee365a95a8e1d502e83c1a36e"><div class="ttname"><a href="classCComponentType.html#a9db6f70ee365a95a8e1d502e83c1a36e">CComponentType::hasMappingData</a></div><div class="ttdeci">virtual bool hasMappingData() const </div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00059">ComponentType.cpp:59</a></div></div>
+<div class="ttc" id="classCComponentType_html_a9bf7655d8f621268ec0e45f50df2b09e"><div class="ttname"><a href="classCComponentType.html#a9bf7655d8f621268ec0e45f50df2b09e">CComponentType::getMappingData</a></div><div class="ttdeci">bool getMappingData(const std::string &amp;strKey, const std::string *&amp;pStrValue) const override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00052">ComponentType.cpp:52</a></div></div>
 <div class="ttc" id="classCComponentType_html_abd537a00b1292e7ba5149e4f7e0c7355"><div class="ttname"><a href="classCComponentType.html#abd537a00b1292e7ba5149e4f7e0c7355">CComponentType::CComponentType</a></div><div class="ttdeci">CComponentType(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00038">ComponentType.cpp:38</a></div></div>
+<div class="ttc" id="classCComponentType_html_a0561d65e698cc71e486aa2434183629b"><div class="ttname"><a href="classCComponentType.html#a0561d65e698cc71e486aa2434183629b">CComponentType::hasMappingData</a></div><div class="ttdeci">bool hasMappingData() const override</div><div class="ttdef"><b>Definition:</b> <a href="ComponentType_8cpp_source.html#l00059">ComponentType.cpp:59</a></div></div>
 <div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00048">Element.h:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

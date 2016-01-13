@@ -1,3 +1,4 @@
 <map id="CTypeElement::getFormattedMapping" name="CTypeElement::getFormattedMapping">
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#ab64a2df11be985c8f1deecbf26681594" title="Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string. " alt="" coords="261,5,480,47"/>
+<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a67d39595d62a9490423bc4e88d8d8e65" title="Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string. " alt="" coords="261,5,480,47"/>
+<area shape="rect" id="node3" href="$classCTypeElement.html#a6493eec6c6403417a232f9abd81b992b" title="the mapping associated to the current type and its predecessor " alt="" coords="267,71,475,112"/>
 </map>

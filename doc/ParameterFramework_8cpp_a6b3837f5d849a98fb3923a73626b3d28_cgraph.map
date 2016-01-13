@@ -1,6 +1,5 @@
 <map id="pfwGetIntParameter" name="pfwGetIntParameter">
 <area shape="rect" id="node2" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="248,5,367,32"/>
-<area shape="rect" id="node4" href="$classElementHandle.html#af92d4bc6efdf100335b078ccaf96b04a" title="ElementHandle::getAsSigned\lInteger" alt="" coords="203,57,412,98"/>
-<area shape="rect" id="node5" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="257,123,357,149"/>
-<area shape="rect" id="node3" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="460,5,583,32"/>
+<area shape="rect" id="node3" href="$classElementHandle.html#a37e05c666d21d02422c60c9caaab2734" title="ElementHandle::getAsSigned\lInteger" alt="" coords="203,57,412,98"/>
+<area shape="rect" id="node4" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="257,123,357,149"/>
 </map>

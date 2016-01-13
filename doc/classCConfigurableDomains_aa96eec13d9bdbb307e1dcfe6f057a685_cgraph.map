@@ -1,9 +1,13 @@
 <map id="CConfigurableDomains::createConfiguration" name="CConfigurableDomains::createConfiguration">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,5,404,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="232,71,393,112"/>
-<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="472,13,619,39"/>
-<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a2722416342b16b07ffa05b0e0253bc66" title="CDomainConfiguration\l::addConfigurableElement" alt="" coords="452,64,639,105"/>
-<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="472,130,619,157"/>
-<area shape="rect" id="node8" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="462,181,629,223"/>
-<area shape="rect" id="node6" href="$classCConfigurableElement.html#a41fcefde73d823509e16458ef712e0c3" title="CConfigurableElement\l::createAreaConfiguration" alt="" coords="687,64,873,105"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="221,122,383,163"/>
+<area shape="rect" id="node3" href="$classCElement.html#af51bbf231ec74ff4d4b7fac9588be603" title="CElement::findChild" alt="" coords="451,5,597,32"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a80948f485ce0b70ce80c8bd9f9aca003" title="CDomainConfiguration\l::CDomainConfiguration" alt="" coords="437,57,611,98"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a2722416342b16b07ffa05b0e0253bc66" title="CDomainConfiguration\l::addConfigurableElement" alt="" coords="431,122,617,163"/>
+<area shape="rect" id="node9" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="451,188,597,215"/>
+<area shape="rect" id="node10" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="441,239,607,281"/>
+<area shape="rect" id="node5" href="$classCElement.html#adda0945fbca000ff1e605a9b93f74c64" title="CElement::CElement" alt="" coords="681,64,836,91"/>
+<area shape="rect" id="node7" href="$classCConfigurableElement.html#a41fcefde73d823509e16458ef712e0c3" title="CConfigurableElement\l::createAreaConfiguration" alt="" coords="665,122,852,163"/>
+<area shape="rect" id="node8" href="$classCAreaConfiguration.html#ab7057b4cf2482e15666f538211ac65c5" title="CAreaConfiguration\l::CAreaConfiguration" alt="" coords="900,122,1055,163"/>
+<area shape="rect" id="node11" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="685,239,832,281"/>
+<area shape="rect" id="node12" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="904,239,1051,281"/>
 </map>

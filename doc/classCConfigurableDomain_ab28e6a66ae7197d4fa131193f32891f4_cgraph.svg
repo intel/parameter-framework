@@ -11,227 +11,245 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-332.5 980,-332.5 980,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="0,-227.5 0,-257.5 121,-257.5 121,-227.5 0,-227.5"/>
-<text text-anchor="start" x="8" y="-245.5" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
-<text text-anchor="middle" x="60.5" y="-234.5" font-family="Verdana" font-size="10.00">::setApplicationRule</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-246.5 0,-276.5 121,-276.5 121,-246.5 0,-246.5"/>
+<text text-anchor="start" x="8" y="-264.5" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
+<text text-anchor="middle" x="60.5" y="-253.5" font-family="Verdana" font-size="10.00">::setApplicationRule</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <g id="a_node2"><a xlink:href="classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" target="_top" xlink:title="CDomainConfiguration\l::setApplicationRule">
-<polygon fill="white" stroke="black" points="157,-227.5 157,-257.5 282,-257.5 282,-227.5 157,-227.5"/>
-<text text-anchor="start" x="165" y="-245.5" font-family="Verdana" font-size="10.00">CDomainConfiguration</text>
-<text text-anchor="middle" x="219.5" y="-234.5" font-family="Verdana" font-size="10.00">::setApplicationRule</text>
+<polygon fill="white" stroke="black" points="157,-246.5 157,-276.5 282,-276.5 282,-246.5 157,-246.5"/>
+<text text-anchor="start" x="165" y="-264.5" font-family="Verdana" font-size="10.00">CDomainConfiguration</text>
+<text text-anchor="middle" x="219.5" y="-253.5" font-family="Verdana" font-size="10.00">::setApplicationRule</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M121.303,-242.5C129.558,-242.5 138.107,-242.5 146.553,-242.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="146.779,-246 156.779,-242.5 146.779,-239 146.779,-246"/>
+<path fill="none" stroke="midnightblue" d="M121.303,-261.5C129.558,-261.5 138.107,-261.5 146.553,-261.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="146.779,-265 156.779,-261.5 146.779,-258 146.779,-265"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" target="_top" xlink:title="CRuleParser::parse">
-<polygon fill="white" stroke="black" points="335.5,-252 335.5,-271 441.5,-271 441.5,-252 335.5,-252"/>
-<text text-anchor="middle" x="388.5" y="-259" font-family="Verdana" font-size="10.00">CRuleParser::parse</text>
+<g id="a_node3"><a xlink:href="classCRuleParser.html#a04260c30f05a16437df6fa9e5f4865ba" target="_top" xlink:title="CRuleParser::CRuleParser">
+<polygon fill="white" stroke="black" points="321,-308 321,-327 456,-327 456,-308 321,-308"/>
+<text text-anchor="middle" x="388.5" y="-315" font-family="Verdana" font-size="10.00">CRuleParser::CRuleParser</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M282.21,-249.521C296.266,-251.12 311.208,-252.82 325.285,-254.422"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="325.026,-257.915 335.358,-255.568 325.818,-250.96 325.026,-257.915"/>
+<path fill="none" stroke="midnightblue" d="M257.704,-276.578C275.762,-283.65 297.858,-291.942 318,-298.5 325.195,-300.843 332.87,-303.139 340.397,-305.28"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="339.581,-308.686 350.154,-307.997 341.459,-301.943 339.581,-308.686"/>
 </g>
-<!-- Node17 -->
-<g id="node17" class="node"><title>Node17</title>
-<g id="a_node17"><a xlink:href="classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544" target="_top" xlink:title="CRuleParser::grabRootRule">
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" target="_top" xlink:title="CRuleParser::parse">
+<polygon fill="white" stroke="black" points="335.5,-252 335.5,-271 441.5,-271 441.5,-252 335.5,-252"/>
+<text text-anchor="middle" x="388.5" y="-259" font-family="Verdana" font-size="10.00">CRuleParser::parse</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node2&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M282.21,-261.5C296.266,-261.5 311.208,-261.5 325.285,-261.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="325.358,-265 335.358,-261.5 325.358,-258 325.358,-265"/>
+</g>
+<!-- Node18 -->
+<g id="node18" class="node"><title>Node18</title>
+<g id="a_node18"><a xlink:href="classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544" target="_top" xlink:title="CRuleParser::grabRootRule">
 <polygon fill="white" stroke="black" points="318,-214 318,-233 459,-233 459,-214 318,-214"/>
 <text text-anchor="middle" x="388.5" y="-221" font-family="Verdana" font-size="10.00">CRuleParser::grabRootRule</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node17 -->
-<g id="edge17" class="edge"><title>Node2&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M282.21,-235.479C290.558,-234.529 299.218,-233.544 307.824,-232.565"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="308.339,-236.029 317.88,-231.421 307.548,-229.074 308.339,-236.029"/>
+<!-- Node2&#45;&gt;Node18 -->
+<g id="edge19" class="edge"><title>Node2&#45;&gt;Node18</title>
+<path fill="none" stroke="midnightblue" d="M282.21,-247.458C299.677,-243.484 318.511,-239.198 335.354,-235.366"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="336.579,-238.676 345.553,-233.045 335.026,-231.851 336.579,-238.676"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classCRuleParser.html#ac7faca228556fb47a33ccb95e15ce6d6" target="_top" xlink:title="CRuleParser::iterate">
+<!-- Node4&#45;&gt;Node4 -->
+<g id="edge8" class="edge"><title>Node4&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M362.606,-271.257C350.009,-280.065 358.641,-289.5 388.5,-289.5 408.562,-289.5 419.041,-285.241 419.937,-279.775"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="422.782,-277.729 414.394,-271.257 416.915,-281.548 422.782,-277.729"/>
+</g>
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classCRuleParser.html#ac7faca228556fb47a33ccb95e15ce6d6" target="_top" xlink:title="CRuleParser::iterate">
 <polygon fill="white" stroke="black" points="504,-309 504,-328 614,-328 614,-309 504,-309"/>
 <text text-anchor="middle" x="559" y="-316" font-family="Verdana" font-size="10.00">CRuleParser::iterate</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node3&#45;&gt;Node4</title>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M414.951,-271.094C436.238,-279.015 467.459,-290.394 495,-299.5 501.559,-301.669 508.534,-303.873 515.363,-305.975"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="514.613,-309.405 525.199,-308.965 516.649,-302.707 514.613,-309.405"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classCCompoundRule.html#a127d40590afcf25e9fcf9b18234249f8" target="_top" xlink:title="CCompoundRule::parse">
+<!-- Node6 -->
+<g id="node6" class="node"><title>Node6</title>
+<g id="a_node6"><a xlink:href="classCCompoundRule.html#ab66d3bbb9bd8b229e1644a5eb87f7fa7" target="_top" xlink:title="CCompoundRule::parse">
 <polygon fill="white" stroke="black" points="495,-271 495,-290 623,-290 623,-271 495,-271"/>
 <text text-anchor="middle" x="559" y="-278" font-family="Verdana" font-size="10.00">CCompoundRule::parse</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node3&#45;&gt;Node5</title>
+<!-- Node4&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node4&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M441.891,-267.408C455.549,-268.948 470.517,-270.635 485.03,-272.272"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="484.654,-275.752 494.983,-273.394 485.439,-268.796 484.654,-275.752"/>
 </g>
-<!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" target="_top" xlink:title="CElement::addChild">
+<!-- Node8 -->
+<g id="node8" class="node"><title>Node8</title>
+<g id="a_node8"><a xlink:href="classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" target="_top" xlink:title="CElement::addChild">
 <polygon fill="white" stroke="black" points="504,-233 504,-252 614,-252 614,-233 504,-233"/>
 <text text-anchor="middle" x="559" y="-240" font-family="Verdana" font-size="10.00">CElement::addChild</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node7 -->
-<g id="edge6" class="edge"><title>Node3&#45;&gt;Node7</title>
+<!-- Node4&#45;&gt;Node8 -->
+<g id="edge7" class="edge"><title>Node4&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M441.891,-255.592C458.366,-253.735 476.746,-251.662 493.936,-249.724"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="494.351,-253.199 503.896,-248.601 493.567,-246.243 494.351,-253.199"/>
 </g>
-<!-- Node8 -->
-<g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" target="_top" xlink:title="CSelectionCriterionRule\l::parse">
+<!-- Node9 -->
+<g id="node9" class="node"><title>Node9</title>
+<g id="a_node9"><a xlink:href="classCSelectionCriterionRule.html#a9fa6c6fcf97c803ffb535843ca0e0637" target="_top" xlink:title="CSelectionCriterionRule\l::parse">
 <polygon fill="white" stroke="black" points="495,-156.5 495,-186.5 623,-186.5 623,-156.5 495,-156.5"/>
 <text text-anchor="start" x="503" y="-174.5" font-family="Verdana" font-size="10.00">CSelectionCriterionRule</text>
 <text text-anchor="middle" x="559" y="-163.5" font-family="Verdana" font-size="10.00">::parse</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node8 -->
-<g id="edge7" class="edge"><title>Node3&#45;&gt;Node8</title>
+<!-- Node4&#45;&gt;Node9 -->
+<g id="edge9" class="edge"><title>Node4&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M433.733,-251.948C442.316,-249.392 451.095,-246.265 459,-242.5 486.279,-229.507 513.942,-208.905 533.066,-193.232"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="535.531,-195.734 540.966,-186.639 531.046,-190.36 535.531,-195.734"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classCRuleParser.html#ae574ae0109f76cc624590bd4899e0a91" target="_top" xlink:title="CRuleParser::getType">
+<!-- Node7 -->
+<g id="node7" class="node"><title>Node7</title>
+<g id="a_node7"><a xlink:href="classCRuleParser.html#ae574ae0109f76cc624590bd4899e0a91" target="_top" xlink:title="CRuleParser::getType">
 <polygon fill="white" stroke="black" points="684.5,-285 684.5,-304 800.5,-304 800.5,-285 684.5,-285"/>
 <text text-anchor="middle" x="742.5" y="-292" font-family="Verdana" font-size="10.00">CRuleParser::getType</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node6 -->
-<g id="edge5" class="edge"><title>Node5&#45;&gt;Node6</title>
+<!-- Node6&#45;&gt;Node7 -->
+<g id="edge6" class="edge"><title>Node6&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M623.225,-285.377C639.661,-286.645 657.428,-288.015 674.072,-289.299"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="674.028,-292.806 684.268,-290.085 674.567,-285.827 674.028,-292.806"/>
 </g>
-<!-- Node8&#45;&gt;Node6 -->
-<g id="edge11" class="edge"><title>Node8&#45;&gt;Node6</title>
+<!-- Node9&#45;&gt;Node7 -->
+<g id="edge13" class="edge"><title>Node9&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M581.109,-186.579C593.98,-196.321 610.334,-209.716 623,-223.5 642.019,-244.198 635.734,-259.726 659,-275.5 663.832,-278.776 669.15,-281.493 674.688,-283.745"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="673.573,-287.063 684.168,-287.114 675.917,-280.467 673.573,-287.063"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="classCRuleParser.html#af179ac22a54025386da02a5bdb33b253" target="_top" xlink:title="CRuleParser::getSelection\lCriteriaDefinition">
+<!-- Node10 -->
+<g id="node10" class="node"><title>Node10</title>
+<g id="a_node10"><a xlink:href="classCRuleParser.html#af179ac22a54025386da02a5bdb33b253" target="_top" xlink:title="CRuleParser::getSelection\lCriteriaDefinition">
 <polygon fill="white" stroke="black" points="673,-235.5 673,-265.5 812,-265.5 812,-235.5 673,-235.5"/>
 <text text-anchor="start" x="681" y="-253.5" font-family="Verdana" font-size="10.00">CRuleParser::getSelection</text>
 <text text-anchor="middle" x="742.5" y="-242.5" font-family="Verdana" font-size="10.00">CriteriaDefinition</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node9 -->
-<g id="edge8" class="edge"><title>Node8&#45;&gt;Node9</title>
+<!-- Node9&#45;&gt;Node10 -->
+<g id="edge10" class="edge"><title>Node9&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M583.653,-186.627C603.25,-198.667 632.142,-215.3 659,-226.5 663.782,-228.494 668.785,-230.389 673.861,-232.175"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="673.08,-235.605 683.674,-235.472 675.31,-228.969 673.08,-235.605"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="classCSelectionCriteriaDefinition.html#ade9c9f7fe7806988d3d922bf615e5994" target="_top" xlink:title="CSelectionCriteriaDefinition\l::getSelectionCriterion">
+<!-- Node11 -->
+<g id="node11" class="node"><title>Node11</title>
+<g id="a_node11"><a xlink:href="classCSelectionCriteriaDefinition.html#ade9c9f7fe7806988d3d922bf615e5994" target="_top" xlink:title="CSelectionCriteriaDefinition\l::getSelectionCriterion">
 <polygon fill="white" stroke="black" points="669,-186.5 669,-216.5 816,-216.5 816,-186.5 669,-186.5"/>
 <text text-anchor="start" x="677" y="-204.5" font-family="Verdana" font-size="10.00">CSelectionCriteriaDefinition</text>
 <text text-anchor="middle" x="742.5" y="-193.5" font-family="Verdana" font-size="10.00">::getSelectionCriterion</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node10 -->
-<g id="edge9" class="edge"><title>Node8&#45;&gt;Node10</title>
+<!-- Node9&#45;&gt;Node11 -->
+<g id="edge11" class="edge"><title>Node9&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M623.225,-181.95C634.735,-183.853 646.896,-185.863 658.868,-187.842"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="658.425,-191.316 668.862,-189.494 659.566,-184.41 658.425,-191.316"/>
 </g>
-<!-- Node12 -->
-<g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a xlink:href="classCRuleParser.html#a7f6198bd3656599e15aee6860c1bf4d7" target="_top" xlink:title="CRuleParser::next">
+<!-- Node13 -->
+<g id="node13" class="node"><title>Node13</title>
+<g id="a_node13"><a xlink:href="classCRuleParser.html#a7f6198bd3656599e15aee6860c1bf4d7" target="_top" xlink:title="CRuleParser::next">
 <polygon fill="white" stroke="black" points="692.5,-148 692.5,-167 792.5,-167 792.5,-148 692.5,-148"/>
 <text text-anchor="middle" x="742.5" y="-155" font-family="Verdana" font-size="10.00">CRuleParser::next</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node12 -->
-<g id="edge12" class="edge"><title>Node8&#45;&gt;Node12</title>
+<!-- Node9&#45;&gt;Node13 -->
+<g id="edge14" class="edge"><title>Node9&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M623.225,-166.623C642.302,-165.152 663.171,-163.542 681.997,-162.09"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="682.52,-165.56 692.221,-161.301 681.982,-158.581 682.52,-165.56"/>
 </g>
-<!-- Node13 -->
-<g id="node13" class="node"><title>Node13</title>
-<g id="a_node13"><a xlink:href="classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" target="_top" xlink:title="CSelectionCriterion\l::getCriterionType">
+<!-- Node14 -->
+<g id="node14" class="node"><title>Node14</title>
+<g id="a_node14"><a xlink:href="classCSelectionCriterion.html#a68f922bffc18811306eb3da52c340289" target="_top" xlink:title="CSelectionCriterion\l::getCriterionType">
 <polygon fill="white" stroke="black" points="688.5,-98.5 688.5,-128.5 796.5,-128.5 796.5,-98.5 688.5,-98.5"/>
 <text text-anchor="start" x="696.5" y="-116.5" font-family="Verdana" font-size="10.00">CSelectionCriterion</text>
 <text text-anchor="middle" x="742.5" y="-105.5" font-family="Verdana" font-size="10.00">::getCriterionType</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node13 -->
-<g id="edge13" class="edge"><title>Node8&#45;&gt;Node13</title>
+<!-- Node9&#45;&gt;Node14 -->
+<g id="edge15" class="edge"><title>Node9&#45;&gt;Node14</title>
 <path fill="none" stroke="midnightblue" d="M604.269,-156.455C621.339,-150.729 641.045,-144.212 659,-138.5 666.14,-136.229 673.642,-133.89 681.092,-131.596"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="682.284,-134.892 690.821,-128.617 680.234,-128.199 682.284,-134.892"/>
 </g>
-<!-- Node14 -->
-<g id="node14" class="node"><title>Node14</title>
-<g id="a_node14"><a xlink:href="classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f" target="_top" xlink:title="ISelectionCriterionTypeInterface\l::getNumericalValue">
+<!-- Node15 -->
+<g id="node15" class="node"><title>Node15</title>
+<g id="a_node15"><a xlink:href="classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f" target="_top" xlink:title="ISelectionCriterionTypeInterface\l::getNumericalValue">
 <polygon fill="white" stroke="black" points="659,-49.5 659,-79.5 826,-79.5 826,-49.5 659,-49.5"/>
 <text text-anchor="start" x="667" y="-67.5" font-family="Verdana" font-size="10.00">ISelectionCriterionTypeInterface</text>
 <text text-anchor="middle" x="742.5" y="-56.5" font-family="Verdana" font-size="10.00">::getNumericalValue</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node14 -->
-<g id="edge14" class="edge"><title>Node8&#45;&gt;Node14</title>
+<!-- Node9&#45;&gt;Node15 -->
+<g id="edge16" class="edge"><title>Node9&#45;&gt;Node15</title>
 <path fill="none" stroke="midnightblue" d="M574.376,-156.356C592.503,-138.081 625.381,-107.561 659,-89.5 663.149,-87.2711 667.524,-85.2124 672.008,-83.3158"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="673.303,-86.5676 681.325,-79.6476 670.738,-80.0542 673.303,-86.5676"/>
 </g>
-<!-- Node15 -->
-<g id="node15" class="node"><title>Node15</title>
-<g id="a_node15"><a xlink:href="classCSelectionCriterion.html#a1570d99b016390cca5b5d6f3c1d405c1" target="_top" xlink:title="CSelectionCriterion\l::getCriterionName">
+<!-- Node16 -->
+<g id="node16" class="node"><title>Node16</title>
+<g id="a_node16"><a xlink:href="classCSelectionCriterion.html#aa7d73b79a9ee5ce47153dd52f9bbcc71" target="_top" xlink:title="CSelectionCriterion\l::getCriterionName">
 <polygon fill="white" stroke="black" points="688.5,-0.5 688.5,-30.5 796.5,-30.5 796.5,-0.5 688.5,-0.5"/>
 <text text-anchor="start" x="696.5" y="-18.5" font-family="Verdana" font-size="10.00">CSelectionCriterion</text>
 <text text-anchor="middle" x="742.5" y="-7.5" font-family="Verdana" font-size="10.00">::getCriterionName</text>
 </a>
 </g>
 </g>
-<!-- Node8&#45;&gt;Node15 -->
-<g id="edge15" class="edge"><title>Node8&#45;&gt;Node15</title>
+<!-- Node9&#45;&gt;Node16 -->
+<g id="edge17" class="edge"><title>Node9&#45;&gt;Node16</title>
 <path fill="none" stroke="midnightblue" d="M567.204,-156.312C581.042,-128.786 614.004,-70.6278 659,-39.5 664.988,-35.3576 671.692,-31.9223 678.621,-29.0751"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="679.998,-32.2975 688.163,-25.5459 677.57,-25.7321 679.998,-32.2975"/>
 </g>
-<!-- Node11 -->
-<g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="classCElement.html#a8595814a3159f32f874269907e70b260" target="_top" xlink:title="CElement::findChild">
+<!-- Node12 -->
+<g id="node12" class="node"><title>Node12</title>
+<g id="a_node12"><a xlink:href="classCElement.html#a8595814a3159f32f874269907e70b260" target="_top" xlink:title="CElement::findChild">
 <polygon fill="white" stroke="black" points="864,-192 864,-211 974,-211 974,-192 864,-192"/>
 <text text-anchor="middle" x="919" y="-199" font-family="Verdana" font-size="10.00">CElement::findChild</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge10" class="edge"><title>Node10&#45;&gt;Node11</title>
+<!-- Node11&#45;&gt;Node12 -->
+<g id="edge12" class="edge"><title>Node11&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M816.24,-201.5C828.733,-201.5 841.635,-201.5 853.882,-201.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="853.991,-205 863.991,-201.5 853.991,-198 853.991,-205"/>
 </g>
-<!-- Node16 -->
-<g id="node16" class="node"><title>Node16</title>
-<g id="a_node16"><a xlink:href="classCElement.html#a49581fb6412e29e932962acd82d52d6a" target="_top" xlink:title="CElement::getName">
+<!-- Node17 -->
+<g id="node17" class="node"><title>Node17</title>
+<g id="a_node17"><a xlink:href="classCElement.html#a49581fb6412e29e932962acd82d52d6a" target="_top" xlink:title="CElement::getName">
 <polygon fill="white" stroke="black" points="862,-6 862,-25 976,-25 976,-6 862,-6"/>
 <text text-anchor="middle" x="919" y="-13" font-family="Verdana" font-size="10.00">CElement::getName</text>
 </a>
 </g>
 </g>
-<!-- Node15&#45;&gt;Node16 -->
-<g id="edge16" class="edge"><title>Node15&#45;&gt;Node16</title>
+<!-- Node16&#45;&gt;Node17 -->
+<g id="edge18" class="edge"><title>Node16&#45;&gt;Node17</title>
 <path fill="none" stroke="midnightblue" d="M796.804,-15.5C814.144,-15.5 833.604,-15.5 851.771,-15.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="851.999,-19.0001 861.999,-15.5 851.999,-12.0001 851.999,-19.0001"/>
 </g>

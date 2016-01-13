@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" target="_top" xlink:title="CBaseParameter::serialize\lXmlSettings">
+<g id="a_node2"><a xlink:href="classCBaseParameter.html#a9ee4a12b62beb7b6c2e758a511593bfa" target="_top" xlink:title="CBaseParameter::serialize\lXmlSettings">
 <polygon fill="white" stroke="black" points="195,-0.5 195,-30.5 338,-30.5 338,-0.5 195,-0.5"/>
 <text text-anchor="start" x="203" y="-18.5" font-family="Verdana" font-size="10.00">CBaseParameter::serialize</text>
 <text text-anchor="middle" x="266.5" y="-7.5" font-family="Verdana" font-size="10.00">XmlSettings</text>

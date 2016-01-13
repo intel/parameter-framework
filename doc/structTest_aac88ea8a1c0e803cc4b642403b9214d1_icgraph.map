@@ -1,4 +1,5 @@
 <map id="Test::empty" name="Test::empty">
 <area shape="rect" id="node2" href="$structTest.html#aa15ba29a3b6622b0e81ae92e02905c65" title="Test::REQUIRE_FAILURE" alt="" coords="156,5,323,32"/>
-<area shape="rect" id="node3" href="$structTest.html#aae5ae68c296b19c05ade6a4a18caa52a" title="Test::REQUIRE_SUCCESS" alt="" coords="149,56,329,83"/>
+<area shape="rect" id="node3" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="377,56,536,83"/>
+<area shape="rect" id="node4" href="$structTest.html#aae5ae68c296b19c05ade6a4a18caa52a" title="Test::REQUIRE_SUCCESS" alt="" coords="149,107,329,133"/>
 </map>

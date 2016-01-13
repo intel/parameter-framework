@@ -1,21 +1,5 @@
 <map id="CElement::getParent" name="CElement::getParent">
-<area shape="rect" id="node2" href="$classCBitParameter.html#a84ee75cf920c8f273519808d5c042985" title="CBitParameter::getBelonging\lBlockSize" alt="" coords="222,5,429,47"/>
-<area shape="rect" id="node3" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::\lfromXml" alt="" coords="250,71,401,112"/>
-<area shape="rect" id="node4" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="245,136,405,177"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a878b74bc497da4f959a31cde0cb59165" title="CConfigurableElement\l::getConfigurableElementContext" alt="" coords="208,201,443,243"/>
-<area shape="rect" id="node9" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="243,332,407,373"/>
-<area shape="rect" id="node18" href="$classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654" title="CConfigurableElement\l::getBelongingSubsystem" alt="" coords="232,267,419,308"/>
-<area shape="rect" id="node20" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="236,397,415,439"/>
-<area shape="rect" id="node6" href="$classElementHandle.html#a7621bbb40a5eae73fbad05b5d5141508" title="Get mapping data of the element context. " alt="" coords="496,154,731,181"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="504,205,723,247"/>
-<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="809,203,1017,244"/>
-<area shape="rect" id="node10" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="531,333,695,375"/>
-<area shape="rect" id="node11" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="831,333,995,375"/>
-<area shape="rect" id="node12" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="806,399,1021,440"/>
-<area shape="rect" id="node13" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="834,465,993,491"/>
-<area shape="rect" id="node17" href="$classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e" title="Look for subsystems that need to be resynchronized. " alt="" coords="784,268,1043,309"/>
-<area shape="rect" id="node14" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="1091,435,1301,462"/>
-<area shape="rect" id="node16" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="1092,487,1300,528"/>
-<area shape="rect" id="node15" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="1349,428,1557,469"/>
-<area shape="rect" id="node19" href="$classCSubsystemObject.html#ae18b34938c86c5eca33f8b5036404a7c" title="CSubsystemObject::getSubsystem" alt="" coords="491,274,736,301"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654" title="CConfigurableElement\l::getBelongingSubsystem" alt="" coords="208,29,395,71"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="443,29,661,71"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="709,29,917,71"/>
 </map>

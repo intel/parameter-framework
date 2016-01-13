@@ -1,10 +1,11 @@
 <map id="CParameterMgr::getConfigurableElement" name="CParameterMgr::getConfigurableElement">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="284,5,523,47"/>
-<area shape="rect" id="node6" href="$classCParameterMgr.html#ab2c4c48ccf11b35c5e2f681b24852941" title="Creates a handle to a configurable element. " alt="" coords="291,71,515,112"/>
-<area shape="rect" id="node8" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="294,136,513,177"/>
-<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="571,5,813,47"/>
-<area shape="rect" id="node4" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="861,13,1000,39"/>
-<area shape="rect" id="node5" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1048,13,1207,39"/>
-<area shape="rect" id="node7" href="$classCParameterMgrPlatformConnector.html#abc0e4517c5b64770f493dbba77eea27b" title="Creates a handle to a configurable element. " alt="" coords="571,71,813,112"/>
-<area shape="rect" id="node9" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="588,136,796,177"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ac1bab2b988587697b516037577bbb30f" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="284,71,515,112"/>
+<area shape="rect" id="node9" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="290,136,509,177"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="563,5,801,47"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#ab2c4c48ccf11b35c5e2f681b24852941" title="Creates a handle to a configurable element. " alt="" coords="570,71,794,112"/>
+<area shape="rect" id="node4" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="849,5,1092,47"/>
+<area shape="rect" id="node5" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="1140,13,1279,39"/>
+<area shape="rect" id="node6" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1327,13,1485,39"/>
+<area shape="rect" id="node8" href="$classCParameterMgrPlatformConnector.html#abc0e4517c5b64770f493dbba77eea27b" title="Creates a handle to a configurable element. " alt="" coords="849,71,1092,112"/>
+<area shape="rect" id="node10" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="578,136,786,177"/>
 </map>

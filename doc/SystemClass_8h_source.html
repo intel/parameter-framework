@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -122,78 +121,123 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElement_8h.html">ConfigurableElement.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SubsystemPlugins_8h.html">SubsystemPlugins.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Results_8h.html">Results.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Logger_8h.html">log/Logger.h</a>&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="ConfigurableElement_8h.html">&quot;ConfigurableElement.h&quot;</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="SubsystemPlugins_8h.html">&quot;SubsystemPlugins.h&quot;</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <a class="code" href="Results_8h.html">&quot;Results.h&quot;</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">log</span><span class="preprocessor">/</span><span class="preprocessor">Logger</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">list</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">string</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">memory</span><span class="preprocessor">&gt;</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">class </span><a class="code" href="classDynamicLibrary.html">DynamicLibrary</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class</span> <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">class</span> <a class="code" href="classDynamicLibrary.html">DynamicLibrary</a>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCSystemClass.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSystemClass.html">CSystemClass</a> final : <span class="keyword">public</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCSystemClass.html">   43</a></span>&#160;<span class="keyword">class</span> CSystemClass <span class="keyword">final</span> : <span class="keyword">public</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classCSystemClass.html#a9890f7c5af16e49ff2eafef359abf15f">CSystemClass</a>(<a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCSystemClass.html#a83e967c796ffbb738fe8147109329ab2">~CSystemClass</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     * @param[in] logger the logger provided by the client</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     * it need to be given to the subsystem library</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classCSystemClass.html#a9890f7c5af16e49ff2eafef359abf15f">CSystemClass</a>(<a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;logger);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    ~<a class="code" href="classCSystemClass.html#ae1f648850d61a99397a2d2d4e5b1c7ca">CSystemClass</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">/** Load subsystem plugin and fill the corresponding libraries.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">     * @param[out] strError is filled with new line separated errors if the function returns false,</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">     *                         undefined otherwise.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">     * @param[in] pSubsystemPlugins The plugins to load.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">     * @param[in] bVirtualSubsystemFallback If a subsystem can not be found, use the virtual one.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     * @return true if the plugins succesfully started or that a fallback is available,</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">               false otherwise.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSystemClass.html#a3264a476e689e33f8c30c6596e3f0d16">loadSubsystems</a>(std::string &amp;strError, <span class="keyword">const</span> <a class="code" href="classCSubsystemPlugins.html">CSubsystemPlugins</a> *pSubsystemPlugins,</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <span class="keywordtype">bool</span> bVirtualSubsystemFallback = <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Subsystem factory</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *<a class="code" href="classCSystemClass.html#a2f905254b7b1f312bcbfb34e47f07e33">getSubsystemLibrary</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e">checkForSubsystemsToResync</a>(<a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;syncerSet, <a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;infos);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">      * Look for subsystems that need to be resynchronized.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">      * Consume the need to be resynchronized</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">      * and fill a syncer set with all syncers that need to be resynchronized</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">      *</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">      * @param[out] syncerSet The syncer set to fill</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">      * @param[out] infos Relevant informations client may want to log</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">      */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e">checkForSubsystemsToResync</a>(<a class="code" href="classCSyncerSet.html">CSyncerSet</a> &amp;syncerSet, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">Results</a> &amp;infos);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">/**</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">      * Reset subsystems need to resync flag.</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">      */</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad">cleanSubsystemsNeedToResync</a>();</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">// base</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCSystemClass.html#a7a03770ea06b8606c60001c7a40dfd1e">getKind</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    std::string <a class="code" href="classCSystemClass.html#a8c419862c0e4c1f002791fd7d2f03904">getKind</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSystemClass.html#a4105842ea6649f4df60b401045e9ebdf">getMappingData</a>(<span class="keyword">const</span> std::string &amp;strKey, <span class="keyword">const</span> std::string *&amp;pStrValue) <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classCSystemClass.html#a9890f7c5af16e49ff2eafef359abf15f">CSystemClass</a>(<span class="keyword">const</span> <a class="code" href="classCSystemClass.html">CSystemClass</a> &amp;);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classCSystemClass.html">CSystemClass</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classCSystemClass.html">CSystemClass</a> &amp;);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// base</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">bool</span> loadSubsystemsFromSharedLibraries(<a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;errors,</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                                           <span class="keyword">const</span> <a class="code" href="classCSubsystemPlugins.html">CSubsystemPlugins</a> *pSubsystemPlugins);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">bool</span> loadPlugins(std::list&lt;std::string&gt; &amp;lstrPluginFiles, <a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;errors);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">// Subsystem factory</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *_pSubsystemLibrary;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::list&lt;std::unique_ptr&lt;DynamicLibrary&gt;&gt;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        _subsystemLibraryHandleList; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;_logger;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> entryPointSymbol[];</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSystemClass.html#a4105842ea6649f4df60b401045e9ebdf">getMappingData</a>(<span class="keyword">const</span> std::string &amp;strKey, <span class="keyword">const</span> std::string *&amp;pStrValue) <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::string <a class="code" href="classCSystemClass.html#abebeb3cf0a58b0fb3fbe79ba4337169e">getFormattedMapping</a>() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    CSystemClass(<span class="keyword">const</span> CSystemClass &amp;);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    CSystemClass &amp;operator=(<span class="keyword">const</span> CSystemClass &amp;);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// base</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> childrenAreDynamic() <span class="keyword">const</span> <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">/** Load shared libraries subsystem plugins.</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">     * @param[out] errors is the list of error that occured during loadings.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">     * @param[in] pSubsystemPlugins The plugins to load.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">     * @return true if all plugins have been succesfully loaded, false otherwises.</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">bool</span> loadSubsystemsFromSharedLibraries(<a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">Results</a> &amp;errors,</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                           <span class="keyword">const</span> <a class="code" href="classCSubsystemPlugins.html">CSubsystemPlugins</a> *pSubsystemPlugins);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">/** Load subsystem plugin shared libraries.</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">     * @param[in,out] lstrPluginFiles is the path list of the plugins shared libraries to load.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">     *                Successfully loaded plugins are removed from the list.</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">     * @param[out] errors is the list of error that occured during loadings.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">     * @return true if at least one plugin has been succesfully loaded, false otherwise.</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">     *         When false is returned, some plugins MIHGT have been loaded</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">     *         but the lstrPluginFiles is accurate.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">bool</span> loadPlugins(std::list&lt;std::string&gt; &amp;lstrPluginFiles, <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">Results</a> &amp;errors);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// Subsystem factory</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *_pSubsystemLibrary;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    std::list&lt;std::unique_ptr&lt;<a class="code" href="classDynamicLibrary.html">DynamicLibrary</a>&gt;&gt;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        _subsystemLibraryHandleList; <span class="comment">/**&lt; Contains the list of all open plugin libs. */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">/** Application Logger we need to provide to plugins */</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="namespacecore.html">core</a>::<a class="code" href="namespacecore_1_1log.html">log</a>::<a class="code" href="classcore_1_1log_1_1Logger.html">Logger</a> &amp;_logger;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="comment">/** The entry point symbol that must be implemented by plugins</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> entryPointSymbol[];</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;};</div>
 <div class="ttc" id="classCSubsystemPlugins_html"><div class="ttname"><a href="classCSubsystemPlugins.html">CSubsystemPlugins</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemPlugins_8h_source.html#l00035">SubsystemPlugins.h:35</a></div></div>
 <div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
 <div class="ttc" id="namespacecore_html_a348873e34bd38d2a62f77d3973f1dc1c"><div class="ttname"><a href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a></div><div class="ttdeci">std::list&lt; std::string &gt; Results</div><div class="ttdoc">String list type which can hold list of error/info. </div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00039">Results.h:39</a></div></div>
-<div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
+<div class="ttc" id="classCSystemClass_html_abebeb3cf0a58b0fb3fbe79ba4337169e"><div class="ttname"><a href="classCSystemClass.html#abebeb3cf0a58b0fb3fbe79ba4337169e">CSystemClass::getFormattedMapping</a></div><div class="ttdeci">std::string getFormattedMapping() const override</div><div class="ttdoc">Get the string representation of the mapping. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00090">SystemClass.cpp:90</a></div></div>
+<div class="ttc" id="classCSystemClass_html_a8c419862c0e4c1f002791fd7d2f03904"><div class="ttname"><a href="classCSystemClass.html#a8c419862c0e4c1f002791fd7d2f03904">CSystemClass::getKind</a></div><div class="ttdeci">std::string getKind() const override</div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00077">SystemClass.cpp:77</a></div></div>
 <div class="ttc" id="classCSystemClass_html_a4105842ea6649f4df60b401045e9ebdf"><div class="ttname"><a href="classCSystemClass.html#a4105842ea6649f4df60b401045e9ebdf">CSystemClass::getMappingData</a></div><div class="ttdeci">bool getMappingData(const std::string &amp;strKey, const std::string *&amp;pStrValue) const override</div><div class="ttdoc">Get the value associated to a mapping key in the object&#39;s mapping. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00082">SystemClass.cpp:82</a></div></div>
-<div class="ttc" id="classCSystemClass_html_a3264a476e689e33f8c30c6596e3f0d16"><div class="ttname"><a href="classCSystemClass.html#a3264a476e689e33f8c30c6596e3f0d16">CSystemClass::loadSubsystems</a></div><div class="ttdeci">bool loadSubsystems(std::string &amp;strError, const CSubsystemPlugins *pSubsystemPlugins, bool bVirtualSubsystemFallback=false)</div><div class="ttdoc">Load subsystem plugin and fill the corresponding libraries. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00090">SystemClass.cpp:90</a></div></div>
+<div class="ttc" id="classCSystemClass_html_a3264a476e689e33f8c30c6596e3f0d16"><div class="ttname"><a href="classCSystemClass.html#a3264a476e689e33f8c30c6596e3f0d16">CSystemClass::loadSubsystems</a></div><div class="ttdeci">bool loadSubsystems(std::string &amp;strError, const CSubsystemPlugins *pSubsystemPlugins, bool bVirtualSubsystemFallback=false)</div><div class="ttdoc">Load subsystem plugin and fill the corresponding libraries. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00095">SystemClass.cpp:95</a></div></div>
+<div class="ttc" id="namespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00035">Results.h:35</a></div></div>
+<div class="ttc" id="namespacecore_1_1log_html"><div class="ttname"><a href="namespacecore_1_1log.html">core::log</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00039">Logger.h:39</a></div></div>
 <div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00047">ConfigurableElement.h:47</a></div></div>
-<div class="ttc" id="classCSystemClass_html_ae6f4699f2c40ce3a72bde018aa4453ad"><div class="ttname"><a href="classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad">CSystemClass::cleanSubsystemsNeedToResync</a></div><div class="ttdeci">void cleanSubsystemsNeedToResync()</div><div class="ttdoc">Reset subsystems need to resync flag. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00242">SystemClass.cpp:242</a></div></div>
-<div class="ttc" id="classCSystemClass_html"><div class="ttname"><a href="classCSystemClass.html">CSystemClass</a></div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8h_source.html#l00043">SystemClass.h:43</a></div></div>
-<div class="ttc" id="SubsystemPlugins_8h_html"><div class="ttname"><a href="SubsystemPlugins_8h.html">SubsystemPlugins.h</a></div></div>
+<div class="ttc" id="classCSystemClass_html_ae6f4699f2c40ce3a72bde018aa4453ad"><div class="ttname"><a href="classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad">CSystemClass::cleanSubsystemsNeedToResync</a></div><div class="ttdeci">void cleanSubsystemsNeedToResync()</div><div class="ttdoc">Reset subsystems need to resync flag. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00247">SystemClass.cpp:247</a></div></div>
 <div class="ttc" id="classCSubsystemLibrary_html"><div class="ttname"><a href="classCSubsystemLibrary.html">CSubsystemLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemLibrary_8h_source.html#l00046">SubsystemLibrary.h:46</a></div></div>
 <div class="ttc" id="classDynamicLibrary_html"><div class="ttname"><a href="classDynamicLibrary.html">DynamicLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="DynamicLibrary_8hpp_source.html#l00036">DynamicLibrary.hpp:36</a></div></div>
-<div class="ttc" id="classCSystemClass_html_a2f905254b7b1f312bcbfb34e47f07e33"><div class="ttname"><a href="classCSystemClass.html#a2f905254b7b1f312bcbfb34e47f07e33">CSystemClass::getSubsystemLibrary</a></div><div class="ttdeci">const CSubsystemLibrary * getSubsystemLibrary() const </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00218">SystemClass.cpp:218</a></div></div>
-<div class="ttc" id="Logger_8h_html"><div class="ttname"><a href="Logger_8h.html">Logger.h</a></div></div>
-<div class="ttc" id="classCSystemClass_html_a7a03770ea06b8606c60001c7a40dfd1e"><div class="ttname"><a href="classCSystemClass.html#a7a03770ea06b8606c60001c7a40dfd1e">CSystemClass::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00077">SystemClass.cpp:77</a></div></div>
+<div class="ttc" id="classCSystemClass_html_a2f905254b7b1f312bcbfb34e47f07e33"><div class="ttname"><a href="classCSystemClass.html#a2f905254b7b1f312bcbfb34e47f07e33">CSystemClass::getSubsystemLibrary</a></div><div class="ttdeci">const CSubsystemLibrary * getSubsystemLibrary() const </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00223">SystemClass.cpp:223</a></div></div>
 <div class="ttc" id="classCSystemClass_html_a9890f7c5af16e49ff2eafef359abf15f"><div class="ttname"><a href="classCSystemClass.html#a9890f7c5af16e49ff2eafef359abf15f">CSystemClass::CSystemClass</a></div><div class="ttdeci">CSystemClass(core::log::Logger &amp;logger)</div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00058">SystemClass.cpp:58</a></div></div>
-<div class="ttc" id="Results_8h_html"><div class="ttname"><a href="Results_8h.html">Results.h</a></div></div>
 <div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00038">SyncerSet.h:38</a></div></div>
-<div class="ttc" id="classCSystemClass_html_a83e967c796ffbb738fe8147109329ab2"><div class="ttname"><a href="classCSystemClass.html#a83e967c796ffbb738fe8147109329ab2">CSystemClass::~CSystemClass</a></div><div class="ttdeci">virtual ~CSystemClass()</div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00063">SystemClass.cpp:63</a></div></div>
-<div class="ttc" id="classCSystemClass_html_abefbe05f7e9ce5b93ccdd15b3694184e"><div class="ttname"><a href="classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e">CSystemClass::checkForSubsystemsToResync</a></div><div class="ttdeci">void checkForSubsystemsToResync(CSyncerSet &amp;syncerSet, core::Results &amp;infos)</div><div class="ttdoc">Look for subsystems that need to be resynchronized. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00223">SystemClass.cpp:223</a></div></div>
+<div class="ttc" id="classCSystemClass_html_abefbe05f7e9ce5b93ccdd15b3694184e"><div class="ttname"><a href="classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e">CSystemClass::checkForSubsystemsToResync</a></div><div class="ttdeci">void checkForSubsystemsToResync(CSyncerSet &amp;syncerSet, core::Results &amp;infos)</div><div class="ttdoc">Look for subsystems that need to be resynchronized. </div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00228">SystemClass.cpp:228</a></div></div>
+<div class="ttc" id="classCSystemClass_html_ae1f648850d61a99397a2d2d4e5b1c7ca"><div class="ttname"><a href="classCSystemClass.html#ae1f648850d61a99397a2d2d4e5b1c7ca">CSystemClass::~CSystemClass</a></div><div class="ttdeci">~CSystemClass() override</div><div class="ttdef"><b>Definition:</b> <a href="SystemClass_8cpp_source.html#l00063">SystemClass.cpp:63</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

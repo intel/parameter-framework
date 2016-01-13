@@ -1,5 +1,17 @@
 <map id="PfwHandler_::createCriteria" name="PfwHandler_::createCriteria">
-<area shape="rect" id="node2" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="304,5,415,32"/>
-<area shape="rect" id="node3" href="$classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5" title="Add a new pair [integer, litteral] which represents a criterion. " alt="" coords="248,57,471,98"/>
-<area shape="rect" id="node4" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="298,123,421,149"/>
+<area shape="rect" id="node2" href="$classStatus.html#af094cfd33ddfae117f710778ef648af5" title="Fail with the given error msg. " alt="" coords="314,5,425,32"/>
+<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a025538f1532d26442e0acb7c3ed7497b" title="CParameterMgrPlatformConnector\l::createSelectionCriterionType" alt="" coords="248,57,491,98"/>
+<area shape="rect" id="node9" href="$classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5" title="Add a new pair [integer, litteral] which represents a criterion. " alt="" coords="258,122,481,163"/>
+<area shape="rect" id="node10" href="$classCParameterMgrPlatformConnector.html#ab96bc20c11b804b95a0b44a5d39009c2" title="CParameterMgrPlatformConnector\l::createSelectionCriterion" alt="" coords="248,187,491,229"/>
+<area shape="rect" id="node16" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="308,253,431,280"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a4d2a54a91f937ac71a1f7bbea2ffa1c2" title="CParameterMgr::createSelection\lCriterionType" alt="" coords="539,58,769,99"/>
+<area shape="rect" id="node5" href="$classCSelectionCriteria.html#a450f1208de1f19ad99740510b896a3af" title="CSelectionCriteria\l::createSelectionCriterionType" alt="" coords="817,61,1029,102"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterionLibrary.html#a84be6fc12a809170fb6d114285997b1c" title="CSelectionCriterionLibrary\l::createSelectionCriterionType" alt="" coords="1077,62,1289,103"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a7ece92b3dbfb88c2bc5020281aa8a21e" title="CSelectionCriterionType\l::CSelectionCriterionType" alt="" coords="1337,62,1517,103"/>
+<area shape="rect" id="node8" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="1354,128,1501,155"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#a3b6a3500b78f43bfb894263689b809a7" title="CParameterMgr::createSelection\lCriterion" alt="" coords="539,181,769,222"/>
+<area shape="rect" id="node12" href="$classCSelectionCriteria.html#a8ae57add042140f555532ed8c6b35221" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="831,181,1015,222"/>
+<area shape="rect" id="node13" href="$classCSelectionCriteriaDefinition.html#a721af071a21972611a6b410be8a8a240" title="CSelectionCriteriaDefinition\l::createSelectionCriterion" alt="" coords="1085,179,1281,221"/>
+<area shape="rect" id="node14" href="$classCSelectionCriterion.html#ac0435b98642a148ab2adcf3401fc158e" title="CSelectionCriterion\l::CSelectionCriterion" alt="" coords="1351,179,1503,221"/>
+<area shape="rect" id="node15" href="$classCElement.html#adda0945fbca000ff1e605a9b93f74c64" title="CElement::CElement" alt="" coords="1565,187,1720,213"/>
 </map>

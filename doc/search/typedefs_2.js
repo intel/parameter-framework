@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['info',['Info',['../namespacecore_1_1log_1_1details.html#a4f628b0a303ff9bd5fc7252bbf7096ed',1,'core::log::details']]]
+  ['map',['Map',['../namespaceutility.html#a27f4102be853833ef8010ee7ad915798',1,'utility']]],
+  ['matchesaggregationcriterion',['MatchesAggregationCriterion',['../classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587',1,'CConfigurableElementAggregator']]]
 ];

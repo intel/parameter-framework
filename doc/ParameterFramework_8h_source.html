@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v3.2.1</span>
+   &#160;<span id="projectnumber">v3.2.5</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -44,7 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -93,138 +92,328 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ParameterFramework.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="ParameterFramework_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;cparameter_export.h&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#if defined(__clang__) || defined(__GNUC__)</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define NONNULL __attribute__((nonnull))</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define NONNULL_(...) __attribute__((nonnull(__VA_ARGS__)))</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#define USERESULT __attribute__((warn_unused_result))</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#elif defined(_MSC_VER)</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">// In visual studio&#39;s cl there is no</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// equivalent of nonnull</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define NONNULL</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define NONNULL_(...)</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define USERESULT _Check_return_</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#error &quot;Unknown compilator&quot;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">struct </span><a class="code" href="structPfwHandler__.html">PfwHandler_</a>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">   80</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structPfwHandler__.html">PfwHandler_</a> <a class="code" href="structPfwHandler__.html">PfwHandler</a>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923">   86</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1">   87</a></span>&#160;    <a class="code" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1">pfwLogInfo</a> = 55, <span class="comment">//&lt; Random value to avoid unfortunate mismatch.</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208">   88</a></span>&#160;    <a class="code" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208">pfwLogWarning</a></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;} <a class="code" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923">PfwLogLevel</a>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">   98</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">PfwLogCb</a>(<span class="keywordtype">void</span> *userCtx, <a class="code" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923">PfwLogLevel</a> level, <span class="keyword">const</span> <span class="keywordtype">char</span> *logLine);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structPfwLogger.html">  101</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structPfwLogger.html#a178c3cd7727a2cef98add28b477c67e9">  104</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structPfwLogger.html#a178c3cd7727a2cef98add28b477c67e9">userCtx</a>;</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structPfwLogger.html#a75dd266ade15440442f41319d5e5c7ba">  108</a></span>&#160;    <a class="code" href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">PfwLogCb</a> *<a class="code" href="structPfwLogger.html#a75dd266ade15440442f41319d5e5c7ba">logCb</a>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;} <a class="code" href="structPfwLogger.html">PfwLogger</a>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structPfwCriterion.html">  116</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structPfwCriterion.html#a10ace4b7a0e0430687c0b4a87138dd3e">  119</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structPfwCriterion.html#a10ace4b7a0e0430687c0b4a87138dd3e">name</a>; <span class="comment">//&lt; Must not be null.</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">  120</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">inclusive</a>;   <span class="comment">//&lt; True if the criterion is inclusive, false if exclusive.</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">  133</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> **<a class="code" href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">values</a>; <span class="comment">//&lt; Must not be null.</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;} <a class="code" href="structPfwCriterion.html">PfwCriterion</a>;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<a class="code" href="structPfwHandler__.html">PfwHandler</a> *<a class="code" href="ParameterFramework_8h.html#a630ec902b1ed64c398dfd463621db6a5">pfwCreate</a>() <a class="code" href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">USERESULT</a>;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#aa306287c22f0e6ff701f7fbf3ad92972">pfwDestroy</a>(<a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle) NONNULL;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#abc8358052abb3cd3bff668efbcf9cfcf">pfwStart</a>(<a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle, const <span class="keywordtype">char</span> *configPath, const <a class="code" href="structPfwCriterion.html">PfwCriterion</a> <a class="code" href="structPfwHandler__.html#a999457b497340ae5c7761ba762e3ad38">criteria</a>[],</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">  158</a></span>&#160;              <span class="keywordtype">size_t</span> criterionNb, const <a class="code" href="structPfwLogger.html">PfwLogger</a> *loggger) NONNULL_(1, 2, 3) <a class="code" href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">USERESULT</a>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;const <span class="keywordtype">char</span> *<a class="code" href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69">pfwGetLastError</a>(const <a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle) NONNULL;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb">pfwSetCriterion</a>(<a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle, const <span class="keywordtype">char</span> name[], <span class="keywordtype">int</span> value) NONNULL USERESULT;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#afe708ce766409bc0d82638cca172330a">pfwGetCriterion</a>(const <a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle, const <span class="keywordtype">char</span> name[], <span class="keywordtype">int</span> *value) NONNULL USERESULT;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a78db487e58935caf376608255d652caa">pfwApplyConfigurations</a>(const <a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle) NONNULL USERESULT;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;struct <a class="code" href="structPfwParameterHandler__.html">PfwParameterHandler_</a>;</div>
-<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">  228</a></span>&#160;typedef struct PfwParameterHandler_ <a class="code" href="structPfwParameterHandler__.html">PfwParameterHandler</a>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;PfwParameterHandler *<a class="code" href="ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4">pfwBindParameter</a>(<a class="code" href="structPfwHandler__.html">PfwHandler</a> *handle, const <span class="keywordtype">char</span> path[]) NONNULL;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#a4f999a930988aba1ce1ace77e07bad97">pfwUnbindParameter</a>(PfwParameterHandler *handle) NONNULL;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f">pfwGetIntParameter</a>(const PfwParameterHandler *handle, int32_t *value) NONNULL USERESULT;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded">pfwSetIntParameter</a>(PfwParameterHandler *handle, int32_t value) NONNULL USERESULT;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4">pfwGetStringParameter</a>(const PfwParameterHandler *handle, <span class="keywordtype">char</span> *value[]) NONNULL;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a">pfwSetStringParameter</a>(PfwParameterHandler *handle, const <span class="keywordtype">char</span> value[]) NONNULL USERESULT;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;CPARAMETER_EXPORT</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#a6cfbb2296e998093be642da39745b425">pfwFree</a>(<span class="keywordtype">void</span> *ptr);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#undef NONNULL</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#undef NONNULL_</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#undef USERESULT</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;}</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#endif</span></div>
+<a href="ParameterFramework_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/** @copyright</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">  * Copyright (c) 2015, Intel Corporation</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">  * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">  * Redistribution and use in source and binary forms, with or without modification,</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">  * are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">  * 1. Redistributions of source code must retain the above copyright notice, this</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">  * list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">  * 2. Redistributions in binary form must reproduce the above copyright notice,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">  * this list of conditions and the following disclaimer in the documentation and/or</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">  * other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  * 3. Neither the name of the copyright holder nor the names of its contributors</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  * may be used to endorse or promote products derived from this software without</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">  * specific prior written permission.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">  * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">  * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">  * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">  * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/** @file</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * Simplified parameter framework C API.  This API does not target a perfect</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * one/one mapping with the c++ one, but rather aim ease of use and type safety</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * (as far as possible in c).  All function are reentrant and function call on</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * a pfw (PfwHandle) does not impact any other pfw.  Ie. There is no shared</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * resources between pfw instances.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">pragma</span> <span class="preprocessor">once</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">ifdef</span> __cplusplus</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;cparameter_export.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdbool</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stdint</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&lt;</span><span class="preprocessor">stddef</span><span class="preprocessor">.</span><span class="preprocessor">h</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/** Lots of function in this API require non null pointer parameter.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">  * Such arguments are marked NONNULL.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">if</span> <span class="preprocessor">defined</span><span class="preprocessor">(</span>__clang__<span class="preprocessor">)</span> <span class="preprocessor">||</span> <span class="preprocessor">defined</span><span class="preprocessor">(</span>__GNUC__<span class="preprocessor">)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">NONNULL</span> <span class="keyword">__attribute__</span><span class="preprocessor">(</span><span class="preprocessor">(</span><span class="preprocessor">nonnull</span><span class="preprocessor">)</span><span class="preprocessor">)</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">NONNULL_</span><span class="preprocessor">(</span><span class="preprocessor">...</span><span class="preprocessor">)</span> <span class="keyword">__attribute__</span><span class="preprocessor">(</span><span class="preprocessor">(</span><span class="preprocessor">nonnull</span><span class="preprocessor">(</span><span class="preprocessor">__VA_ARGS__</span><span class="preprocessor">)</span><span class="preprocessor">)</span><span class="preprocessor">)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">USERESULT</span> <span class="keyword">__attribute__</span><span class="preprocessor">(</span><span class="preprocessor">(</span><span class="preprocessor">warn_unused_result</span><span class="preprocessor">)</span><span class="preprocessor">)</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">elif</span> <span class="preprocessor">defined</span><span class="preprocessor">(</span><span class="preprocessor">_MSC_VER</span><span class="preprocessor">)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// In visual studio&#39;s cl there is no</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">// equivalent of nonnull</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">NONNULL</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">NONNULL_</span><span class="preprocessor">(</span><span class="preprocessor">...</span><span class="preprocessor">)</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">USERESULT</span> <span class="preprocessor">_Check_return_</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">else</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">error</span> <span class="stringliteral">&quot;Unknown compilator&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">/** Private handle to a parameter framework.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">  * A PfwHandler* is valid if:</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">  *  - it was created by pfwCreate</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">  *  - it has not been destroyed by pfwDestroyParameter</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">  *  - is not NULL</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">  * A valid handle MUST be provided to all pfw related method.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">  * A valid handler MUST be destroyed with pfwDestroy before programme</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">  * termination.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">  * @note Forward declaration to break header dependency.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">struct</span> <a class="code" href="structPfwHandler__.html">PfwHandler_</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">/** Typedef for use ease. @see PfwHandler_. */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">   81</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span> <a class="code" href="structPfwHandler__.html">PfwHandler_</a> <a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">///////////////////////////////</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">///////////// Log /////////////</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">///////////////////////////////</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">/** Pfw log level for the callback. */</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923">   87</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1">   88</a></span>&#160;    <a class="code" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1">pfwLogInfo</a> = 55, <span class="comment">//&lt; Random value to avoid unfortunate mismatch.</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208">   89</a></span>&#160;    <a class="code" href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208">pfwLogWarning</a></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;} PfwLogLevel;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/** Type of the parameter framework log callback.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">  * @param[in] userCtx Arbitrary context provided during callback registration.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">  * @param[in] level Log level of the log line.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">  * @param[in] logLine Log line (without end line control character like &#39;\n&#39;)</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">  *                    to be logged. The pointer is invalidate after function</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">  *                    return or if any pfw function is called.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">   99</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">PfwLogCb</a>(<span class="keywordtype">void</span> *userCtx, PfwLogLevel level, <span class="keyword">const</span> <span class="keywordtype">char</span> *logLine);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">/** Logger containing a callback method and its context. */</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structPfwLogger.html">  102</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">/** User defined arbitrary value that will be provided to all logCb call. */</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structPfwLogger.html#a178c3cd7727a2cef98add28b477c67e9">  105</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structPfwLogger.html#a178c3cd7727a2cef98add28b477c67e9">userCtx</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">/** Callback that will be called.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">      * If NULL nothing will be logged.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">      */</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structPfwLogger.html#a75dd266ade15440442f41319d5e5c7ba">  109</a></span>&#160;    <a class="code" href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">PfwLogCb</a> *<a class="code" href="structPfwLogger.html#a75dd266ade15440442f41319d5e5c7ba">logCb</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;} PfwLogger;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">///////////////////////////////</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">///////////// Core ////////////</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">///////////////////////////////</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">/** Structure of a parameter framework criterion. */</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structPfwCriterion.html">  117</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">/** Name of the criterion in the pfw configuration rules. */</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structPfwCriterion.html#a10ace4b7a0e0430687c0b4a87138dd3e">  120</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structPfwCriterion.html#a10ace4b7a0e0430687c0b4a87138dd3e">name</a>; <span class="comment">//&lt; Must not be null.</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">  121</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">inclusive</a>;   <span class="comment">//&lt; True if the criterion is inclusive, false if exclusive.</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">/** Null terminated list of criterion value names.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">      *</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">      * Example:</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">      * @verbatim</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">      * { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;, NULL }</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">      * @endverbatim</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">      *</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">      * For an exclusive criterion, the list must not contain more elements then</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">      *                             INT_MAX.</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">      * For an inclusive criterion, the list must not contain more elements then</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">      *                             sizeof(int) * BIT_CHAR - 1.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">      *                             Ie: (int)1 &lt;&lt; n must *not* overflow (UB),</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">      *                                 were n is the number of element in the</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">      *                                 list. @see pfwSetCriterion</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">      */</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">  138</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> **<a class="code" href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">values</a>; <span class="comment">//&lt; Must not be null.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;} PfwCriterion;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">/** Create a parameter framework instance.</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">  * Can not fail except for memory allocation.</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *<a class="code" href="ParameterFramework_8h.html#a630ec902b1ed64c398dfd463621db6a5">pfwCreate</a>() USERESULT;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">/** Destroy a parameter framework. Can not fail. */</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#aa306287c22f0e6ff701f7fbf3ad92972">pfwDestroy</a>(<a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle) NONNULL;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">/** Start a parameter framework.</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">  * @param[in] handle @see PfwHandler</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">  * @param[in] configPath Path to the file containing the pfw configuration.</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">  * @param[in] criteria An array of PfwCriterion.</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">  * @param[in] criterionNb The number of PfwCriterion in criteria.</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">  * @param[in] logger the logger to use for all operation.</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">  *                   If NULL, log infos to standard output and</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">  *                                errors to standard error.</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">  * @return true on success, false on failure.</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a35507d2584e2dde83bbc618aa810ba51">pfwStart</a>(<a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, <span class="keyword">const</span> <span class="keywordtype">char</span> *configPath, <span class="keyword">const</span> PfwCriterion criteria[],</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">  163</a></span>&#160;              size_t criterionNb, <span class="keyword">const</span> PfwLogger *logger) NONNULL_(1, 2, 3) USERESULT;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">/** @return a string describing the last call result.</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">  * If the last pfw function call succeeded, return an empty string.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">  * If the last pfw function call failed, return a message explaining the error cause.</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">  * The return pointer is invalidated if any pfw method is called on the SAME</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">  * PfwHandle.</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">  * Each PfwHandle own it&#39;s last error message. It is not static nor TLS.</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">  * As a result, calling a pfw function with a NULL PfwHandler will result in a</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">  * failure WITHOUT updating the last error.</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69">pfwGetLastError</a>(<span class="keyword">const</span> <a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle) NONNULL;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">/** Set a criterion value given its name and value.</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">  * @param[in] handle @see PfwHandler</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">  * @param[in] name The name of the criterion that need to be changed.</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">  * @param[in] value If the criterion is exclusive, the index of the new value.</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">  *              If the criterion is inclusive, a bit field where each bit</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">  *              correspond to the value index.</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">  * For an inclusive criterion defined as such: { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;, NULL }</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">  * to set the value Green and Blue, value has to be 1&lt;&lt;1 | 1&lt;&lt;2 = 0b110 = 6.</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">  * For an exclusive criterion defined as such: { &quot;Car&quot;, &quot;Boat&quot;, &quot;Plane&quot;, NULL }</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">  * to set the value Plane, value has to be 2.</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">  * Criterion change do not have impact on the parameters value</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">  * (no configuration applied) until the changes are committed using pfwApplyConfigurations.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">  * @return true on success and false on failure.</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb">pfwSetCriterion</a>(<a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, <span class="keyword">const</span> <span class="keywordtype">char</span> name[], <span class="keywordtype">int</span> value) NONNULL USERESULT;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">/** Get a criterion value given its name.</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">  * Same usage as pfwSetCriterion except that value is an out param.</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">  * Get criterion will return the last value setted with pfwSetCriterion independantly of</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">  * pfwCommitCritenio.</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#afe708ce766409bc0d82638cca172330a">pfwGetCriterion</a>(<span class="keyword">const</span> <a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, <span class="keyword">const</span> <span class="keywordtype">char</span> name[], <span class="keywordtype">int</span> *value) NONNULL USERESULT;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">/** Commit criteria change and change parameters according to the configurations.</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">  * Criterion do not have impact on the parameters value when changed,</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">  * instead they are staged and only feed to the rule engine</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">  * (who then impact parameter values according to the configuration) when</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">  * committed with this function.</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">  * @param[in] handle @see PfwHandler</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">  * @return true on success and false on failure.</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a78db487e58935caf376608255d652caa">pfwApplyConfigurations</a>(<span class="keyword">const</span> <a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle) NONNULL USERESULT;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">///////////////////////////////</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">/////// Parameter access //////</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">///////////////////////////////</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">/** Handler to a pfw parameter.</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">  * A PfwParameterHandler* is valid if:</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">  *  - it was created by pfwBindParameter</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">  *  - it has not been destroyed by pfwDestroyParameter</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment">  *  - is not NULL</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">  *  - the pfwHandle used to created is still valid (ie. it must not outlive</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">  *    its parent pfw)</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">  * A valid handle MUST be provided to all pfw parameter related method.</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">  * Any created handle MUST be destroyed (with pfwDestroyParameter) before</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">  * the PfwHandler that was used for its creation.</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">  * @note Forward declaration to break header dependency.</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keyword">struct</span> <a class="code" href="structPfwParameterHandler__.html">PfwParameterHandler_</a>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">  233</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span> <a class="code" href="structPfwParameterHandler__.html">PfwParameterHandler_</a> <a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a>;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">/** Construct the handle to a parameter given its path.</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">  * The PfwHandle MUST stay valid until PfwParameterHandler destruction.</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">  * @return a PfwParameterHandler on success, NULL on error.</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">  *         @see pfwGetLastError for error detail.</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a> *<a class="code" href="ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4">pfwBindParameter</a>(<a class="code" href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a> *handle, <span class="keyword">const</span> <span class="keywordtype">char</span> path[]) NONNULL;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">/** Destroy a parameter handle. Can not fail. */</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#a4f999a930988aba1ce1ace77e07bad97">pfwUnbindParameter</a>(<a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a> *handle) NONNULL;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">/** Access the value of a previously bind int parameter.</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">  * @param[in] handle Handler to a valid parameter.</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">  * @param[in] value Non null pointer to an integer that will</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">  *        hold the parameter value on success, undefined otherwise.</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">  * return true of success, false on failure.</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f">pfwGetIntParameter</a>(<span class="keyword">const</span> <a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a> *handle, int32_t *value) NONNULL USERESULT;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">/** Set the value of a previously bind int parameter.</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">  * @param[in] handle Handler to a valid parameter.</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">  * @param[in] value The parameter value to set.</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">  * return true of success, false on failure.</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded">pfwSetIntParameter</a>(<a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a> *handle, int32_t value) NONNULL USERESULT;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">/** Access the value of a previously bind string parameter.</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">  * @param[in] handle Handler to a valid parameter.</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">  * @param[out] value Non null pointer on a string.</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">  *                   Will point on the parameter value string on success,</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">  *                   NULL on failure.</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">  *                   The callee MUST free the returned string using pfwFree after use.</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">  * @return true on success, false on failure.</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4">pfwGetStringParameter</a>(<span class="keyword">const</span> <a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a> *handle, <span class="keywordtype">char</span> *value[]) NONNULL;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">/** Set the value of a previously bind string parameter.</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="comment">  * @param[in] handle Handler to a valid parameter</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment">  * @param[in] value Non null pointer to a null terminated string to set.</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a">pfwSetStringParameter</a>(<a class="code" href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a> *handle, <span class="keyword">const</span> <span class="keywordtype">char</span> value[]) NONNULL USERESULT;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment">/** Frees the memory space pointed to by ptr,</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment">  *  which must have been returned by a previous call to the pfw.</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment">  *</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">  * @param[in] ptr pointer to the memory to free.</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">  * @see man 3 free for usage.</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">  * @note Wrapper around the standard free to avoid problems</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">  *       in case of a different pfw and client allocator.</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">  */</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;CPARAMETER_EXPORT</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ParameterFramework_8h.html#a6cfbb2296e998093be642da39745b425">pfwFree</a>(<span class="keywordtype">void</span> *ptr);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">undef</span> <span class="preprocessor">NONNULL</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">undef</span> <span class="preprocessor">NONNULL_</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">undef</span> <span class="preprocessor">USERESULT</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">ifdef</span> __cplusplus</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;}</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
 <div class="ttc" id="ParameterFramework_8h_html_a4f999a930988aba1ce1ace77e07bad97"><div class="ttname"><a href="ParameterFramework_8h.html#a4f999a930988aba1ce1ace77e07bad97">pfwUnbindParameter</a></div><div class="ttdeci">CPARAMETER_EXPORT void pfwUnbindParameter(PfwParameterHandler *handle) NONNULL</div><div class="ttdoc">Destroy a parameter handle. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00327">ParameterFramework.cpp:327</a></div></div>
-<div class="ttc" id="ParameterFramework_8h_html_a4de3d5bd92151405705e3a122b6f5a71"><div class="ttname"><a href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">PfwLogCb</a></div><div class="ttdeci">void PfwLogCb(void *userCtx, PfwLogLevel level, const char *logLine)</div><div class="ttdoc">Type of the parameter framework log callback. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00098">ParameterFramework.h:98</a></div></div>
-<div class="ttc" id="structPfwLogger_html_a75dd266ade15440442f41319d5e5c7ba"><div class="ttname"><a href="structPfwLogger.html#a75dd266ade15440442f41319d5e5c7ba">PfwLogger::logCb</a></div><div class="ttdeci">PfwLogCb * logCb</div><div class="ttdoc">Callback that will be called. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00108">ParameterFramework.h:108</a></div></div>
+<div class="ttc" id="ParameterFramework_8h_html_a4de3d5bd92151405705e3a122b6f5a71"><div class="ttname"><a href="ParameterFramework_8h.html#a4de3d5bd92151405705e3a122b6f5a71">PfwLogCb</a></div><div class="ttdeci">void PfwLogCb(void *userCtx, PfwLogLevel level, const char *logLine)</div><div class="ttdoc">Type of the parameter framework log callback. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00099">ParameterFramework.h:99</a></div></div>
+<div class="ttc" id="structPfwLogger_html_a75dd266ade15440442f41319d5e5c7ba"><div class="ttname"><a href="structPfwLogger.html#a75dd266ade15440442f41319d5e5c7ba">PfwLogger::logCb</a></div><div class="ttdeci">PfwLogCb * logCb</div><div class="ttdoc">Callback that will be called. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00109">ParameterFramework.h:109</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a7e2da0cb4b2dad4fe639259c4a087feb"><div class="ttname"><a href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb">pfwSetCriterion</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwSetCriterion(PfwHandler *handle, const char name[], int value) NONNULL USERESULT</div><div class="ttdoc">Set a criterion value given its name and value. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00256">ParameterFramework.cpp:256</a></div></div>
-<div class="ttc" id="structPfwLogger_html_a178c3cd7727a2cef98add28b477c67e9"><div class="ttname"><a href="structPfwLogger.html#a178c3cd7727a2cef98add28b477c67e9">PfwLogger::userCtx</a></div><div class="ttdeci">void * userCtx</div><div class="ttdoc">User defined arbitrary value that will be provided to all logCb call. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00104">ParameterFramework.h:104</a></div></div>
+<div class="ttc" id="ParameterFramework_8h_html_a6dddfea6f8fa7f2770530d770062c572"><div class="ttname"><a href="ParameterFramework_8h.html#a6dddfea6f8fa7f2770530d770062c572">PfwHandler</a></div><div class="ttdeci">struct PfwHandler_ PfwHandler</div><div class="ttdoc">Typedef for use ease. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00081">ParameterFramework.h:81</a></div></div>
+<div class="ttc" id="ParameterFramework_8h_html_a35507d2584e2dde83bbc618aa810ba51"><div class="ttname"><a href="ParameterFramework_8h.html#a35507d2584e2dde83bbc618aa810ba51">pfwStart</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion criteria[], size_t criterionNb, const PfwLogger *logger) NONNULL_(1</div><div class="ttdoc">Start a parameter framework. </div></div>
+<div class="ttc" id="structPfwLogger_html_a178c3cd7727a2cef98add28b477c67e9"><div class="ttname"><a href="structPfwLogger.html#a178c3cd7727a2cef98add28b477c67e9">PfwLogger::userCtx</a></div><div class="ttdeci">void * userCtx</div><div class="ttdoc">User defined arbitrary value that will be provided to all logCb call. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00105">ParameterFramework.h:105</a></div></div>
+<div class="ttc" id="ParameterFramework_8h_html_a2f7becef8c8e6cc16d34d12069128058"><div class="ttname"><a href="ParameterFramework_8h.html#a2f7becef8c8e6cc16d34d12069128058">PfwParameterHandler</a></div><div class="ttdeci">struct PfwParameterHandler_ PfwParameterHandler</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00233">ParameterFramework.h:233</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a78db487e58935caf376608255d652caa"><div class="ttname"><a href="ParameterFramework_8h.html#a78db487e58935caf376608255d652caa">pfwApplyConfigurations</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwApplyConfigurations(const PfwHandler *handle) NONNULL USERESULT</div><div class="ttdoc">Commit criteria change and change parameters according to the configurations. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00285">ParameterFramework.cpp:285</a></div></div>
-<div class="ttc" id="structPfwHandler___html_a999457b497340ae5c7761ba762e3ad38"><div class="ttname"><a href="structPfwHandler__.html#a999457b497340ae5c7761ba762e3ad38">PfwHandler_::criteria</a></div><div class="ttdeci">pfw::Criteria criteria</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00146">ParameterFramework.cpp:146</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a4e5ebfa005afa6e7daa12058d9d6cb69"><div class="ttname"><a href="ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69">pfwGetLastError</a></div><div class="ttdeci">CPARAMETER_EXPORT const char * pfwGetLastError(const PfwHandler *handle) NONNULL</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00245">ParameterFramework.cpp:245</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a1c73add8fee0c519bfa18677d533ebd4"><div class="ttname"><a href="ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4">pfwBindParameter</a></div><div class="ttdeci">CPARAMETER_EXPORT PfwParameterHandler * pfwBindParameter(PfwHandler *handle, const char path[]) NONNULL</div><div class="ttdoc">Construct the handle to a parameter given its path. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00306">ParameterFramework.cpp:306</a></div></div>
-<div class="ttc" id="structPfwCriterion_html_a10ace4b7a0e0430687c0b4a87138dd3e"><div class="ttname"><a href="structPfwCriterion.html#a10ace4b7a0e0430687c0b4a87138dd3e">PfwCriterion::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Name of the criterion in the pfw configuration rules. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00119">ParameterFramework.h:119</a></div></div>
+<div class="ttc" id="structPfwCriterion_html_a10ace4b7a0e0430687c0b4a87138dd3e"><div class="ttname"><a href="structPfwCriterion.html#a10ace4b7a0e0430687c0b4a87138dd3e">PfwCriterion::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Name of the criterion in the pfw configuration rules. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00120">ParameterFramework.h:120</a></div></div>
 <div class="ttc" id="structPfwHandler___html"><div class="ttname"><a href="structPfwHandler__.html">PfwHandler_</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00141">ParameterFramework.cpp:141</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a7dde5f55f3d1e45a05409912160df12f"><div class="ttname"><a href="ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f">pfwGetIntParameter</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value) NONNULL USERESULT</div><div class="ttdoc">Access the value of a previously bind int parameter. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00333">ParameterFramework.cpp:333</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a630ec902b1ed64c398dfd463621db6a5"><div class="ttname"><a href="ParameterFramework_8h.html#a630ec902b1ed64c398dfd463621db6a5">pfwCreate</a></div><div class="ttdeci">CPARAMETER_EXPORT PfwHandler * pfwCreate() USERESULT</div><div class="ttdoc">Create a parameter framework instance. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00157">ParameterFramework.cpp:157</a></div></div>
-<div class="ttc" id="ParameterFramework_8h_html_aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1"><div class="ttname"><a href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1">pfwLogInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00087">ParameterFramework.h:87</a></div></div>
-<div class="ttc" id="structPfwCriterion_html"><div class="ttname"><a href="structPfwCriterion.html">PfwCriterion</a></div><div class="ttdoc">Structure of a parameter framework criterion. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00116">ParameterFramework.h:116</a></div></div>
+<div class="ttc" id="ParameterFramework_8h_html_aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1"><div class="ttname"><a href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb4efe46eadcaa650660f371aadc7af1">pfwLogInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00088">ParameterFramework.h:88</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_aa306287c22f0e6ff701f7fbf3ad92972"><div class="ttname"><a href="ParameterFramework_8h.html#aa306287c22f0e6ff701f7fbf3ad92972">pfwDestroy</a></div><div class="ttdeci">CPARAMETER_EXPORT void pfwDestroy(PfwHandler *handle) NONNULL</div><div class="ttdoc">Destroy a parameter framework. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00162">ParameterFramework.cpp:162</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a6cfbb2296e998093be642da39745b425"><div class="ttname"><a href="ParameterFramework_8h.html#a6cfbb2296e998093be642da39745b425">pfwFree</a></div><div class="ttdeci">CPARAMETER_EXPORT void pfwFree(void *ptr)</div><div class="ttdoc">Frees the memory space pointed to by ptr, which must have been returned by a previous call to the pfw...</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00364">ParameterFramework.cpp:364</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_afe708ce766409bc0d82638cca172330a"><div class="ttname"><a href="ParameterFramework_8h.html#afe708ce766409bc0d82638cca172330a">pfwGetCriterion</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value) NONNULL USERESULT</div><div class="ttdoc">Get a criterion value given its name. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00270">ParameterFramework.cpp:270</a></div></div>
 <div class="ttc" id="structPfwParameterHandler___html"><div class="ttname"><a href="structPfwParameterHandler__.html">PfwParameterHandler_</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00300">ParameterFramework.cpp:300</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a7d998384abf12976a2bbb59bc0ba82e4"><div class="ttname"><a href="ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4">pfwGetStringParameter</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[]) NONNULL</div><div class="ttdoc">Access the value of a previously bind string parameter. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00344">ParameterFramework.cpp:344</a></div></div>
-<div class="ttc" id="structPfwCriterion_html_aa4ec70205cbf589870e251c7a9f040dc"><div class="ttname"><a href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">PfwCriterion::inclusive</a></div><div class="ttdeci">bool inclusive</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00120">ParameterFramework.h:120</a></div></div>
-<div class="ttc" id="structPfwCriterion_html_a636733a565765965e86b34c1b3c97b41"><div class="ttname"><a href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">PfwCriterion::values</a></div><div class="ttdeci">const char ** values</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00133">ParameterFramework.h:133</a></div></div>
-<div class="ttc" id="ParameterFramework_8h_html_a62734ee35af516b5d5f3d669ad1abb44"><div class="ttname"><a href="ParameterFramework_8h.html#a62734ee35af516b5d5f3d669ad1abb44">USERESULT</a></div><div class="ttdeci">CPARAMETER_EXPORT bool USERESULT</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00158">ParameterFramework.h:158</a></div></div>
-<div class="ttc" id="ParameterFramework_8h_html_aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208"><div class="ttname"><a href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208">pfwLogWarning</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00088">ParameterFramework.h:88</a></div></div>
-<div class="ttc" id="ParameterFramework_8h_html_aaee184feb928f5c83467867a4f7c2923"><div class="ttname"><a href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923">PfwLogLevel</a></div><div class="ttdeci">PfwLogLevel</div><div class="ttdoc">Pfw log level for the callback. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00086">ParameterFramework.h:86</a></div></div>
-<div class="ttc" id="ParameterFramework_8h_html_abc8358052abb3cd3bff668efbcf9cfcf"><div class="ttname"><a href="ParameterFramework_8h.html#abc8358052abb3cd3bff668efbcf9cfcf">pfwStart</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion criteria[], size_t criterionNb, const PfwLogger *loggger) NONNULL_(1</div><div class="ttdoc">Start a parameter framework. </div></div>
-<div class="ttc" id="structPfwLogger_html"><div class="ttname"><a href="structPfwLogger.html">PfwLogger</a></div><div class="ttdoc">Logger containing a callback method and its context. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00101">ParameterFramework.h:101</a></div></div>
+<div class="ttc" id="structPfwCriterion_html_aa4ec70205cbf589870e251c7a9f040dc"><div class="ttname"><a href="structPfwCriterion.html#aa4ec70205cbf589870e251c7a9f040dc">PfwCriterion::inclusive</a></div><div class="ttdeci">bool inclusive</div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00121">ParameterFramework.h:121</a></div></div>
+<div class="ttc" id="structPfwCriterion_html_a636733a565765965e86b34c1b3c97b41"><div class="ttname"><a href="structPfwCriterion.html#a636733a565765965e86b34c1b3c97b41">PfwCriterion::values</a></div><div class="ttdeci">const char ** values</div><div class="ttdoc">Null terminated list of criterion value names. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00138">ParameterFramework.h:138</a></div></div>
+<div class="ttc" id="ParameterFramework_8h_html_aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208"><div class="ttname"><a href="ParameterFramework_8h.html#aaee184feb928f5c83467867a4f7c2923acb089aa3b577372c1190157e7f0ab208">pfwLogWarning</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8h_source.html#l00089">ParameterFramework.h:89</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_af7fd08602e984c778aaf0e4526cbbded"><div class="ttname"><a href="ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded">pfwSetIntParameter</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value) NONNULL USERESULT</div><div class="ttdoc">Set the value of a previously bind int parameter. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00338">ParameterFramework.cpp:338</a></div></div>
 <div class="ttc" id="ParameterFramework_8h_html_a7913a676a9f57c14b0b6f7fa20ec9f9a"><div class="ttname"><a href="ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a">pfwSetStringParameter</a></div><div class="ttdeci">CPARAMETER_EXPORT bool pfwSetStringParameter(PfwParameterHandler *handle, const char value[]) NONNULL USERESULT</div><div class="ttdoc">Set the value of a previously bind string parameter. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterFramework_8cpp_source.html#l00358">ParameterFramework.cpp:358</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

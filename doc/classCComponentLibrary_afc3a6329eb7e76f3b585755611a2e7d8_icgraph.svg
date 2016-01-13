@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" target="_top" xlink:title="CComponentInstance\l::fromXml">
+<g id="a_node2"><a xlink:href="classCComponentInstance.html#adc39df04f99053ef133197fdf8c54125" target="_top" xlink:title="CComponentInstance\l::fromXml">
 <polygon fill="white" stroke="black" points="166.5,-39 166.5,-69 286.5,-69 286.5,-39 166.5,-39"/>
 <text text-anchor="start" x="174.5" y="-57" font-family="Verdana" font-size="10.00">CComponentInstance</text>
 <text text-anchor="middle" x="226.5" y="-46" font-family="Verdana" font-size="10.00">::fromXml</text>
@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" target="_top" xlink:title="CComponentType::fromXml">
+<g id="a_node3"><a xlink:href="classCComponentType.html#aab840fe60aee1e0377ae75d64e3c9f95" target="_top" xlink:title="CComponentType::fromXml">
 <polygon fill="white" stroke="black" points="153,-0.5 153,-19.5 300,-19.5 300,-0.5 153,-0.5"/>
 <text text-anchor="middle" x="226.5" y="-7.5" font-family="Verdana" font-size="10.00">CComponentType::fromXml</text>
 </a>

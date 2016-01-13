@@ -1,0 +1,15 @@
+<map id="CSelectionCriterionRule::fromXml" name="CSelectionCriterionRule::fromXml">
+<area shape="rect" id="node2" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="775,174,968,201"/>
+<area shape="rect" id="node3" href="$classCXmlDomainImportContext.html#a6846a8b738626da74a630624f3635730" title="CXmlDomainImportContext\l::getSelectionCriteriaDefinition" alt="" coords="227,56,443,98"/>
+<area shape="rect" id="node4" href="$classCSelectionCriteriaDefinition.html#ade9c9f7fe7806988d3d922bf615e5994" title="CSelectionCriteriaDefinition\l::getSelectionCriterion" alt="" coords="237,122,433,163"/>
+<area shape="rect" id="node6" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="263,187,407,228"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionRule.html#a9224f71668d35a08e86062946ca7512d" title="CSelectionCriterionRule\l::getKind" alt="" coords="250,252,421,294"/>
+<area shape="rect" id="node8" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="253,342,418,369"/>
+<area shape="rect" id="node13" href="$classCSelectionCriterion.html#a68f922bffc18811306eb3da52c340289" title="CSelectionCriterion\l::getCriterionType" alt="" coords="263,394,407,435"/>
+<area shape="rect" id="node14" href="$classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f" title="ISelectionCriterionTypeInterface\l::getNumericalValue" alt="" coords="224,459,447,500"/>
+<area shape="rect" id="node5" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="537,129,684,156"/>
+<area shape="rect" id="node9" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="528,241,693,268"/>
+<area shape="rect" id="node10" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="513,292,708,318"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="495,342,727,369"/>
+<area shape="rect" id="node12" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="495,393,726,420"/>
+</map>

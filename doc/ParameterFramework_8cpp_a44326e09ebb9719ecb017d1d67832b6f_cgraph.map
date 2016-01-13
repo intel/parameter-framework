@@ -1,31 +1,31 @@
 <map id="pfwStart" name="pfwStart">
-<area shape="rect" id="node2" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="475,7,585,34"/>
-<area shape="rect" id="node3" href="$structPfwHandler__.html#a239533da5b455134b8ac3b173e4b1719" title="PfwHandler_::setLogger" alt="" coords="163,167,335,194"/>
-<area shape="rect" id="node4" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="152,66,347,92"/>
-<area shape="rect" id="node7" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="190,116,309,143"/>
-<area shape="rect" id="node8" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="128,218,371,260"/>
-<area shape="rect" id="node30" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="199,284,299,311"/>
-<area shape="rect" id="node5" href="$classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5" title="Add a new pair [integer, litteral] which represents a criterion. " alt="" coords="419,58,641,100"/>
-<area shape="rect" id="node6" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="469,124,591,151"/>
-<area shape="rect" id="node9" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="451,226,609,252"/>
-<area shape="rect" id="node10" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="689,100,896,141"/>
-<area shape="rect" id="node13" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="709,188,877,229"/>
-<area shape="rect" id="node18" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="716,368,869,409"/>
-<area shape="rect" id="node28" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="944,250,1179,292"/>
-<area shape="rect" id="node11" href="$classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" title="Sync the blackboard. " alt="" coords="994,83,1129,110"/>
-<area shape="rect" id="node12" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="1269,83,1375,110"/>
-<area shape="rect" id="node14" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="1231,211,1413,238"/>
-<area shape="rect" id="node15" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="1250,316,1394,343"/>
-<area shape="rect" id="node16" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="981,185,1142,226"/>
-<area shape="rect" id="node17" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="1239,145,1405,186"/>
-<area shape="rect" id="node19" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="953,368,1169,409"/>
-<area shape="rect" id="node20" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="963,433,1159,474"/>
-<area shape="rect" id="node21" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="1227,433,1417,474"/>
-<area shape="rect" id="node22" href="$namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40" title="Utility to underline. " alt="" coords="1483,331,1620,358"/>
-<area shape="rect" id="node23" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1475,382,1627,408"/>
-<area shape="rect" id="node24" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="1465,433,1637,474"/>
-<area shape="rect" id="node25" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="1465,498,1637,540"/>
-<area shape="rect" id="node26" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="1465,564,1637,605"/>
-<area shape="rect" id="node27" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="1685,564,1857,605"/>
-<area shape="rect" id="node29" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="1229,262,1415,288"/>
+<area shape="rect" id="node2" href="$classStatus.html#af094cfd33ddfae117f710778ef648af5" title="Fail with the given error msg. " alt="" coords="198,13,309,39"/>
+<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a99b164b53bcc43f20d06efc062422a2d" title="CParameterMgrPlatformConnector\l::CParameterMgrPlatformConnector" alt="" coords="128,64,379,105"/>
+<area shape="rect" id="node8" href="$structPfwHandler__.html#a239533da5b455134b8ac3b173e4b1719" title="PfwHandler_::setLogger" alt="" coords="167,130,339,157"/>
+<area shape="rect" id="node10" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="194,181,313,207"/>
+<area shape="rect" id="node11" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="132,232,375,273"/>
+<area shape="rect" id="node30" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="203,298,303,325"/>
+<area shape="rect" id="node4" href="$classCParameterMgrLogger.html#ae8d08a1e71a9d7556f0697cefd9040d1" title="CParameterMgrLogger\l::CParameterMgrLogger" alt="" coords="461,5,635,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#ae7738edec2c505ffa54a9f0f42975586" title="CParameterMgr::CParameterMgr" alt="" coords="433,71,663,98"/>
+<area shape="rect" id="node6" href="$classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0" title="Helper method to build final URI from base and relative uri/path. " alt="" coords="749,22,920,49"/>
+<area shape="rect" id="node7" href="$classcore_1_1log_1_1Logger.html#a8a82b2c6ec09ee267380ed4e05310355" title="core::log::Logger::\lLogger" alt="" coords="766,73,903,115"/>
+<area shape="rect" id="node9" href="$classCParameterMgrPlatformConnector.html#a40a3fc96419a1c3a39fc23be2e224927" title="CParameterMgrPlatformConnector\l::setLogger" alt="" coords="427,123,669,164"/>
+<area shape="rect" id="node12" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="469,239,627,266"/>
+<area shape="rect" id="node13" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="751,157,919,199"/>
+<area shape="rect" id="node18" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="758,232,911,273"/>
+<area shape="rect" id="node28" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="717,303,952,344"/>
+<area shape="rect" id="node14" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="1027,105,1189,147"/>
+<area shape="rect" id="node15" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="1276,101,1443,143"/>
+<area shape="rect" id="node16" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="1515,99,1662,140"/>
+<area shape="rect" id="node17" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1735,99,1882,140"/>
+<area shape="rect" id="node19" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="1000,189,1216,231"/>
+<area shape="rect" id="node20" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="1010,255,1206,296"/>
+<area shape="rect" id="node21" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="1264,264,1455,305"/>
+<area shape="rect" id="node22" href="$namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40" title="Utility to underline. " alt="" coords="1520,165,1657,191"/>
+<area shape="rect" id="node23" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1513,215,1665,242"/>
+<area shape="rect" id="node24" href="$classCSelectionCriterionType.html#a031d3104b102c648eb358b9fd5e275f5" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="1503,267,1675,308"/>
+<area shape="rect" id="node25" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="1503,332,1675,373"/>
+<area shape="rect" id="node26" href="$classCSelectionCriterionType.html#a85a934c842efc58837ed014db7ccdb5d" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="1503,397,1675,439"/>
+<area shape="rect" id="node27" href="$classCSelectionCriterionType.html#a2b3ecd30ad2e3e442a0c4ce0ca8ca05e" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="1723,397,1895,439"/>
+<area shape="rect" id="node29" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="1015,321,1201,347"/>
 </map>

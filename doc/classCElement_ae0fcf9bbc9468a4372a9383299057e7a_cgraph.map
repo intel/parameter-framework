@@ -1,5 +1,4 @@
 <map id="CElement::findDescendant" name="CElement::findDescendant">
-<area shape="rect" id="node2" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="485,25,643,51"/>
-<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="491,87,637,114"/>
-<area shape="rect" id="node4" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="245,50,437,77"/>
+<area shape="rect" id="node2" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="245,5,403,32"/>
+<area shape="rect" id="node3" href="$classCElement.html#af51bbf231ec74ff4d4b7fac9588be603" title="CElement::findChild" alt="" coords="251,56,397,83"/>
 </map>
