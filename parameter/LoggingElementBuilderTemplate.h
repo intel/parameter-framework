@@ -34,7 +34,7 @@
 #include "ElementBuilder.h"
 #include <log/Logger.h>
 
-namespace detail
+namespace details
 {
 /** Part of the implementation of `TLoggingElementBuilderTemplate`
  * that does not need to be template.
@@ -87,7 +87,7 @@ public:
      */
     virtual CElement *createElement(const CXmlElement &xmlElement) const
     {
-        return new ElementType(detail::getName(xmlElement), mLogger);
+        return new ElementType(details::getName(xmlElement), mLogger);
     }
 
 private:
