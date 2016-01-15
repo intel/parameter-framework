@@ -50,7 +50,7 @@ install:
   - set RELEASE_LIBXML2_PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64
 
   # Setup Visual studio build environement
-  - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
+  - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64'
 
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
@@ -74,7 +74,7 @@ build_script:
   - mkdir 64bits-release & cd 64bits-release
   # Add debug libxml2.dll in the path so that tests can find it
   - set TEST_PATH=%RELEASE_LIBXML2_PATH%\bin
-  - cmake -G "Visual Studio 12 2013 Win64" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%RELEASE_LIBXML2_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
+  - cmake -G "Visual Studio 14 2015 Win64" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%RELEASE_LIBXML2_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
   # Build, test and install
   - cmake --build . --config release
   - ctest --build-config release %CTEST_PARAMS%
@@ -88,7 +88,7 @@ build_script:
   # %INSTALL%\bin is where parameter.dll is installed
   # Also add the path where the release libxml2.dll has been extracted
   - set TEST_PATH=%RELEASE_LIBXML2_PATH%\bin;%INSTALL%\lib;%INSTALL%\bin
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
   # Unfortunately, the skeleton test currently doesn't work on
   # multi-configuration build systems (Visual Studio is one of those) without
   # installing the plugin
