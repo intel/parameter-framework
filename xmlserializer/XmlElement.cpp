@@ -30,6 +30,9 @@
 #include "XmlElement.h"
 #include <libxml/tree.h>
 #include "convert.hpp"
+
+#include <sstream>
+#include <iomanip>
 #include <stdlib.h>
 
 using std::string;
@@ -202,6 +205,26 @@ template <>
 void CXmlElement::setAttribute<std::string>(const string &name, const string &value)
 {
     setAttribute(name, value.c_str());
+}
+
+template <>
+void CXmlElement::setAttribute<float>(const string &name, const float &value)
+{
+    std::ostringstream ss;
+    ss << std::setprecision(6) // max nb digit=`ceil(log10(2^23))=6`, 23=float fraction part
+       << value; 
+
+    setAttribute(name, ss.str());
+}
+
+template <>
+void CXmlElement::setAttribute<double>(const string &name, const double &value)
+{
+    std::ostringstream ss;
+    ss << std::setprecision(16) // max nb digit=`ceil(log10(2^52))=16`, 52=double fraction part
+       << value; 
+
+    setAttribute(name, ss.str());
 }
 
 // This method exists for 2 reasons:
