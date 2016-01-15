@@ -55,7 +55,7 @@ public:
      *
      * @param[in] command the command to execute.
      * @param[in] arguments the command arguments.
-     * @param[out] the result of the command.
+     * @param[out] output the result of the command.
      *
      * return true in the command executed succesfuly,
      *        false otherwise.

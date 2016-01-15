@@ -72,7 +72,7 @@ public:
     }
 
     /** Forward a status operation.
-      * @param success[in] the operaton status to forward
+      * @param[in] success the operaton status to forward
       *                    or forward a previous failure if omitted
       */
     bool forward(bool success = false)

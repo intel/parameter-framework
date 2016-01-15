@@ -103,7 +103,7 @@ private:
 
     /** Load subsystem plugin shared libraries.
      *
-     * @param[in:out] lstrPluginFiles is the path list of the plugins shared libraries to load.
+     * @param[in,out] lstrPluginFiles is the path list of the plugins shared libraries to load.
      *                Successfully loaded plugins are removed from the list.
      * @param[out] errors is the list of error that occured during loadings.
      *

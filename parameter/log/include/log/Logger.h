@@ -51,7 +51,7 @@ public:
     /** Context class is friend let the prolog by externally modified */
     friend class Context;
 
-    /** @param[in] logger, raw logger provided by client */
+    /** @param[in] logger raw logger provided by client */
     Logger(ILogger &logger) : mLogger(logger) {}
 
     /**

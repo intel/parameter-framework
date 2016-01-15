@@ -58,7 +58,7 @@ public:
     /** XML error handler
       *
       * @param[in] userData pointer to the serializing context
-      * @param[in] format is the xml error output format
+      * @param[in] error the xml error output format
       *
       */
     static void structuredErrorHandler(void *userData, _xmlError *error);

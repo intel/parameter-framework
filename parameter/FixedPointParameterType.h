@@ -82,7 +82,7 @@ private:
      * @param[in] strValue Parameter read from the XML file representated as a string in decimal
      *                     raw format
      * @param[out] uiValue Parameter representated as a long unsigned integer.
-     * @param[in:out] parameterAccessContext Parameter access context.
+     * @param[in,out] parameterAccessContext Parameter access context.
      *
      * @return true if the string was successfully converted, false otherwise.
      */
@@ -97,7 +97,7 @@ private:
      * @param[in] strValue Parameter read from the XML file representated as a string in hexadecimal
      *                     raw format
      * @param[out] uiValue Parameter representated as a long unsigned integer.
-     * @param[in:out] parameterAccessContext Parameter access context.
+     * @param[in,out] parameterAccessContext Parameter access context.
      *
      * @return true if the string was successfully converted, false otherwise.
      */
@@ -112,7 +112,7 @@ private:
      * @param[in] strValue Parameter read from the XML file representated as a string in Qn.m
      *                     representation.
      * @param[out] uiValue Parameter representated as a long unsigned integer.
-     * @param[in:out] parameterAccessContext Parameter access context.
+     * @param[in,out] parameterAccessContext Parameter access context.
      *
      * @return true if the string was successfully converted, false otherwise.
      */
@@ -125,7 +125,7 @@ private:
      * illegal value provided and gives the range allowed for the parameter.
      *
      * @param[in] strValue Parameter read from the XML file representated as a string
-     * @param[in:out] parameterAccessContext Parameter Access Context
+     * @param[in,out] parameterAccessContext Parameter Access Context
      */
     void setOutOfRangeError(const std::string &strValue,
                             CParameterAccessContext &parameterAccessContext) const;

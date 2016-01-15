@@ -158,11 +158,11 @@ size_t ElementHandle::getSize(std::vector<T> &values)
     return values.size();
 }
 
-bool ElementHandle::getAsXML(std::string &xmlValue, std::string &strError) const
+bool ElementHandle::getAsXML(std::string &xmlValue, std::string &error) const
 {
     std::string result;
     if (not mParameterMgr.getSettingsAsXML(&mElement, result)) {
-        strError = result;
+        error = result;
         return false;
     }
 
@@ -236,108 +236,108 @@ bool ElementHandle::getAs(T &value, string &error) const
 }
 
 // Boolean access
-bool ElementHandle::setAsBoolean(bool bValue, string &error)
+bool ElementHandle::setAsBoolean(bool value, string &error)
 {
-    return setAs(bValue, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsBoolean(bool &bValue, string &error) const
+bool ElementHandle::getAsBoolean(bool &value, string &error) const
 {
-    return getAs(bValue, error);
+    return getAs(value, error);
 }
 
-bool ElementHandle::setAsBooleanArray(const std::vector<bool> &abValues, string &error)
+bool ElementHandle::setAsBooleanArray(const std::vector<bool> &value, string &error)
 {
-    return setAs(abValues, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsBooleanArray(std::vector<bool> &abValues, string &error) const
+bool ElementHandle::getAsBooleanArray(std::vector<bool> &value, string &error) const
 {
-    return getAs(abValues, error);
+    return getAs(value, error);
 }
 
 // Integer Access
-bool ElementHandle::setAsInteger(uint32_t uiValue, string &error)
+bool ElementHandle::setAsInteger(uint32_t value, string &error)
 {
-    return setAs(uiValue, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsInteger(uint32_t &uiValue, string &error) const
+bool ElementHandle::getAsInteger(uint32_t &value, string &error) const
 {
-    return getAs(uiValue, error);
+    return getAs(value, error);
 }
 
-bool ElementHandle::setAsIntegerArray(const std::vector<uint32_t> &auiValues, string &error)
+bool ElementHandle::setAsIntegerArray(const std::vector<uint32_t> &value, string &error)
 {
-    return setAs(auiValues, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsIntegerArray(std::vector<uint32_t> &auiValues, string &error) const
+bool ElementHandle::getAsIntegerArray(std::vector<uint32_t> &value, string &error) const
 {
-    return getAs(auiValues, error);
+    return getAs(value, error);
 }
 
 // Signed Integer Access
-bool ElementHandle::setAsSignedInteger(int32_t iValue, string &error)
+bool ElementHandle::setAsSignedInteger(int32_t value, string &error)
 {
-    return setAs(iValue, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsSignedInteger(int32_t &iValue, string &error) const
+bool ElementHandle::getAsSignedInteger(int32_t &value, string &error) const
 {
-    return getAs(iValue, error);
+    return getAs(value, error);
 }
 
-bool ElementHandle::setAsSignedIntegerArray(const std::vector<int32_t> &aiValues, string &error)
+bool ElementHandle::setAsSignedIntegerArray(const std::vector<int32_t> &value, string &error)
 {
-    return setAs(aiValues, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsSignedIntegerArray(std::vector<int32_t> &aiValues, string &error) const
+bool ElementHandle::getAsSignedIntegerArray(std::vector<int32_t> &value, string &error) const
 {
-    return getAs(aiValues, error);
+    return getAs(value, error);
 }
 
 // Double Access
-bool ElementHandle::setAsDouble(double dValue, string &error)
+bool ElementHandle::setAsDouble(double value, string &error)
 {
-    return setAs(dValue, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsDouble(double &dValue, string &error) const
+bool ElementHandle::getAsDouble(double &value, string &error) const
 {
-    return getAs(dValue, error);
+    return getAs(value, error);
 }
 
-bool ElementHandle::setAsDoubleArray(const std::vector<double> &adValues, string &error)
+bool ElementHandle::setAsDoubleArray(const std::vector<double> &value, string &error)
 {
-    return setAs(adValues, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsDoubleArray(std::vector<double> &adValues, string &error) const
+bool ElementHandle::getAsDoubleArray(std::vector<double> &value, string &error) const
 {
-    return getAs(adValues, error);
+    return getAs(value, error);
 }
 
 // String Access
-bool ElementHandle::setAsString(const string &strValue, string &error)
+bool ElementHandle::setAsString(const string &value, string &error)
 {
-    return setAs(strValue, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsString(string &strValue, string &error) const
+bool ElementHandle::getAsString(string &value, string &error) const
 {
-    return getAs(strValue, error);
+    return getAs(value, error);
 }
 
-bool ElementHandle::setAsStringArray(const std::vector<string> &astrValues, string &error)
+bool ElementHandle::setAsStringArray(const std::vector<string> &value, string &error)
 {
-    return setAs(astrValues, error);
+    return setAs(value, error);
 }
 
-bool ElementHandle::getAsStringArray(std::vector<string> &astrValues, string &error) const
+bool ElementHandle::getAsStringArray(std::vector<string> &value, string &error) const
 {
-    return getAs(astrValues, error);
+    return getAs(value, error);
 }
 
 bool ElementHandle::checkGetValidity(bool asArray, string &error) const

@@ -120,7 +120,7 @@ private:
      *
      * Add context mappings to the context and instantiate a subsystem object if needed.
      *
-     * @param[in:out] pInstanceConfigurableElement The configurable element
+     * @param[in,out] pInstanceConfigurableElement The configurable element
      * @param[out] bKeepDiving Keep diving for mapping keys
                    Is set to true if a subsystem object (tree leave) has been instantiated.
                    Undetermined on error
@@ -215,7 +215,7 @@ private:
      * Looks if a subsystem object needs to be instantiated for the given configurable
      * element, then instantiate it if needed.
      *
-     * @param[in:out] pInstanceConfigurableElement The configurable element to check
+     * @param[in,out] pInstanceConfigurableElement The configurable element to check
      *            for instanciation
      * @param[in] context The mapping values container
      * @param[out] bHasCreatedSubsystemObject If a subsystem object has been instantiated.

@@ -43,9 +43,12 @@ namespace utility
  *
  *  If their is no element to join, return empty.
  *
- *  @example let op = [](auto l, auto r){ return l + "|" + r; }
- *           let [first, last[ = list<string>{"1", "2", "3"}
- *           then join(first, last, op) == "1|2|3"
+ * Example (joining strings):
+ * @verbatim
+ * let op = [](auto l, auto r){ return l + "|" + r; }
+ * let [first, last[ = list<string>{"1", "2", "3"}
+ * then join(first, last, op) == "1|2|3"
+ * @endverbatim
  */
 template <class T, class InputIt, class BinaryOperation>
 T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
@@ -62,7 +65,7 @@ T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
 * Format the items of a map into a string as a list of key-value pairs. The map must be
 * composed of pairs of strings.
 *
-* @param[in] mapStr A map of strings
+* @param[in] lstr A list of strings
 * @param[in] separator The separator to use between each item
 *
 * @return the concatenated elements.
@@ -74,9 +77,10 @@ std::string asString(const std::list<std::string> &lstr, const std::string &sepa
  * composed of pairs of strings.
  *
  * @param[in] mapStr A map of strings
- * @param[out] strOutput The output string
  * @param[in] strItemSeparator The separator to use between each item (key-value pair)
  * @param[in] strKeyValueSeparator The separator to use between key and value
+ *
+ * @returns the pretty-printed map
  */
 std::string asString(const std::map<std::string, std::string> &mapStr,
                      const std::string &strItemSeparator = ", ",
