@@ -49,8 +49,8 @@ public:
 
     /** Add a xml tag and it's corresponding builder in the library.
        *
-       * @param[in] xmlTag is the tag of an xml element that can be given to the builder to
-       *               create a new element.
+       * @param[in] type is the tag of an xml element that can be given to the builder to
+       *                 create a new element.
        * @param[in] pElementBuilder is the tag associated element builder.
        */
     void addElementBuilder(const std::string &type, const CElementBuilder *pElementBuilder);

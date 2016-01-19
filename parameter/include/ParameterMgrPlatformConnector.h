@@ -49,7 +49,7 @@ public:
      * Override info and warning methods to specify how each log level
      * should be printed.
      *
-     * @Note Errors are always returned synchronously. Never logged.
+     * @note Errors are always returned synchronously. Never logged.
      */
     class ILogger
     {
@@ -143,9 +143,10 @@ public:
       *
       * Will fail if called on started instance.
       *
-      * @param[in] bFail: If set to true, parameterMgr start will fail on failed settings load.
-      *                   If set to false, failed settings load will be ignored.
-      * @param[out] strResult a string containing the result of the command.
+      * @param[in] bFail If set to true, parameterMgr start will fail on failed settings load.
+      *                  If set to false, failed settings load will be ignored.
+      * @param[out] strError On error: an human readable error message
+      *                      On success: undefined
       *
       * @return false if unable to set, true otherwise.
       */
@@ -173,7 +174,8 @@ public:
      * @param[in] bValidate:
      *     If set to true, parameterMgr will abort when being unable to validate .xml files
      *     If set to false, no .xml/xsd validation will happen (default behaviour)
-     * @param[out] strResult a string containing the result of the command.
+     * @param[out] strError On error: an human readable error message
+     *                      On success: undefined
      *
      * @return false if unable to set, true otherwise.
      */

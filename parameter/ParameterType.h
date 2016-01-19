@@ -112,14 +112,14 @@ public:
     /**
      * Sign extension (32 bits)
      *
-     * @param[in:out] iData the data which will be sign extended
+     * @param[in,out] iData the data which will be sign extended
      */
     void signExtend(int32_t &iData) const;
 
     /**
      * Sign extension (64 bits)
      *
-     * @param[in:out] iData the data which will be sign extended
+     * @param[in,out] iData the data which will be sign extended
      */
     void signExtend(int64_t &iData) const;
 

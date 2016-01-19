@@ -31,7 +31,7 @@
 #include "LoggingElementBuilderTemplate.h"
 #include <XmlElement.h>
 
-namespace detail
+namespace details
 {
 std::string getName(const CXmlElement &xmlElement)
 {

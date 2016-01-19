@@ -106,8 +106,8 @@ public:
      *
      * @param[in] strDomain the domain name
      * @param[in] strConfiguration the configuration name
-     * @param[in] mainBlackboard the application main blackboard
-     * @param[in] autoSync boolean which indicates if auto sync mechanism is on
+     * @param[in] pMainBlackboard the application main blackboard
+     * @param[in] bAutoSync boolean which indicates if auto sync mechanism is on
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
@@ -169,7 +169,7 @@ public:
     /** Apply the configuration if required
      *
      * @param[in] pParameterBlackboard the blackboard to synchronize
-     * @param[in] pSyncerSet pointer to the set containing application syncers
+     * @param[in] syncerSet the set containing application syncers
      * @param[in] bForce boolean used to force configuration application
      * @param[out] infos useful information we can provide to client
      */

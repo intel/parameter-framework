@@ -35,7 +35,7 @@
 namespace parameterFramework
 {
 
-namespace detail
+namespace details
 {
 
 static inline bool successTest(bool res)
@@ -49,7 +49,7 @@ static inline bool successTest(T *res)
     return res != nullptr;
 }
 
-} // namespace detail
+} // namespace details
 
 template <class Base>
 class FailureWrapper : protected Base
@@ -130,7 +130,7 @@ private:
     {
         std::string error;
         auto res = (instance.*method)(std::forward<Args>(args)..., error);
-        if (not detail::successTest(res)) {
+        if (not details::successTest(res)) {
             throw Exception(std::move(error));
         }
         return res;

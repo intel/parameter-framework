@@ -106,7 +106,7 @@ protected:
      * If AutoSync is disabled, any call to sync will returns true, even if synchronization has not
      * been done. It will happen when the AutoSync will be switched back on.
      *
-     * @param[in:out] parameterAccessContext Parameter access context object
+     * @param[in,out] parameterAccessContext Parameter access context object
      *
      * @return true if the synchronization succeded or if the AutoSync is off, false otherwise.
      */

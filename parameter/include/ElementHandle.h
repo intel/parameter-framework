@@ -108,24 +108,15 @@ public:
      */
     bool getStructureAsXML(std::string &xmlStructure, std::string &error) const;
 
-    /** Access (get or set) parameters as different types.
-     *
-     * @param settings if get, the values to get (in parameter)
-     *                 if set, the values to set (out parameter)
-     *
-     * @param[out] strError On failure (false returned) will contain a human
-     *                                 readable description of the error.
-     *                      On success (true returned) the content is
-     *                                  not specified.
-     *
-     * @return true if the access was successful,
-     *         false otherwise (see strError for the detail)
-     * @{
-     */
-
     /** Gets element settings as XML string
      *
-     * Note: returned value format depends on the current ParameterMgr format
+     * @param[out] xmlValue the values to get
+     * @param[out] error On failure (false returned) will contain a human
+     *                   readable description of the error.
+     *                   On success (true returned) the content is not
+     *                   specified.
+     *
+     * @note returned value format depends on the current ParameterMgr format
      *       control properties, including value space and output raw format.
      *       @see ParameterMgrPlatformConnector::setOutputRawFormat
      *       @see ParameterMgrPlatformConnector::setValueSpace
@@ -136,8 +127,11 @@ public:
 
     /** Sets element settings as XML string
      *
-     * @param[in] strSettingsXML the input element settings as XML string
-     * @param[out] strError error message in case of failure
+     * @param[in] xmlValue the values to set
+     * @param[out] error On failure (false returned) will contain a human
+     *                   readable description of the error.
+     *                   On success (true returned) the content is not
+     *                   specified.
      *
      * @note
      *    - targeted element needs to be rogue for this operation to be allowed
@@ -161,13 +155,17 @@ public:
 
     /** Sets element settings in binary format
      *
-     * Notes:
+     * @param[out] bytesValue the output vector
+     * @param[out] error On failure (false returned) will contain a human
+     *                   readable description of the error.
+     *                   On success (true returned) the content is not
+     *                   specified.
+     *
+     * @note
      *    - targeted element needs to be rogue for this operation to be allowed
      *    - size of the passed array must match that of the element
      */
     bool setAsBytes(const std::vector<uint8_t> &bytesValue, std::string &error);
-
-    /** @} */
 
     /** Access (get or set) parameters as different types.
      *
@@ -180,48 +178,48 @@ public:
      * Setting an array requires the std::vector size to match the arrayLength.
      * Ie: value.size() == arrayLength()
      *
-     * @param[out] strError On failure (false returned) will contain a human
-     *                                 readable description of the error.
-     *                      On success (true returned) the content is
-     *                                  not specified.
+     * @param[out] error On failure (false returned) will contain a human
+     *                   readable description of the error.
+     *                   On success (true returned) the content is not
+     *                   specified.
      * @return true if the access was successful,
-     *         false otherwise (see strError for the detail)
+     *         false otherwise (see error for the detail)
      * @{
      */
 
     /** Boolean access @{ */
-    bool getAsBoolean(bool &bValue, std::string &strError) const;
-    bool setAsBoolean(bool bValue, std::string &strError);
-    bool setAsBooleanArray(const std::vector<bool> &abValues, std::string &strError);
-    bool getAsBooleanArray(std::vector<bool> &abValues, std::string &strError) const;
+    bool getAsBoolean(bool &value, std::string &error) const;
+    bool setAsBoolean(bool value, std::string &error);
+    bool setAsBooleanArray(const std::vector<bool> &value, std::string &error);
+    bool getAsBooleanArray(std::vector<bool> &value, std::string &error) const;
     /** @} */
 
     /** Integer Access @{ */
-    bool setAsInteger(uint32_t uiValue, std::string &strError);
-    bool getAsInteger(uint32_t &uiValue, std::string &strError) const;
-    bool setAsIntegerArray(const std::vector<uint32_t> &auiValues, std::string &strError);
-    bool getAsIntegerArray(std::vector<uint32_t> &auiValues, std::string &strError) const;
+    bool setAsInteger(uint32_t value, std::string &error);
+    bool getAsInteger(uint32_t &value, std::string &error) const;
+    bool setAsIntegerArray(const std::vector<uint32_t> &value, std::string &error);
+    bool getAsIntegerArray(std::vector<uint32_t> &value, std::string &error) const;
     /** @} */
 
     /** Signed Integer Access @{ */
-    bool setAsSignedInteger(int32_t iValue, std::string &strError);
-    bool getAsSignedInteger(int32_t &iValue, std::string &strError) const;
-    bool setAsSignedIntegerArray(const std::vector<int32_t> &aiValues, std::string &strError);
-    bool getAsSignedIntegerArray(std::vector<int32_t> &aiValues, std::string &strError) const;
+    bool setAsSignedInteger(int32_t value, std::string &error);
+    bool getAsSignedInteger(int32_t &value, std::string &error) const;
+    bool setAsSignedIntegerArray(const std::vector<int32_t> &value, std::string &error);
+    bool getAsSignedIntegerArray(std::vector<int32_t> &value, std::string &error) const;
     /** @} */
 
     /** Double Access @{ */
-    bool setAsDouble(double dValue, std::string &strError);
-    bool getAsDouble(double &dValue, std::string &strError) const;
-    bool setAsDoubleArray(const std::vector<double> &adValues, std::string &strError);
-    bool getAsDoubleArray(std::vector<double> &adValues, std::string &strError) const;
+    bool setAsDouble(double value, std::string &error);
+    bool getAsDouble(double &value, std::string &error) const;
+    bool setAsDoubleArray(const std::vector<double> &value, std::string &error);
+    bool getAsDoubleArray(std::vector<double> &value, std::string &error) const;
     /** @} */
 
     /** String Access @{ */
-    bool setAsString(const std::string &strValue, std::string &strError);
-    bool getAsString(std::string &strValue, std::string &strError) const;
-    bool setAsStringArray(const std::vector<std::string> &astrValues, std::string &strError);
-    bool getAsStringArray(std::vector<std::string> &astrValues, std::string &strError) const;
+    bool setAsString(const std::string &value, std::string &error);
+    bool getAsString(std::string &value, std::string &error) const;
+    bool setAsStringArray(const std::vector<std::string> &value, std::string &error);
+    bool getAsStringArray(std::vector<std::string> &value, std::string &error) const;
     /** @} */
 
     /** @} */

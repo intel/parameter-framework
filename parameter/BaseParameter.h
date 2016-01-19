@@ -101,7 +101,7 @@ protected:
     /**
      * Append the parameter path to the error.
      *
-     * @param[in:out] parameterAccessContext Parameter Access Context object.
+     * @param[in,out] parameterAccessContext Parameter Access Context object.
      */
     void appendParameterPathToError(CParameterAccessContext &parameterAccessContext) const;
 

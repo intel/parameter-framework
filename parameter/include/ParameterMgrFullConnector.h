@@ -197,7 +197,7 @@ public:
       * @return false if any error occurs
       */
     bool importSingleDomainXml(const std::string &xmlSource, bool overwrite, bool withSettings,
-                               bool toFile, std::string &errorMsg);
+                               bool fromFile, std::string &errorMsg);
     /**
       * Method that imports a single Configurable Domain from an string
       * describing an Xml source.
