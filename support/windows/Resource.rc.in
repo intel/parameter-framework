@@ -1,0 +1,75 @@
+/*
+ * Copyright (c) 2016, Intel Corporation
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+#include "winres.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+// See https://msdn.microsoft.com/en-us/library/windows/desktop/aa381058%28v=vs.85%29.aspx
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION @WINRC_MAJOR@,@WINRC_MINOR@,@WINRC_PATCH@,@WINRC_TWEAK@
+    PRODUCTVERSION @WINRC_MAJOR@,@WINRC_MINOR@,@WINRC_PATCH@,@WINRC_TWEAK@
+    FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+    FILEFLAGS VS_FF_DEBUG
+#else
+    FILEFLAGS 0x0L
+#endif
+    FILEOS VOS_NT_WINDOWS32
+#ifdef WINRC_EXE
+    FILETYPE VFT_APP
+#else
+#   ifdef WINRC_DLL
+    FILETYPE VFT_DLL
+#   else
+    FILETYPE WFT_UNKNOWN
+#   endif
+#endif
+    FILESUBTYPE 0x0L
+BEGIN
+    // See https://msdn.microsoft.com/en-us/library/windows/desktop/aa381049%28v=vs.85%29.aspx
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0" // US english, unicode
+        BEGIN
+            VALUE "CompanyName", "Intel Corporation"
+            VALUE "FileDescription", "@WINRC_FILE_DESCRIPTION@"
+            VALUE "FileVersion", "v@WINRC_MAJOR@.@WINRC_MINOR@.@WINRC_PATCH@.@WINRC_TWEAK@"
+            VALUE "InternalName", WINRC_FILENAME
+            VALUE "LegalCopyright", "Copyright (c) 2011-2016 Intel Corporation"
+            VALUE "OriginalFilename", WINRC_FILENAME
+            VALUE "ProductName", "Parameter Framework"
+            VALUE "ProductVersion", "v@WINRC_MAJOR@.@WINRC_MINOR@.@WINRC_PATCH@.@WINRC_TWEAK@"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0409, 1200
+    END
+END
