@@ -1,0 +1,3 @@
+.version export-subst
+.gitattributes export-ignore
+.gitignore export-ignore

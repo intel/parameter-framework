@@ -105,6 +105,8 @@ add_library(parameter SHARED
 include(GenerateExportHeader)
 generate_export_header(parameter)
 
+configure_file(version.h.in "${CMAKE_CURRENT_BINARY_DIR}/version.h")
+
 target_link_libraries(parameter
     # Unfortunatly xmlSink and xmlSource need to be exposed to the plugins
     PUBLIC xmlserializer

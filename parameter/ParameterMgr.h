@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2011-2016, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -78,11 +78,6 @@ class CParameterMgr : private CElement
         EParameterCreationLibrary,
         EParameterConfigurationLibrary
     };
-
-    // Version
-    static const uint32_t guiEditionMajor = 3;
-    static const uint32_t guiEditionMinor = 2;
-    static const uint32_t guiRevision = 1;
 
     // Parameter handle friendship
     friend class ElementHandle;

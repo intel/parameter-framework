@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2011-2016, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "version.h"
 #include "ParameterMgr.h"
 #include "ConfigurationAccessContext.h"
 #include "XmlParameterSerializingContext.h"
@@ -350,16 +351,7 @@ string CParameterMgr::getKind() const
 // Version
 string CParameterMgr::getVersion() const
 {
-    string strVersion;
-
-    // Major
-    strVersion = std::to_string(guiEditionMajor) + ".";
-    // Minor
-    strVersion += std::to_string(guiEditionMinor) + ".";
-    // Revision
-    strVersion += std::to_string(guiRevision);
-
-    return strVersion;
+    return PARAMETER_FRAMEWORK_VERSION;
 }
 
 bool CParameterMgr::load(string &strError)

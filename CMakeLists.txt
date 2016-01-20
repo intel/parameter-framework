@@ -44,10 +44,7 @@ option(PYTHON_BINDINGS "Python library to use the Parameter Framework from pytho
 option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
 option(FATAL_WARNINGS "Turn warnings into errors (-Werror flag)" ON)
 
-# find and set the Parameter Framework's version
-execute_process(COMMAND git describe --tags --dirty
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+include(SetVersion.cmake)
 
 # Add FindLibXml2.cmake in cmake path so that `find_package(LibXml2)` will
 # call the wrapper

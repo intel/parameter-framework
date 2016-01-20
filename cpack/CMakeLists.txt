@@ -26,26 +26,8 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# FIXME: this should be executed during build, not configuration
-execute_process(COMMAND git describe --tags --long
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_DESCRIBE
-    OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-set(REGEX "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)-([0-9]+).*$")
-if(NOT "${GIT_DESCRIBE}" MATCHES "${REGEX}")
-    message(WARNING "Could not parse git describe version \"${GIT_DESCRIBE}\" "
-        "with regex \"${REGEX}\". Falling back to 'v0.0.0-0'")
-    set(GIT_DESCRIBE "v0.0.0-0")
-endif()
-string(REGEX REPLACE "${REGEX}" "\\1" CPACK_PACKAGE_VERSION_MAJOR "${GIT_DESCRIBE}")
-string(REGEX REPLACE "${REGEX}" "\\2" CPACK_PACKAGE_VERSION_MINOR "${GIT_DESCRIBE}")
-string(REGEX REPLACE "${REGEX}" "\\3" CPACK_PACKAGE_VERSION_PATCH "${GIT_DESCRIBE}")
-# TWEAK is the number of commit since the last tag
-string(REGEX REPLACE "${REGEX}" "\\4" CPACK_PACKAGE_VERSION_TWEAK "${GIT_DESCRIBE}")
-
-# Default version does not have the TWEAK version, override it.
-set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}.${CPACK_PACKAGE_VERSION_TWEAK}")
+set(CPACK_PACKAGE_VERSION
+    "${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}.${PF_VERSION_TWEAK}")
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Plugin-based and rule-based framework for describing and controlling parameters.")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${PROJECT_SOURCE_DIR}/README.md")
