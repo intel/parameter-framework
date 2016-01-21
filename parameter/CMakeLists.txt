@@ -26,7 +26,13 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+if(WIN32)
+    set(parameter_RESOURCE_FILE "${CMAKE_CURRENT_BINARY_DIR}/Resource.rc")
+    set(parameter_OS_SPECIFIC_SRCS ${parameter_RESOURCE_FILE})
+endif()
+
 add_library(parameter SHARED
+    ${parameter_OS_SPECIFIC_SRCS}
     AreaConfiguration.cpp
     ArrayParameter.cpp
     BaseParameter.cpp
@@ -104,6 +110,19 @@ add_library(parameter SHARED
 
 include(GenerateExportHeader)
 generate_export_header(parameter)
+
+if(WIN32)
+    set(WINRC_MAJOR ${PF_VERSION_MAJOR})
+    set(WINRC_MINOR ${PF_VERSION_MINOR})
+    set(WINRC_PATCH ${PF_VERSION_PATCH})
+    set(WINRC_TWEAK ${PF_VERSION_TWEAK})
+    target_compile_definitions(parameter PRIVATE
+        WINRC_DLL
+        WINRC_FILENAME="$<TARGET_FILE_NAME:parameter>")
+    set(WINRC_FILE_DESCRIPTION "Parameter Framework library")
+    configure_file("${PROJECT_SOURCE_DIR}/support/windows/Resource.rc.in"
+                   "${parameter_RESOURCE_FILE}")
+endif()
 
 configure_file(version.h.in "${CMAKE_CURRENT_BINARY_DIR}/version.h")
 
