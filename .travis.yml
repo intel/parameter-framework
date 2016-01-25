@@ -37,7 +37,7 @@ addons:
             - clang-format-3.8
 
 install:
-    - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
+    - wget https://codecov.io/bash -O $HOME/codecov; chmod +x $HOME/codecov
     # This version of catch is known to work.
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/v1.2.1/single_include/catch.hpp
@@ -82,22 +82,25 @@ script:
         make install )
 
 after_success:
-    # Push coverage info on coveralls.io.
+    # Push coverage info on codecov.io.
     # Ignore generated files, samples and tests
     - if [ "${coverage}" = "ON" ]; then
-          coveralls --exclude "build_debug/bindings/python"
-                    --exclude "build_debug/CMakeFiles"
-                    --exclude "build"
-                    --exclude "install"
-                    --exclude "skeleton-subsystem"
-                    --exclude "tools/clientSimulator"
-                    --exclude "test/test-subsystem"
-                    --exclude "test/functional-tests"
-                    --exclude "bindings/c/Test.cpp"
-                    --exclude "test/tokenizer"
-                    --exclude "utility/test"
-                    --gcov /usr/bin/gcov-4.8
-                    --gcov-options '\--long-file-names --preserve-paths';
+          $HOME/codecov
+               -g "*/build_debug/bindings/python/*"
+               -g "*/build_debug/CMakeFiles/*"
+               -g "*/build/*"
+               -g "*/install/*"
+               -g "*/skeleton-subsystem/*"
+               -g "*/tools/clientSimulator/*"
+               -g "*/test/test-subsystem/*"
+               -g "*/test/introspection-subsystem/*"
+               -g "*/test/functional-tests/*"
+               -g "*/test/tmpfile/*"
+               -g "*/test/tokenizer/*"
+               -g "*/bindings/c/Test.cpp"
+               -g "*/utility/test/*"
+               -x /usr/bin/gcov-4.8
+               -a '\--long-file-names --preserve-paths';
       fi
 
 notifications:
