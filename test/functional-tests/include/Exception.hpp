@@ -36,16 +36,9 @@ namespace parameterFramework
 {
 
 /** Base class to all exception thrown by the Parameter Framework. */
-class Exception : public std::runtime_error
+struct Exception : std::runtime_error
 {
-public:
-    /** Forward base constructor.
-     *
-     * Equivalent to
-     *    using std::runtime_error::runtime_error;
-     * but vs2013 does not support it.
-     */
-    Exception(const std::string &arg) : std::runtime_error(arg) {}
+    using std::runtime_error::runtime_error;
 };
 
 } // parameterFramework

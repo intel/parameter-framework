@@ -41,7 +41,7 @@ namespace parameterFramework
 /** This forward declaration is an implementation detail, client should expect its presence.
  * @note This forward definition should not be needed as the `friend class ElementHandle`
  *       declaration in ParameterFramework is itself a forward declaration.
- *       Unfortunately there seem to be a bug in visual studio 2013, it is required.
+ *       Unfortunately there seem to be a bug in visual studio 2015, it is required.
  */
 class ElementHandle;
 
