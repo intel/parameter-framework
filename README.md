@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=master)](https://travis-ci.org/01org/parameter-framework)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/ga24jp8tet0qimbu/branch/master)](https://ci.appveyor.com/project/parameter-framework/parameter-framework)
-[![Coverage Status](https://coveralls.io/repos/01org/parameter-framework/badge.svg?branch=master)](https://coveralls.io/r/01org/parameter-framework)
+[![Coverage Status](https://codecov.io/github/01org/parameter-framework/coverage.svg?branch=master)](https://codecov.io/github/01org/parameter-framework?branch=master)
 
 ## Introduction
 
