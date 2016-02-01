@@ -55,10 +55,7 @@ template <class Base>
 class FailureWrapper : protected Base
 {
 public:
-    /** Forward construction to base.
-     *
-     * using Base::Base would be equivalent, but is not supported by VS 2013.
-     */
+    /** Forward construction to base. */
     template <class... Args>
     FailureWrapper(Args &&... args) : Base(std::forward<Args>(args)...)
     {

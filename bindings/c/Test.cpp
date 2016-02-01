@@ -82,8 +82,7 @@ struct Test
         using Base = parameterFramework::utility::TmpFile;
 
     public:
-        /** `using Base::TmpFile` does not work on VS 2013*/
-        TmpFile(std::string content) : Base(content) {}
+        using Base::TmpFile;
 
         using Base::getPath;
         /** Implicitly convert to the path of the temporary file. */

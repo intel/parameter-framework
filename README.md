@@ -134,8 +134,16 @@ After a build you may want to run the parameter-framework tests with
 
 ### Compiling on Windows
 
+The only supported compiler on Windows in Visual Studio 14 2015. The 2013
+version does not support some C++11 features.  When running CMake's
+configuration step (the first call to CMake) you must specify the build system
+you want to use, i.e. `-G Visual Studio 14 2015 Win64`. Again, you may refer to
+`appveyor.yml`.
+
 If you don't already have libxml2 headers/libraries and don't want to build them
-by yourself, we have a precompiled version for x86-64.
+by yourself, we have a precompiled version for x86-64. *These are provided for
+reference and as a convenience for development purpose only; when making a
+final product, you should recompile the latest libxml2 release yourself.*
 
 Compiled with Visual Studio 12 2013:
 - [in debug configuration](https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
@@ -148,7 +156,3 @@ following two entries to `CMAKE_PREFIX_PATH`:
 
     /path/to/libxml2-x86_64/
     /path/to/asio-1.10.6/
-
-When running CMake's configuration step (the first call to CMake) you should
-specify the build system you want to use. If you are using the precompiled
-libxml2 mentioned above, add: `-G Visual Studio 12 2013 Win64`
