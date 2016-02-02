@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2016, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -44,6 +44,7 @@ public:
     CParameterAccessContext(std::string &strError, CParameterBlackboard *pParameterBlackboard,
                             size_t offsetBase = 0);
     CParameterAccessContext(std::string &strError);
+    virtual ~CParameterAccessContext() = default;
 
     // ParameterBlackboard
     CParameterBlackboard *getParameterBlackboard();
