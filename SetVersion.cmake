@@ -58,7 +58,7 @@ if(NOT DEFINED PF_VERSION)
 endif()
 
 # Parse the version number to extract the various fields
-set(REGEX "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)-([0-9]+)(-(g[0-9a-f]+)?)?(-(dirty)?)?$")
+set(REGEX "([0-9]+).([0-9]+).([0-9]+).([0-9]+)(-(g[0-9a-f]+)?)?(-(dirty)?)?")
 if(PF_VERSION MATCHES ${REGEX})
     set(PF_VERSION_MAJOR ${CMAKE_MATCH_1})
     set(PF_VERSION_MINOR ${CMAKE_MATCH_2})
