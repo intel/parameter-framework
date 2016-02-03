@@ -55,6 +55,9 @@ if(NOT DEFINED PF_VERSION)
             set(PF_VERSION "${CMAKE_MATCH_1}-0")
         endif()
     endif()
+else()
+    # Set the "nice version string" to the one forced by the user
+    set(NICE_PF_VERSION "${PF_VERSION}")
 endif()
 
 # Parse the version number to extract the various fields
@@ -68,8 +71,8 @@ if(PF_VERSION MATCHES ${REGEX})
     set(PF_VERSION_DIRTY ${CMAKE_MATCH_8}) # Skip the 7th: it is a superset of the 8th
 endif()
 
-# If we are precisely on a tag, make a nicer version string
-set(NICE_PF_VERSION "${PF_VERSION}")
-if((PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
+# If we are precisely on a tag, make a nicer version string (unless otherwise
+# forced by the user - see above)
+if((NOT DEFINED NICE_PF_VERSION) AND (PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
     set(NICE_PF_VERSION "v${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}")
 endif()

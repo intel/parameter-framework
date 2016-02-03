@@ -60,12 +60,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Intel Corporation"
             VALUE "FileDescription", "@WINRC_FILE_DESCRIPTION@"
-            VALUE "FileVersion", "v@WINRC_MAJOR@.@WINRC_MINOR@.@WINRC_PATCH@.@WINRC_TWEAK@"
+            VALUE "FileVersion", "@NICE_PF_VERSION@"
             VALUE "InternalName", WINRC_FILENAME
             VALUE "LegalCopyright", "Copyright (c) 2011-2016 Intel Corporation"
             VALUE "OriginalFilename", WINRC_FILENAME
             VALUE "ProductName", "Parameter Framework"
-            VALUE "ProductVersion", "v@WINRC_MAJOR@.@WINRC_MINOR@.@WINRC_PATCH@.@WINRC_TWEAK@"
+            VALUE "ProductVersion", "@NICE_PF_VERSION@"
         END
     END
     BLOCK "VarFileInfo"
