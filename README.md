@@ -73,7 +73,7 @@ sections:
 
 In order to compile you'll need, at the very least:
 
-- CMake (v2.8.12 or later);
+- CMake (v2.8.12 or later) (v3.3.0 or later on Windows);
 - A C/C++ compiler supporting C++11;
 - libxml2 headers and libraries (Provided by the `libxml2-dev` on debian-based
 distributions);
