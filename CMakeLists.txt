@@ -26,8 +26,12 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# working on 2.8.12 - broken on older versions
+# working on 2.8.12 - broken on older versions.
+# Visual Studio 14 needs 3.3.0; see https://cmake.org/Bug/print_bug_page.php?bug_id=15552
 cmake_minimum_required(VERSION 2.8.12)
+if(CMAKE_GENERATOR STRGREATER "Visual Studio 14 2015")
+    cmake_minimum_required(VERSION 3.3.0)
+endif()
 
 project(parameter-framework)
 
