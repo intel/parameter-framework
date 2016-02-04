@@ -77,7 +77,7 @@ bool CParameterMgrFullConnector::isTuningModeOn() const
 
 void CParameterMgrFullConnector::setValueSpace(bool bIsRaw)
 {
-    return _pParameterMgr->setValueSpace(bIsRaw);
+    _pParameterMgr->setValueSpace(bIsRaw);
 }
 
 bool CParameterMgrFullConnector::isValueSpaceRaw() const
@@ -87,7 +87,7 @@ bool CParameterMgrFullConnector::isValueSpaceRaw() const
 
 void CParameterMgrFullConnector::setOutputRawFormat(bool bIsHex)
 {
-    return _pParameterMgr->setOutputRawFormat(bIsHex);
+    _pParameterMgr->setOutputRawFormat(bIsHex);
 }
 
 bool CParameterMgrFullConnector::isOutputRawFormatHex() const
