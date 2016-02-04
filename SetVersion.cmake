@@ -27,12 +27,12 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Fallback values:
-set(PF_VERSION_MAJOR 0 CACHE INTERNAL "Parameter Framework's version major number")
-set(PF_VERSION_MINOR 0 CACHE INTERNAL "Parameter Framework's version minor number")
-set(PF_VERSION_PATCH 0 CACHE INTERNAL "Parameter Framework's version patch number")
-set(PF_VERSION_TWEAK 0 CACHE INTERNAL "Parameter Framework's version tweak (or build) number")
-set(PF_VERSION_SHA1 "g0000000000" CACHE INTERNAL "Parameter Framework's sources git SHA1")
-set(PF_VERSION_DIRTY "" CACHE INTERNAL "Parameter Framework's sources dirty marker")
+set(PF_VERSION_MAJOR 0)
+set(PF_VERSION_MINOR 0)
+set(PF_VERSION_PATCH 0)
+set(PF_VERSION_TWEAK 0)
+set(PF_VERSION_SHA1 "g0000000000")
+set(PF_VERSION_DIRTY "")
 
 # Find and set the Parameter Framework's version
 # First, let's see if the user forced a version (i.e. "vX.Y.Z-N")
@@ -69,7 +69,7 @@ if(PF_VERSION MATCHES ${REGEX})
 endif()
 
 # If we are precisely on a tag, make a nicer version string
-set(NICE_PF_VERSION "${PF_VERSION}" CACHE INTERNAL "")
+set(NICE_PF_VERSION "${PF_VERSION}")
 if((PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
     set(NICE_PF_VERSION "v${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}")
 endif()
