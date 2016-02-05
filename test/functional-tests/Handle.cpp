@@ -602,4 +602,46 @@ SCENARIO("Mapping handle access", "[handler][mapping]")
     }
 }
 
+SCENARIO_METHOD(SettingsTestPF, "Handle Get/Set as various kinds", "[handler][dynamic]")
+{
+    ElementHandle intScalar(*this, "/test/test/parameter_block/integer");
+    WHEN ("Setting a scalar integer") {
+        WHEN ("As an array") {
+            THEN ("It should fail") {
+                CHECK_THROWS(intScalar.setAsIntegerArray({0, 0}));
+            }
+        }
+        WHEN ("As a scalalar") {
+            THEN ("It should succeed") {
+                uint32_t expected = 111;
+                CHECK_NOTHROW(intScalar.setAsInteger(expected));
+                AND_THEN ("Getting it back should give the same value") {
+                    uint32_t back = 42;
+                    CHECK_NOTHROW(intScalar.getAsInteger(back));
+                    CHECK(back == expected);
+                }
+            }
+        }
+    }
+
+    ElementHandle intArray(*this, "/test/test/parameter_block/integer_array");
+    WHEN ("Setting a array integer") {
+        WHEN ("As a scalar") {
+            THEN ("It should fail") {
+                CHECK_THROWS(intArray.setAsSignedInteger(0));
+            }
+        }
+        WHEN ("As a integer") {
+            THEN ("It should succeed") {
+                const std::vector<int32_t> expected = {-9, 8, -7, 6};
+                CHECK_NOTHROW(intArray.setAsSignedIntegerArray(expected));
+                AND_THEN ("Getting it back should give the same value") {
+                    std::vector<int32_t> back = {-42, 42, 43, -43};
+                    CHECK_NOTHROW(intArray.getAsSignedIntegerArray(back));
+                    CHECK(back == expected);
+                }
+            }
+        }
+    }
+}
 } // namespace parameterFramework

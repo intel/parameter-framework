@@ -41,6 +41,20 @@ using std::string;
 using std::mutex;
 using std::lock_guard;
 
+/** @return 0 by default, ie for non overloaded types. */
+template <class T>
+static size_t getUserInputSize(const T & /*scalar*/)
+{
+    return 0;
+}
+
+/** @return the vector's size. */
+template <class T>
+static size_t getUserInputSize(const std::vector<T> &vector)
+{
+    return vector.size();
+}
+
 ElementHandle::ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr)
     : mElement(element), mParameterMgr(parameterMgr)
 {
@@ -146,18 +160,6 @@ struct isVector<std::vector<T>> : std::true_type
 {
 };
 
-template <class T>
-size_t ElementHandle::getSize(T /*value*/)
-{
-    return 0;
-}
-
-template <class T>
-size_t ElementHandle::getSize(std::vector<T> &values)
-{
-    return values.size();
-}
-
 bool ElementHandle::getAsXML(std::string &xmlValue, std::string &error) const
 {
     std::string result;
@@ -194,7 +196,7 @@ bool ElementHandle::setAsBytes(const std::vector<uint8_t> &bytesValue, std::stri
 template <class T>
 bool ElementHandle::setAs(const T value, string &error) const
 {
-    if (not checkSetValidity(getSize(value), error)) {
+    if (not checkSetValidity(getUserInputSize(value), error)) {
         return false;
     }
     // Safe downcast thanks to isParameter check in checkSetValidity

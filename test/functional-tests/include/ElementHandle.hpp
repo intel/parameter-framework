@@ -76,6 +76,28 @@ public:
     /** Wrap EH::getAsDouble to throw an exception on failure. */
     void getAsDouble(double &value) const { mayFailCall(&EH::getAsDouble, value); }
 
+    void setAsInteger(uint32_t value) { mayFailCall(&EH::setAsInteger, value); }
+    void getAsInteger(uint32_t &value) const { mayFailCall(&EH::getAsInteger, value); }
+    void setAsIntegerArray(const std::vector<uint32_t> &value)
+    {
+        mayFailCall(&EH::setAsIntegerArray, value);
+    }
+    void getAsIntegerArray(std::vector<uint32_t> &value) const
+    {
+        mayFailCall(&EH::getAsIntegerArray, value);
+    }
+
+    void setAsSignedInteger(int32_t value) { mayFailCall(&EH::setAsSignedInteger, value); }
+    void getAsSignedInteger(int32_t &value) const { mayFailCall(&EH::getAsSignedInteger, value); }
+    void setAsSignedIntegerArray(const std::vector<int32_t> &value)
+    {
+        mayFailCall(&EH::setAsSignedIntegerArray, value);
+    }
+    void getAsSignedIntegerArray(std::vector<int32_t> &value) const
+    {
+        mayFailCall(&EH::getAsSignedIntegerArray, value);
+    }
+
     std::string getStructureAsXML() const { return mayFailGet(&EH::getStructureAsXML); }
 
     std::string getAsXML() const { return mayFailGet(&EH::getAsXML); }
