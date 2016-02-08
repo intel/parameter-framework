@@ -234,11 +234,6 @@ private:
     template <class T>
     bool getAs(T &value, std::string &error) const;
 
-    template <class T>
-    static size_t getSize(T value);
-    template <class T>
-    static size_t getSize(std::vector<T> &values);
-
     CBaseParameter &getParameter();
     const CBaseParameter &getParameter() const;
 
