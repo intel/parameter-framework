@@ -76,6 +76,7 @@ public:
     virtual std::string getKind() const;
 
     virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
+    std::string getFormattedMapping() const override;
 
     /**
      * Fetch mapping data of an element.

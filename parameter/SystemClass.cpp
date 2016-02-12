@@ -87,6 +87,11 @@ bool CSystemClass::getMappingData(const std::string & /*strKey*/,
     return false;
 }
 
+string CSystemClass::getFormattedMapping() const
+{
+    return "";
+}
+
 bool CSystemClass::loadSubsystems(string &strError, const CSubsystemPlugins *pSubsystemPlugins,
                                   bool bVirtualSubsystemFallback)
 {

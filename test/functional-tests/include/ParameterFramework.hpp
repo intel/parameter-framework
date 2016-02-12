@@ -87,6 +87,7 @@ public:
     using PF::isTuningModeOn;
     using PF::isAutoSyncOn;
     using PF::setLogger;
+    using PF::createCommandHandler;
     /** @} */
 
     /** Wrap PF::setValidateSchemasOnStart to throw an exception on failure. */

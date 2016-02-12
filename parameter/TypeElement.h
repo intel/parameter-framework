@@ -84,6 +84,17 @@ public:
 protected:
     // Object creation
     virtual void populate(CElement *pElement) const;
+    /** @Returns the mapping associated to the current type and its predecessor
+     *
+     * The meaning of predecessor depends on the TypeElement type: e.g. for a
+     * component instance, the predecessor is the ComponentType; for a
+     * ComponentType, the predecessor is its base type.
+     *
+     * The predecessor's mapping comes first, then the current type's mapping.
+     *
+     * @param[in] predecessor A pointer to the predecessor or NULL.
+     */
+    std::string getFormattedMapping(const CTypeElement *predecessor) const;
 
 private:
     CTypeElement(const CTypeElement &);

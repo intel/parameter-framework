@@ -73,14 +73,7 @@ bool CComponentInstance::hasMappingData() const
 
 std::string CComponentInstance::getFormattedMapping() const
 {
-    // Try myself first then associated component type
-    std::string strValue = base::getFormattedMapping();
-    if (_pComponentType) {
-
-        strValue += _pComponentType->getFormattedMapping();
-    }
-
-    return strValue;
+    return base::getFormattedMapping(_pComponentType);
 }
 
 bool CComponentInstance::fromXml(const CXmlElement &xmlElement,

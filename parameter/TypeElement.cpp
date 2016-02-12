@@ -31,6 +31,8 @@
 #include "MappingData.h"
 #include "Tokenizer.h"
 #include "InstanceConfigurableElement.h"
+#include "Utility.h"
+#include <list>
 #include <assert.h>
 
 #define base CElement
@@ -139,6 +141,30 @@ CMappingData *CTypeElement::getMappingData()
         _pMappingData = new CMappingData;
     }
     return _pMappingData;
+}
+
+std::string CTypeElement::getFormattedMapping(const CTypeElement *predecessor) const
+{
+    std::list<std::string> mappings;
+    std::string mapping;
+
+    // Try predecessor type first, then myself (in order to have higher-level
+    // mappings displayed first)
+    if (predecessor) {
+        mapping = predecessor->getFormattedMapping();
+        if (not mapping.empty()) {
+            mappings.push_back(mapping);
+        }
+    }
+
+    // Explicitly call the root implementation instead of calling it virtually
+    // (otherwise, it will infinitely recurse).
+    mapping = CTypeElement::getFormattedMapping();
+    if (not mapping.empty()) {
+        mappings.push_back(mapping);
+    }
+
+    return utility::asString(mappings, ", ");
 }
 
 std::string CTypeElement::getFormattedMapping() const
