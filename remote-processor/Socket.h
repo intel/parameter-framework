@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2016, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,30 +27,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "RemoteProcessorServerInterface.h"
-#include "RemoteCommandHandler.h"
-#include <memory>
-#include <future>
+#include <asio.hpp>
 
-#include "remote_processor_export.h"
-
-class CRemoteProcessorServer;
-
-class REMOTE_PROCESSOR_EXPORT BackgroundRemoteProcessorServer final
-    : public IRemoteProcessorServerInterface
+class Socket
 {
 public:
-    BackgroundRemoteProcessorServer(uint16_t uiPort,
-                                    std::unique_ptr<IRemoteCommandHandler> &&commandHandler);
+    Socket(asio::ip::tcp::socket &socket) : mSocket(socket) {}
 
-    ~BackgroundRemoteProcessorServer();
-
-    bool start(std::string &error) override;
-
-    bool stop() override;
+    asio::ip::tcp::socket &get() { return mSocket; }
 
 private:
-    std::unique_ptr<CRemoteProcessorServer> _server;
-    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
-    std::future<bool> mServerSuccess;
+    asio::ip::tcp::socket &mSocket;
 };

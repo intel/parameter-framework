@@ -32,5 +32,7 @@ add_executable(test-platform
 
 target_link_libraries(test-platform
         PRIVATE parameter pfw_utility remote-processor)
+# Workaround because asio is still leaking to test-platform
+target_link_libraries(test-platform PRIVATE asio)
 
 install(TARGETS test-platform RUNTIME DESTINATION bin)

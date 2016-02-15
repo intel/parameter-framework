@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2016, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,30 +27,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "RemoteProcessorServerInterface.h"
-#include "RemoteCommandHandler.h"
-#include <memory>
-#include <future>
+#include "BackgroundRemoteProcessorServerBuilder.h"
+#include "RemoteProcessorServer.h"
 
-#include "remote_processor_export.h"
-
-class CRemoteProcessorServer;
-
-class REMOTE_PROCESSOR_EXPORT BackgroundRemoteProcessorServer final
-    : public IRemoteProcessorServerInterface
+BackgroundRemoteProcessorServer::BackgroundRemoteProcessorServer(
+    uint16_t uiPort, std::unique_ptr<IRemoteCommandHandler> &&commandHandler)
+    : _server(new CRemoteProcessorServer(uiPort)), mCommandHandler(std::move(commandHandler))
 {
-public:
-    BackgroundRemoteProcessorServer(uint16_t uiPort,
-                                    std::unique_ptr<IRemoteCommandHandler> &&commandHandler);
+}
 
-    ~BackgroundRemoteProcessorServer();
+bool BackgroundRemoteProcessorServer::start(std::string &error)
+{
+    if (!_server->start(error)) {
+        return false;
+    }
+    try {
+        mServerSuccess = std::async(std::launch::async, &CRemoteProcessorServer::process,
+                                    _server.get(), std::ref(*mCommandHandler));
+    } catch (std::exception &e) {
+        error = "Could not create a remote processor thread: " + std::string(e.what());
+        return false;
+    }
 
-    bool start(std::string &error) override;
+    return true;
+}
 
-    bool stop() override;
+bool BackgroundRemoteProcessorServer::stop()
+{
+    _server->stop();
+    return mServerSuccess.get();
+}
 
-private:
-    std::unique_ptr<CRemoteProcessorServer> _server;
-    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
-    std::future<bool> mServerSuccess;
-};
+BackgroundRemoteProcessorServer::~BackgroundRemoteProcessorServer()
+{
+    stop();
+}
