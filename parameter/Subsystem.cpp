@@ -203,21 +203,20 @@ const CSubsystemObject *CSubsystem::findSubsystemObjectFromConfigurableElement(
     const CInstanceConfigurableElement *pInstanceConfigurableElement) const
 {
 
-    const CSubsystemObject *pSubsystemObject = NULL;
-
     list<CSubsystemObject *>::const_iterator it;
     for (it = _subsystemObjectList.begin(); it != _subsystemObjectList.end(); ++it) {
 
         // Check if one of the SubsystemObjects is associated with a ConfigurableElement
         // corresponding to the expected one
-        pSubsystemObject = *it;
+        const CSubsystemObject *pSubsystemObject = *it;
+
         if (pSubsystemObject->getConfigurableElement() == pInstanceConfigurableElement) {
 
-            break;
+            return pSubsystemObject;
         }
     }
 
-    return pSubsystemObject;
+    return nullptr;
 }
 
 void CSubsystem::findSubsystemLevelMappingKeyValue(
