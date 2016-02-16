@@ -58,7 +58,13 @@ inline bool read(const dummy_base &, const dummy_base &, const dummy_base &)
 using buffer = dummy_base;
 struct io_service : dummy_base
 {
-    using dummy_base::dummy_base;
+    template <class... Args>
+    io_service(Args &&...)
+    {
+        throw std::runtime_error("Stub constructor called. Did you forget to set the "
+                                 "'TuningAllowed' attribute to 'false' in the Parameter "
+                                 "Framework's toplevel configuration file?");
+    }
 
     void run(const dummy_base &) const {};
     void stop() const {};

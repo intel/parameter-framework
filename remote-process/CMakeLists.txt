@@ -26,12 +26,14 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_executable(remote-process main.cpp)
+if(NETWORKING)
+    add_executable(remote-process main.cpp)
 
-set(CMAKE_THREAD_PREFER_PTHREAD 1)
-find_package(Threads REQUIRED)
+    set(CMAKE_THREAD_PREFER_PTHREAD 1)
+    find_package(Threads REQUIRED)
 
-target_link_libraries(remote-process
-                      PRIVATE remote-processor pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(remote-process
+                          PRIVATE remote-processor pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
 
-install(TARGETS remote-process RUNTIME DESTINATION bin)
+    install(TARGETS remote-process RUNTIME DESTINATION bin)
+endif()
