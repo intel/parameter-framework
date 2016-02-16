@@ -31,7 +31,7 @@ add_library(remote-processor SHARED
         RequestMessage.cpp
         AnswerMessage.cpp
         RemoteProcessorServer.cpp
-        BackgroundRemoteProcessorServerBuilder.cpp)
+        BackgroundRemoteProcessorServer.cpp)
 
 include(GenerateExportHeader)
 generate_export_header(remote-processor

@@ -29,6 +29,12 @@
  */
 #include <asio.hpp>
 
+/** Wraps and hides asio::ip::tcp::socket
+ *
+ * asio::ip::tcp::socket cannot be forward-declared because it is an
+ * inner-class. This class wraps the asio class in order for it to be
+ * forward-declared and avoid it to leak in client interfaces.
+ */
 class Socket
 {
 public:

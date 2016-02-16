@@ -67,7 +67,7 @@
 #include "BitParameterType.h"
 #include "StringParameterType.h"
 #include "EnumParameterType.h"
-#include "BackgroundRemoteProcessorServerBuilder.h"
+#include "BackgroundRemoteProcessorServer.h"
 #include "ElementLocator.h"
 #include "CompoundRule.h"
 #include "SelectionCriterionRule.h"
