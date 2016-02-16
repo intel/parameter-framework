@@ -42,7 +42,6 @@
 
 using std::string;
 using std::list;
-using std::ostringstream;
 
 CSubsystem::CSubsystem(const string &strName, core::log::Logger &logger)
     : base(strName), _pComponentLibrary(new CComponentLibrary),
@@ -186,16 +185,17 @@ string CSubsystem::formatMappingDataList(
 {
     // The list is parsed in reverse order because it has been filled from the leaf to the trunk
     // of the tree. When formatting the mapping, we want to start from the subsystem level
-    ostringstream ossStream;
+    std::list<string> mappings;
     list<const CConfigurableElement *>::const_reverse_iterator it;
     for (it = configurableElementPath.rbegin(); it != configurableElementPath.rend(); ++it) {
 
-        const CInstanceConfigurableElement *pInstanceConfigurableElement =
-            static_cast<const CInstanceConfigurableElement *>(*it);
-
-        ossStream << pInstanceConfigurableElement->getFormattedMapping() << ", ";
+        auto maybeMapping = (*it)->getFormattedMapping();
+        if (not maybeMapping.empty()) {
+            mappings.push_back(maybeMapping);
+        }
     }
-    return ossStream.str();
+
+    return utility::asString(mappings, ", ");
 }
 
 // Find the CSubystemObject containing a specific CInstanceConfigurableElement
@@ -203,21 +203,20 @@ const CSubsystemObject *CSubsystem::findSubsystemObjectFromConfigurableElement(
     const CInstanceConfigurableElement *pInstanceConfigurableElement) const
 {
 
-    const CSubsystemObject *pSubsystemObject = NULL;
-
     list<CSubsystemObject *>::const_iterator it;
     for (it = _subsystemObjectList.begin(); it != _subsystemObjectList.end(); ++it) {
 
         // Check if one of the SubsystemObjects is associated with a ConfigurableElement
         // corresponding to the expected one
-        pSubsystemObject = *it;
+        const CSubsystemObject *pSubsystemObject = *it;
+
         if (pSubsystemObject->getConfigurableElement() == pInstanceConfigurableElement) {
 
-            break;
+            return pSubsystemObject;
         }
     }
 
-    return pSubsystemObject;
+    return nullptr;
 }
 
 void CSubsystem::findSubsystemLevelMappingKeyValue(
@@ -277,14 +276,16 @@ string CSubsystem::getMapping(list<const CConfigurableElement *> &configurableEl
     // Get the first element, which is the element containing the amended mapping
     const CInstanceConfigurableElement *pInstanceConfigurableElement =
         static_cast<const CInstanceConfigurableElement *>(configurableElementPath.front());
-    configurableElementPath.pop_front();
-    // Now the list only contains elements whose mapping are related to the context
 
     // Format context mapping data
     string strValue = formatMappingDataList(configurableElementPath);
 
     // Print the mapping of the first node, which corresponds to a SubsystemObject
-    strValue += getFormattedSubsystemMappingData(pInstanceConfigurableElement);
+    auto subsystemObjectAmendedMapping =
+        getFormattedSubsystemMappingData(pInstanceConfigurableElement);
+    if (not subsystemObjectAmendedMapping.empty()) {
+        strValue += ", " + subsystemObjectAmendedMapping;
+    }
 
     return strValue;
 }
@@ -328,6 +329,15 @@ bool CSubsystem::getMappingData(const std::string &strKey, const std::string *&p
         return _pMappingData->getValue(strKey, pStrValue);
     }
     return false;
+}
+
+// Returns the formatted mapping
+std::string CSubsystem::getFormattedMapping() const
+{
+    if (!_pMappingData) {
+        return "";
+    }
+    return _pMappingData->asString();
 }
 
 // Mapping generic context handling

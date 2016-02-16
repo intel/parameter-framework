@@ -84,6 +84,7 @@ public:
     virtual std::string getKind() const;
 
     bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const override;
+    std::string getFormattedMapping() const override;
 
 private:
     CSystemClass(const CSystemClass &);

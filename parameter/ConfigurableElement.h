@@ -154,6 +154,11 @@ public:
      * @return true if @p strKey is found in the object's mapping, false if not
      */
     virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const = 0;
+    /** Get the string representation of the mapping
+     *
+     * If applicable, amend values are applied to the leaf element.
+     */
+    virtual std::string getFormattedMapping() const = 0;
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(

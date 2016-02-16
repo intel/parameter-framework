@@ -67,7 +67,7 @@ public:
      *
      * @return A std::string containing the formatted mapping
      */
-    std::string getFormattedMapping() const;
+    std::string getFormattedMapping() const override;
 
     // From CElement
     virtual std::string getKind() const;

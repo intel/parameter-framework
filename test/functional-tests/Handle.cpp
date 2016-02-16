@@ -547,44 +547,62 @@ struct MappingPF : public ParameterFramework
 {
     MappingPF() : ParameterFramework{getConfig()} { REQUIRE_NOTHROW(start()); }
 
+    struct TestVector
+    {
+        string path;
+        string humanReadable;
+        list<string> valid;
+        list<string> invalid;
+    };
+
+    list<TestVector> testVectors = {
+        // clang-format off
+        {"/test/test",
+            {"rootK:rootV"},
+            {"root"},
+            {"param", "type", "instance", "derived"}},
+        {"/test/test/param",
+            {"rootK:rootV, paramK:paramV"},
+            {"root", "param"},
+            {"type", "derived", "instance"}},
+        {"/test/test/component",
+            {"rootK:rootV, typeK:typeV, derivedK:derivedV, instanceK:instanceV"},
+            {"root", "type", "derived", "instance"},
+            {"param"}}
+        // clang-format on
+    };
+
     Config getConfig()
     {
         Config config;
-        config.instances = "<BooleanParameter Name='bool' Mapping='bool_map'>";
-        config.subsystemMapping = "subsystem_mapping";
+        config.subsystemMapping = "rootK:rootV";
+        config.components = "<ComponentType   Name='componentType' Mapping='typeK:typeV'        />"
+                            "<ComponentType   Extends='componentType' Name='derivedComponentType' "
+                            "Mapping='derivedK:derivedV' />";
+        config.instances = "<BooleanParameter Name='param'         Mapping='paramK:paramV'      />"
+                           "<Component        Name='component'     Mapping='instanceK:instanceV'  "
+                           "           Type='derivedComponentType'                              />";
         return config;
     }
 };
 
-SCENARIO("Mapping handle access", "[handler][mapping]")
+SCENARIO_METHOD(MappingPF, "showMapping command", "[mapping]")
+{
+    auto cmdHandler = std::unique_ptr<CommandHandlerInterface>(createCommandHandler());
+
+    for (auto &testVector : testVectors) {
+        string output;
+        CHECK(cmdHandler->process("showMapping", {testVector.path}, output));
+        CHECK(output == testVector.humanReadable);
+    }
+}
+
+SCENARIO_METHOD(MappingPF, "Mapping handle access", "[handler][mapping]")
 {
     GIVEN ("A PF with mappings") {
-        Config config;
-        config.subsystemMapping = "rootK:rootV";
-        config.components = "<ComponentType   Name='componentType' Mapping='typeK:typeV'        />";
-        config.instances = "<BooleanParameter Name='param'         Mapping='paramK:paramV'      />"
-                           "<Component        Name='component'     Mapping='instanceK:instanceV'  "
-                           "           Type='componentType'                                     />";
-        ParameterFramework pf{config};
-        REQUIRE_NOTHROW(pf.start());
-
-        struct TestVector
-        {
-            string path;
-            list<string> valid;
-            list<string> invalid;
-        };
-        list<TestVector> testVectors = {
-            // clang-format off
-            {"/test/test",           {"root"},                     {"param", "type", "instance"}},
-            {"/test/test/param",     {"root", "param"},            {"type", "instance"}},
-            {"/test/test/component", {"root", "type", "instance"}, {"param"}}
-            // clang-format on
-        };
-
         for (auto &test : testVectors) {
             GIVEN ("An element handle of " + test.path) {
-                ElementHandle handle(pf, test.path);
+                ElementHandle handle(*this, test.path);
 
                 for (auto &valid : test.valid) {
                     THEN ("The following mapping should exist: " + valid) {
