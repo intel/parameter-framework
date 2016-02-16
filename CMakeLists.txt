@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2014-2016, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -49,6 +49,7 @@ option(REQUIREMENTS "Generate the html version of the 'requirements' documentati
 option(PYTHON_BINDINGS "Python library to use the Parameter Framework from python" ON)
 option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
 option(FATAL_WARNINGS "Turn warnings into errors (-Werror flag)" ON)
+option(NETWORKING "Set to OFF in order to stub networking code" ON)
 
 include(SetVersion.cmake)
 
@@ -104,6 +105,7 @@ endif()
 add_subdirectory(xmlserializer)
 add_subdirectory(parameter)
 add_subdirectory(utility)
+add_subdirectory(asio)
 add_subdirectory(remote-processor)
 
 add_subdirectory(remote-process)
