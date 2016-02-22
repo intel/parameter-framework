@@ -26,10 +26,12 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# working on 2.8.12 - broken on older versions.
+# Known to work with CMake 3.2.2, might work with older 3.x versions, will not
+# work with versions prior to 3.0.0.
 # Visual Studio 14 needs 3.3.0; see https://cmake.org/Bug/print_bug_page.php?bug_id=15552
-cmake_minimum_required(VERSION 2.8.12)
-if(CMAKE_GENERATOR STRGREATER "Visual Studio 14 2015")
+cmake_minimum_required(VERSION 3.2.2)
+if((CMAKE_GENERATOR MATCHES "Visual Studio .*")
+    AND (CMAKE_GENERATOR STRGREATER "Visual Studio 14 2015"))
     cmake_minimum_required(VERSION 3.3.0)
 endif()
 
