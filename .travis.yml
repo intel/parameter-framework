@@ -33,7 +33,6 @@ addons:
             - cmake-data
             - cmake
             - python3-dev
-            - libasio-dev
             - clang-format-3.8
 
 install:
@@ -80,6 +79,13 @@ script:
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         make install )
+  # Keep this last
+  - ( mkdir build_less_features && cd build_less_features &&
+        rm -rf $PREFIX/asio-1.10.6 &&
+        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug
+        -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF .. &&
+        make -j &&
+        CTEST_OUTPUT_ON_FAILURE=1 make test )
 
 after_success:
     # Push coverage info on codecov.io.
