@@ -265,17 +265,27 @@ bool CXmlElement::CChildIterator::next(CXmlElement &xmlChildElement)
 }
 
 template bool CXmlElement::getAttribute(const std::string &name, std::string &value) const;
-template bool CXmlElement::getAttribute(const std::string &name, uint16_t &value) const;
-template bool CXmlElement::getAttribute(const std::string &name, uint32_t &value) const;
-template bool CXmlElement::getAttribute(const std::string &name, int32_t &value) const;
-template bool CXmlElement::getAttribute(const std::string &name, uint64_t &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, bool &value) const;
-template bool CXmlElement::getAttribute(const std::string &name, double &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, short &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, unsigned short &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, int &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, unsigned int &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, long &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, unsigned long &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, long long &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, unsigned long long &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, float &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, double &value) const;
 
 template void CXmlElement::setAttribute(const std::string &name, const std::string &value);
 template void CXmlElement::setAttribute(const std::string &name, const bool &value);
-template void CXmlElement::setAttribute(const std::string &name, const int32_t &value);
-template void CXmlElement::setAttribute(const std::string &name, const uint32_t &value);
-template void CXmlElement::setAttribute(const std::string &name, const uint64_t &value);
+template void CXmlElement::setAttribute(const std::string &name, const short &value);
+template void CXmlElement::setAttribute(const std::string &name, const unsigned short &value);
+template void CXmlElement::setAttribute(const std::string &name, const int &value);
+template void CXmlElement::setAttribute(const std::string &name, const unsigned int &value);
+template void CXmlElement::setAttribute(const std::string &name, const long &value);
+template void CXmlElement::setAttribute(const std::string &name, const unsigned long &value);
+template void CXmlElement::setAttribute(const std::string &name, const long long &value);
+template void CXmlElement::setAttribute(const std::string &name, const unsigned long long &value);
 template void CXmlElement::setAttribute(const std::string &name, const float &value);
+template void CXmlElement::setAttribute(const std::string &name, const double &value);

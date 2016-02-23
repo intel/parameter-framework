@@ -52,35 +52,43 @@ struct ConvertionAllowed<bool> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<uint64_t> : std::true_type
+struct ConvertionAllowed<long long> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<int64_t> : std::true_type
+struct ConvertionAllowed<unsigned long long> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<uint32_t> : std::true_type
+struct ConvertionAllowed<long> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<int32_t> : std::true_type
+struct ConvertionAllowed<unsigned long> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<uint16_t> : std::true_type
+struct ConvertionAllowed<int> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<int16_t> : std::true_type
+struct ConvertionAllowed<unsigned int> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<int8_t> : std::true_type
+struct ConvertionAllowed<short> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowed<uint8_t> : std::true_type
+struct ConvertionAllowed<unsigned short> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<unsigned char> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<signed char> : std::true_type
 {
 };
 template <>
@@ -98,11 +106,11 @@ struct ConvertionAllowedVia : std::false_type
 {
 };
 template <>
-struct ConvertionAllowedVia<uint8_t, uint32_t> : std::true_type
+struct ConvertionAllowedVia<unsigned char, unsigned int> : std::true_type
 {
 };
 template <>
-struct ConvertionAllowedVia<int8_t, int32_t> : std::true_type
+struct ConvertionAllowedVia<signed char, int> : std::true_type
 {
 };
 
@@ -191,16 +199,16 @@ static inline bool convertTo(const std::string &str, T &result)
     return details::convertTo<T>(str, result);
 }
 
-/** Specialization for uint8_t of convertTo template function.
+/** Specialization for unsigned char of convertTo template function.
  *
  * This function follows the same paradigm than it's generic version.
  *
- * The generic version was converting int8 as it was a character
- * (uint8_t is an alias to unsigned char on most compiler).
+ * The generic version was converting char as it was a character
+ * (unsigned char is an alias to unsigned char on most compiler).
  * Thus converting "1" would return 49 ie '1'.
  * As convertTo is thought as an _numerical_ convertion tool
  * (contrary to boost::lexical_cast for example),
- * forbid considering the input as a character and consider uint8_t
+ * forbid considering the input as a character and consider unsigned char
  * (aka unsigned char) as a number exclusively.
  *
  * @param[in]  str    the string to parse.
@@ -209,21 +217,20 @@ static inline bool convertTo(const std::string &str, T &result)
  * @return true if conversion was successful, false otherwise.
  */
 template <>
-inline bool convertTo<uint8_t>(const std::string &str, uint8_t &result)
+inline bool convertTo<unsigned char>(const std::string &str, unsigned char &result)
 {
-    return details::convertToVia<uint8_t, uint32_t>(str, result);
+    return details::convertToVia<unsigned char, unsigned int>(str, result);
 }
 
-/** Specialization for int8_t of convertTo template function.
+/** Specialization for signed char of convertTo template function.
  *
- * @see convertTo<uint8_t>
+ * @see convertTo<unsigned char>
  */
 template <>
-inline bool convertTo<int8_t>(const std::string &str, int8_t &result)
+inline bool convertTo<signed char>(const std::string &str, signed char &result)
 {
-    return details::convertToVia<int8_t, int32_t>(str, result);
+    return details::convertToVia<signed char, int>(str, result);
 }
-
 /**
  * Specialization for float of convertTo template function.
  *
