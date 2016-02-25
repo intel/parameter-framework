@@ -6,6 +6,7 @@ cache: ccache
 env:
     global:
         - PREFIX=$HOME/prefix
+        - PATH=/usr/lib/ccache:$PATH
 
 compiler:
     - gcc
