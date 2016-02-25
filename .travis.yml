@@ -49,9 +49,11 @@ before_script:
     - coverage=OFF
     # Force the manualy installed 4.8 version as it is not the default
     # Only enable coverage on gcc as clang segfault on coverage file write
+    # Workaround a bug with the ccache/g++-4.8.1 combination
     - if [ "$CC" = "gcc" ]; then
           export CC=gcc-4.8 CXX=g++-4.8;
           coverage=ON;
+          export CCACHE_CPP2=1;
       fi
 
 # how to build
