@@ -1,6 +1,7 @@
 # Use travis docker infrastructure
 sudo: false
 language: cpp
+cache: ccache
 
 env:
     global:
