@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
+#include "Socket.h"
 
 using namespace std;
 
@@ -43,7 +44,7 @@ bool sendAndDisplayCommand(asio::ip::tcp::socket &socket, CRequestMessage &reque
 {
     string strError;
 
-    if (requestMessage.serialize(socket, true, strError) != CRequestMessage::success) {
+    if (requestMessage.serialize(Socket(socket), true, strError) != CRequestMessage::success) {
 
         cerr << "Unable to send command to target: " << strError << endl;
         return false;
@@ -51,7 +52,7 @@ bool sendAndDisplayCommand(asio::ip::tcp::socket &socket, CRequestMessage &reque
 
     ///// Get answer
     CAnswerMessage answerMessage;
-    if (answerMessage.serialize(socket, false, strError) != CRequestMessage::success) {
+    if (answerMessage.serialize(Socket(socket), false, strError) != CRequestMessage::success) {
 
         cerr << "Unable to received answer from target: " << strError << endl;
         return false;

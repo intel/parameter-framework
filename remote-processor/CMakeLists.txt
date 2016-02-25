@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2014-2016, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -30,7 +30,8 @@ add_library(remote-processor SHARED
         Message.cpp
         RequestMessage.cpp
         AnswerMessage.cpp
-        RemoteProcessorServer.cpp)
+        RemoteProcessorServer.cpp
+        BackgroundRemoteProcessorServer.cpp)
 
 include(GenerateExportHeader)
 generate_export_header(remote-processor
@@ -39,28 +40,12 @@ generate_export_header(remote-processor
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
 
-# Find ASIO (the standalone version, not Boost) and declare it as a dependency
-# for remote-processor's users too. (FIXME: this should not be the case)
-# If asio isn't installed in a standard directory, add the correct directory to
-# CMAKE_PREFIX_PATH (see the main README for more information).
-find_path(ASIO_DIR NAMES asio.hpp)
-# Hide this variable from CMake GUIs and `cmake -L`
-set_property(CACHE ASIO_DIR PROPERTY ADVANCED TRUE)
-# FIXME: asio header should not leak to remote-processor users
-target_include_directories(remote-processor SYSTEM PUBLIC "${ASIO_DIR}")
-
-# Ubuntu 14.04 packages asio 1.10.1 and clang 3.4.1.
-# In this environment, asio stand alone (set ASIO_STANDALONE)
-# does not correcly detect that the stl has CHRONO support (c++11).
-# Force the use of std::chrono by setting ASIO_HAS_STD_CHRONO
-target_compile_definitions(remote-processor PUBLIC ASIO_STANDALONE ASIO_HAS_STD_CHRONO)
-
 target_include_directories(remote-processor
     # Symbol export macro header
     PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
     # TODO: separate remote-processor's includes in half (public/private)
     PUBLIC .)
 
-target_link_libraries(remote-processor PRIVATE pfw_utility ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(remote-processor PRIVATE pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

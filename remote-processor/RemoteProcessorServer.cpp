@@ -35,6 +35,7 @@
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
+#include "Socket.h"
 
 using std::string;
 
@@ -126,7 +127,7 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
         string strError;
         ///// Receive command
         CRequestMessage::Result res;
-        res = requestMessage.serialize(_socket, false, strError);
+        res = requestMessage.serialize(Socket(_socket), false, strError);
 
         switch (res) {
         case CRequestMessage::error:

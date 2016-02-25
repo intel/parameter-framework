@@ -30,11 +30,13 @@
 #pragma once
 
 #include "NonCopyable.hpp"
-#include <asio.hpp>
+#include <vector>
 #include <string>
 #include <cstdint>
 
 #include <remote_processor_export.h>
+
+class Socket;
 
 class REMOTE_PROCESSOR_EXPORT CMessage : private utility::NonCopyable
 {
@@ -69,7 +71,7 @@ public:
      *         peerDisconnected if the peer disconnected before the first socket access.
      *         error if the message could not be read/write for any other reason
      */
-    Result serialize(asio::ip::tcp::socket &socket, bool bOut, std::string &strError);
+    Result serialize(Socket &&socket, bool bOut, std::string &strError);
 
 protected:
     // Msg Id

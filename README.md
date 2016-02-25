@@ -73,20 +73,26 @@ sections:
 
 In order to compile you'll need, at the very least:
 
-- CMake (v2.8.12 or later) (v3.3.0 or later on Windows);
+- CMake (v3.2.2 or later) (v3.3.0 or later on Windows);
 - A C/C++ compiler supporting C++11;
 - libxml2 headers and libraries (Provided by the `libxml2-dev` on debian-based
 distributions);
+
+If you want to use the remote command interface (`NETWORKING=ON` by default),
+you'll also need:
+
 - Standalone ASIO (1.10.6 or later) (Provided by `libasio-dev` on debian-based
 distributions) ASIO is C++ header-only ASynchronous-IO library.
 
-If you want to compile the *Python bindings*, you'll also need:
+If you want to compile the *Python bindings* (`PYTHON_BINDINGS=ON` by default),
+you'll also need:
 
 - SWIG 2.0 (A binding generator);
 - Python2.7 development environment (Provided by `python2.7-dev` on debian-based
 distributions)
 
-If you want to *compile and run the tests*, you'll also need:
+If you want to *compile and run the tests* (`BUILD_TESTING=ON` by default),
+you'll also need:
 
 - Catch (Provided by `catch` on debian-based distributions). Catch is a
 single-header test framework - as such you may also download it directly
@@ -94,8 +100,9 @@ single-header test framework - as such you may also download it directly
 - Python2.7 (Provided by `python2.7` on debian-based distribution - it is
 preinstalled on most distributions).
 
-If you want to *build the code documentation*, you'll need `doxygen` and
-`graphviz`. This doc is already available to you - see the wiki.
+If you want to *build the code documentation* (`DOXYGEN=OFF` by default), you'll
+need `doxygen` and `graphviz`. This doc is already available to you - see the
+wiki.
 
 **To list all available configuration options, try** `cmake -L` (you may also
 filter-out lines starting with `CMAKE_`).

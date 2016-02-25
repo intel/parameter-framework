@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2016, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,45 +27,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "RemoteProcessorServer.h"
-#include <memory>
-#include <future>
+#include <asio.hpp>
 
-class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
+/** Wraps and hides asio::ip::tcp::socket
+ *
+ * asio::ip::tcp::socket cannot be forward-declared because it is an
+ * inner-class. This class wraps the asio class in order for it to be
+ * forward-declared and avoid it to leak in client interfaces.
+ */
+class Socket
 {
 public:
-    BackgroundRemoteProcessorServer(uint16_t uiPort,
-                                    std::unique_ptr<IRemoteCommandHandler> &&commandHandler)
-        : _server(uiPort), mCommandHandler(std::move(commandHandler))
-    {
-    }
+    Socket(asio::ip::tcp::socket &socket) : mSocket(socket) {}
 
-    ~BackgroundRemoteProcessorServer() { stop(); }
-
-    bool start(std::string &error) override
-    {
-        if (!_server.start(error)) {
-            return false;
-        }
-        try {
-            mServerSuccess = std::async(std::launch::async, &CRemoteProcessorServer::process,
-                                        &_server, std::ref(*mCommandHandler));
-        } catch (std::exception &e) {
-            error = "Could not create a remote processor thread: " + std::string(e.what());
-            return false;
-        }
-
-        return true;
-    }
-
-    bool stop() override
-    {
-        _server.stop();
-        return mServerSuccess.get();
-    }
+    asio::ip::tcp::socket &get() { return mSocket; }
 
 private:
-    CRemoteProcessorServer _server;
-    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
-    std::future<bool> mServerSuccess;
+    asio::ip::tcp::socket &mSocket;
 };

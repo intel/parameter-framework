@@ -14,8 +14,7 @@ compiler:
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
 # Install SWIG for bindings generation
 # Install valgrind for memcheck tests
-# Adding kubuntu-backports ppa for for cmake 2.8.12.
-# it is needed in case of multiple python version on host
+# Adding george-edison55-precise-backports ppa for for cmake 3.x.
 # Install python3-dev for the client simulator
 addons:
     apt:
@@ -23,7 +22,7 @@ addons:
         # https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
         sources:
             - ubuntu-toolchain-r-test
-            - kubuntu-backports
+            - george-edison55-precise-backports
             - llvm-toolchain-precise
         # Travis white list of dpkg packages
         # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
@@ -31,9 +30,9 @@ addons:
             - swig
             - valgrind
             - g++-4.8
+            - cmake-data
             - cmake
             - python3-dev
-            - libasio-dev
             - clang-format-3.8
 
 install:
@@ -80,6 +79,13 @@ script:
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         make install )
+  # Keep this last
+  - ( mkdir build_less_features && cd build_less_features &&
+        rm -rf $PREFIX/asio-1.10.6 &&
+        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug
+        -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF .. &&
+        make -j &&
+        CTEST_OUTPUT_ON_FAILURE=1 make test )
 
 after_success:
     # Push coverage info on codecov.io.
