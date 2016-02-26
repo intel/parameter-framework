@@ -64,17 +64,17 @@ script:
 
   - ( mkdir build_debug && cd build_debug &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=${coverage} .. &&
-        make -j &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
   - ( mkdir build && cd build &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=Release .. &&
-        make -j &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make test &&
         make install &&
         cpack --verbose -G DEB && dpkg --info *.deb)
   - ( cd skeleton-subsystem &&
         cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install . &&
-        make &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
         make install )
   - ( cd tools/clientSimulator &&
@@ -88,7 +88,7 @@ script:
         rm -rf $PREFIX/asio-1.10.6 &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug
         -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF .. &&
-        make -j &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make test )
 
 after_success:
