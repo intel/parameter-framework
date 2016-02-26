@@ -1,10 +1,12 @@
 # Use travis docker infrastructure
 sudo: false
 language: cpp
+cache: ccache
 
 env:
     global:
         - PREFIX=$HOME/prefix
+        - PATH=/usr/lib/ccache:$PATH
 
 compiler:
     - gcc
@@ -47,9 +49,11 @@ before_script:
     - coverage=OFF
     # Force the manualy installed 4.8 version as it is not the default
     # Only enable coverage on gcc as clang segfault on coverage file write
+    # Workaround a bug with the ccache/g++-4.8.1 combination
     - if [ "$CC" = "gcc" ]; then
           export CC=gcc-4.8 CXX=g++-4.8;
           coverage=ON;
+          export CCACHE_CPP2=1;
       fi
 
 # how to build
@@ -60,17 +64,17 @@ script:
 
   - ( mkdir build_debug && cd build_debug &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=${coverage} .. &&
-        make -j &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
   - ( mkdir build && cd build &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=Release .. &&
-        make -j &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make test &&
         make install &&
         cpack --verbose -G DEB && dpkg --info *.deb)
   - ( cd skeleton-subsystem &&
         cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install . &&
-        make &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
         make install )
   - ( cd tools/clientSimulator &&
@@ -84,7 +88,7 @@ script:
         rm -rf $PREFIX/asio-1.10.6 &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug
         -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF .. &&
-        make -j &&
+        make -j$(nproc) &&
         CTEST_OUTPUT_ON_FAILURE=1 make test )
 
 after_success:
