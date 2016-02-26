@@ -42,48 +42,49 @@ public:
     CIntegerParameterType(const std::string &strName);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
     // Integer
-    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
     // Signed Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
     // Double
-    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(double dUserValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
 
     // Default value handling (simulation only)
-    virtual uint32_t getDefaultValue() const;
+    uint32_t getDefaultValue() const override;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // Integer conversion
-    virtual int toPlainInteger(int iSizeOptimizedData) const;
+    int toPlainInteger(int iSizeOptimizedData) const override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     // Returns true if children dynamic creation is to be dealt with
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
 
     // Conversion from std::string
     bool convertValueFromString(const std::string &strValue, int64_t &iData,

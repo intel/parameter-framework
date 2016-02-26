@@ -55,7 +55,8 @@ private:
       *
       * @return false if any error occurs
       */
-    virtual bool doProcess(CXmlDocSource &xmlDocSource, CXmlSerializingContext &serializingContext);
+    bool doProcess(CXmlDocSource &xmlDocSource,
+                   CXmlSerializingContext &serializingContext) override;
 
     /**
       * Result ostream containing the XML informations

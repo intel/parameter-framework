@@ -48,7 +48,7 @@ class CSubsystemLibrary
 {
 private:
     // Builder type (based on element's name attribute)
-    virtual std::string getBuilderType(const CXmlElement &xmlElement) const
+    std::string getBuilderType(const CXmlElement &xmlElement) const override
     {
         // Xml element's name attribute
         std::string type;

@@ -46,11 +46,12 @@ public:
     uint16_t getServerPort() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
 private:
-    virtual std::string getKind() const;
-    virtual bool childrenAreDynamic() const;
+    std::string getKind() const override;
+    bool childrenAreDynamic() const override;
 
     // System class name
     std::string _strSystemClassName;

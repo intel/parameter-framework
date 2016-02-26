@@ -39,20 +39,20 @@ public:
     CStringParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
-    virtual size_t getFootPrint() const;
+    size_t getFootPrint() const override;
 
     // Type
-    virtual Type getType() const;
+    Type getType() const override;
 
 protected:
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
+    void setDefaultValues(CParameterAccessContext &parameterAccessContext) const override;
 
     // Actual value access (tuning)
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
-                            CParameterAccessContext &parameterAccessContext) const;
-    virtual void doGetValue(std::string &strValue, size_t offset,
-                            CParameterAccessContext &parameterAccessContext) const;
+    bool doSetValue(const std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
+    void doGetValue(std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
 
     // Size
     size_t getSize() const;

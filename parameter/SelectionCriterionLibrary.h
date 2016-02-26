@@ -39,5 +39,5 @@ public:
     CSelectionCriterionType *createSelectionCriterionType(bool bIsInclusive);
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 };

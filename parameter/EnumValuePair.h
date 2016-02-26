@@ -39,13 +39,14 @@ public:
     std::string getNumericalAsString() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 protected:
     // Content dumping

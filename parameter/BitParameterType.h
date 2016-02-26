@@ -44,10 +44,11 @@ public:
     CBitParameterType(const std::string &strName);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
     /// Conversion
     // String
     bool toBlackboard(const std::string &strValue, uint64_t &uiValue,
@@ -66,10 +67,10 @@ public:
     size_t getBitSize() const;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
     /**
      * Get the position of the bit within the bit parameter block.
@@ -80,7 +81,7 @@ public:
     size_t getBitPos() const { return _bitPos; }
 private:
     // Instantiation
-    virtual CInstanceConfigurableElement *doInstantiate() const;
+    CInstanceConfigurableElement *doInstantiate() const override;
     // Max encodable value
     uint64_t getMaxEncodableValue() const;
     // Biwise mask

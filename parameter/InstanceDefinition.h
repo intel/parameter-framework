@@ -38,9 +38,9 @@ class CInstanceDefinition : public CTypeElement
 public:
     void createInstances(CElement *pFatherElement);
 
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
-    virtual bool childrenAreDynamic() const;
-    virtual CInstanceConfigurableElement *doInstantiate() const;
+    bool childrenAreDynamic() const override;
+    CInstanceConfigurableElement *doInstantiate() const override;
 };

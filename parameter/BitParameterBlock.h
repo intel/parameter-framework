@@ -37,18 +37,19 @@ public:
     CBitParameterBlock(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
-    virtual size_t getFootPrint() const;
+    size_t getFootPrint() const override;
 
     // Type
-    virtual Type getType() const;
+    Type getType() const override;
 
     // Size
     size_t getSize() const;
 
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
+    void setDefaultValues(CParameterAccessContext &parameterAccessContext) const override;
 
-    void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+    void structureToXml(CXmlElement &xmlElement,
+                        CXmlSerializingContext &serializingContext) const override
     {
         xmlElement.setAttribute("Size", getSize() * 8);
         CInstanceConfigurableElement::structureToXml(xmlElement, serializingContext);

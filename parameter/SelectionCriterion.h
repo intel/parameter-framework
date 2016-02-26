@@ -47,12 +47,12 @@ public:
 
     /// From ISelectionCriterionInterface
     // State
-    virtual void setCriterionState(int iState);
-    virtual int getCriterionState() const;
+    void setCriterionState(int iState) override;
+    int getCriterionState() const override;
     // Name
-    virtual std::string getCriterionName() const;
+    std::string getCriterionName() const override;
     // Type
-    virtual const ISelectionCriterionTypeInterface *getCriterionType() const;
+    const ISelectionCriterionTypeInterface *getCriterionType() const override;
     // Modified status
     bool hasBeenModified() const;
     void resetModifiedStatus();
@@ -67,7 +67,7 @@ public:
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
 
     /// From CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
     /**
       * Export to XML
@@ -76,7 +76,7 @@ public:
       * @param[in] serializingContext The serializing context
       *
       */
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
 private:
     // Current state

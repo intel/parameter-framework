@@ -43,12 +43,12 @@ public:
     CBaseParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // XML configuration settings parsing/composing
-    virtual bool serializeXmlSettings(
+    bool serializeXmlSettings(
         CXmlElement &xmlConfigurationSettingsElementContent,
-        CConfigurationAccessContext &configurationAccessContext) const;
+        CConfigurationAccessContext &configurationAccessContext) const override;
 
     // Check element is a parameter
-    virtual bool isParameter() const;
+    bool isParameter() const override;
 
     // Boolean access
     virtual bool access(bool &bValue, bool bSet,
@@ -85,12 +85,12 @@ public:
                         CParameterAccessContext &parameterAccessContext) const;
 
     void structureToXml(CXmlElement &xmlElement,
-                        CXmlSerializingContext &serializingContext) const override final;
+                        CXmlSerializingContext &serializingContext) const final;
 
 protected:
     // Parameter Access
-    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
-                             CParameterAccessContext &parameterAccessContext) const;
+    bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+                     CParameterAccessContext &parameterAccessContext) const override;
 
     // Actual value access (to be implemented by derived)
     virtual bool doSetValue(const std::string &strValue, size_t offset,

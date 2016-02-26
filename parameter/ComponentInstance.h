@@ -41,26 +41,27 @@ public:
     CComponentInstance(const std::string &strName);
 
     // Mapping info
-    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
-    virtual bool hasMappingData() const;
+    bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const override;
+    bool hasMappingData() const override;
     /**
      * Returns the mapping associated to the current TypeElement instance
      *
      * @return A std::string containing the mapping as a comma separated key value pairs
      */
-    virtual std::string getFormattedMapping() const;
+    std::string getFormattedMapping() const override;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
     std::string getXmlElementName() const override;
 
 private:
-    virtual bool childrenAreDynamic() const;
-    virtual CInstanceConfigurableElement *doInstantiate() const;
-    virtual void populate(CElement *pElement) const;
+    bool childrenAreDynamic() const override;
+    CInstanceConfigurableElement *doInstantiate() const override;
+    void populate(CElement *pElement) const override;
 
     // Related component type
     const CComponentType *_pComponentType{nullptr};

@@ -68,7 +68,7 @@ public:
                                bool bHumanReadable) const;
 
     // Base
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
     // Reset the modified status of the children
     void resetModifiedStatus();

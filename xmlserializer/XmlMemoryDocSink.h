@@ -57,7 +57,8 @@ private:
       *
       * @return false if any error occurs
       */
-    virtual bool doProcess(CXmlDocSource &xmlDocSource, CXmlSerializingContext &serializingContext);
+    bool doProcess(CXmlDocSource &xmlDocSource,
+                   CXmlSerializingContext &serializingContext) override;
 
     // Xml Sink
     IXmlSink *_pXmlSink;

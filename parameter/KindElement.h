@@ -41,7 +41,7 @@ public:
     {
     }
 
-    virtual std::string getKind() const { return _strKind; }
+    std::string getKind() const override { return _strKind; }
 private:
     std::string _strKind;
 };

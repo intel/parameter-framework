@@ -53,12 +53,13 @@ public:
      * f'(y) * log(base) = log (x)
      * exp(f'(y)*log(base)) = x
      */
-    virtual int64_t fromUserValue(double dValue) const;
-    virtual double toUserValue(int64_t iValue) const;
+    int64_t fromUserValue(double dValue) const override;
+    double toUserValue(int64_t iValue) const override;
 
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
 private:
     /**

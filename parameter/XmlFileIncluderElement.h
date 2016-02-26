@@ -40,7 +40,8 @@ public:
     CXmlFileIncluderElement(const std::string &strName, const std::string &strKind,
                             bool bValidateWithSchemas, const std::string &schemaBaseUri);
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
 private:
     // Element type

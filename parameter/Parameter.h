@@ -41,15 +41,15 @@ public:
     CParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
-    virtual size_t getFootPrint() const;
+    size_t getFootPrint() const override;
 
     // Type
-    virtual Type getType() const;
+    Type getType() const override;
 
     // XML configuration settings parsing/composing
-    virtual bool serializeXmlSettings(
+    bool serializeXmlSettings(
         CXmlElement &xmlConfigurationSettingsElementContent,
-        CConfigurationAccessContext &configurationAccessContext) const;
+        CConfigurationAccessContext &configurationAccessContext) const override;
 
     // Boolean access
     bool access(bool &bValue, bool bSet,
@@ -69,13 +69,13 @@ public:
 
 protected:
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
+    void setDefaultValues(CParameterAccessContext &parameterAccessContext) const override;
 
     // Actual value access
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
-                            CParameterAccessContext &parameterAccessContext) const;
-    virtual void doGetValue(std::string &strValue, size_t offset,
-                            CParameterAccessContext &parameterAccessContext) const;
+    bool doSetValue(const std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
+    void doGetValue(std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
 
     // Value space handling for configuration import
     void handleValueSpaceAttribute(CXmlElement &xmlConfigurableElementSettingsElement,

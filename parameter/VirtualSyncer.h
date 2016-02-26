@@ -39,7 +39,8 @@ public:
     CVirtualSyncer(const CConfigurableElement *pConfigurableElement);
 
     // from ISyncer
-    virtual bool sync(CParameterBlackboard &parameterBlackboard, bool bBack, std::string &strError);
+    bool sync(CParameterBlackboard &parameterBlackboard, bool bBack,
+              std::string &strError) override;
 
 private:
     const CConfigurableElement *_pConfigurableElement;

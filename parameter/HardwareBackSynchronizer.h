@@ -39,7 +39,7 @@ public:
                               CParameterBlackboard *pParameterBlackboard);
 
     // Back synchronization
-    virtual void sync();
+    void sync() override;
 
 private:
     // Back syncer set

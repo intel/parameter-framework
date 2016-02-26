@@ -71,14 +71,14 @@ public:
                               core::log::Logger &logger, const std::string &strMappingValue,
                               size_t firstAmendKey, size_t nbAmendKeys,
                               const CMappingContext &context);
-    virtual ~CFormattedSubsystemObject() = default;
+    ~CFormattedSubsystemObject() override = default;
 
     /**
      * Returns the formatted mapping value associated to the element.
      *
      * @return A std::string containing the mapping
      */
-    virtual std::string getFormattedMappingValue() const;
+    std::string getFormattedMappingValue() const override;
 
 private:
     /**

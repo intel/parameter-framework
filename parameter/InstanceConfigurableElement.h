@@ -59,7 +59,7 @@ public:
     // Instantiated type
     const CTypeElement *getTypeElement() const;
 
-    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
+    bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const override;
 
     /**
      * Returns the mapping data associated to the type element of the current
@@ -70,7 +70,7 @@ public:
     std::string getFormattedMapping() const override;
 
     // From CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
     std::string getXmlElementName() const override;
 
     // Syncer to/from HW
@@ -84,7 +84,7 @@ public:
     bool map(IMapper &mapper, std::string &strError);
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // Scalar or Array?
     bool isScalar() const;
@@ -92,14 +92,14 @@ public:
     // Array Length
     size_t getArrayLength() const;
 
-    virtual void structureToXml(CXmlElement &xmlElement,
-                                CXmlSerializingContext &serializingContext) const;
+    void structureToXml(CXmlElement &xmlElement,
+                        CXmlSerializingContext &serializingContext) const override;
 
 protected:
     // Syncer
-    virtual ISyncer *getSyncer() const;
+    ISyncer *getSyncer() const override;
     // Syncer set (descendant)
-    virtual void fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const;
+    void fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const override;
 
     /**
      * Performs the sync if the AutoSync is enabled.

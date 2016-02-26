@@ -53,7 +53,7 @@ class CConfigurableDomain : public CElement
 public:
     CConfigurableDomain() = default;
     CConfigurableDomain(const std::string &strName);
-    virtual ~CConfigurableDomain();
+    ~CConfigurableDomain() override;
 
     // Sequence awareness
     void setSequenceAwareness(bool bSequenceAware);
@@ -146,15 +146,16 @@ public:
     bool isApplicableConfigurationValid(const CConfigurableElement *pConfigurableElement) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
-    virtual void childrenToXml(CXmlElement &xmlElement,
-                               CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
+    void childrenToXml(CXmlElement &xmlElement,
+                       CXmlSerializingContext &serializingContext) const override;
 
     // Class kind
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 protected:
     // Content dumping
@@ -169,7 +170,7 @@ private:
 
     // Returns true if children dynamic creation is to be dealt with (here, will allow child
     // deletion upon clean)
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
 
     // Ensure validity on areas related to configurable element
     void validateAreas(const CConfigurableElement *pConfigurableElement,

@@ -85,7 +85,7 @@ class CParameterMgr : private CElement
 public:
     // Construction
     CParameterMgr(const std::string &strConfigurationFilePath, core::log::ILogger &logger);
-    virtual ~CParameterMgr();
+    ~CParameterMgr() override;
 
     /** Load plugins, structures and settings from the config file given.
       *
@@ -388,14 +388,14 @@ public:
                                   std::string &strResult) const;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     CParameterMgr(const CParameterMgr &);
     CParameterMgr &operator=(const CParameterMgr &);
 
     // Init
-    virtual bool init(std::string &strError);
+    bool init(std::string &strError) override;
 
     // Version
     std::string getVersion() const;
