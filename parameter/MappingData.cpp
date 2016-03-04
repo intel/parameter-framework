@@ -73,7 +73,7 @@ bool CMappingData::init(const std::string &rawMapping, std::string &error)
 
 bool CMappingData::getValue(const std::string &strkey, const std::string *&pStrValue) const
 {
-    KeyToValueMapConstIterator it = _keyToValueMap.find(strkey);
+    auto it = _keyToValueMap.find(strkey);
 
     if (it != _keyToValueMap.end()) {
 

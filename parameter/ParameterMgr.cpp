@@ -2738,7 +2738,7 @@ CParameterBlackboard *CParameterMgr::getParameterBlackboard()
 void CParameterMgr::feedElementLibraries()
 {
     // Global Configuration handling
-    CElementLibrary *pFrameworkConfigurationLibrary = new CElementLibrary;
+    auto pFrameworkConfigurationLibrary = new CElementLibrary;
 
     pFrameworkConfigurationLibrary->addElementBuilder(
         "ParameterFrameworkConfiguration",
@@ -2759,7 +2759,7 @@ void CParameterMgr::feedElementLibraries()
     _pElementLibrarySet->addElementLibrary(pFrameworkConfigurationLibrary);
 
     // Parameter creation
-    CElementLibrary *pParameterCreationLibrary = new CElementLibrary;
+    auto pParameterCreationLibrary = new CElementLibrary;
 
     pParameterCreationLibrary->addElementBuilder(
         "Subsystem", new CSubsystemElementBuilder(getSystemClass()->getSubsystemLibrary()));
@@ -2798,7 +2798,7 @@ void CParameterMgr::feedElementLibraries()
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
     // Parameter Configuration Domains creation
-    CElementLibrary *pParameterConfigurationLibrary = new CElementLibrary;
+    auto pParameterConfigurationLibrary = new CElementLibrary;
 
     pParameterConfigurationLibrary->addElementBuilder(
         "ConfigurableDomain", new TElementBuilderTemplate<CConfigurableDomain>());

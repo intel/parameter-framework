@@ -627,7 +627,7 @@ bool CConfigurableDomain::createConfiguration(const string &strName,
     }
 
     // Creation
-    CDomainConfiguration *pDomainConfiguration = new CDomainConfiguration(strName);
+    auto pDomainConfiguration = new CDomainConfiguration(strName);
 
     // Configurable elements association
     ConfigurableElementListIterator it;
@@ -1106,7 +1106,7 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement *pConfig
     pConfigurableElement->addAttachedConfigurableDomain(this);
 
     // Create associated syncer set
-    CSyncerSet *pSyncerSet = new CSyncerSet;
+    auto pSyncerSet = new CSyncerSet;
 
     // Add to sync set the configurable element one
     pConfigurableElement->fillSyncerSet(*pSyncerSet);
@@ -1182,8 +1182,7 @@ void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement *pCon
 CSyncerSet *CConfigurableDomain::getSyncerSet(
     const CConfigurableElement *pConfigurableElement) const
 {
-    ConfigurableElementToSyncerSetMapIterator mapIt =
-        _configurableElementToSyncerSetMap.find(pConfigurableElement);
+    auto mapIt = _configurableElementToSyncerSetMap.find(pConfigurableElement);
 
     ALWAYS_ASSERT(mapIt != _configurableElementToSyncerSetMap.end(),
                   "Could not find syncer set for " << getName() << " configurable domain");

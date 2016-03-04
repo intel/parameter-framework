@@ -249,7 +249,7 @@ const char *pfwGetLastError(const PfwHandler *handle)
 
 static pfw::Criterion *getCriterion(const pfw::Criteria &criteria, const string &name)
 {
-    pfw::Criteria::const_iterator it = criteria.find(name);
+    auto it = criteria.find(name);
     return it == criteria.end() ? nullptr : it->second;
 }
 

@@ -182,7 +182,7 @@ bool CSystemClass::loadPlugins(list<string> &lstrPluginFiles, core::Results &err
 
     bool bAtLeastOneSubsystemPluginSuccessfullyLoaded = false;
 
-    list<string>::iterator it = lstrPluginFiles.begin();
+    auto it = lstrPluginFiles.begin();
 
     while (it != lstrPluginFiles.end()) {
 

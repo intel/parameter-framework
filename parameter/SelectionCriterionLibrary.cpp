@@ -39,7 +39,7 @@ std::string CSelectionCriterionLibrary::getKind() const
 // Type creation
 CSelectionCriterionType *CSelectionCriterionLibrary::createSelectionCriterionType(bool bIsInclusive)
 {
-    CSelectionCriterionType *pSelectionCriterionType = new CSelectionCriterionType(bIsInclusive);
+    auto pSelectionCriterionType = new CSelectionCriterionType(bIsInclusive);
 
     addChild(pSelectionCriterionType);
 
