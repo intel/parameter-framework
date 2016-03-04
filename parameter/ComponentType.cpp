@@ -129,5 +129,5 @@ CInstanceConfigurableElement *CComponentType::doInstantiate() const
     // Not supposed to be called directly (instantiation made through CComponentInstance object)
     assert(0);
 
-    return NULL;
+    return nullptr;
 }

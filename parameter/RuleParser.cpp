@@ -114,7 +114,7 @@ bool CRuleParser::parse(CCompoundRule *pParentRule, string &strError)
                 return false;
             }
 
-            ALWAYS_ASSERT(pParentRule != NULL, "Invalid parent rule given to rule parser");
+            ALWAYS_ASSERT(pParentRule != nullptr, "Invalid parent rule given to rule parser");
             // Chain
             pParentRule->addChild(pCriterionRule);
 
@@ -232,7 +232,7 @@ CCompoundRule *CRuleParser::grabRootRule()
 
     assert(pRootRule);
 
-    _pRootRule = NULL;
+    _pRootRule = nullptr;
 
     return pRootRule;
 }

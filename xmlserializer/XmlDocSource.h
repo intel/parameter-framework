@@ -57,7 +57,7 @@ public:
       * @param[in] pRootNode a pointer to the root element of the document.
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema = false, _xmlNode *pRootNode = NULL);
+    CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema = false, _xmlNode *pRootNode = nullptr);
 
     /**
       * Constructor

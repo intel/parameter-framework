@@ -84,7 +84,7 @@ void CConfigurableDomains::apply(CParameterBlackboard *pParameterBlackboard, CSy
         }
     }
     // Synchronize those collected syncers
-    syncerSet.sync(*pParameterBlackboard, false, NULL);
+    syncerSet.sync(*pParameterBlackboard, false, nullptr);
 
     // Then deal with domains that need to synchronize along apply
     for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
@@ -94,7 +94,7 @@ void CConfigurableDomains::apply(CParameterBlackboard *pParameterBlackboard, CSy
 
         std::string info;
         // Apply and synchronize when relevant
-        pChildConfigurableDomain->apply(pParameterBlackboard, NULL, bForce, info);
+        pChildConfigurableDomain->apply(pParameterBlackboard, nullptr, bForce, info);
         if (!info.empty()) {
             infos.push_back(info);
         }
@@ -304,7 +304,7 @@ bool CConfigurableDomains::split(const string &domainName, CConfigurableElement 
     std::string error;
     CConfigurableDomain *domain = findConfigurableDomain(domainName, error);
 
-    if (domain == NULL) {
+    if (domain == nullptr) {
 
         infos.push_back(error);
         return false;
@@ -411,7 +411,7 @@ bool CConfigurableDomains::restoreConfiguration(const string &domainName,
     // Find domain
     const CConfigurableDomain *domain = findConfigurableDomain(domainName, error);
 
-    if (domain == NULL) {
+    if (domain == nullptr) {
 
         errors.push_back(error);
         return false;
@@ -541,7 +541,7 @@ bool CConfigurableDomains::addConfigurableElementToDomain(
     std::string error;
     CConfigurableDomain *domain = findConfigurableDomain(domainName, error);
 
-    if (domain == NULL) {
+    if (domain == nullptr) {
 
         infos.push_back(error);
         return false;
@@ -574,7 +574,7 @@ CParameterBlackboard *CConfigurableDomains::findConfigurationBlackboard(
 
     if (!pConfigurableDomain) {
 
-        return NULL;
+        return nullptr;
     }
 
     // Check that element belongs to the domain
@@ -583,7 +583,7 @@ CParameterBlackboard *CConfigurableDomains::findConfigurationBlackboard(
         strError = "Element \"" + pConfigurableElement->getPath() +
                    "\" does not belong to domain \"" + strDomain + "\"";
 
-        return NULL;
+        return nullptr;
     }
 
     // Find Configuration Blackboard and Base Offset
@@ -612,7 +612,7 @@ const CConfigurableDomain *CConfigurableDomains::findConfigurableDomain(const st
 
         strError = "Configurable domain " + strDomain + " not found";
 
-        return NULL;
+        return nullptr;
     }
 
     return pConfigurableDomain;

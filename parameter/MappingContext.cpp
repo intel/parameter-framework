@@ -63,15 +63,15 @@ size_t CMappingContext::getItemAsInteger(size_t itemType) const
         return 0;
     }
 
-    return strtoul(mItems[itemType].strItem->c_str(), NULL, 0);
+    return strtoul(mItems[itemType].strItem->c_str(), nullptr, 0);
 }
 
 const string *CMappingContext::getItem(const string &strKey) const
 {
     auto itemFound = find_if(begin(mItems), end(mItems), [&](const SItem &item) {
-        return item.strKey != NULL && strKey == *item.strKey;
+        return item.strKey != nullptr && strKey == *item.strKey;
     });
-    return (itemFound != end(mItems)) ? itemFound->strKey : NULL;
+    return (itemFound != end(mItems)) ? itemFound->strKey : nullptr;
 }
 
 bool CMappingContext::iSet(size_t itemType) const

@@ -92,7 +92,7 @@ public:
      * @return true if success false otherwise
      */
     bool restore(CParameterBlackboard *pMainBlackboard, bool bSync,
-                 core::Results *errors = NULL) const;
+                 core::Results *errors = nullptr) const;
 
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement *pConfigurableElement,

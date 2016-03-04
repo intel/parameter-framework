@@ -40,7 +40,7 @@ CXmlSerializingContext::CXmlSerializingContext(std::string &strError)
 CXmlSerializingContext::~CXmlSerializingContext()
 {
     // TODO: restore the previous handler
-    xmlSetStructuredErrorFunc(NULL, NULL);
+    xmlSetStructuredErrorFunc(nullptr, nullptr);
     prependToError(_strXmlError);
 }
 
@@ -59,7 +59,7 @@ void CXmlSerializingContext::structuredErrorHandler(void *userData, xmlErrorPtr 
 {
     CXmlSerializingContext *self = static_cast<CXmlSerializingContext *>(userData);
 
-    std::string filename = (error->file != NULL) ? error->file : "(user input)";
+    std::string filename = (error->file != nullptr) ? error->file : "(user input)";
     // xmlErrorPtr->int2 contains the column; see xmlerror.h
     self->_strXmlError += filename + ":" + std::to_string(error->line) + ":" +
                           std::to_string(error->int2) + ": " + error->message;

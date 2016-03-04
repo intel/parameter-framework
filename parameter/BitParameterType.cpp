@@ -123,7 +123,7 @@ bool CBitParameterType::toBlackboard(const string &strValue, uint64_t &uiValue,
                                      CParameterAccessContext &parameterAccessContext) const
 {
     // Get value
-    uint64_t uiConvertedValue = strtoull(strValue.c_str(), NULL, 0);
+    uint64_t uiConvertedValue = strtoull(strValue.c_str(), nullptr, 0);
 
     if (uiConvertedValue > _uiMax) {
 

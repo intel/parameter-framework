@@ -47,7 +47,7 @@ CInstanceConfigurableElement *CInstanceDefinition::doInstantiate() const
     // Element not supposed to be instantiated direcly
     assert(0);
 
-    return NULL;
+    return nullptr;
 }
 
 void CInstanceDefinition::createInstances(CElement *pFatherElement)

@@ -156,9 +156,9 @@ CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterionFro
 CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterion(
     const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return createExclusiveSelectionCriterion(remoteCommand.getArgument(0),
-                                             strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-                                             strResult)
+    return createExclusiveSelectionCriterion(
+               remoteCommand.getArgument(0),
+               strtoul(remoteCommand.getArgument(1).c_str(), nullptr, 0), strResult)
                ? CTestPlatform::CCommandHandler::EDone
                : CTestPlatform::CCommandHandler::EFailed;
 }
@@ -166,9 +166,9 @@ CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterion(
 CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterion(
     const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return createInclusiveSelectionCriterion(remoteCommand.getArgument(0),
-                                             strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-                                             strResult)
+    return createInclusiveSelectionCriterion(
+               remoteCommand.getArgument(0),
+               strtoul(remoteCommand.getArgument(1).c_str(), nullptr, 0), strResult)
                ? CTestPlatform::CCommandHandler::EDone
                : CTestPlatform::CCommandHandler::EFailed;
 }
@@ -258,7 +258,7 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
     ISelectionCriterionTypeInterface *pCriterionType =
         mParameterMgrPlatformConnector.createSelectionCriterionType(false);
 
-    assert(pCriterionType != NULL);
+    assert(pCriterionType != nullptr);
 
     size_t nbStates = remoteCommand.getArgumentCount() - 1;
 
@@ -286,7 +286,7 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
     ISelectionCriterionTypeInterface *pCriterionType =
         mParameterMgrPlatformConnector.createSelectionCriterionType(true);
 
-    assert(pCriterionType != NULL);
+    assert(pCriterionType != nullptr);
 
     size_t nbStates = remoteCommand.getArgumentCount() - 1;
 

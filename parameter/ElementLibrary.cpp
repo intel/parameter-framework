@@ -54,7 +54,7 @@ CElement *CElementLibrary::createElement(const CXmlElement &xmlElement) const
 
         return it->second->createElement(xmlElement);
     }
-    return NULL;
+    return nullptr;
 }
 
 void CElementLibrary::addElementBuilder(const std::string &type,

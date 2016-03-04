@@ -145,7 +145,7 @@ void CInstanceConfigurableElement::setSyncer(ISyncer *pSyncer)
 
 void CInstanceConfigurableElement::unsetSyncer()
 {
-    _pSyncer = NULL;
+    _pSyncer = nullptr;
 }
 
 // Syncer

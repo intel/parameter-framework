@@ -116,7 +116,7 @@ public:
         : _pCommandParser(pCommandParser), _maxCommandUsageLength(0)
     {
         // Help Command
-        addCommandParser("help", NULL, 0, "", "Show commands description and usage");
+        addCommandParser("help", nullptr, 0, "", "Show commands description and usage");
     }
     ~TRemoteCommandHandlerTemplate()
     {
@@ -216,7 +216,7 @@ private:
                 return pRemoteCommandParserItem;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
 private:

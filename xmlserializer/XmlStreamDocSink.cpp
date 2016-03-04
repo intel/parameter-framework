@@ -39,7 +39,7 @@ CXmlStreamDocSink::CXmlStreamDocSink(std::ostream &output) : _output(output)
 bool CXmlStreamDocSink::doProcess(CXmlDocSource &xmlDocSource,
                                   CXmlSerializingContext &serializingContext)
 {
-    xmlChar *dumpedDoc = NULL;
+    xmlChar *dumpedDoc = nullptr;
 
     int iSize;
     xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &dumpedDoc, &iSize, "UTF-8", 1);
