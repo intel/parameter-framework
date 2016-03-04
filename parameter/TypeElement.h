@@ -41,7 +41,7 @@ class PARAMETER_EXPORT CTypeElement : public CElement
 {
 public:
     CTypeElement(const std::string &strName = "");
-    virtual ~CTypeElement();
+    ~CTypeElement() override;
 
     // Instantiation
     CInstanceConfigurableElement *instantiate() const;
@@ -58,13 +58,14 @@ public:
     virtual std::string getFormattedMapping() const;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // Scalar or Array?
     bool isScalar() const;

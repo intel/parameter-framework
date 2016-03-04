@@ -47,7 +47,7 @@ public:
     {
     }
 
-    virtual CElement *createElement(const CXmlElement &xmlElement) const
+    CElement *createElement(const CXmlElement &xmlElement) const override
     {
         return new CXmlFileIncluderElement(xmlElement.getNameAttribute(), xmlElement.getType(),
                                            _bValidateWithSchemas, _schemaBaseUri);

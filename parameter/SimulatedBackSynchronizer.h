@@ -43,7 +43,7 @@ public:
                                CParameterBlackboard *pParameterBlackboard);
 
     // Back synchronization
-    virtual void sync();
+    void sync() override;
 
 private:
     // Fake error for parameter context creation

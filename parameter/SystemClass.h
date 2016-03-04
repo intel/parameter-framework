@@ -48,7 +48,7 @@ public:
      * it need to be given to the subsystem library
      */
     CSystemClass(core::log::Logger &logger);
-    virtual ~CSystemClass();
+    ~CSystemClass() override;
 
     /** Load subsystem plugin and fill the corresponding libraries.
      *
@@ -81,7 +81,7 @@ public:
     void cleanSubsystemsNeedToResync();
 
     // base
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
     bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const override;
     std::string getFormattedMapping() const override;
@@ -90,7 +90,7 @@ private:
     CSystemClass(const CSystemClass &);
     CSystemClass &operator=(const CSystemClass &);
     // base
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
 
     /** Load shared libraries subsystem plugins.
      *

@@ -42,5 +42,5 @@ public:
     }
 
     // Type
-    virtual Type getType() const { return EParameterBlock; }
+    Type getType() const override { return EParameterBlock; }
 };

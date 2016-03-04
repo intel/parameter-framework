@@ -39,7 +39,8 @@ public:
     CPluginLocation(const std::string &strName, const std::string &strKind);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // Folder
     const std::string &getFolder() const;

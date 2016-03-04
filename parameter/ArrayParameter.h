@@ -37,30 +37,30 @@ public:
     CArrayParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
-    virtual size_t getFootPrint() const;
+    size_t getFootPrint() const override;
 
     /// Value access
     using CBaseParameter::access;
     bool access(std::vector<bool> &abValues, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
     bool access(std::vector<uint32_t> &auiValues, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
     bool access(std::vector<int32_t> &aiValues, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
     bool access(std::vector<double> &adValues, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
     bool access(std::vector<std::string> &astrValues, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
 
 protected:
     // User set/get
-    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
-                             CParameterAccessContext &parameterAccessContext) const;
+    bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+                     CParameterAccessContext &parameterAccessContext) const override;
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
+    void setDefaultValues(CParameterAccessContext &parameterAccessContext) const override;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
 private:
     // Array length

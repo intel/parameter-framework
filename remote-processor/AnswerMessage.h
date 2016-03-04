@@ -47,13 +47,13 @@ public:
 
 private:
     // Fill data to send
-    virtual void fillDataToSend();
+    void fillDataToSend() override;
     // Collect received data
-    virtual void collectReceivedData();
+    void collectReceivedData() override;
 
     /** @return size of the answer message in bytes
     */
-    virtual size_t getDataSize() const;
+    size_t getDataSize() const override;
     // Answer
     void setAnswer(const std::string &strAnswer);
 

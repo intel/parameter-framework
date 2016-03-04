@@ -35,5 +35,5 @@ template <class ElementType>
 class TElementBuilderTemplate : public CElementBuilder
 {
 public:
-    virtual CElement *createElement(const CXmlElement & /*elem*/) const { return new ElementType; }
+    CElement *createElement(const CXmlElement & /*elem*/) const override { return new ElementType; }
 };

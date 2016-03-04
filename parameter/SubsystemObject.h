@@ -46,7 +46,7 @@ class PARAMETER_EXPORT CSubsystemObject : private ISyncer
 public:
     CSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
                      core::log::Logger &logger);
-    virtual ~CSubsystemObject();
+    ~CSubsystemObject() override;
 
     /**
      * Return the mapping value of the SubystemObject.
@@ -100,8 +100,7 @@ private:
     /** This method is not supposed to be overridden by plugins
      *  as if not called, plugins will not work (sets _blackboard).
      */
-    bool sync(CParameterBlackboard &parameterBlackboard, bool bBack,
-              std::string &strError) override final;
+    bool sync(CParameterBlackboard &parameterBlackboard, bool bBack, std::string &strError) final;
 
     // Default back synchronization
     void setDefaultValues(CParameterBlackboard &parameterBlackboard) const;

@@ -39,34 +39,35 @@ public:
     CFixedPointParameterType(const std::string &strName);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // XML Serialization value space handling
     // Value space handling for configuration import
-    virtual void handleValueSpaceAttribute(
+    void handleValueSpaceAttribute(
         CXmlElement &xmlConfigurableElementSettingsElement,
-        CConfigurationAccessContext &configurationAccessContext) const;
+        CConfigurationAccessContext &configurationAccessContext) const override;
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
     // Double
-    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(double dUserValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     // Util size

@@ -85,7 +85,7 @@ public:
      *
      * @return pointer to the generated element
      */
-    virtual CElement *createElement(const CXmlElement &xmlElement) const
+    CElement *createElement(const CXmlElement &xmlElement) const override
     {
         return new ElementType(details::getName(xmlElement), mLogger);
     }

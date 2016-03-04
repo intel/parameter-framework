@@ -1,15 +1,31 @@
+os:
+    - linux
+    - osx
 # Use travis docker infrastructure
 sudo: false
+# Use a recent OSX image
+# cf.
+# https://docs.travis-ci.com/user/languages/objective-c/#Supported-OS-X-iOS-SDK-versions
+osx_image: xcode7.2
 language: cpp
 cache: ccache
 
 env:
     global:
         - PREFIX=$HOME/prefix
+        - MY_CMAKE_OPTIONS="-DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=$HOME/install"
+        - CTEST_OUTPUT_ON_FAILURE=1
+        - LINUX=false
+        - OSX=false
 
 compiler:
     - gcc
     - clang
+
+matrix:
+    exclude:
+        - os: osx
+          compiler: gcc
 
 # Install a recent gcc and gcov,
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
@@ -36,6 +52,12 @@ addons:
             - python3-dev
             - clang-format-3.8
 
+before_install:
+    # OS detection
+    # TODO: an explicit build matrix may be better but it has limitation, e.g.
+    # each matrix entry may only define a single env variable.
+    - if [ $TRAVIS_OS_NAME = linux ]; then export LINUX=true; fi
+    - if [ $TRAVIS_OS_NAME = osx ]; then export OSX=true; fi
 install:
     - wget https://codecov.io/bash -O $HOME/codecov; chmod +x $HOME/codecov
     # This version of catch is known to work.
@@ -43,6 +65,19 @@ install:
               https://raw.github.com/philsquared/Catch/v1.2.1/single_include/catch.hpp
     - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
     - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=1
+    # Current limitations on OSX builds: no testing, no client-simulator
+    # (because we haven't found a straightforward way to have CMake find the
+    # python libraries (find_package(PythonLibs)).
+    - if $OSX; then
+        brew update;
+        for package in cmake; do
+            if brew list $package; then
+              brew outdated $package || brew upgrade $package;
+            else
+              brew install $package;
+            fi;
+        done;
+      fi
 
 before_script:
     - coverage=OFF
@@ -54,41 +89,42 @@ before_script:
           coverage=ON;
           export CCACHE_CPP2=1;
       fi
+    - if $OSX; then export MY_CMAKE_OPTIONS+=" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF"; fi
 
 # how to build
 script:
   # Check coding style
-  - git ls-files | grep -E '\.[ch](pp)?$' |  xargs clang-format-3.8 -i &&
-        git diff --exit-code || { git reset --hard; false; }
+  - if $LINUX; then (git ls-files | grep -E '\.[ch](pp)?$' |  xargs clang-format-3.8 -i &&
+        git diff --exit-code || { git reset --hard; false; }); fi
 
   - ( mkdir build_debug && cd build_debug &&
-        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=${coverage} .. &&
+        cmake $MY_CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=${coverage} .. &&
         make -j$(nproc) &&
-        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
+        (if $LINUX; then make ExperimentalTest ExperimentalMemCheck; fi) )
   - ( mkdir build && cd build &&
-        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=Release .. &&
+        cmake $MY_CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=Release .. &&
         make -j$(nproc) &&
-        CTEST_OUTPUT_ON_FAILURE=1 make test &&
+        (if $LINUX; then make test; fi) &&
         make install &&
-        cpack --verbose -G DEB && dpkg --info *.deb)
+        (if $LINUX; then cpack --verbose -G DEB && dpkg --info *.deb; fi) )
   - ( cd skeleton-subsystem &&
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install . &&
+        cmake $MY_CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=Release . &&
         make -j$(nproc) &&
-        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
+        (if $LINUX; then make ExperimentalTest ExperimentalMemCheck; fi) &&
         make install )
-  - ( cd tools/clientSimulator &&
-        echo "TODO - install the generated .deb instead of using ../install."
+  - if $LINUX; then ( cd tools/clientSimulator &&
+        echo "TODO - install the generated .deb instead of using \$HOME/install."
              "This would permit to test the packaging" &&
-        cmake -DCMAKE_INSTALL_PREFIX=../install . &&
+        cmake $MY_CMAKE_OPTIONS . &&
         make &&
-        make install )
+        make install ); fi
   # Keep this last
   - ( mkdir build_less_features && cd build_less_features &&
         rm -rf $PREFIX/asio-1.10.6 &&
-        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug
+        cmake $MY_CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=Debug
         -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF .. &&
         make -j$(nproc) &&
-        CTEST_OUTPUT_ON_FAILURE=1 make test )
+        (if $LINUX; then make test; fi) )
 
 after_success:
     # Push coverage info on codecov.io.

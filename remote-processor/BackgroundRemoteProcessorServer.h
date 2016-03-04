@@ -43,7 +43,7 @@ public:
     BackgroundRemoteProcessorServer(uint16_t uiPort,
                                     std::unique_ptr<IRemoteCommandHandler> &&commandHandler);
 
-    ~BackgroundRemoteProcessorServer();
+    ~BackgroundRemoteProcessorServer() override;
 
     bool start(std::string &error) override;
 

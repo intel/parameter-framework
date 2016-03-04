@@ -43,7 +43,8 @@ public:
     const std::string &getUri() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
 private:
     std::string _configurationUri;

@@ -45,7 +45,7 @@ public:
     // Serialization direction
     bool serializeOut() const;
 
-    bool serializeSettings() const override final { return true; }
+    bool serializeSettings() const final { return true; }
 
 private:
     // Serialization direction

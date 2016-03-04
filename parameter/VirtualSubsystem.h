@@ -43,11 +43,11 @@ public:
      * @param[in] logger the main logger of the application
      */
     CVirtualSubsystem(const std::string &strName, core::log::Logger &logger);
-    virtual ~CVirtualSubsystem();
+    ~CVirtualSubsystem() override;
 
 protected:
     // Syncer
-    virtual ISyncer *getSyncer() const;
+    ISyncer *getSyncer() const override;
 
     /**
      * Fill Syncer Set From descendant nodes
@@ -59,9 +59,9 @@ protected:
 
 private:
     // From IMapper
-    virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                          bool &bKeepDiving, std::string &strError);
-    virtual void mapEnd();
+    bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement, bool &bKeepDiving,
+                  std::string &strError) override;
+    void mapEnd() override;
 
     // Subsystem level dummy syncer
     CVirtualSyncer *_pVirtualSyncer;

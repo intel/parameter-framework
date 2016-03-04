@@ -61,7 +61,7 @@ public:
       *
       * @return false if any error occurs
       */
-    virtual bool populate(CXmlSerializingContext &serializingContext);
+    bool populate(CXmlSerializingContext &serializingContext) override;
 
 private:
     /**

@@ -44,14 +44,14 @@ public:
 
     // Command Name
     void setCommand(const std::string &strCommand);
-    virtual const std::string &getCommand() const;
+    const std::string &getCommand() const override;
 
     // Arguments
-    virtual void addArgument(const std::string &strArgument);
-    virtual size_t getArgumentCount() const;
-    virtual const std::string &getArgument(size_t argument) const;
-    virtual const std::vector<std::string> &getArguments() const;
-    virtual const std::string packArguments(size_t startArgument, size_t nbArguments) const;
+    void addArgument(const std::string &strArgument) override;
+    size_t getArgumentCount() const override;
+    const std::string &getArgument(size_t argument) const override;
+    const std::vector<std::string> &getArguments() const override;
+    const std::string packArguments(size_t startArgument, size_t nbArguments) const override;
 
 private:
     /**
@@ -62,14 +62,14 @@ private:
     static const char *const gacDelimiters;
 
     // Fill data to send
-    virtual void fillDataToSend();
+    void fillDataToSend() override;
     // Collect received data
-    virtual void collectReceivedData();
+    void collectReceivedData() override;
     // Size
     /**
      * @return size of the request message in bytes
      */
-    virtual size_t getDataSize() const;
+    size_t getDataSize() const override;
     // Trim input std::string
     static std::string trim(const std::string &strToTrim);
 

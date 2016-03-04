@@ -42,7 +42,7 @@ public:
     CSelectionCriterionType(bool bIsInclusive);
 
     // From ISelectionCriterionTypeInterface
-    virtual bool addValuePair(int iValue, const std::string &strValue, std::string &strError);
+    bool addValuePair(int iValue, const std::string &strValue, std::string &strError) override;
     /**
      * Retrieve the numerical value from the std::string representation of the criterion type.
      *
@@ -53,15 +53,15 @@ public:
      *
      * @return true if integer value retrieved from the std::string one, false otherwise.
      */
-    virtual bool getNumericalValue(const std::string &strValue, int &iValue) const;
-    virtual bool getLiteralValue(int iValue, std::string &strValue) const;
-    virtual bool isTypeInclusive() const;
+    bool getNumericalValue(const std::string &strValue, int &iValue) const override;
+    bool getLiteralValue(int iValue, std::string &strValue) const override;
+    bool isTypeInclusive() const override;
 
     // Value list
     std::string listPossibleValues() const;
 
     // Formatted state
-    virtual std::string getFormattedState(int iValue) const;
+    std::string getFormattedState(int iValue) const override;
 
     /**
       * Export to XML
@@ -70,10 +70,10 @@ public:
       * @param[in] serializingContext The serializing context
       *
       */
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // From CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     /**

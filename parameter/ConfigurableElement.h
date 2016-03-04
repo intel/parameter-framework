@@ -53,7 +53,7 @@ class PARAMETER_EXPORT CConfigurableElement : public CElement
 
 public:
     CConfigurableElement(const std::string &strName = "");
-    virtual ~CConfigurableElement() = default;
+    ~CConfigurableElement() override = default;
 
     // Offset in main blackboard
     void setOffset(size_t offset);
@@ -143,7 +143,7 @@ public:
     virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     /**
      * Get the value associated to a mapping key in the object's mapping
@@ -165,11 +165,9 @@ public:
         CXmlElement &xmlConfigurationSettingsElementContent,
         CConfigurationAccessContext &configurationAccessContext) const;
 
-    bool fromXml(const CXmlElement &xmlElement,
-                 CXmlSerializingContext &serializingContext) override final;
+    bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) final;
 
-    void toXml(CXmlElement &xmlElement,
-               CXmlSerializingContext &serializingContext) const override final;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const final;
 
     /** Deserialize the structure from xml. */
     virtual bool structureFromXml(const CXmlElement &xmlElement,
@@ -210,7 +208,7 @@ private:
     // Elements should be called with the overloaded version taking a
     // "Parameter Access Context" (The name is misleading as it is actually
     // used to access any Configurable Element).
-    std::string logValue(utility::ErrorContext &errorContext) const override final;
+    std::string logValue(utility::ErrorContext &errorContext) const final;
     virtual std::string logValue(CParameterAccessContext &context) const;
 
     // Configurable domain association

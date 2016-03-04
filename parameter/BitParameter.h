@@ -39,22 +39,22 @@ public:
     CBitParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
-    virtual size_t getFootPrint() const;
+    size_t getFootPrint() const override;
 
     // Type
-    virtual Type getType() const;
+    Type getType() const override;
 
     /// Value access
     // Boolean access
     bool access(bool &bValue, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
 
     // Integer Access
     bool access(uint32_t &uiValue, bool bSet,
-                CParameterAccessContext &parameterAccessContext) const override final;
+                CParameterAccessContext &parameterAccessContext) const final;
 
     // AreaConfiguration creation
-    virtual CAreaConfiguration *createAreaConfiguration(const CSyncerSet *pSyncerSet) const;
+    CAreaConfiguration *createAreaConfiguration(const CSyncerSet *pSyncerSet) const override;
 
     // Size
     size_t getBelongingBlockSize() const;
@@ -64,10 +64,10 @@ public:
 
 private:
     // String Access
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
-                            CParameterAccessContext &parameterAccessContext) const;
-    virtual void doGetValue(std::string &strValue, size_t offset,
-                            CParameterAccessContext &parameterAccessContext) const;
+    bool doSetValue(const std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
+    void doGetValue(std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
 
     // Generic Access
     template <typename type>

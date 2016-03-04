@@ -37,25 +37,25 @@ class CBooleanParameterType : public CParameterType
 {
 public:
     CBooleanParameterType(const std::string &strName);
-    virtual ~CBooleanParameterType() = default;
+    ~CBooleanParameterType() override = default;
 
     // Kind
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
     // Boolean
-    virtual bool toBlackboard(bool bUserValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(bool &bUserValue, uint32_t uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(bool bUserValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(bool &bUserValue, uint32_t uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
     // Integer
-    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
-                              CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
-                                CParameterAccessContext &parameterAccessContext) const;
+    bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+                      CParameterAccessContext &parameterAccessContext) const override;
+    bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+                        CParameterAccessContext &parameterAccessContext) const override;
 };

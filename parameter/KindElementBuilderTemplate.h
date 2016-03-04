@@ -37,7 +37,7 @@ class TKindElementBuilderTemplate : public CElementBuilder
 public:
     TKindElementBuilderTemplate() : CElementBuilder() {}
 
-    virtual CElement *createElement(const CXmlElement &xmlElement) const
+    CElement *createElement(const CXmlElement &xmlElement) const override
     {
         return new ElementType(xmlElement.getNameAttribute(), xmlElement.getType());
     }

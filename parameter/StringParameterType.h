@@ -44,20 +44,21 @@ public:
     size_t getMaxLength() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     // Instantiation
-    virtual CInstanceConfigurableElement *doInstantiate() const;
+    CInstanceConfigurableElement *doInstantiate() const override;
 
     // Max length in bytes
     size_t _maxLength{0};

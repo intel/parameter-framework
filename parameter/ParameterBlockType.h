@@ -39,12 +39,12 @@ public:
     CParameterBlockType(const std::string &strName);
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
     // Instantiation
-    virtual CInstanceConfigurableElement *doInstantiate() const;
+    CInstanceConfigurableElement *doInstantiate() const override;
     // Population
-    virtual void populate(CElement *pElement) const;
+    void populate(CElement *pElement) const override;
 };

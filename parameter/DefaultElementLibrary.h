@@ -47,7 +47,7 @@ template <class CDefaultElementBuilder>
 class CDefaultElementLibrary : public CElementLibrary
 {
 public:
-    virtual ~CDefaultElementLibrary() = default;
+    ~CDefaultElementLibrary() override = default;
 
     /** Set the default builder used in fallback mechanism.
       * @see createElement() for more detail on this mechanism.

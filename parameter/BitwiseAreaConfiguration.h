@@ -41,6 +41,6 @@ public:
 
 private:
     // Blackboard copies
-    virtual void copyTo(CParameterBlackboard *pToBlackboard, size_t offset) const;
-    virtual void copyFrom(const CParameterBlackboard *pFromBlackboard, size_t offset);
+    void copyTo(CParameterBlackboard *pToBlackboard, size_t offset) const override;
+    void copyFrom(const CParameterBlackboard *pFromBlackboard, size_t offset) override;
 };

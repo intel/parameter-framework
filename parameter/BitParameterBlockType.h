@@ -42,18 +42,19 @@ public:
     size_t getSize() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
     // Instantiation
-    virtual CInstanceConfigurableElement *doInstantiate() const;
+    CInstanceConfigurableElement *doInstantiate() const override;
 
     // Size in bytes
     size_t _size{0};

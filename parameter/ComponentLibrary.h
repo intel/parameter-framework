@@ -42,11 +42,12 @@ class CComponentLibrary : public CElement
 public:
     const CComponentType *getComponentType(const std::string &strName) const;
 
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
 private:
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
 };

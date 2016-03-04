@@ -49,7 +49,7 @@ class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
 {
 public:
     CElement(const std::string &strName = "");
-    virtual ~CElement();
+    ~CElement() override;
 
     // Description
     void setDescription(const std::string &strDescription);
@@ -106,10 +106,11 @@ public:
     bool isDescendantOf(const CElement *pCandidateAscendant) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     /**
      * Serialize the children to XML

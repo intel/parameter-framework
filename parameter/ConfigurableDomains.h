@@ -161,7 +161,7 @@ public:
                                                       std::string &strError) const;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // Ensure validity on whole domains from main blackboard
     void validate(const CParameterBlackboard *pMainBlackboard);
@@ -177,7 +177,7 @@ public:
                core::Results &infos) const;
 
     // Class kind
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     /** Delete a domain
@@ -189,7 +189,7 @@ private:
      */
     void deleteDomain(CConfigurableDomain &configurableDomain);
     // Returns true if children dynamic creation is to be dealt with
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
     // Gather owned configurable elements owned by any domain
     void gatherAllOwnedConfigurableElements(
         std::set<const CConfigurableElement *> &configurableElementSet) const;

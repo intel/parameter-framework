@@ -42,5 +42,5 @@ public:
     }
 
 private:
-    virtual bool childrenAreDynamic() const { return true; }
+    bool childrenAreDynamic() const override { return true; }
 };

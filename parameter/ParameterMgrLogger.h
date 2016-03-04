@@ -43,9 +43,9 @@ class CParameterMgrLogger : public core::log::ILogger, private utility::NonCopya
 public:
     CParameterMgrLogger(T &parameterMgrConnector) : _parameterMgrConnector(parameterMgrConnector) {}
 
-    virtual void info(const std::string &log) { _parameterMgrConnector.info(log); }
+    void info(const std::string &log) override { _parameterMgrConnector.info(log); }
 
-    virtual void warning(const std::string &log) { _parameterMgrConnector.warning(log); }
+    void warning(const std::string &log) override { _parameterMgrConnector.warning(log); }
 
 private:
     // Log destination

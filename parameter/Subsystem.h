@@ -61,10 +61,10 @@ public:
      * @param[in] logger the main logger of the application
      */
     CSubsystem(const std::string &strName, core::log::Logger &logger);
-    virtual ~CSubsystem();
+    ~CSubsystem() override;
 
-    virtual bool structureFromXml(const CXmlElement &xmlElement,
-                                  CXmlSerializingContext &serializingContext);
+    bool structureFromXml(const CXmlElement &xmlElement,
+                          CXmlSerializingContext &serializingContext) override;
 
     // Susbsystem sanity
     virtual bool isAlive() const;
@@ -73,9 +73,9 @@ public:
     virtual bool needResync(bool bClear);
 
     // from CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
-    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
+    bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const override;
     std::string getFormattedMapping() const override;
 
     /**
@@ -98,7 +98,7 @@ public:
 
 protected:
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
+    void setDefaultValues(CParameterAccessContext &parameterAccessContext) const override;
 
     /// Functionality intendedn for derived Subsystems
     // Subsystem context mapping keys publication
@@ -111,7 +111,7 @@ private:
     CSubsystem &operator=(const CSubsystem &);
 
     // Belonging subsystem
-    virtual const CSubsystem *getBelongingSubsystem() const;
+    const CSubsystem *getBelongingSubsystem() const override;
 
     // Mapping execution
     bool mapSubsystemElements(std::string &strError);
@@ -130,9 +130,9 @@ private:
      *
      * @return true on success, false on failure
      */
-    virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                          bool &bKeepDiving, std::string &strError);
-    virtual void mapEnd();
+    bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement, bool &bKeepDiving,
+                  std::string &strError) override;
+    void mapEnd() override;
 
     // Mapping access
     /**

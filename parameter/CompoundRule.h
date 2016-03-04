@@ -37,29 +37,30 @@ class CCompoundRule : public CRule
 {
 public:
     // Parse
-    virtual bool parse(CRuleParser &ruleParser, std::string &strError);
+    bool parse(CRuleParser &ruleParser, std::string &strError) override;
 
     // Dump
     std::string dump() const override;
 
     // Rule check
-    virtual bool matches() const;
+    bool matches() const override;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     // Class kind
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 private:
     // Content dumping
     std::string logValue(utility::ErrorContext &errorContext) const override;
 
     // Returns true if children dynamic creation is to be dealt with
-    virtual bool childrenAreDynamic() const;
+    bool childrenAreDynamic() const override;
 
     // Type
     bool _bTypeAll{false};

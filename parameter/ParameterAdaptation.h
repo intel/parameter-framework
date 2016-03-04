@@ -39,17 +39,18 @@ public:
     CParameterAdaptation(const std::string &strType);
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // Conversions
     virtual int64_t fromUserValue(double dValue) const;
     virtual double toUserValue(int64_t iValue) const;
 
     // CElement
-    virtual std::string getKind() const;
+    std::string getKind() const override;
 
 protected:
     // Attributes

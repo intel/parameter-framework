@@ -42,5 +42,5 @@ public:
     }
 
     // Type
-    virtual Type getType() const { return EComponent; }
+    Type getType() const override { return EComponent; }
 };

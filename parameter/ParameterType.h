@@ -45,7 +45,7 @@ class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
     CParameterType(const std::string &strName);
-    virtual ~CParameterType() = default;
+    ~CParameterType() override = default;
 
     // Size
     size_t getSize() const;
@@ -55,10 +55,11 @@ public:
     void setUnit(const std::string &strUnit);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    bool fromXml(const CXmlElement &xmlElement,
+                 CXmlSerializingContext &serializingContext) override;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override;
 
     /// Conversions
     // String
@@ -104,7 +105,7 @@ public:
         CConfigurationAccessContext &configurationAccessContext) const;
 
     // Element properties
-    virtual void showProperties(std::string &strResult) const;
+    void showProperties(std::string &strResult) const override;
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
@@ -125,7 +126,7 @@ public:
 
 protected:
     // Object creation
-    virtual void populate(CElement *pElement) const;
+    void populate(CElement *pElement) const override;
     // Size
     void setSize(size_t size);
 
@@ -151,7 +152,7 @@ private:
     void setXmlUnitAttribute(CXmlElement &xmlElement) const;
 
     // Instantiation
-    virtual CInstanceConfigurableElement *doInstantiate() const;
+    CInstanceConfigurableElement *doInstantiate() const override;
     // Generic Access
     template <typename type>
     void doSignExtend(type &data) const;
