@@ -40,5 +40,5 @@ bool getParameterValue()
 {
     return SubsystemObject::getSingletonInstanceValue();
 }
-}
-}
+} // namespace introspectionSubsystem
+} // namespace parameterFramework

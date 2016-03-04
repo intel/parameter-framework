@@ -79,4 +79,4 @@ struct Config
     std::string subsystemType = "Virtual";
 };
 
-} // parameterFramework
+} // namespace parameterFramework

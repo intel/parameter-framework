@@ -37,4 +37,4 @@ std::string getName(const CXmlElement &xmlElement)
 {
     return xmlElement.getNameAttribute();
 }
-}
+} // namespace details

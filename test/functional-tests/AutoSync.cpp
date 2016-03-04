@@ -130,4 +130,4 @@ SCENARIO_METHOD(BoolPF, "Auto sync")
         }
     }
 }
-}
+} // namespace parameterFramework

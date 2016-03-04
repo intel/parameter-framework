@@ -38,4 +38,4 @@ namespace core
 /** String list type which can hold list of error/info */
 typedef std::list<std::string> Results;
 
-} /** core namespace */
+} // namespace core

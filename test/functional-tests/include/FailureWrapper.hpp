@@ -133,4 +133,4 @@ private:
         return res;
     }
 };
-} // parameterFramework
+} // namespace parameterFramework

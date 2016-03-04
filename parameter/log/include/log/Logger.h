@@ -76,5 +76,5 @@ private:
     std::string mProlog;
 };
 
-} /** log namespace */
-} /** core namespace */
+} // namespace log
+} // namespace core

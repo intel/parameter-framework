@@ -112,4 +112,4 @@ public:
     void setAsBytes(const std::vector<uint8_t> &settings) { mayFailSet(&EH::setAsBytes, settings); }
 };
 
-} // parameterFramework
+} // namespace parameterFramework

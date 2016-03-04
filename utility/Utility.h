@@ -99,4 +99,4 @@ void appendTitle(std::string &strTo, const std::string &strTitle);
  */
 bool isHexadecimal(const std::string &strValue);
 
-} // utility
+} // namespace utility

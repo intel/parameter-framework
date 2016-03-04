@@ -176,4 +176,4 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
         }
     }
 }
-}
+} // namespace parameterFramework

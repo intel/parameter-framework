@@ -131,6 +131,6 @@ typedef details::LogWrapper<false> Info;
 /** Default warning logger type */
 typedef details::LogWrapper<true> Warning;
 
-} /** details namespace */
-} /** log namespace */
-} /** core namespace */
+} // namespace details
+} // namespace log
+} // namespace core

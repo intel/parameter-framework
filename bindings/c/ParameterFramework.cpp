@@ -50,7 +50,7 @@ namespace pfw
 typedef ISelectionCriterionInterface Criterion;
 typedef std::map<string, Criterion *> Criteria;
 typedef CParameterMgrPlatformConnector Pfw;
-}
+} // namespace pfw
 
 /** Class to abstract the boolean+string status api. */
 class Status

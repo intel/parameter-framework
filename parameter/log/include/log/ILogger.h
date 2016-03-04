@@ -47,5 +47,5 @@ protected:
     virtual ~ILogger() {}
 };
 
-} /** log namespace */
-} /** core namespace */
+} // namespace log
+} // namespace core

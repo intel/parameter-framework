@@ -170,4 +170,4 @@ private:
     friend class ElementHandle;
 };
 
-} // parameterFramework
+} // namespace parameterFramework

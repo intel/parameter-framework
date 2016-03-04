@@ -53,5 +53,5 @@ std::string TmpFile::mktmp()
     return path;
 }
 
-} // utility
-} // parameterFramework
+} // namespace utility
+} // namespace parameterFramework

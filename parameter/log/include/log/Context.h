@@ -68,5 +68,5 @@ private:
     Logger &mLogger;
 };
 
-} /** log namespace */
-} /** core namespace */
+} // namespace log
+} // namespace core
