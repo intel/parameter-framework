@@ -131,6 +131,8 @@ after_success:
     # Ignore generated files, samples and tests
     - if [ "${coverage}" = "ON" ]; then
           $HOME/codecov
+               -g "/usr/include/*"
+               -g "$PREFIX/include/*"
                -g "*/build_debug/bindings/python/*"
                -g "*/build_debug/CMakeFiles/*"
                -g "*/build/*"
