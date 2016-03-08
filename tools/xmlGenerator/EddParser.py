@@ -877,12 +877,12 @@ the rest is the rest of the line."""
                 context.append(myelement)
                 context[-2].addChild(myelement)
 
-            except MySyntaxWarning, ex:
+            except MySyntaxWarning as ex:
                 ex.setLine(line, num + 1)
                 if verbose :
-                    print >>sys.stderr, ex
+                    sys.stderr.write("{}\n".format(ex))
 
-            except MySyntaxError, ex :
+            except MySyntaxErro as  ex :
                 ex.setLine(line, num + 1)
                 raise
 

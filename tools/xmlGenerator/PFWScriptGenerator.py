@@ -133,7 +133,7 @@ def main ():
         try:
             myroot.propagate()
 
-        except EddParser.MyPropagationError, ex :
+        except EddParser.MyPropagationError as ex :
             printE(ex)
             printE("EXIT ON FAILURE")
             exit(1)
