@@ -308,7 +308,7 @@ CElement *CElement::createChild(const CXmlElement &childElement,
         elementSerializingContext.setError("Unable to create XML element " +
                                            childElement.getPath());
 
-        return NULL;
+        return nullptr;
     }
     // Store created child!
     addChild(pChild);
@@ -419,7 +419,7 @@ const CElement *CElement::findDescendant(CPathNavigator &pathNavigator) const
 
     if (!pChild) {
 
-        return NULL;
+        return nullptr;
     }
 
     return pChild->findDescendant(pathNavigator);
@@ -438,7 +438,7 @@ CElement *CElement::findDescendant(CPathNavigator &pathNavigator)
 
     if (!pChild) {
 
-        return NULL;
+        return nullptr;
     }
 
     return pChild->findDescendant(pathNavigator);
@@ -467,7 +467,7 @@ CElement *CElement::findChild(const string &strName)
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 const CElement *CElement::findChild(const string &strName) const
@@ -480,7 +480,7 @@ const CElement *CElement::findChild(const string &strName) const
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 CElement *CElement::findChildOfKind(const string &strKind)
@@ -493,7 +493,7 @@ CElement *CElement::findChildOfKind(const string &strKind)
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 const CElement *CElement::findChildOfKind(const string &strKind) const
@@ -506,7 +506,7 @@ const CElement *CElement::findChildOfKind(const string &strKind) const
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 string CElement::getPath() const

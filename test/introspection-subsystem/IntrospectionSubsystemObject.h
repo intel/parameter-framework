@@ -85,5 +85,5 @@ private:
 
     bool mParameter;
 };
-}
-}
+} // namespace introspectionSubsystem
+} // namespace parameterFramework

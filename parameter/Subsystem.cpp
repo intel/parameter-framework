@@ -252,7 +252,7 @@ string CSubsystem::getFormattedSubsystemMappingData(
         findSubsystemObjectFromConfigurableElement(pInstanceConfigurableElement);
 
     // Exit if node does not correspond to a SubsystemObject
-    if (pSubsystemObject == NULL) {
+    if (pSubsystemObject == nullptr) {
 
         return "";
     }

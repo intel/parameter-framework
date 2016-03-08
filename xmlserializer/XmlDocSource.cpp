@@ -61,7 +61,7 @@ CXmlDocSource::~CXmlDocSource()
     if (_pDoc) {
         // Free XML doc
         xmlFreeDoc(_pDoc);
-        _pDoc = NULL;
+        _pDoc = nullptr;
     }
 }
 
@@ -110,7 +110,7 @@ _xmlDoc *CXmlDocSource::getDoc() const
 bool CXmlDocSource::isParsable() const
 {
     // Check that the doc has been created
-    return _pDoc != NULL;
+    return _pDoc != nullptr;
 }
 
 bool CXmlDocSource::populate(CXmlSerializingContext &serializingContext)
@@ -167,7 +167,7 @@ bool CXmlDocSource::isInstanceDocumentValid()
 #ifdef LIBXML_SCHEMAS_ENABLED
     string schemaUri = getSchemaUri();
 
-    xmlDocPtr pSchemaDoc = xmlReadFile(schemaUri.c_str(), NULL, XML_PARSE_NONET);
+    xmlDocPtr pSchemaDoc = xmlReadFile(schemaUri.c_str(), nullptr, XML_PARSE_NONET);
 
     if (!pSchemaDoc) {
         // Unable to load Schema
@@ -233,28 +233,28 @@ std::string CXmlDocSource::mkUri(const std::string &base, const std::string &rel
 _xmlDoc *CXmlDocSource::mkXmlDoc(const string &source, bool fromFile, bool xincludes,
                                  CXmlSerializingContext &serializingContext)
 {
-    _xmlDoc *doc = NULL;
+    _xmlDoc *doc = nullptr;
     if (fromFile) {
-        doc = xmlReadFile(source.c_str(), NULL, 0);
+        doc = xmlReadFile(source.c_str(), nullptr, 0);
     } else {
-        doc = xmlReadMemory(source.c_str(), (int)source.size(), "", NULL, 0);
+        doc = xmlReadMemory(source.c_str(), (int)source.size(), "", nullptr, 0);
     }
 
-    if (doc == NULL) {
+    if (doc == nullptr) {
         string errorMsg = "libxml failed to read";
         if (fromFile) {
             errorMsg += " \"" + source + "\"";
         }
         serializingContext.appendLineToError(errorMsg);
 
-        return NULL;
+        return nullptr;
     }
 
     if (xincludes and (xmlXIncludeProcess(doc) < 0)) {
         serializingContext.appendLineToError("libxml failed to resolve XIncludes");
 
         xmlFreeDoc(doc);
-        doc = NULL;
+        doc = nullptr;
     }
 
     return doc;

@@ -275,7 +275,7 @@ bool CDomainConfiguration::setApplicationRule(
     CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
 
     // Attempt to parse it
-    if (!ruleParser.parse(NULL, strError)) {
+    if (!ruleParser.parse(nullptr, strError)) {
 
         return false;
     }
@@ -288,7 +288,7 @@ bool CDomainConfiguration::setApplicationRule(
 void CDomainConfiguration::clearApplicationRule()
 {
     // Replace compound rule
-    setRule(NULL);
+    setRule(nullptr);
 }
 
 string CDomainConfiguration::getApplicationRule() const
@@ -478,7 +478,7 @@ const CCompoundRule *CDomainConfiguration::getRule() const
         // Rule created
         return static_cast<const CCompoundRule *>(getChild(ECompoundRule));
     }
-    return NULL;
+    return nullptr;
 }
 
 CCompoundRule *CDomainConfiguration::getRule()
@@ -487,7 +487,7 @@ CCompoundRule *CDomainConfiguration::getRule()
         // Rule created
         return static_cast<CCompoundRule *>(getChild(ECompoundRule));
     }
-    return NULL;
+    return nullptr;
 }
 
 void CDomainConfiguration::setRule(CCompoundRule *pRule)

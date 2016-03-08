@@ -48,13 +48,13 @@ void CElementLibrary::clean()
 
 CElement *CElementLibrary::createElement(const CXmlElement &xmlElement) const
 {
-    ElementBuilderMapConstIterator it = _elementBuilderMap.find(getBuilderType(xmlElement));
+    auto it = _elementBuilderMap.find(getBuilderType(xmlElement));
 
     if (it != _elementBuilderMap.end()) {
 
         return it->second->createElement(xmlElement);
     }
-    return NULL;
+    return nullptr;
 }
 
 void CElementLibrary::addElementBuilder(const std::string &type,

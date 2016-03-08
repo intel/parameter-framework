@@ -219,7 +219,7 @@ private:
      *            element are validated.
      */
     void doAddConfigurableElement(CConfigurableElement *pConfigurableElement, core::Results &infos,
-                                  const CParameterBlackboard *pMainBlackboard = NULL);
+                                  const CParameterBlackboard *pMainBlackboard = nullptr);
 
     void doRemoveConfigurableElement(CConfigurableElement *pConfigurableElement,
                                      bool bRecomputeSyncSet);

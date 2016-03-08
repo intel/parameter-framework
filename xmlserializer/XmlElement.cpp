@@ -38,7 +38,7 @@ CXmlElement::CXmlElement(_xmlNode *pXmlElement) : _pXmlElement(pXmlElement)
 {
 }
 
-CXmlElement::CXmlElement() : _pXmlElement(NULL)
+CXmlElement::CXmlElement() : _pXmlElement(nullptr)
 {
 }
 
@@ -73,7 +73,7 @@ string CXmlElement::getPath() const
 
 bool CXmlElement::hasAttribute(const string &strAttributeName) const
 {
-    return xmlHasProp(_pXmlElement, (const xmlChar *)strAttributeName.c_str()) != NULL;
+    return xmlHasProp(_pXmlElement, (const xmlChar *)strAttributeName.c_str()) != nullptr;
 }
 
 template <>
@@ -85,7 +85,7 @@ bool CXmlElement::getAttribute<std::string>(const string &name, string &value) c
 
     string backup = value;
     xmlChar *pucXmlValue = xmlGetProp((xmlNode *)_pXmlElement, (const xmlChar *)name.c_str());
-    if (pucXmlValue == NULL) {
+    if (pucXmlValue == nullptr) {
         value = backup;
         return false;
     }
@@ -124,7 +124,7 @@ string CXmlElement::getNameAttribute() const
 string CXmlElement::getTextContent() const
 {
     xmlChar *pucXmlContent = xmlNodeGetContent(_pXmlElement);
-    if (pucXmlContent == NULL) {
+    if (pucXmlContent == nullptr) {
         return "";
     }
 
@@ -234,7 +234,7 @@ void CXmlElement::setTextContent(const string &strContent)
 void CXmlElement::createChild(CXmlElement &childElement, const string &strType)
 {
 #ifdef LIBXML_TREE_ENABLED
-    xmlNodePtr pChildNode = xmlNewChild(_pXmlElement, NULL, BAD_CAST strType.c_str(), NULL);
+    xmlNodePtr pChildNode = xmlNewChild(_pXmlElement, nullptr, BAD_CAST strType.c_str(), nullptr);
 
     childElement.setXmlElement(pChildNode);
 #endif

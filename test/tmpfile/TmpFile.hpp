@@ -102,5 +102,5 @@ private:
     std::string mPath;
 };
 
-} // utility
-} // parameterFramework
+} // namespace utility
+} // namespace parameterFramework

@@ -178,4 +178,4 @@ SCENARIO_METHOD(ParameterFramework, "Raw value space")
     }
 }
 
-} // parameterFramework
+} // namespace parameterFramework

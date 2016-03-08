@@ -114,8 +114,8 @@ struct Test
 TEST_CASE_METHOD(Test, "Parameter-framework c api use")
 {
     // Create criteria
-    const char *letterList[] = {"a", "b", "c", NULL};
-    const char *numberList[] = {"1", "2", "3", NULL};
+    const char *letterList[] = {"a", "b", "c", nullptr};
+    const char *numberList[] = {"1", "2", "3", nullptr};
     const PfwCriterion criteria[] = {
         {"inclusiveCrit", true, letterList}, {"exclusiveCrit", false, numberList},
     };
@@ -165,7 +165,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
             REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 2, &logger));
         }
         WHEN ("The pfw is started with duplicated criterion value state") {
-            const char *values[] = {"a", "a", NULL};
+            const char *values[] = {"a", "a", nullptr};
             const PfwCriterion duplicatedCriteria[] = {{"name", true, values}};
 
             WHEN ("Using test logger") {
@@ -173,15 +173,15 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
             }
             WHEN ("Using default logger") {
                 // Test coverage of default logger warning
-                REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, NULL));
+                REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, nullptr));
             }
         }
         WHEN ("The pfw is started with NULL name criterion") {
-            const PfwCriterion duplicatedCriteria[] = {{NULL, true, letterList}};
+            const PfwCriterion duplicatedCriteria[] = {{nullptr, true, letterList}};
             REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
         }
         WHEN ("The pfw is started with NULL criterion state list") {
-            const PfwCriterion duplicatedCriteria[] = {{"name", true, NULL}};
+            const PfwCriterion duplicatedCriteria[] = {{"name", true, nullptr}};
             REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
         }
         GIVEN ("A criteria with lots of values") {
@@ -192,7 +192,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
             for (size_t i = 0; i < values.size(); ++i) {
                 values[i] = &names[i];
             }
-            values.back() = NULL;
+            values.back() = nullptr;
             /* The pfw c api requires criterion values to be a NULL terminated
              * array of string. Each string is a pointer to a NULL terminated
              * array of char. The pfw requires each string to be different
@@ -225,7 +225,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
                 REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
             }
             WHEN ("The pfw is started with max length criterion state list") {
-                values[values.size() - 2] = NULL; // Hide last value
+                values[values.size() - 2] = nullptr; // Hide last value
                 REQUIRE_SUCCESS(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
             }
         }
@@ -240,11 +240,11 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
         }
 
         WHEN ("The pfw is started without a logger callback") {
-            PfwLogger noLog = {NULL, NULL};
+            PfwLogger noLog = {nullptr, nullptr};
             REQUIRE_SUCCESS(pfwStart(pfw, config, criteria, criterionNb, &noLog));
         }
         WHEN ("The pfw is started with default logger") {
-            REQUIRE_SUCCESS(pfwStart(pfw, config, criteria, criterionNb, NULL));
+            REQUIRE_SUCCESS(pfwStart(pfw, config, criteria, criterionNb, nullptr));
         }
 
         WHEN ("Get criterion of a stopped pfw") {
@@ -311,12 +311,12 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
                 REQUIRE_SUCCESS(pfwApplyConfigurations(pfw));
             }
             WHEN ("Bind a non existing parameter") {
-                REQUIRE_FAILURE(pfwBindParameter(pfw, "do/not/exist") != NULL);
+                REQUIRE_FAILURE(pfwBindParameter(pfw, "do/not/exist") != nullptr);
             }
 
             GIVEN ("An integer parameter handle") {
                 PfwParameterHandler *param = pfwBindParameter(pfw, intParameterPath);
-                REQUIRE_SUCCESS(param != NULL);
+                REQUIRE_SUCCESS(param != nullptr);
 
                 WHEN ("Set parameter out of range") {
                     REQUIRE_FAILURE(pfwSetIntParameter(param, 101));
@@ -335,7 +335,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
 
             GIVEN ("An string parameter handle") {
                 PfwParameterHandler *param = pfwBindParameter(pfw, stringParameterPath);
-                REQUIRE_SUCCESS(param != NULL);
+                REQUIRE_SUCCESS(param != nullptr);
 
                 WHEN ("Set parameter out of range") {
                     REQUIRE_FAILURE(pfwSetStringParameter(param, "ko_1234567"));

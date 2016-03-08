@@ -43,7 +43,7 @@ class CXmlElementSerializingContext;
 namespace utility
 {
 class ErrorContext;
-}
+} // namespace utility
 
 class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
 {

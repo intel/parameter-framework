@@ -115,4 +115,4 @@ std::ostream &operator<<(std::ostream &os, const StoreLogger::Log &log)
     return os << log.level << log.msg << std::endl;
 }
 
-} // parameterFramework
+} // namespace parameterFramework

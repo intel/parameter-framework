@@ -118,7 +118,7 @@ bool CSelectionCriterionType::getNumericalValue(const std::string &strValue, int
 bool CSelectionCriterionType::getAtomicNumericalValue(const std::string &strValue,
                                                       int &iValue) const
 {
-    NumToLitMapConstIt it = _numToLitMap.find(strValue);
+    auto it = _numToLitMap.find(strValue);
 
     if (it != _numToLitMap.end()) {
 

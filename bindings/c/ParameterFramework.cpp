@@ -50,7 +50,7 @@ namespace pfw
 typedef ISelectionCriterionInterface Criterion;
 typedef std::map<string, Criterion *> Criteria;
 typedef CParameterMgrPlatformConnector Pfw;
-}
+} // namespace pfw
 
 /** Class to abstract the boolean+string status api. */
 class Status
@@ -110,7 +110,7 @@ static void defaultLogCb(void *, PfwLogLevel level, const char *logLine)
     };
 }
 
-static PfwLogger defaultLogger = {NULL, &defaultLogCb};
+static PfwLogger defaultLogger = {nullptr, &defaultLogCb};
 
 class LogWrapper : public CParameterMgrPlatformConnector::ILogger
 {
@@ -127,7 +127,7 @@ private:
     {
         // A LogWrapper should NOT be register to the pfw (thus log called)
         // if logCb is NULL.
-        assert(mLogger.logCb != NULL);
+        assert(mLogger.logCb != nullptr);
         mLogger.logCb(mLogger.userCtx, level, strLog.c_str());
     }
 
@@ -167,10 +167,10 @@ void pfwDestroy(PfwHandler *handle)
 
 void PfwHandler::setLogger(const PfwLogger *logger)
 {
-    if (logger != NULL and logger->logCb == NULL) {
+    if (logger != nullptr and logger->logCb == nullptr) {
         return; // There is no callback, do not log => do not add a logger
     }
-    mLogger = logger != NULL ? *logger : defaultLogger;
+    mLogger = logger != nullptr ? *logger : defaultLogger;
     pfw->setLogger(&mLogger);
 }
 
@@ -180,10 +180,10 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
     // Add criteria
     for (size_t criterionIndex = 0; criterionIndex < criterionNb; ++criterionIndex) {
         const PfwCriterion &criterion = criteriaArray[criterionIndex];
-        if (criterion.name == NULL) {
+        if (criterion.name == nullptr) {
             return status.failure("Criterion name is NULL");
         }
-        if (criterion.values == NULL) {
+        if (criterion.values == nullptr) {
             return status.failure("Criterion values is NULL");
         }
         // Check that the criterion does not exist
@@ -194,9 +194,9 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
         // Create criterion type
         ISelectionCriterionTypeInterface *type =
             pfw->createSelectionCriterionType(criterion.inclusive);
-        assert(type != NULL);
+        assert(type != nullptr);
         // Add criterion values
-        for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
+        for (size_t valueIndex = 0; criterion.values[valueIndex] != nullptr; ++valueIndex) {
             int value;
             if (criterion.inclusive) {
                 // Check that (int)1 << valueIndex would not overflow (UB)
@@ -227,7 +227,7 @@ bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion cri
     // Check that the api is correctly used
     Status &status = handle->lastStatus;
 
-    if (handle->pfw != NULL) {
+    if (handle->pfw != nullptr) {
         return status.failure("Can not start an already started parameter framework");
     }
     // Create a pfw
@@ -249,19 +249,19 @@ const char *pfwGetLastError(const PfwHandler *handle)
 
 static pfw::Criterion *getCriterion(const pfw::Criteria &criteria, const string &name)
 {
-    pfw::Criteria::const_iterator it = criteria.find(name);
-    return it == criteria.end() ? NULL : it->second;
+    auto it = criteria.find(name);
+    return it == criteria.end() ? nullptr : it->second;
 }
 
 bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
 {
     Status &status = handle->lastStatus;
-    if (handle->pfw == NULL) {
+    if (handle->pfw == nullptr) {
         return status.failure("Can not set criterion \"" + string(name) +
                               "\" as the parameter framework is not started.");
     }
     pfw::Criterion *criterion = getCriterion(handle->criteria, name);
-    if (criterion == NULL) {
+    if (criterion == nullptr) {
         return status.failure("Can not set criterion " + string(name) + " as does not exist");
     }
     criterion->setCriterionState(value);
@@ -270,12 +270,12 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
 bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
 {
     Status &status = handle->lastStatus;
-    if (handle->pfw == NULL) {
+    if (handle->pfw == nullptr) {
         return status.failure("Can not get criterion \"" + string(name) +
                               "\" as the parameter framework is not started.");
     }
     pfw::Criterion *criterion = getCriterion(handle->criteria, name);
-    if (criterion == NULL) {
+    if (criterion == nullptr) {
         return status.failure("Can not get criterion " + string(name) + " as it does not exist");
     }
     *value = criterion->getCriterionState();
@@ -285,7 +285,7 @@ bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
 bool pfwApplyConfigurations(const PfwHandler *handle)
 {
     Status &status = handle->lastStatus;
-    if (handle->pfw == NULL) {
+    if (handle->pfw == nullptr) {
         return status.failure("Can not commit criteria "
                               "as the parameter framework is not started.");
     }
@@ -306,17 +306,17 @@ struct PfwParameterHandler_
 PfwParameterHandler *pfwBindParameter(PfwHandler *handle, const char path[])
 {
     Status &status = handle->lastStatus;
-    if (handle->pfw == NULL) {
+    if (handle->pfw == nullptr) {
         status.failure("The parameter framework is not started, "
                        "while trying to bind parameter \"" +
                        string(path) + "\")");
-        return NULL;
+        return nullptr;
     }
 
     CParameterHandle *paramHandle;
     paramHandle = handle->pfw->createParameterHandle(path, status.msg());
-    if (paramHandle == NULL) {
-        return NULL;
+    if (paramHandle == nullptr) {
+        return nullptr;
     }
 
     status.success();
@@ -344,7 +344,7 @@ bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value)
 bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[])
 {
     Status &status = handle->pfw.lastStatus;
-    *value = NULL;
+    *value = nullptr;
     string retValue;
     bool success = handle->parameter.getAsString(retValue, status.msg());
     if (not success) {

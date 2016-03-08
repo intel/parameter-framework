@@ -301,7 +301,7 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement &xmlElemen
         }
         // Add found element to domain
         core::Results infos;
-        if (!addConfigurableElement(pConfigurableElement, NULL, infos)) {
+        if (!addConfigurableElement(pConfigurableElement, nullptr, infos)) {
 
             strError = utility::asString(infos);
             serializingContext.setError(strError);
@@ -439,7 +439,7 @@ CParameterBlackboard *CConfigurableDomain::findConfigurationBlackboard(
 
         strError = "Domain configuration " + strConfiguration + " not found";
 
-        return NULL;
+        return nullptr;
     }
 
     // Parse all configurable elements
@@ -463,7 +463,7 @@ CParameterBlackboard *CConfigurableDomain::findConfigurationBlackboard(
 
     strError = "Element not associated to the Domain";
 
-    return NULL;
+    return nullptr;
 }
 
 // Domain splitting
@@ -535,7 +535,7 @@ const CDomainConfiguration *CConfigurableDomain::getPendingConfiguration() const
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 // Configuration application if required
@@ -551,7 +551,7 @@ void CConfigurableDomain::apply(CParameterBlackboard *pParameterBlackboard, CSyn
 
     if (bForce) {
         // Force a configuration restore by forgetting about last applied configuration
-        _pLastAppliedConfiguration = NULL;
+        _pLastAppliedConfiguration = nullptr;
     }
     const CDomainConfiguration *pApplicableDomainConfiguration =
         findApplicableDomainConfiguration();
@@ -569,7 +569,7 @@ void CConfigurableDomain::apply(CParameterBlackboard *pParameterBlackboard, CSyn
             bool bSync = !pSyncerSet && _bSequenceAware;
 
             // Do the restore
-            pApplicableDomainConfiguration->restore(pParameterBlackboard, bSync, NULL);
+            pApplicableDomainConfiguration->restore(pParameterBlackboard, bSync, nullptr);
 
             // Record last applied configuration
             _pLastAppliedConfiguration = pApplicableDomainConfiguration;
@@ -627,7 +627,7 @@ bool CConfigurableDomain::createConfiguration(const string &strName,
     }
 
     // Creation
-    CDomainConfiguration *pDomainConfiguration = new CDomainConfiguration(strName);
+    auto pDomainConfiguration = new CDomainConfiguration(strName);
 
     // Configurable elements association
     ConfigurableElementListIterator it;
@@ -672,7 +672,7 @@ bool CConfigurableDomain::deleteConfiguration(const string &strName, string &str
     if (pDomainConfiguration == _pLastAppliedConfiguration) {
 
         // Forget about it
-        _pLastAppliedConfiguration = NULL;
+        _pLastAppliedConfiguration = nullptr;
     }
 
     // Hierarchy
@@ -719,7 +719,7 @@ bool CConfigurableDomain::restoreConfiguration(const string &configurationName,
 
     const CDomainConfiguration *configuration = findConfiguration(configurationName, error);
 
-    if (configuration == NULL) {
+    if (configuration == nullptr) {
 
         errors.push_back(error);
         return false;
@@ -994,7 +994,7 @@ const CDomainConfiguration *CConfigurableDomain::findValidDomainConfiguration(
             return pDomainConfiguration;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 // Search for an applicable configuration
@@ -1012,7 +1012,7 @@ const CDomainConfiguration *CConfigurableDomain::findApplicableDomainConfigurati
             return pDomainConfiguration;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 // Gather set of configurable elements
@@ -1106,7 +1106,7 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement *pConfig
     pConfigurableElement->addAttachedConfigurableDomain(this);
 
     // Create associated syncer set
-    CSyncerSet *pSyncerSet = new CSyncerSet;
+    auto pSyncerSet = new CSyncerSet;
 
     // Add to sync set the configurable element one
     pConfigurableElement->fillSyncerSet(*pSyncerSet);
@@ -1182,8 +1182,7 @@ void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement *pCon
 CSyncerSet *CConfigurableDomain::getSyncerSet(
     const CConfigurableElement *pConfigurableElement) const
 {
-    ConfigurableElementToSyncerSetMapIterator mapIt =
-        _configurableElementToSyncerSetMap.find(pConfigurableElement);
+    auto mapIt = _configurableElementToSyncerSetMap.find(pConfigurableElement);
 
     ALWAYS_ASSERT(mapIt != _configurableElementToSyncerSetMap.end(),
                   "Could not find syncer set for " << getName() << " configurable domain");
@@ -1202,7 +1201,7 @@ CDomainConfiguration *CConfigurableDomain::findConfiguration(const string &strCo
 
         strError = "Domain configuration " + strConfiguration + " not found";
 
-        return NULL;
+        return nullptr;
     }
     return pDomainConfiguration;
 }
@@ -1217,7 +1216,7 @@ const CDomainConfiguration *CConfigurableDomain::findConfiguration(const string 
 
         strError = "Domain configuration " + strConfiguration + " not found";
 
-        return NULL;
+        return nullptr;
     }
     return pDomainConfiguration;
 }

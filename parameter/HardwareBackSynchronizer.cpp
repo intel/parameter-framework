@@ -51,5 +51,5 @@ CHardwareBackSynchronizer::CHardwareBackSynchronizer(
 void CHardwareBackSynchronizer::sync()
 {
     // Perform back synchronization
-    _backSyncerSet.sync(*_pParameterBlackboard, true, NULL);
+    _backSyncerSet.sync(*_pParameterBlackboard, true, nullptr);
 }

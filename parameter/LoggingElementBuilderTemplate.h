@@ -58,7 +58,7 @@ namespace details
  *
  */
 std::string PARAMETER_EXPORT getName(const CXmlElement &xmlElement);
-}
+} // namespace details
 
 /**
  * Builder for elements which need logger at construction

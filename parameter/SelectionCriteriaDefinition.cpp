@@ -39,7 +39,7 @@ std::string CSelectionCriteriaDefinition::getKind() const
 CSelectionCriterion *CSelectionCriteriaDefinition::createSelectionCriterion(
     const std::string &strName, const CSelectionCriterionType *pType, core::log::Logger &logger)
 {
-    CSelectionCriterion *pSelectionCriterion = new CSelectionCriterion(strName, pType, logger);
+    auto pSelectionCriterion = new CSelectionCriterion(strName, pType, logger);
 
     addChild(pSelectionCriterion);
 

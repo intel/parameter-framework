@@ -41,5 +41,5 @@ Subsystem::Subsystem(const std::string &name, core::log::Logger &logger) : base(
 {
     addSubsystemObjectFactory(new TSubsystemObjectFactory<SubsystemObject>("Object", 0));
 }
-}
-}
+} // namespace introspectionSubsystem
+} // namespace parameterFramework

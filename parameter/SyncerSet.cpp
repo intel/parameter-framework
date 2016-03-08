@@ -68,7 +68,7 @@ bool CSyncerSet::sync(CParameterBlackboard &parameterBlackboard, bool bBack,
 
         if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
 
-            if (errors != NULL) {
+            if (errors != nullptr) {
 
                 errors->push_back(strError);
             }

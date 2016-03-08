@@ -79,5 +79,5 @@ bool SubsystemObject::receiveFromHW(std::string & /*error*/)
     blackboardRead(&mParameter, parameterSize);
     return true;
 }
-}
-}
+} // namespace introspectionSubsystem
+} // namespace parameterFramework

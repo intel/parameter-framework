@@ -87,7 +87,7 @@ std::string *CPathNavigator::next()
         return &_astrItems[_currentIndex++];
     }
 
-    return NULL;
+    return nullptr;
 }
 
 std::string CPathNavigator::getCurrentPath() const

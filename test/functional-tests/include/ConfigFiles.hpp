@@ -124,4 +124,4 @@ private:
     utility::TmpFile mConfigFile;
 };
 
-} // parameterFramework
+} // namespace parameterFramework

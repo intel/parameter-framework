@@ -378,7 +378,7 @@ ISyncer *CConfigurableElement::getSyncer() const
 
         return static_cast<const CConfigurableElement *>(pParent)->getSyncer();
     }
-    return NULL;
+    return nullptr;
 }
 
 // Syncer set (me, ascendant or descendant ones)
@@ -630,7 +630,7 @@ const CSubsystem *CConfigurableElement::getBelongingSubsystem() const
     // Stop at system class
     if (!pParent->getParent()) {
 
-        return NULL;
+        return nullptr;
     }
 
     return static_cast<const CConfigurableElement *>(pParent)->getBelongingSubsystem();

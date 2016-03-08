@@ -70,7 +70,7 @@ bool CRuleParser::parse(CCompoundRule *pParentRule, string &strError)
         case EBeginCompoundRule: {
 
             // Create new compound rule
-            CCompoundRule *pCompoundRule = new CCompoundRule;
+            auto pCompoundRule = new CCompoundRule;
 
             // Parse
             if (!pCompoundRule->parse(*this, strError)) {
@@ -104,7 +104,7 @@ bool CRuleParser::parse(CCompoundRule *pParentRule, string &strError)
             break;
         case ECriterionRule: {
             // Create new criterion rule
-            CSelectionCriterionRule *pCriterionRule = new CSelectionCriterionRule;
+            auto pCriterionRule = new CSelectionCriterionRule;
 
             // Parse
             if (!pCriterionRule->parse(*this, strError)) {
@@ -114,7 +114,7 @@ bool CRuleParser::parse(CCompoundRule *pParentRule, string &strError)
                 return false;
             }
 
-            ALWAYS_ASSERT(pParentRule != NULL, "Invalid parent rule given to rule parser");
+            ALWAYS_ASSERT(pParentRule != nullptr, "Invalid parent rule given to rule parser");
             // Chain
             pParentRule->addChild(pCriterionRule);
 
@@ -232,7 +232,7 @@ CCompoundRule *CRuleParser::grabRootRule()
 
     assert(pRootRule);
 
-    _pRootRule = NULL;
+    _pRootRule = nullptr;
 
     return pRootRule;
 }

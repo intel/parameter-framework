@@ -128,4 +128,4 @@ struct WarningPF : public ParameterFramework
         setFailureOnFailedSettingsLoad(false);
     }
 };
-}
+} // namespace parameterFramework

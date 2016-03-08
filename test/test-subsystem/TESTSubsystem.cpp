@@ -60,14 +60,14 @@ CTESTSubsystem::CTESTSubsystem(const std::string &strName, core::log::Logger &lo
 // Susbsystem sanity health
 bool CTESTSubsystem::isAlive() const
 {
-    assert(gacFwNamePropName != NULL);
+    assert(gacFwNamePropName != nullptr);
     return read(std::string(gacFwNamePropName) + "/isAlive") == "true";
 }
 
 // Resynchronization after subsystem restart needed
 bool CTESTSubsystem::needResync(bool bClear)
 {
-    assert(gacFwNamePropName != NULL);
+    assert(gacFwNamePropName != nullptr);
     std::string strNeedResyncFile = std::string(gacFwNamePropName) + "/needResync";
     bool bNeedResync;
 

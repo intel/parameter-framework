@@ -81,14 +81,14 @@ CElement *CDefaultElementLibrary<CDefaultElementBuilder>::createElement(
 {
     CElement *builtElement = CElementLibrary::createElement(xmlElement);
 
-    if (builtElement != NULL) {
+    if (builtElement != nullptr) {
         // The element was created, return it
         return builtElement;
     }
 
     if (_defaultBuilder == nullptr) {
         // The default builder mechanism is not enabled
-        return NULL;
+        return nullptr;
     }
 
     // Use the default builder

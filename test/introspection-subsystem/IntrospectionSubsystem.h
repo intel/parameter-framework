@@ -46,5 +46,5 @@ public:
 private:
     using base = CSubsystem;
 };
-}
-}
+} // namespace introspectionSubsystem
+} // namespace parameterFramework

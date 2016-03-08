@@ -39,7 +39,7 @@ CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
     const string &strConfigurationFilePath)
     : _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this)),
       _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
-      _bStarted(false), _pLogger(NULL)
+      _bStarted(false), _pLogger(nullptr)
 {
 }
 
