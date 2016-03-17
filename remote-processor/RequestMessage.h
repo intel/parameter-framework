@@ -51,7 +51,7 @@ public:
     size_t getArgumentCount() const override;
     const std::string &getArgument(size_t argument) const override;
     const std::vector<std::string> &getArguments() const override;
-    const std::string packArguments(size_t startArgument, size_t nbArguments) const override;
+    std::string packArguments(size_t startArgument, size_t nbArguments) const override;
 
 private:
     /**

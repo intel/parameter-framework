@@ -82,7 +82,7 @@ const string &CRequestMessage::getArgument(size_t argument) const
     return _argumentVector[argument];
 }
 
-const string CRequestMessage::packArguments(size_t uiStartArgument, size_t uiNbArguments) const
+string CRequestMessage::packArguments(size_t uiStartArgument, size_t uiNbArguments) const
 {
     assert(uiStartArgument + uiNbArguments <= _argumentVector.size());
 
