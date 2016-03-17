@@ -35,6 +35,7 @@
 #include <map>
 #include <sstream>
 #include <numeric>
+#include <type_traits>
 
 namespace utility
 {
@@ -62,15 +63,24 @@ T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
 }
 
 /**
-* Format the items of a map into a string as a list of key-value pairs. The map must be
-* composed of pairs of strings.
+* Format the items of a sequence container of strings into a string.
 *
+* @tparam Sequence the string sequence container (e.g. list or vector)
 * @param[in] lstr A list of strings
 * @param[in] separator The separator to use between each item
 *
 * @return the concatenated elements.
 */
-std::string asString(const std::list<std::string> &lstr, const std::string &separator = "\n");
+template <class Sequence>
+std::string asString(const Sequence &lstr, const std::string &separator = "\n")
+{
+    static_assert(std::is_same<typename Sequence::value_type, std::string>::value,
+                  "asString called on a sequence container that does not contains strings");
+
+    return join<std::string>(
+        begin(lstr), end(lstr),
+        [separator](std::string acc, std::string right) { return acc + separator + right; });
+}
 
 /**
  * Format the items of a map into a string as a list of key-value pairs. The map must be
