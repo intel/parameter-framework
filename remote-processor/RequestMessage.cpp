@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RequestMessage.h"
+#include "Utility.h"
 #include <assert.h>
 #include <algorithm>
 #include <ctype.h>
@@ -81,30 +82,12 @@ const string &CRequestMessage::getArgument(size_t argument) const
     return _argumentVector[argument];
 }
 
-const string CRequestMessage::packArguments(size_t uiStartArgument, size_t uiNbArguments) const
+string CRequestMessage::packArguments(size_t uiStartArgument, size_t uiNbArguments) const
 {
-    string strPackedArguments;
-
     assert(uiStartArgument + uiNbArguments <= _argumentVector.size());
 
-    // Pack arguments, separating them with a space
-    bool bFirst = true;
-
-    for (size_t argument = uiStartArgument; argument < uiStartArgument + uiNbArguments;
-         argument++) {
-
-        if (!bFirst) {
-
-            strPackedArguments += " ";
-        } else {
-
-            bFirst = false;
-        }
-
-        strPackedArguments += _argumentVector[argument];
-    }
-
-    return strPackedArguments;
+    auto start = begin(_argumentVector) + uiStartArgument;
+    return utility::asString(std::vector<std::string>(start, start + uiNbArguments), " ");
 }
 
 // Fill data to send

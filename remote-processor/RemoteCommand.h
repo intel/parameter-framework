@@ -48,7 +48,7 @@ public:
      * @returns a reference to a vector containing all the arguments.
      */
     virtual const std::vector<std::string> &getArguments() const = 0;
-    virtual const std::string packArguments(size_t startArgument, size_t nbArguments) const = 0;
+    virtual std::string packArguments(size_t startArgument, size_t nbArguments) const = 0;
 
 protected:
     virtual ~IRemoteCommand() {}

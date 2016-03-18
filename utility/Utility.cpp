@@ -39,14 +39,6 @@ using std::string;
 namespace utility
 {
 
-// Format string list
-std::string asString(const std::list<std::string> &lstr, const std::string &strSeparator)
-{
-    return join<std::string>(begin(lstr), end(lstr), [strSeparator](string acc, string right) {
-        return acc + strSeparator + right;
-    });
-}
-
 // Format string map
 std::string asString(const std::map<std::string, std::string> &mapStr,
                      const std::string &strItemSeparator, const std::string &strKeyValueSeparator)

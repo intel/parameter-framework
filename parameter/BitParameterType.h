@@ -86,8 +86,6 @@ private:
     uint64_t getMaxEncodableValue() const;
     // Biwise mask
     uint64_t getMask() const;
-    // Check data has no bit set outside available range
-    bool isEncodable(uint64_t uiData) const;
 
     // Pos in bits
     size_t _bitPos{0};

@@ -70,7 +70,7 @@ public:
 
     const Logs &getLogs() const { return logs; }
 
-    const Logs filter(Log::Level level) const
+    Logs filter(Log::Level level) const
     {
         return filter([&level](const Log &log) { return log.level == level; });
     };
