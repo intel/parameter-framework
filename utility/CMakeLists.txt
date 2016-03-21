@@ -41,6 +41,10 @@ add_library(pfw_utility STATIC
 # Needed for linking against shared libraries on Linux (no-op on Windows)
 set_target_properties(pfw_utility PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 
+install(TARGETS pfw_utility EXPORT ParameterTargets
+    ARCHIVE DESTINATION lib
+    INCLUDES DESTINATION "include/parameter/utility")
+
 install(FILES
     NonCopyable.hpp
     ErrorContext.hpp

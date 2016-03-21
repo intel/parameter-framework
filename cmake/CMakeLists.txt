@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2016, Intel Corporation
+# Copyright (c) 2016, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,21 +26,35 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_library(remote-processor SHARED
-        Message.cpp
-        RequestMessage.cpp
-        AnswerMessage.cpp
-        RemoteProcessorServer.cpp
-        BackgroundRemoteProcessorServer.cpp)
+configure_file(ParameterFrameworkConfig.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfig.cmake"
+    COPYONLY
+)
+configure_file(FindLibXml2.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/FindLibXml2.cmake"
+    COPYONLY
+)
+configure_file(CMakeFindDependencyMacro.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/CMakeFindDependencyMacro.cmake"
+    COPYONLY)
 
-include(GenerateExportHeader)
-generate_export_header(remote-processor
-                       BASE_NAME remote_processor)
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfigVersion.cmake"
+    VERSION ${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}
+    COMPATIBILITY SameMajorVersion)
 
-set(CMAKE_THREAD_PREFER_PTHREAD 1)
-find_package(Threads REQUIRED)
+export(EXPORT ParameterTargets 
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkTargets.cmake"
+    NAMESPACE ParameterFramework::)
 
-target_link_libraries(remote-processor PRIVATE pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
-
-install(TARGETS remote-processor EXPORT ParameterTargets
-    LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(EXPORT ParameterTargets DESTINATION lib/cmake/ParameterFramework
+    FILE ParameterFrameworkTargets.cmake
+    NAMESPACE ParameterFramework::)
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/FindLibXml2.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/CMakeFindDependencyMacro.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfigVersion.cmake"
+    DESTINATION lib/cmake/ParameterFramework
+    COMPONENT Devel)

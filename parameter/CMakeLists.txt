@@ -133,10 +133,13 @@ target_link_libraries(parameter
     PRIVATE ${CMAKE_DL_LIBS})
 
 target_include_directories(parameter
-    PUBLIC include
-    PUBLIC log/include)
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/log/include>)
 
-install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
+install(TARGETS parameter EXPORT ParameterTargets
+    LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib
+    INCLUDES DESTINATION "include/parameter/client" "include/parameter/plugin")
+
 # Client headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"

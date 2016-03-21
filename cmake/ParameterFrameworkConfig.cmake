@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2016, Intel Corporation
+# Copyright (c) 2016, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,21 +26,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_library(remote-processor SHARED
-        Message.cpp
-        RequestMessage.cpp
-        AnswerMessage.cpp
-        RemoteProcessorServer.cpp
-        BackgroundRemoteProcessorServer.cpp)
+# Add FindLibXml2.cmake in cmake path so that `find_package(LibXml2)` will
+# call the wrapper
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}")
+# Excerpt from cmake-modules(7):
+# find_dependency() wraps a find_package() call for a package dependency.It
+# forwards the correct parameters for EXACT, QUIET and REQUIRED which were
+# passed to the original find_package() call.
+# Work around a CMake bug by including this patched copy of CMakeFindDependencyMacro
+include(${CMAKE_CURRENT_LIST_DIR}/CMakeFindDependencyMacro.cmake)
+find_dependency(LibXml2)
 
-include(GenerateExportHeader)
-generate_export_header(remote-processor
-                       BASE_NAME remote_processor)
-
-set(CMAKE_THREAD_PREFER_PTHREAD 1)
-find_package(Threads REQUIRED)
-
-target_link_libraries(remote-processor PRIVATE pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
-
-install(TARGETS remote-processor EXPORT ParameterTargets
-    LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+include("${CMAKE_CURRENT_LIST_DIR}/ParameterFrameworkTargets.cmake")

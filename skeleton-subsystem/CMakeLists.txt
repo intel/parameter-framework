@@ -31,6 +31,8 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(parameter-framework-plugins-skeleton)
 
+find_package(ParameterFramework REQUIRED)
+
 if(WIN32)
     # Force include iso646.h to support alternative operator form (and, or, not...)
     # Such support is require by the standard and can be enabled with /Za
@@ -49,25 +51,12 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN true)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
-#
-# Find PFW libraries and include directories
-#
-find_path(PFW_INCLUDE_ROOT NAMES parameter/plugin/Plugin.h)
-
-find_library(PFW_CORE_LIBRARY NAMES parameter)
-
-set(PFW_INCLUDE_DIRS
-    ${PFW_INCLUDE_ROOT}/parameter/plugin
-    ${PFW_INCLUDE_ROOT}/parameter/xmlserializer
-    ${PFW_INCLUDE_ROOT}/parameter/utility)
-
 add_library(skeleton-subsystem MODULE
 SkeletonSubsystemBuilder.cpp
 SkeletonSubsystem.cpp
 SkeletonSubsystemObject.cpp)
 
-target_include_directories(skeleton-subsystem PRIVATE ${PFW_INCLUDE_DIRS})
-target_link_libraries(skeleton-subsystem ${PFW_CORE_LIBRARY})
+target_link_libraries(skeleton-subsystem ParameterFramework::parameter)
 
 install(TARGETS skeleton-subsystem
         LIBRARY DESTINATION lib
