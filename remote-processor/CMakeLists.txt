@@ -42,4 +42,5 @@ find_package(Threads REQUIRED)
 
 target_link_libraries(remote-processor PRIVATE pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
 
-install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS remote-processor EXPORT ParameterTargets
+    LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

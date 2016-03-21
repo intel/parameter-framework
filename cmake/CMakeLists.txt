@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Intel Corporation
+# Copyright (c) 2016, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,41 +26,25 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# working on 2.8.12 - broken on older versions
-cmake_minimum_required(VERSION 2.8.12)
+configure_file(ParameterFrameworkConfig.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfig.cmake"
+    COPYONLY
+)
 
-project(parameter-framework-plugins-skeleton)
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfigVersion.cmake"
+    VERSION ${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}
+    COMPATIBILITY SameMajorVersion)
 
-find_package(ParameterFramework REQUIRED)
+export(EXPORT ParameterTargets 
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkTargets.cmake"
+    NAMESPACE ParameterFramework::)
 
-if(WIN32)
-    # Force include iso646.h to support alternative operator form (and, or, not...)
-    # Such support is require by the standard and can be enabled with /Za
-    # but doing so breaks compilation of windows headers...
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra -Wconversion")
-endif()
-
-# Hide symbols by default, then exposed symbols are the same in linux and windows
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN true)
-
-# Force libs and executable to all be at a known place - simplifies a lot of
-# things, especially setting the test environment
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
-
-add_library(skeleton-subsystem MODULE
-SkeletonSubsystemBuilder.cpp
-SkeletonSubsystem.cpp
-SkeletonSubsystemObject.cpp)
-
-target_link_libraries(skeleton-subsystem PRIVATE ParameterFramework::plugin)
-
-install(TARGETS skeleton-subsystem
-        LIBRARY DESTINATION lib
-        RUNTIME DESTINATION bin)
-
-include(../ctest/CMakeLists.txt)
-add_subdirectory(test)
+install(EXPORT ParameterTargets DESTINATION lib/cmake/ParameterFramework
+    FILE ParameterFrameworkTargets.cmake
+    NAMESPACE ParameterFramework::)
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfigVersion.cmake"
+    DESTINATION lib/cmake/ParameterFramework)

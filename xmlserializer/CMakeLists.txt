@@ -64,7 +64,6 @@ target_link_libraries(xmlserializer
     PUBLIC pfw_utility # For NonCopyable and ErrorContext
     PRIVATE LibXml2::libxml2)
 
-
 install(FILES
     XmlSink.h
     XmlSource.h

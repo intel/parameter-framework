@@ -54,5 +54,5 @@ if (BUILD_TESTING)
     target_include_directories(introspection-subsystem
                                PUBLIC "include")
 
-    target_link_libraries(introspection-subsystem PRIVATE parameter)
+    target_link_libraries(introspection-subsystem PRIVATE plugin-internal-hack)
 endif()

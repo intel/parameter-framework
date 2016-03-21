@@ -130,3 +130,4 @@ add_subdirectory(doc)
 add_subdirectory(schemas)
 
 add_subdirectory(cpack)
+add_subdirectory(cmake)

@@ -88,7 +88,7 @@ build_script:
   # %INSTALL%\bin is where parameter.dll is installed
   # Also add the path where the release libxml2.dll has been extracted
   - set TEST_PATH=%RELEASE_LIBXML2_PATH%\bin;%INSTALL%\lib;%INSTALL%\bin
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH="%INSTALL%;%RELEASE_LIBXML2_PATH%" %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
   # Unfortunately, the skeleton test currently doesn't work on
   # multi-configuration build systems (Visual Studio is one of those) without
   # installing the plugin

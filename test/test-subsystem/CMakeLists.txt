@@ -35,5 +35,5 @@ if (BUILD_TESTING)
         TESTSubsystemString.cpp
         TESTSubsystemBuilder.cpp)
 
-    target_link_libraries(test-subsystem PRIVATE parameter)
+    target_link_libraries(test-subsystem PRIVATE plugin-internal-hack)
 endif()
