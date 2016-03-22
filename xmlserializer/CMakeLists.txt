@@ -60,8 +60,6 @@ if(NOT XML2_XINCLUDE_SUPPORT)
             "please install a version of libxml2 supporting it.")
 endif()
 
-target_include_directories(xmlserializer PUBLIC .)
-
 target_link_libraries(xmlserializer
     PUBLIC pfw_utility # For NonCopyable and ErrorContext
     PRIVATE LibXml2::libxml2)

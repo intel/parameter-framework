@@ -133,11 +133,8 @@ target_link_libraries(parameter
     PRIVATE ${CMAKE_DL_LIBS})
 
 target_include_directories(parameter
-    PUBLIC include log/include
-    # Export symbol macro header
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
-    # FIXE: define . as an PUBLIC include directory only for plugins
-    PUBLIC .)
+    PUBLIC include
+    PUBLIC log/include)
 
 install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
 # Client headers

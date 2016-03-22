@@ -34,5 +34,4 @@ if(BUILD_TESTING)
     endif ()
 
     add_library(tmpfile STATIC ${OS_SPECIFIC_TMPFILE})
-    target_include_directories(tmpfile PUBLIC .)
 endif()
