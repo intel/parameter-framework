@@ -48,7 +48,7 @@ install(FILES
     ErrorContext.hpp
     Utility.h
     convert.hpp
-    DESTINATION "include/utility")
+    DESTINATION "include/parameter/utility")
 
 if(BUILD_TESTING)
     # Add unit test

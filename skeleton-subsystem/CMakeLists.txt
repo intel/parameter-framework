@@ -58,8 +58,8 @@ find_library(PFW_CORE_LIBRARY NAMES parameter)
 
 set(PFW_INCLUDE_DIRS
     ${PFW_INCLUDE_ROOT}/parameter/plugin
-    ${PFW_INCLUDE_ROOT}/xmlserializer
-    ${PFW_INCLUDE_ROOT}/utility)
+    ${PFW_INCLUDE_ROOT}/parameter/xmlserializer
+    ${PFW_INCLUDE_ROOT}/parameter/utility)
 
 add_library(skeleton-subsystem MODULE
 SkeletonSubsystemBuilder.cpp

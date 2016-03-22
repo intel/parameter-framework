@@ -72,4 +72,4 @@ install(FILES
     XmlSource.h
     XmlElement.h
     XmlSerializingContext.h
-    DESTINATION "include/xmlserializer")
+    DESTINATION "include/parameter/xmlserializer")
