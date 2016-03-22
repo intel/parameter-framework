@@ -127,7 +127,7 @@ endif()
 configure_file(version.h.in "${CMAKE_CURRENT_BINARY_DIR}/version.h")
 
 target_link_libraries(parameter
-    # Unfortunatly xmlSink and xmlSource need to be exposed to the plugins
+    # Unfortunately xmlSink and xmlSource need to be exposed to the plugins
     PUBLIC xmlserializer
     PRIVATE pfw_utility remote-processor
     PRIVATE ${CMAKE_DL_LIBS})

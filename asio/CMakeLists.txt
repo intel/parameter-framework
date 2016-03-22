@@ -44,7 +44,7 @@ if (NETWORKING)
 
     # Ubuntu 14.04 packages asio 1.10.1 and clang 3.4.1.
     # In this environment, asio stand alone (set ASIO_STANDALONE)
-    # does not correcly detect that the stl has CHRONO support (c++11).
+    # does not correctly detect that the stl has CHRONO support (c++11).
     # Force the use of std::chrono by setting ASIO_HAS_STD_CHRONO
     target_include_directories(asio SYSTEM INTERFACE "${ASIO_DIR}")
     target_link_libraries(asio INTERFACE "${CMAKE_THREAD_LIBS_INIT}")
