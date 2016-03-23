@@ -56,7 +56,7 @@ SkeletonSubsystemBuilder.cpp
 SkeletonSubsystem.cpp
 SkeletonSubsystemObject.cpp)
 
-target_link_libraries(skeleton-subsystem ParameterFramework::parameter)
+target_link_libraries(skeleton-subsystem PRIVATE ParameterFramework::plugin)
 
 install(TARGETS skeleton-subsystem
         LIBRARY DESTINATION lib

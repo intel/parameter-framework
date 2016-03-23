@@ -64,10 +64,6 @@ target_link_libraries(xmlserializer
     PUBLIC pfw_utility # For NonCopyable and ErrorContext
     PRIVATE LibXml2::libxml2)
 
-install(TARGETS xmlserializer EXPORT ParameterTargets
-    ARCHIVE DESTINATION lib
-    INCLUDES DESTINATION "include/parameter/xmlserializer")
-
 install(FILES
     XmlSink.h
     XmlSource.h
