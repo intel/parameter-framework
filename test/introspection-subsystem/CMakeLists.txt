@@ -52,7 +52,7 @@ if (BUILD_TESTING)
     #
     # Note : headers located in root project directory remain private.
     target_include_directories(introspection-subsystem
-                               PUBLIC "include" "${CMAKE_CURRENT_BINARY_DIR}")
+                               PUBLIC "include")
 
-    target_link_libraries(introspection-subsystem PRIVATE parameter)
+    target_link_libraries(introspection-subsystem PRIVATE plugin-internal-hack)
 endif()

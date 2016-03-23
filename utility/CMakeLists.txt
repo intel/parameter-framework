@@ -38,8 +38,6 @@ add_library(pfw_utility STATIC
     Utility.cpp
     DynamicLibrary.cpp)
 
-target_include_directories(pfw_utility PUBLIC .)
-
 # Needed for linking against shared libraries on Linux (no-op on Windows)
 set_target_properties(pfw_utility PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 
@@ -48,7 +46,7 @@ install(FILES
     ErrorContext.hpp
     Utility.h
     convert.hpp
-    DESTINATION "include/utility")
+    DESTINATION "include/parameter/utility")
 
 if(BUILD_TESTING)
     # Add unit test

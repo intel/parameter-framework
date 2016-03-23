@@ -30,8 +30,7 @@ configure_file(structure.xml "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
 configure_file(toplevel.xml "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
 
 add_executable(skeleton-test main.cpp)
-target_include_directories(skeleton-test PRIVATE "${PFW_INCLUDE_ROOT}/parameter/client")
-target_link_libraries(skeleton-test "${PFW_CORE_LIBRARY}")
+target_link_libraries(skeleton-test PRIVATE ParameterFramework::parameter)
 
 add_test(NAME skeleton-test
          WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"

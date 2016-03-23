@@ -127,19 +127,32 @@ endif()
 configure_file(version.h.in "${CMAKE_CURRENT_BINARY_DIR}/version.h")
 
 target_link_libraries(parameter
-    # Unfortunatly xmlSink and xmlSource need to be exposed to the plugins
-    PUBLIC xmlserializer
-    PRIVATE pfw_utility remote-processor
+    PRIVATE xmlserializer pfw_utility remote-processor
     PRIVATE ${CMAKE_DL_LIBS})
 
 target_include_directories(parameter
-    PUBLIC include log/include
-    # Export symbol macro header
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
-    # FIXE: define . as an PUBLIC include directory only for plugins
-    PUBLIC .)
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/log/include>)
 
-install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
+install(TARGETS parameter EXPORT ParameterTargets
+    LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib
+    INCLUDES DESTINATION "include/parameter/client" "include/parameter/plugin")
+
+# Export an interface library for plugins to use (after the ParameterFramework
+# project is built and installed). It makes them link against libparameter and
+# use xmlserializer's and pfw_utilify's include directories.
+add_library(plugin INTERFACE)
+target_link_libraries(plugin INTERFACE parameter)
+install(TARGETS plugin EXPORT ParameterTargets
+    INCLUDES DESTINATION "include/parameter/xmlserializer" "include/parameter/utility")
+# Unfortunately, while the "plugin" interface library is suitable for external
+# plugins (built using the installed Parameter Framework) we want to build some
+# plugins before the whole project is installed. Therefore, they need to get
+# xmlserializer's and pfw_utility's headers from the build tree. This
+# "plugin-internal-hack" is for them.
+add_library(plugin-internal-hack INTERFACE)
+target_link_libraries(plugin-internal-hack INTERFACE parameter xmlserializer)
+
 # Client headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
@@ -161,7 +174,6 @@ install(FILES
     Element.h
     ElementBuilder.h
     ElementLibrary.h
-    FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
     LoggingElementBuilderTemplate.h
