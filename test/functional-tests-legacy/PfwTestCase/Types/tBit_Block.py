@@ -55,7 +55,6 @@ Test cases :
 """
 
 import os
-import commands
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

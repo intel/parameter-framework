@@ -52,7 +52,6 @@ Test cases :
     - FP8_Q0.7 parameter in nominal case = 0.50
 """
 import os
-import commands
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

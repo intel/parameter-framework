@@ -51,7 +51,6 @@ Test cases :
     - Testing error : Try to set an undefined param
 """
 import os
-import commands
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

@@ -51,7 +51,6 @@ Test cases :
     - INT8_Max parameter in nominal case = 50
 """
 import os
-import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()
@@ -83,8 +82,8 @@ class TestCases(PfwTestCase):
                 - INT8_Max parameter set to 50
                 - Blackboard and filesystem values checked
         """
-        print self.test_Nominal_Case.__doc__
-        print "INFO : INT8_Max parameter in nominal case = 50"
+        print(self.test_Nominal_Case.__doc__)
+        print("INFO : INT8_Max parameter in nominal case = 50")
         value = "50"
         hex_value = "0x32"
         #Set parameter value
@@ -97,7 +96,7 @@ class TestCases(PfwTestCase):
         assert out == value, "BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out)
         #Check parameter value on filesystem
         assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == hex_value, "FILESYSTEM : parameter update error"
-        print "INFO : test OK"
+        print("INFO : test OK")
 
     def test_TypeMin(self):
         """
@@ -117,8 +116,8 @@ class TestCases(PfwTestCase):
                 - INT8_Max parameter set to -128
                 - Blackboard and filesystem values checked
         """
-        print self.test_TypeMin.__doc__
-        print "INFO : INT8_Max parameter min value = -128"
+        print(self.test_TypeMin.__doc__)
+        print("INFO : INT8_Max parameter min value = -128")
         value = "-128"
         hex_value = "0x80"
         #Set parameter value
@@ -131,7 +130,7 @@ class TestCases(PfwTestCase):
         assert out == value, "BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out)
         #Check parameter value on filesystem
         assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == hex_value, "FILESYSTEM : parameter update error"
-        print "INFO : test OK"
+        print("INFO : test OK")
 
     def test_TypeMin_Overflow(self):
         """
@@ -152,8 +151,8 @@ class TestCases(PfwTestCase):
                 - INT8_Max parameter not updated
                 - Blackboard and filesystem values checked
         """
-        print self.test_TypeMin_Overflow.__doc__
-        print "INFO : INT8_Max parameter min value out of bounds = -129"
+        print(self.test_TypeMin_Overflow.__doc__)
+        print("INFO : INT8_Max parameter min value out of bounds = -129")
         value = "-129"
         param_check = open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1]
         #Set parameter value
@@ -162,7 +161,7 @@ class TestCases(PfwTestCase):
         assert out != "Done", "PFW : Error not detected when setting parameter %s out of bounds" % (self.param_name)
         #Check parameter value on filesystem
         assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == param_check, "FILESYSTEM : Forbiden parameter change"
-        print "INFO : test OK"
+        print("INFO : test OK")
 
     def test_TypeMax(self):
         """
@@ -182,8 +181,8 @@ class TestCases(PfwTestCase):
                 - INT8_Max parameter set to 127
                 - Blackboard and filesystem values checked
         """
-        print self.test_TypeMax.__doc__
-        print "INFO : INT8_Max parameter max value = 127"
+        print(self.test_TypeMax.__doc__)
+        print("INFO : INT8_Max parameter max value = 127")
         value = "127"
         hex_value = "0x7f"
         #Set parameter value
@@ -196,7 +195,7 @@ class TestCases(PfwTestCase):
         assert out == value, "BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out)
         #Check parameter value on filesystem
         assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == hex_value, "FILESYSTEM : parameter update error"
-        print "INFO : test OK"
+        print("INFO : test OK")
 
     def test_TypeMax_Overflow(self):
         """
@@ -217,8 +216,8 @@ class TestCases(PfwTestCase):
                 - INT8_Max parameter not updated
                 - Blackboard and filesystem values checked
         """
-        print self.test_TypeMax_Overflow.__doc__
-        print "INFO : INT8_Max parameter max value out of bounds = 128"
+        print(self.test_TypeMax_Overflow.__doc__)
+        print("INFO : INT8_Max parameter max value out of bounds = 128")
         value = "128"
         param_check = open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1]
         #Set parameter value
@@ -227,4 +226,4 @@ class TestCases(PfwTestCase):
         assert out != "Done", "PFW : Error not detected when setting parameter %s out of bounds" % (self.param_name)
         #Check parameter value on filesystem
         assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == param_check, "FILESYSTEM : Forbiden parameter change"
-        print "INFO : test OK"
+        print("INFO : test OK")

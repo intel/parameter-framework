@@ -46,7 +46,7 @@ Test cases :
     - Testing import errors
     - Testing export errors
 """
-import os, commands
+import os
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

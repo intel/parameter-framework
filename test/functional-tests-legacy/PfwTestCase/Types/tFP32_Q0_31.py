@@ -52,7 +52,6 @@ Test cases :
     - FP16_Q0.31 parameter in nominal case = 0.5000000000
 """
 import os
-import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()

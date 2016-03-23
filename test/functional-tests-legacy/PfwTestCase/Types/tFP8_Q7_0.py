@@ -52,7 +52,6 @@ Test cases :
     - FP8_Q7.0 parameter in nominal case = 64
 """
 import os
-import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()

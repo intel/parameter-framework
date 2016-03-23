@@ -71,6 +71,6 @@ class TestCases(PfwTestCase):
         #Get undefined parameter value
         log.I("Get undefined parameter value")
         out, err = self.pfw.sendCmd("getParameter", "Undefined_parameter", expectSuccess=False)
-        print str(out)
+        print(str(out))
         assert err == None, "Error when getting parameter : %s" % (err)
         assert out != "Done", "Error not detected when getting an undefined parameter"

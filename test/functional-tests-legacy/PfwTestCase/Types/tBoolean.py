@@ -126,7 +126,7 @@ class TestCases(PfwTestCase):
             ~~~~~~~~~~~~~~~~~
                 - Error detected, boolean not updated
         """
-        print self.testBooleanNegative.__doc__
+        print(self.testBooleanNegative.__doc__)
         value = "-1"
         out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
@@ -152,7 +152,7 @@ class TestCases(PfwTestCase):
             ~~~~~~~~~~~~~~~~~
                 - Error detected, boolean not updated
         """
-        print self.testBooleanOverflow.__doc__
+        print(self.testBooleanOverflow.__doc__)
         value = "2"
         out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))

@@ -30,19 +30,19 @@
 
 class Logger(object) :
     def E(self, string):
-        print "\nERROR: %s\n" % (string)
+        print("\nERROR: %s\n" % (string))
         return "ERROR: %s" % (string)
 
     def F(self, string):
-        print "\nFAIL : %s\n" % (string)
+        print("\nFAIL : %s\n" % (string))
         return "FAIL : %s" % (string)
 
     def I(self, string):
-        print "INFO : %s" % (string)
+        print("INFO : %s" % (string))
         return "INFO : %s" % (string)
 
     def D(self, string):
-        print "\n======================================================================"
-        print "%s" %(string)
-        print "======================================================================"
+        print("\n======================================================================")
+        print("%s" %(string))
+        print("======================================================================")
         return string
