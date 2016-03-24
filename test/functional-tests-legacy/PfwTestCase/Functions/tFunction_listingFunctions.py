@@ -41,7 +41,7 @@ Test cases :
     - Testing dumpDomains function on nominal case
     - Testing dumpElements function on nominal case
 """
-import commands, os
+import os
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

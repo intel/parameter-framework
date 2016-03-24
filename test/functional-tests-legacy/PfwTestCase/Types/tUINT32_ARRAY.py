@@ -54,7 +54,6 @@ Test cases :
     - Testing value format error
 """
 import os
-import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()
@@ -67,9 +66,9 @@ class TestCases(PfwTestCase):
     def setUp(self):
         self.param_name = "/Test/Test/TEST_DIR/UINT32_ARRAY"
         self.param_short_name = os.environ["PFW_RESULT"] + "/UINT32_ARRAY"
-        print '\r'
+        print('\r')
         self.pfw.sendCmd("setTuningMode", "on")
-        print '\r'
+        print('\r')
         self.array_size = 100
         self.array_min = 0
         self.array_max = 100
@@ -303,7 +302,7 @@ class TestCases(PfwTestCase):
         log.D(self.test_Array_Index_Overflow.__doc__)
         index_values = (self.array_size-1, self.array_size+1, -1)
         for index in index_values:
-            print index
+            print(index)
             indexed_array_value = self.array_max
             indexed_array_value_path = "".join([self.param_name, "/", str(index)])
             #Check parameter value setting

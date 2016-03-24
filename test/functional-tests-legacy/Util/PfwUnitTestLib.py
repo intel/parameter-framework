@@ -55,12 +55,12 @@ class RemoteCli(object):
         sys_cmd = self.platform_command + [cmd]
         if args is not None:
             sys_cmd += args
-        print "CMD  : %s" % sys_cmd
+        print("CMD  : %s" % sys_cmd)
 
         try:
             p = subprocess.Popen(sys_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        except Exception as (errno, strerror):
-            return None, strerror
+        except OSError as error:
+            return None, error.strerror
         out, err = p.communicate()
         out = out.rstrip('\r\n')
 

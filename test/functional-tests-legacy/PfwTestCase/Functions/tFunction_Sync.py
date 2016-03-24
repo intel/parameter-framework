@@ -44,7 +44,7 @@ Test cases :
     - Testing sync nominal case
     - Testing errors
 """
-import commands, os
+import os
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

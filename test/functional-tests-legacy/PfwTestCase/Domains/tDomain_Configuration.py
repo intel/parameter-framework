@@ -308,7 +308,7 @@ class TestCases(PfwTestCase):
                 - no configuration created
                 - existent configurations not affected by error
         """
-        print self.test_Conf_Renaming_Error.__doc__
+        print(self.test_Conf_Renaming_Error.__doc__)
         # New domain creation for testing purpose
         log.I("New domain creation for testing purpose : %s" % (self.domain_name))
         log.I("command [createDomain]")

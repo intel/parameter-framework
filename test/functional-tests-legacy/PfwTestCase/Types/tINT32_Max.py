@@ -51,7 +51,6 @@ Test cases :
     - INT32_Max parameter in nominal case = 50
 """
 import os
-import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()

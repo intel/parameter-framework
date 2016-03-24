@@ -52,7 +52,6 @@ Test cases :
     - FP32_Q15.16 parameter in nominal case = 12345.12345
 """
 import os
-import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()
