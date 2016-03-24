@@ -42,7 +42,8 @@ if(BUILD_TESTING)
     find_package(LibXml2 REQUIRED)
 
     target_link_libraries(parameterFunctionalTest
-                          PRIVATE parameter catch tmpfile LibXml2::libxml2 introspection-subsystem)
+                          PRIVATE parameter
+                          PRIVATE pfw_utility catch tmpfile LibXml2::libxml2 introspection-subsystem)
 
     add_test(NAME parameterFunctionalTest
              COMMAND parameterFunctionalTest)

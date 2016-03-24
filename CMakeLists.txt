@@ -94,6 +94,10 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN true)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+# Automatically add the current source and build dirs to the private and
+# interface include directories.
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
 
 include(ctest/CMakeLists.txt)
 
@@ -126,3 +130,4 @@ add_subdirectory(doc)
 add_subdirectory(schemas)
 
 add_subdirectory(cpack)
+add_subdirectory(cmake)

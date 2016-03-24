@@ -40,12 +40,7 @@ generate_export_header(remote-processor
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
 
-target_include_directories(remote-processor
-    # Symbol export macro header
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
-    # TODO: separate remote-processor's includes in half (public/private)
-    PUBLIC .)
-
 target_link_libraries(remote-processor PRIVATE pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
 
-install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS remote-processor EXPORT ParameterTargets
+    LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

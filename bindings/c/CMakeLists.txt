@@ -37,12 +37,6 @@ install(FILES ParameterFramework.h
 
 target_link_libraries(cparameter PRIVATE parameter pfw_utility)
 
-target_include_directories(cparameter
-    # Fixme use an include folder
-    PUBLIC .
-    # Export symbol macro header
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
-
 install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 
 if(BUILD_TESTING)

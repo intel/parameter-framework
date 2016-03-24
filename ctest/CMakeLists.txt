@@ -71,7 +71,7 @@ function(set_test_env TestName)
     endif()
 
 
-    # With nmake and nmake, executables are build in:
+    # With nmake and nmake, executables are built in:
     #     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} => `bin/`
     #
     # Nevertheless Visual studio (and xcode) can build for debug and release

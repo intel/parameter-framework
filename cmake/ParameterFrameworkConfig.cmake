@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Intel Corporation
+# Copyright (c) 2016, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,12 +26,4 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if(BUILD_TESTING)
-    if (WIN32)
-        set(OS_SPECIFIC_TMPFILE windows/TmpFile.cpp)
-    else ()
-        set(OS_SPECIFIC_TMPFILE posix/TmpFile.cpp)
-    endif ()
-
-    add_library(tmpfile STATIC ${OS_SPECIFIC_TMPFILE})
-endif()
+include("${CMAKE_CURRENT_LIST_DIR}/ParameterFrameworkTargets.cmake")
