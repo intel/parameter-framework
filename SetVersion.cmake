@@ -37,24 +37,25 @@ set(PF_VERSION_DIRTY "")
 # Find and set the Parameter Framework's version
 # First, let's see if the user forced a version (i.e. "vX.Y.Z-N")
 if(NOT DEFINED PF_VERSION)
-    # Else, try to get it from git
-    execute_process(COMMAND git describe --tags --long --dirty --abbrev=12
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE PF_VERSION
-        RESULT_VARIABLE GIT_DESCRIBE_RESULT
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        ERROR_QUIET)
 
-    if(GIT_DESCRIBE_RESULT GREATER 0)
-        # Or fall back to reading it from .version (this will happen when
-        # building from an archive)
-        file(READ "${PROJECT_SOURCE_DIR}/.version" PF_VERSION_FILE_CONTENT)
+    # Else, try to get it from .version (this will happen when
+    # building from an archive)
+    file(READ "${PROJECT_SOURCE_DIR}/.version" PF_VERSION_FILE_CONTENT)
 
-        set(REGEX "tag: (v[0-9.]+)")
-        if(PF_VERSION_FILE_CONTENT MATCHES ${REGEX})
-            set(PF_VERSION "${CMAKE_MATCH_1}-0")
-        endif()
+    set(REGEX "tag: (v[0-9.]+)")
+    if(PF_VERSION_FILE_CONTENT MATCHES ${REGEX})
+        set(PF_VERSION "${CMAKE_MATCH_1}-0")
+
+    else()
+        # Or fall back from git
+        execute_process(COMMAND git describe --tags --long --dirty --abbrev=12
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            OUTPUT_VARIABLE PF_VERSION
+            RESULT_VARIABLE GIT_DESCRIBE_RESULT
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            ERROR_QUIET)
     endif()
+
 else()
     # Set the "nice version string" to the one forced by the user
     set(NICE_PF_VERSION "${PF_VERSION}")
@@ -73,6 +74,11 @@ endif()
 
 # If we are precisely on a tag, make a nicer version string (unless otherwise
 # forced by the user - see above)
-if((NOT DEFINED NICE_PF_VERSION) AND (PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
-    set(NICE_PF_VERSION "v${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}")
+if((NOT DEFINED NICE_PF_VERSION))
+    if((PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
+        set(NICE_PF_VERSION "v${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}")
+    else()
+        # Fallback
+        set(NICE_PF_VERSION "${PF_VERSION}")
+    endif()
 endif()
