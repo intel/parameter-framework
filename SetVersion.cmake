@@ -74,6 +74,11 @@ endif()
 
 # If we are precisely on a tag, make a nicer version string (unless otherwise
 # forced by the user - see above)
-if((NOT DEFINED NICE_PF_VERSION) AND (PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
-    set(NICE_PF_VERSION "v${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}")
+if((NOT DEFINED NICE_PF_VERSION))
+    if((PF_VERSION_TWEAK EQUAL 0) AND (NOT PF_VERSION_DIRTY))
+        set(NICE_PF_VERSION "v${PF_VERSION_MAJOR}.${PF_VERSION_MINOR}.${PF_VERSION_PATCH}")
+    else()
+        # Fallback
+        set(NICE_PF_VERSION "${PF_VERSION}")
+    endif()
 endif()
