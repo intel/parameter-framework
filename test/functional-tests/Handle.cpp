@@ -43,6 +43,9 @@
 
 #include <string>
 #include <list>
+#include <map>
+#include <utility>
+#include <functional>
 
 #include <stdlib.h>
 
@@ -68,6 +71,8 @@ struct AllParamsPF : public ParameterFramework
 
             <FixedPointParameter Size="32" Integral="3" Fractional="4" Name="fix_point"/>
             <FixedPointParameter Size="32" Integral="3" Fractional="4" ArrayLength="3" Name="fix_point_array"/>
+
+            <FloatingPointParameter Size="32" Min="-1.22e-10" Max="1e+10" Name="float"/>
 
             <EnumParameter Size="8" Name="enum">
                 <ValuePair Literal="min"  Numerical="-128"/>
@@ -267,8 +272,104 @@ SCENARIO_METHOD(AllParamsPF, "Export all parameters", "[handler][structure][xml]
     }
 }
 
+///////////////////////////// Test settings ///////////////////////////////////
+
+static const char *defaultBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">0</BooleanParameter>
+      <BooleanParameter Name="bool_array">0 0</BooleanParameter>
+      <IntegerParameter Name="integer">33</IntegerParameter>
+      <IntegerParameter Name="integer_array">-10 -10 -10 -10</IntegerParameter>
+      <FixedPointParameter Name="fix_point">0.0000</FixedPointParameter>
+      <FixedPointParameter Name="fix_point_array">0.0000 0.0000 0.0000</FixedPointParameter>
+      <FloatingPointParameter Name="float">0</FloatingPointParameter>
+      <EnumParameter Name="enum">min</EnumParameter>
+      <EnumParameter Name="enum_array">eight eight eight eight</EnumParameter>
+      <StringParameter Name="string"></StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">0</BitParameter>
+        <BitParameter Name="two">0</BitParameter>
+        <BitParameter Name="six">0</BitParameter>
+        <BitParameter Name="sixteen">0</BitParameter>
+        <BitParameter Name="thirty_two">0</BitParameter>
+      </BitParameterBlock>
+)";
+
+static const char *testBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">1</BooleanParameter>
+      <BooleanParameter Name="bool_array">0 1</BooleanParameter>
+      <IntegerParameter Name="integer">100</IntegerParameter>
+      <IntegerParameter Name="integer_array">-10 0 8 10</IntegerParameter>
+      <FixedPointParameter Name="fix_point">2.2500</FixedPointParameter>
+      <FixedPointParameter Name="fix_point_array">7.1250 0.6875 -1.0000</FixedPointParameter>
+      <FloatingPointParameter Name="float">-1.4013e-45</FloatingPointParameter>
+      <EnumParameter Name="enum">five</EnumParameter>
+      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
+      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">1</BitParameter>
+        <BitParameter Name="two">2</BitParameter>
+        <BitParameter Name="six">10</BitParameter>
+        <BitParameter Name="sixteen">72</BitParameter>
+        <BitParameter Name="thirty_two">4294967295</BitParameter>
+      </BitParameterBlock>
+)";
+static const char *testRawHexBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">0x1</BooleanParameter>
+      <BooleanParameter Name="bool_array">0x0 0x1</BooleanParameter>
+      <IntegerParameter Name="integer">0x0064</IntegerParameter>
+      <IntegerParameter Name="integer_array">0xFFFFFFF6 0x00000000 0x00000008 0x0000000A</IntegerParameter>
+      <FixedPointParameter ValueSpace="Raw" Name="fix_point">0x24000000</FixedPointParameter>
+      <FixedPointParameter ValueSpace="Raw" Name="fix_point_array">0x72000000 0x0B000000 0xF0000000</FixedPointParameter>
+      <FloatingPointParameter ValueSpace="Raw" Name="float">0x80000001</FloatingPointParameter>
+      <EnumParameter Name="enum">five</EnumParameter>
+      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
+      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">0x1</BitParameter>
+        <BitParameter Name="two">0x2</BitParameter>
+        <BitParameter Name="six">0xA</BitParameter>
+        <BitParameter Name="sixteen">0x48</BitParameter>
+        <BitParameter Name="thirty_two">0xFFFFFFFF</BitParameter>
+      </BitParameterBlock>
+)";
+
+static const string defaultBasicSettingsBytes =
+    "00 00 00 21 00 f6 ff ff ff f6 ff ff ff f6 ff ff ff f6 ff ff ff 00 00 00 00 "
+    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 08 00 08 00 08 00 08 00 00 "
+    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
+    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
+    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ";
+
+static const string testBasicSettingsBytes =
+    "01 00 01 64 00 f6 ff ff ff 00 00 00 00 08 00 00 00 0a 00 00 00 00 00 00 24 "
+    "00 00 00 72 00 00 00 0b 00 00 00 f0 01 00 00 80 05 08 00 01 80 08 00 01 80 41 "
+    "20 73 74 72 69 6e 67 20 6f 66 20 33 32 20 63 68 61 72 61 63 74 65 72 2e 40 40 "
+    "40 40 40 40 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
+    "00 00 00 00 00 00 00 00 00 00 00 8a 02 48 00 ff ff ff ff ";
+
 struct SettingsTestPF : public AllParamsPF
 {
+    enum class Type {
+        xml,
+        rawHexXml,
+        binary
+    };
+
+    struct TestVector {
+        string description;
+        string path;
+        struct Value {
+            string description;
+            struct View {
+                Type type;
+                string value;
+            };
+            list<View> views;
+        };
+        Value initial;
+        list<Value> values;
+    };
+
     static string parameterBlockNode(string name, string settings)
     {
         return node("ParameterBlock", name, settings);
@@ -277,6 +378,29 @@ struct SettingsTestPF : public AllParamsPF
     {
         return rootNode("ParameterBlock", "Name='" + name + "'", settings);
     }
+
+    const TestVector basicParamsTest =
+    {
+        "Basic parameters",
+        "/test/test/parameter_block_array/0",
+        {
+            "Default values",
+            {
+                { Type::xml, mkBasicSettings(defaultBasicSettingsXML, "0") },
+                { Type::binary, defaultBasicSettingsBytes }
+            }
+        },
+        { // values to test, for now there is only one set
+            {
+                "Arbitrary values",
+                {
+                    { Type::xml, mkBasicSettings(testBasicSettingsXML, "0") },
+                    { Type::rawHexXml, mkBasicSettings(testRawHexBasicSettingsXML, "0") },
+                    { Type::binary, testBasicSettingsBytes }
+                }
+            },
+        }
+    };
 
     static string fullXMLSettings(const string &basicSettings)
     {
@@ -295,12 +419,78 @@ struct SettingsTestPF : public AllParamsPF
     static string fullBytesSettings(const string &basicSettings)
     {
         string fullSettings;
-        // We have the "basic params" repeated 7 times across the test
-        // structure
+        // The "basic params" are repeated 7 times across the test structure
         for (size_t i = 0; i < 7; ++i) {
             fullSettings += basicSettings;
         }
         return fullSettings;
+    }
+
+    const TestVector rootTest =
+    {
+        "root parameters (== system class)",
+        "/",
+        {
+            "Default values",
+            {
+                { Type::xml, fullXMLSettings(defaultBasicSettingsXML) },
+                { Type::binary, fullBytesSettings(defaultBasicSettingsBytes) }
+            }
+        },
+        { // values to test, for now there is only one set
+            {
+                "Arbitrary values",
+                {
+                    { Type::xml, fullXMLSettings(testBasicSettingsXML) },
+                    { Type::rawHexXml, fullXMLSettings(testRawHexBasicSettingsXML) },
+                    { Type::binary, fullBytesSettings(testBasicSettingsBytes) }
+                }
+            },
+        }
+    };
+
+    const list<TestVector> testVectors = {basicParamsTest, rootTest, 
+        { "system class parameters", "/test", rootTest.initial, rootTest.values }
+    };
+
+    void checkValue(ElementHandle &handle, TestVector::Value::View view)
+    {
+        THEN("Get the node value should return the expected " + to_string(view.type) + " one" ) {
+            switch (view.type) {
+                case Type::rawHexXml:
+                    setRawValueSpace(true);
+                    setHexOutputFormat(true);
+                case Type::xml:
+                    checkXMLEq(handle.getAsXML(), view.value);
+                    setRawValueSpace(false);
+                    setHexOutputFormat(false);
+                    break;
+                case Type::binary:
+                    checkBytesEq(handle.getAsBytes(), view.value);
+            }
+        }
+    }
+
+    void setValue(ElementHandle &handle, TestVector::Value::View view)
+    {
+        switch (view.type) {
+            case Type::rawHexXml:
+            case Type::xml:
+                REQUIRE_NOTHROW(handle.setAsXML(view.value));
+                break;
+            case Type::binary:
+                REQUIRE_NOTHROW(handle.setAsBytes(readBytes(view.value)));
+        }
+
+    }
+
+    static string to_string(Type type)
+    {
+        switch (type) {
+            case Type::xml: return "XML";
+            case Type::rawHexXml: return "raw hexadecimal XML";
+            case Type::binary: return "binary";
+        }
     }
 
     /** Print Bytes as string separated hexadecimal number. */
@@ -340,208 +530,44 @@ struct SettingsTestPF : public AllParamsPF
     }
 };
 
-static const char *defaultBasicSettingsXML = R"(
-      <BooleanParameter Name="bool">0</BooleanParameter>
-      <BooleanParameter Name="bool_array">0 0</BooleanParameter>
-      <IntegerParameter Name="integer">33</IntegerParameter>
-      <IntegerParameter Name="integer_array">-10 -10 -10 -10</IntegerParameter>
-      <FixedPointParameter Name="fix_point">0.0000</FixedPointParameter>
-      <FixedPointParameter Name="fix_point_array">0.0000 0.0000 0.0000</FixedPointParameter>
-      <EnumParameter Name="enum">min</EnumParameter>
-      <EnumParameter Name="enum_array">eight eight eight eight</EnumParameter>
-      <StringParameter Name="string"></StringParameter>
-      <BitParameterBlock Name="bit_block">
-        <BitParameter Name="one">0</BitParameter>
-        <BitParameter Name="two">0</BitParameter>
-        <BitParameter Name="six">0</BitParameter>
-        <BitParameter Name="sixteen">0</BitParameter>
-        <BitParameter Name="thirty_two">0</BitParameter>
-      </BitParameterBlock>
-)";
-
-static const char *testBasicSettingsXML = R"(
-      <BooleanParameter Name="bool">1</BooleanParameter>
-      <BooleanParameter Name="bool_array">0 1</BooleanParameter>
-      <IntegerParameter Name="integer">100</IntegerParameter>
-      <IntegerParameter Name="integer_array">-10 0 8 10</IntegerParameter>
-      <FixedPointParameter Name="fix_point">2.2500</FixedPointParameter>
-      <FixedPointParameter Name="fix_point_array">7.1250 0.6875 -1.0000</FixedPointParameter>
-      <EnumParameter Name="enum">five</EnumParameter>
-      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
-      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
-      <BitParameterBlock Name="bit_block">
-        <BitParameter Name="one">1</BitParameter>
-        <BitParameter Name="two">2</BitParameter>
-        <BitParameter Name="six">10</BitParameter>
-        <BitParameter Name="sixteen">72</BitParameter>
-        <BitParameter Name="thirty_two">4294967295</BitParameter>
-      </BitParameterBlock>
-)";
-static const char *testRawHexBasicSettingsXML = R"(
-      <BooleanParameter Name="bool">0x1</BooleanParameter>
-      <BooleanParameter Name="bool_array">0x0 0x1</BooleanParameter>
-      <IntegerParameter Name="integer">0x0064</IntegerParameter>
-      <IntegerParameter Name="integer_array">0xFFFFFFF6 0x00000000 0x00000008 0x0000000A</IntegerParameter>
-      <FixedPointParameter ValueSpace="Raw" Name="fix_point">0x24000000</FixedPointParameter>
-      <FixedPointParameter ValueSpace="Raw" Name="fix_point_array">0x72000000 0x0B000000 0xF0000000</FixedPointParameter>
-      <EnumParameter Name="enum">five</EnumParameter>
-      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
-      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
-      <BitParameterBlock Name="bit_block">
-        <BitParameter Name="one">0x1</BitParameter>
-        <BitParameter Name="two">0x2</BitParameter>
-        <BitParameter Name="six">0xA</BitParameter>
-        <BitParameter Name="sixteen">0x48</BitParameter>
-        <BitParameter Name="thirty_two">0xFFFFFFFF</BitParameter>
-      </BitParameterBlock>
-)";
-
-SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][settings][xml]")
-{
-    WHEN ("Exporting root XML") {
-        auto getAsXML = [this](string path) { return ElementHandle(*this, path).getAsXML(); };
-        CHECK(getAsXML("/") == getAsXML("/test"));
-        checkXMLEq(getAsXML("/"), fullXMLSettings(defaultBasicSettingsXML));
-    }
-
-    ElementHandle basicParams(*this, "/test/test/parameter_block");
-    WHEN ("Exporting basic parameter XML") {
-        checkXMLEq(basicParams.getAsXML(),
-                   mkBasicSettings(defaultBasicSettingsXML, "parameter_block"));
-    }
-    string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
-    string rawTestSettings = mkBasicSettings(testRawHexBasicSettingsXML, "parameter_block");
-
-    auto checkExport = [&] {
-        THEN ("Exported settings should be the ones imported") {
-            checkXMLEq(basicParams.getAsXML(), testSettings);
-        }
-        THEN ("Exported raw settings should be the ones imported") {
-            setRawValueSpace(true);
-            setHexOutputFormat(true);
-            checkXMLEq(basicParams.getAsXML(), rawTestSettings);
-        }
-    };
-    WHEN ("Importing basic parameter XML") {
-        CHECK_NOTHROW(basicParams.setAsXML(testSettings));
-        checkExport();
-    }
-    WHEN ("Importing raw basic parameter XML") {
-        CHECK_NOTHROW(basicParams.setAsXML(rawTestSettings));
-        checkExport();
-    }
-}
-
-static const string defaultBasicSettingsBytes =
-    "00 00 00 21 00 f6 ff ff ff f6 ff ff ff f6 ff ff ff f6 ff ff ff 00 00 00 00 "
-    "00 00 00 00 00 00 00 00 00 00 00 00 80 08 00 08 00 08 00 08 00 00 00 00 00 00 "
-    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
-    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
-    "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ";
-
-static const string testBasicSettingsBytes =
-    "01 00 01 64 00 f6 ff ff ff 00 00 00 00 08 00 00 00 0a 00 00 00 00 00 00 24 "
-    "00 00 00 72 00 00 00 0b 00 00 00 f0 05 08 00 01 80 08 00 01 80 41 20 73 74 72 "
-    "69 6e 67 20 6f 66 20 33 32 20 63 68 61 72 61 63 74 65 72 2e 40 40 40 40 40 40 "
-    "40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
-    "00 00 00 00 00 00 00 8a 02 48 00 ff ff ff ff ";
 
 SCENARIO_METHOD(SettingsTestPF, "Bijection of binary show and read", "[identity][test]")
 {
     CHECK(showBytes(readBytes(testBasicSettingsBytes)) == testBasicSettingsBytes);
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Export and import root binary settings",
-                "[handler][settings][bytes]")
-{
-    ElementHandle root(*this, "/");
-    ElementHandle systemClass(*this, "/");
 
-    THEN ("Root and system class should export the same binary") {
-        checkBytesEq(root.getAsBytes(), systemClass.getAsBytes());
-    }
-    WHEN ("Exporting root binary") {
-        checkBytesEq(root.getAsBytes(), fullBytesSettings(defaultBasicSettingsBytes));
-    }
-    WHEN ("Importing root binary") {
-        string rootTestSettings = fullBytesSettings(testBasicSettingsBytes);
-        REQUIRE_NOTHROW(root.setAsBytes(readBytes(rootTestSettings)));
-        THEN ("Exported settings should be the ones imported") {
-            checkBytesEq(root.getAsBytes(), rootTestSettings);
+SCENARIO_METHOD(SettingsTestPF, "Test initial values", "[handler][settings][init]")
+{
+    for (auto &testVector : testVectors) {
+        GIVEN("The element " + testVector.path + ": " + testVector.description) {
+            ElementHandle handle(*this, testVector.path);
+            GIVEN("The initial value of this node: " + testVector.initial.description) {
+                for (auto &view : testVector.initial.views) {
+                    checkValue(handle, view);
+                }
+            }
+            // Get a list of all possible values of the node
+            auto values = testVector.values;
+            values.push_back(testVector.initial);
+            // Set then get all values for each view
+            for (auto &value : values) {
+                GIVEN("A value" + value.description) {
+                    for(auto &view : value.views) {
+                        WHEN("Setting the value as " + to_string(view.type)) {
+                            setValue(handle, view);
+                            for(auto &view : value.views) {
+                                checkValue(handle, view);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Export and import basic binary settings",
-                "[handler][settings][bytes]")
-{
-    ElementHandle basicParams(*this, "/test/test/parameter_block");
-    WHEN ("Exporting basic parameter binary") {
-        checkBytesEq(basicParams.getAsBytes(), defaultBasicSettingsBytes);
-    }
-    WHEN ("Importing basic parameter binary") {
-        REQUIRE_NOTHROW(basicParams.setAsBytes(readBytes(testBasicSettingsBytes)));
-        THEN ("Exported settings should be the ones imported") {
-            checkBytesEq(basicParams.getAsBytes(), testBasicSettingsBytes);
-        }
-    }
-}
-
-SCENARIO_METHOD(SettingsTestPF, "Export and import array binary settings",
-                "[handler][settings][bytes]")
-{
-    ElementHandle array(*this, "/test/test/parameter_block_array");
-    ElementHandle elem0(*this, "/test/test/parameter_block_array/0");
-    WHEN ("Importing one array element") {
-        REQUIRE_NOTHROW(elem0.setAsBytes(readBytes(testBasicSettingsBytes)));
-        THEN ("The other element should not have changed") {
-            checkBytesEq(array.getAsBytes(), testBasicSettingsBytes + defaultBasicSettingsBytes);
-        }
-    }
-}
-
-SCENARIO_METHOD(SettingsTestPF, "Import root in one format, export in an other",
-                "[handler][settings][bytes][xml]")
-{
-    ElementHandle root(*this, "/test");
-    string rootBytesSettings = fullBytesSettings(testBasicSettingsBytes);
-    string rootXMLSettings = fullXMLSettings(testBasicSettingsXML);
-
-    WHEN ("Importing root binary") {
-        REQUIRE_NOTHROW(root.setAsBytes(readBytes(rootBytesSettings)));
-        THEN ("Exported XML settings should be the ones imported") {
-            checkXMLEq(root.getAsXML(), rootXMLSettings);
-        }
-    }
-
-    WHEN ("Importing root XML") {
-        REQUIRE_NOTHROW(root.setAsXML(rootXMLSettings));
-        THEN ("Exported bytes settings should be the ones imported") {
-            checkBytesEq(root.getAsBytes(), rootBytesSettings);
-        }
-    }
-}
-
-SCENARIO_METHOD(SettingsTestPF, "Import basic params in one format, export in an other",
-                "[handler][settings][bytes][xml]")
-{
-    ElementHandle basicParams(*this, "/test/test/parameter_block_array/0");
-    string basicXMLSettings = mkBasicSettings(testBasicSettingsXML, "0");
-
-    WHEN ("Importing basic parameters binary") {
-        REQUIRE_NOTHROW(basicParams.setAsBytes(readBytes(testBasicSettingsBytes)));
-        THEN ("Exported XML settings should be the ones imported") {
-            checkXMLEq(basicParams.getAsXML(), basicXMLSettings);
-        }
-    }
-
-    WHEN ("Importing basic parameters XML") {
-        REQUIRE_NOTHROW(basicParams.setAsXML(basicXMLSettings));
-        THEN ("Exported bytes settings should be the ones imported") {
-            checkBytesEq(basicParams.getAsBytes(), testBasicSettingsBytes);
-        }
-    }
-}
+//////////////////////////////// Test mapping /////////////////////////////////
 
 struct MappingPF : public ParameterFramework
 {
