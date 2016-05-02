@@ -137,7 +137,9 @@ target_include_directories(parameter
     INTERFACE $<INSTALL_INTERFACE:include/parameter/plugin>)
 
 install(TARGETS parameter EXPORT ParameterTargets
-    LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
+    LIBRARY DESTINATION lib COMPONENT runtime
+    RUNTIME DESTINATION bin COMPONENT runtime
+    ARCHIVE DESTINATION lib COMPONENT dev)
 
 # Export an interface library for plugins to use (after the ParameterFramework
 # project is built and installed). It makes them link against libparameter and
@@ -147,7 +149,7 @@ target_link_libraries(plugin INTERFACE parameter)
 target_include_directories(plugin
     INTERFACE $<INSTALL_INTERFACE:include/parameter/xmlserializer>
     INTERFACE $<INSTALL_INTERFACE:include/parameter/utility>)
-install(TARGETS plugin EXPORT ParameterTargets)
+install(TARGETS plugin EXPORT ParameterTargets COMPONENT dev)
 # Unfortunately, while the "plugin" interface library is suitable for external
 # plugins (built using the installed Parameter Framework) we want to build some
 # plugins before the whole project is installed. Therefore, they need to get
@@ -167,7 +169,8 @@ install(FILES
     include/ParameterMgrPlatformConnector.h
     include/SelectionCriterionInterface.h
     include/SelectionCriterionTypeInterface.h
-    DESTINATION "include/parameter/client")
+    DESTINATION "include/parameter/client"
+    COMPONENT dev)
 # Core (plugin) headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
@@ -194,6 +197,8 @@ install(FILES
     Syncer.h
     TypeElement.h
     VirtualSubsystem.h
-    DESTINATION "include/parameter/plugin")
+    DESTINATION "include/parameter/plugin"
+    COMPONENT dev)
 install(DIRECTORY log/include/log/
-        DESTINATION "include/parameter/plugin/log")
+        DESTINATION "include/parameter/plugin/log"
+        COMPONENT dev)

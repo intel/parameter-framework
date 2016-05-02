@@ -29,7 +29,7 @@
 add_executable(domainGeneratorConnector domainGeneratorConnector.cpp)
 target_link_libraries(domainGeneratorConnector PRIVATE parameter pfw_utility)
 
-install(TARGETS domainGeneratorConnector RUNTIME DESTINATION bin)
+install(TARGETS domainGeneratorConnector RUNTIME DESTINATION bin COMPONENT eng)
 
 install(PROGRAMS
     domainGenerator.sh
@@ -40,4 +40,5 @@ install(PROGRAMS
     EddParser.py
     PFWScriptGenerator.py
     updateRoutageDomains.sh
-    DESTINATION bin)
+    DESTINATION bin
+    COMPONENT eng)

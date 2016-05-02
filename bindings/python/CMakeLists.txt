@@ -89,7 +89,8 @@ execute_process(COMMAND
          print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
     OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-install(TARGETS _PyPfw LIBRARY DESTINATION ${PYTHON_MODULE_PATH})
+install(TARGETS _PyPfw LIBRARY DESTINATION ${PYTHON_MODULE_PATH} COMPONENT python)
 
 # install the generated Python file as well
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION ${PYTHON_MODULE_PATH})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION ${PYTHON_MODULE_PATH}
+    COMPONENT python)

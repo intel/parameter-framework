@@ -35,5 +35,6 @@ if(NETWORKING)
     target_link_libraries(remote-process
                           PRIVATE remote-processor pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
 
-    install(TARGETS remote-process RUNTIME DESTINATION bin)
+    install(TARGETS remote-process RUNTIME DESTINATION bin
+            COMPONENT eng)
 endif()
