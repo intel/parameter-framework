@@ -356,6 +356,15 @@ string CElement::listQualifiedPaths(bool bDive, size_t level) const
     return strResult;
 }
 
+void CElement::getSubpaths(std::vector<string> &results) const
+{
+    results.push_back(getPath());
+
+    for (CElement *pChild : _childArray) {
+        pChild->getSubpaths(results);
+    }
+}
+
 void CElement::listChildrenPaths(string &strChildList) const
 {
     // Get list of children paths

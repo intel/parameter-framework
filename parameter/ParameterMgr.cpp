@@ -269,6 +269,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
      "Set value for parameter at given path to configuration"},
     {"showMapping", &CParameterMgr::showMappingCommandProcess, 1, "<elem path>",
      "Show mapping for an element at given path"},
+    {"listMappings", &CParameterMgr::listMappingsCommandProcess, 1, "<elem path>|/",
+     "List mappings under element at given path or root"},
 
     /// Browse
     {"listAssociatedElements", &CParameterMgr::listAssociatedElementsCommandProcess, 0, "",
@@ -1815,6 +1817,37 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showMappingCommandP
     if (!getParameterMapping(remoteCommand.getArgument(0), strResult)) {
 
         return CCommandHandler::EFailed;
+    }
+
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listMappingsCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
+{
+    CElementLocator elementLocator(getSystemClass(), false);
+
+    CElement *pLocatedElement = nullptr;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+        return CCommandHandler::EFailed;
+    }
+
+    if (!pLocatedElement) {
+        // List from root folder
+        pLocatedElement = getSystemClass();
+    }
+
+    vector<string> paths;
+    pLocatedElement->getSubpaths(paths);
+
+    for (string path : paths) {
+        string mapping;
+        if (getParameterMapping(path, mapping)) {
+            strResult += path + " [" + mapping + "]\n";
+        } else {
+            strResult += path + "\n";
+        }
     }
 
     return CCommandHandler::ESucceeded;

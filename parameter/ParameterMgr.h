@@ -533,6 +533,8 @@ private:
         const IRemoteCommand &remoteCommand, std::string &strResult);
     CCommandHandler::CommandStatus showMappingCommandProcess(const IRemoteCommand &remoteCommand,
                                                              std::string &strResult);
+    CCommandHandler::CommandStatus listMappingsCommandProcess(const IRemoteCommand &remoteCommand,
+                                                              std::string &strResult);
     /// Browse
     CCommandHandler::CommandStatus listAssociatedElementsCommandProcess(
         const IRemoteCommand &remoteCommand, std::string &strResult);
