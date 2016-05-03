@@ -37,7 +37,7 @@ install(FILES ParameterFramework.h
 
 target_link_libraries(cparameter PRIVATE parameter pfw_utility)
 
-install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
 
 if(BUILD_TESTING)
     # Add unit test
