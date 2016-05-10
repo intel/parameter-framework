@@ -37,4 +37,5 @@ install(FILES ComponentLibrary.xsd
               Subsystem.xsd
               SystemClass.xsd
               W3cXmlAttributes.xsd
-        DESTINATION share/${PROJECT_NAME}/schemas)
+        DESTINATION share/${PROJECT_NAME}/schemas
+        COMPONENT eng)

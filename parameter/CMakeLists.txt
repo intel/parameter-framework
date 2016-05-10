@@ -132,19 +132,24 @@ target_link_libraries(parameter
 
 target_include_directories(parameter
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/log/include>)
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/log/include>
+    INTERFACE $<INSTALL_INTERFACE:include/parameter/client>
+    INTERFACE $<INSTALL_INTERFACE:include/parameter/plugin>)
 
 install(TARGETS parameter EXPORT ParameterTargets
-    LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib
-    INCLUDES DESTINATION "include/parameter/client" "include/parameter/plugin")
+    LIBRARY DESTINATION lib COMPONENT runtime
+    RUNTIME DESTINATION bin COMPONENT runtime
+    ARCHIVE DESTINATION lib COMPONENT dev)
 
 # Export an interface library for plugins to use (after the ParameterFramework
 # project is built and installed). It makes them link against libparameter and
 # use xmlserializer's and pfw_utilify's include directories.
 add_library(plugin INTERFACE)
 target_link_libraries(plugin INTERFACE parameter)
-install(TARGETS plugin EXPORT ParameterTargets
-    INCLUDES DESTINATION "include/parameter/xmlserializer" "include/parameter/utility")
+target_include_directories(plugin
+    INTERFACE $<INSTALL_INTERFACE:include/parameter/xmlserializer>
+    INTERFACE $<INSTALL_INTERFACE:include/parameter/utility>)
+install(TARGETS plugin EXPORT ParameterTargets COMPONENT dev)
 # Unfortunately, while the "plugin" interface library is suitable for external
 # plugins (built using the installed Parameter Framework) we want to build some
 # plugins before the whole project is installed. Therefore, they need to get
@@ -164,7 +169,8 @@ install(FILES
     include/ParameterMgrPlatformConnector.h
     include/SelectionCriterionInterface.h
     include/SelectionCriterionTypeInterface.h
-    DESTINATION "include/parameter/client")
+    DESTINATION "include/parameter/client"
+    COMPONENT dev)
 # Core (plugin) headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
@@ -191,6 +197,8 @@ install(FILES
     Syncer.h
     TypeElement.h
     VirtualSubsystem.h
-    DESTINATION "include/parameter/plugin")
+    DESTINATION "include/parameter/plugin"
+    COMPONENT dev)
 install(DIRECTORY log/include/log/
-        DESTINATION "include/parameter/plugin/log")
+        DESTINATION "include/parameter/plugin/log"
+        COMPONENT dev)

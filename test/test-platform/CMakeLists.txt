@@ -36,5 +36,5 @@ if(NETWORKING)
     # Workaround because asio is still leaking to test-platform
     target_link_libraries(test-platform PRIVATE asio)
 
-    install(TARGETS test-platform RUNTIME DESTINATION bin)
+    install(TARGETS test-platform RUNTIME DESTINATION bin COMPONENT eng)
 endif()

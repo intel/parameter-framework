@@ -33,11 +33,15 @@ generate_export_header(cparameter)
 
 install(FILES ParameterFramework.h
               "${CMAKE_CURRENT_BINARY_DIR}/cparameter_export.h"
-        DESTINATION "include/parameter/c")
+        DESTINATION "include/parameter/c"
+        COMPONENT c_dev)
 
 target_link_libraries(cparameter PRIVATE parameter pfw_utility)
 
-install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS cparameter
+    LIBRARY DESTINATION lib COMPONENT c
+    RUNTIME DESTINATION bin COMPONENT c
+    ARCHIVE DESTINATION lib COMPONENT c_dev)
 
 if(BUILD_TESTING)
     # Add unit test

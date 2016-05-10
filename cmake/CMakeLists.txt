@@ -43,8 +43,10 @@ export(EXPORT ParameterTargets
 
 install(EXPORT ParameterTargets DESTINATION lib/cmake/ParameterFramework
     FILE ParameterFrameworkTargets.cmake
-    NAMESPACE ParameterFramework::)
+    NAMESPACE ParameterFramework::
+    COMPONENT dev)
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/ParameterFrameworkConfigVersion.cmake"
-    DESTINATION lib/cmake/ParameterFramework)
+    DESTINATION lib/cmake/ParameterFramework
+    COMPONENT dev)

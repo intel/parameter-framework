@@ -47,6 +47,8 @@ set(CPACK_WIX_UPGRADE_GUID "47E60D10-B344-445D-A2F6-5684CC8B1D47")
 
 if (WIN32)
     # On windows, pack compiler provided libraries (MSVC redistributable) with the project
+    # Have cpack make a specific archive for them
+    set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT runtime_deps)
     include(InstallRequiredSystemLibraries)
     # TODO: pack libxml2.dll with the project
 endif()

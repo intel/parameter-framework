@@ -27,4 +27,5 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 install(FILES remote-process
-        DESTINATION share/bash-completion/completions/)
+        DESTINATION share/bash-completion/completions/
+        COMPONENT eng)

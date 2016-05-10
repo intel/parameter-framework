@@ -118,6 +118,10 @@ script:
         cmake $MY_CMAKE_OPTIONS . &&
         make &&
         make install ); fi
+  # Check that all installed files are in a component (no "unspecified
+  # component" archive created)
+  - (cd build && cpack -G TGZ -D CPACK_ARCHIVE_COMPONENT_INSTALL=ON &&
+     [ ! -a '*-Unspecified.tar.gz' ])
   # Keep this last
   - ( mkdir build_less_features && cd build_less_features &&
         rm -rf $PREFIX/asio-1.10.6 &&
