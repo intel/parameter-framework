@@ -384,8 +384,8 @@ static const char *testRawHexBasicSettingsXML = R"(
       <IntegerParameter Name="integer_array">0xFFFFFFF6 0x00000000 0x00000008 0x0000000A</IntegerParameter>
       <FixedPointParameter ValueSpace="Raw" Name="fix_point">0x24000000</FixedPointParameter>
       <FixedPointParameter ValueSpace="Raw" Name="fix_point_array">0x72000000 0x0B000000 0xF0000000</FixedPointParameter>
-      <EnumParameter Name="enum">five</EnumParameter>
-      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
+      <EnumParameter Name="enum">0x05</EnumParameter>
+      <EnumParameter Name="enum_array">0x0008 0x8001 0x0008 0x8001</EnumParameter>
       <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
       <BitParameterBlock Name="bit_block">
         <BitParameter Name="one">0x1</BitParameter>
