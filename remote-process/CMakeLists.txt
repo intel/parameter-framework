@@ -33,7 +33,7 @@ if(NETWORKING)
     find_package(Threads REQUIRED)
 
     target_link_libraries(remote-process
-                          PRIVATE remote-processor pfw_utility asio ${CMAKE_THREAD_LIBS_INIT})
+                          PRIVATE remote-processor pfw_utility asio Threads::Threads)
 
     install(TARGETS remote-process RUNTIME DESTINATION bin
             COMPONENT eng)
