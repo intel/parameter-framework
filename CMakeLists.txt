@@ -57,6 +57,10 @@ include(SetVersion.cmake)
 # call the wrapper
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_EXTENSIONS NO)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+
 if(WIN32)
     # By default cmake adds a warning level.
     # Nevertheless a different level is wanted for this project.
@@ -76,15 +80,13 @@ if(WIN32)
     # and thus are not to be used by the client. A better fix would be to export
     # only public methods instead of the whole class, but they are too many to
     # do that. A separated plugin interface would fix that.
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h -wd4127 -wd4251")
+    set_property(DIRECTORY PROPERTY COMPILE_OPTIONS /W4 /FIiso646.h -wd4127 -wd4251)
 
     # FIXME: Once we have removed all warnings on windows, add the /WX flags if
     # FATAL_WARNINGS is enabled
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wconversion -Wno-sign-conversion")
-    if(FATAL_WARNINGS)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-    endif()
+    set_property(DIRECTORY PROPERTY COMPILE_OPTIONS -Wall -Wextra -Wconversion -Wno-sign-conversion
+                 $<$<BOOL:FATAL_WARNINGS>:-Werror>)
 endif()
 
 # Hide symbols by default, then exposed symbols are the same in linux and windows
@@ -101,6 +103,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
 
 include(ctest/CMakeLists.txt)
 
+# Since there is no directory-wide property for linker flags, we can't use
+# set_property for the link-time coverage flags.
 if(COVERAGE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
