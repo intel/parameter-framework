@@ -32,6 +32,8 @@
 #include "ParameterAccessContext.h"
 #include "convert.hpp"
 
+#include <iomanip>
+
 #define base CParameterType
 
 using std::string;
@@ -129,20 +131,46 @@ int32_t CEnumParameterType::getMax() const
 }
 
 bool CEnumParameterType::fromBlackboard(string &userValue, const uint32_t &value,
-                                        CParameterAccessContext & /*ctx*/) const
+                                        CParameterAccessContext &ctx) const
 {
     // Convert the raw value from the blackboard
     int32_t signedValue = static_cast<int32_t>(value);
     signExtend(signedValue);
 
-    // Convert from numerical space to literal space
-    return getLiteral(signedValue, userValue);
+    // Take care of format
+    if (ctx.valueSpaceIsRaw()) {
+
+        // Format
+        std::ostringstream sstream;
+
+        // Numerical format requested
+        if (ctx.outputRawFormatIsHex()) {
+
+            // Hexa display with unecessary bits cleared out
+            sstream << "0x" << std::hex << std::uppercase
+                    << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0')
+                    << makeEncodable(value);
+
+            userValue = sstream.str();
+        } else {
+            userValue = std::to_string(value);
+        }
+    } else {
+        // Literal display requested (should succeed)
+        getLiteral(signedValue, userValue);
+    }
+    return true;
 }
 
 // Value access
 bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t &value,
                                       CParameterAccessContext &parameterAccessContext) const
 {
+    // Take care of format
+    if (parameterAccessContext.valueSpaceIsRaw()) {
+        signExtend(userValue);
+    }
+
     if (!checkValueAgainstSpace(userValue)) {
 
         parameterAccessContext.setError(std::to_string(userValue) +
