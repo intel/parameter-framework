@@ -80,12 +80,12 @@ if(WIN32)
     # and thus are not to be used by the client. A better fix would be to export
     # only public methods instead of the whole class, but they are too many to
     # do that. A separated plugin interface would fix that.
-    set_property(DIRECTORY PROPERTY COMPILE_OPTIONS /W4 /FIiso646.h -wd4127 -wd4251)
+    add_compile_options(/W4 /FIiso646.h -wd4127 -wd4251)
 
     # FIXME: Once we have removed all warnings on windows, add the /WX flags if
     # FATAL_WARNINGS is enabled
 else()
-    set_property(DIRECTORY PROPERTY COMPILE_OPTIONS -Wall -Wextra -Wconversion -Wno-sign-conversion
+    add_compile_options(-Wall -Wextra -Wconversion -Wno-sign-conversion
                  $<$<BOOL:FATAL_WARNINGS>:-Werror>)
 endif()
 
