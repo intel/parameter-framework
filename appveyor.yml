@@ -70,7 +70,7 @@ build_script:
   - mkdir 64bits-debug && cd 64bits-debug
   # Add debug libxml2.dll in the path so that tests can find it
   - set TEST_PATH=%DEBUG_LIBXML2_PATH%\bin
-  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%DEBUG_LIBXML2_PATH%" ..\..
+  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DCLIENT_SIMULATOR=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%DEBUG_LIBXML2_PATH%" ..\..
   - cmake --build . --config debug
   - ctest --build-config debug %CTEST_PARAMS%
   - cd ..
@@ -78,7 +78,7 @@ build_script:
   - mkdir 64bits-release & cd 64bits-release
   # Add debug libxml2.dll in the path so that tests can find it
   - set TEST_PATH=%RELEASE_LIBXML2_PATH%\bin
-  - cmake -G "Visual Studio 14 2015 Win64" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%RELEASE_LIBXML2_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
+  - cmake -G "Visual Studio 14 2015 Win64" -DPYTHON_BINDINGS=OFF -DCLIENT_SIMULATOR=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%RELEASE_LIBXML2_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
   # Build, test and install
   - cmake --build . --config release
   - ctest --build-config release %CTEST_PARAMS%
