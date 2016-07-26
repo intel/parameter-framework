@@ -886,7 +886,7 @@ the rest is the rest of the line."""
                 if verbose :
                     sys.stderr.write("{}\n".format(ex))
 
-            except MySyntaxErro as  ex :
+            except MySyntaxError as  ex :
                 ex.setLine(line, num + 1)
                 raise
 
