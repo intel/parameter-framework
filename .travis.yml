@@ -63,8 +63,8 @@ install:
     # This version of catch is known to work.
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/v1.2.1/single_include/catch.hpp
-    - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
-    - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=1
+    - wget -O asio-1.10.6.tar.gz https://github.com/chriskohlhoff/asio/archive/asio-1-10-6.tar.gz
+    - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=2 asio-asio-1-10-6/asio
     # Current limitations on OSX builds: no testing, no client-simulator
     # (because we haven't found a straightforward way to have CMake find the
     # python libraries (find_package(PythonLibs)).
