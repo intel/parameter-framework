@@ -93,6 +93,8 @@ void CIntegerParameterType::showProperties(string &strResult) const
 bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
                                     CXmlSerializingContext &serializingContext)
 {
+    uint32_t iMax, iMin;
+
     // Sign
     xmlElement.getAttribute("Signed", _bSigned);
 
@@ -109,28 +111,43 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
 
         // Signed means we have one less util bit
         sizeInBits--;
+	iMin = 1U << sizeInBits;
+	iMax = (1U << sizeInBits) - 1;
 
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
-            _uiMin = 1U << sizeInBits;
+            _uiMin = iMin;
         }
 
         if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
 
-            _uiMax = (1U << sizeInBits) - 1;
+            _uiMax = iMax;
         }
+
+        signExtend((int32_t &)iMin);
+        signExtend((int32_t &)iMax);
+        // Check boundary Limits (in case Min and Max value are out of range inside XML)
+        _uiMin = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMin, (int32_t)iMin, (int32_t)iMax);
+        _uiMax = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMax, (int32_t)iMin, (int32_t)iMax);
         signExtend((int32_t &)_uiMin);
         signExtend((int32_t &)_uiMax);
+
     } else {
+	iMin = 0;
+	iMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
+
         if (!xmlElement.getAttribute("Min", _uiMin)) {
 
-            _uiMin = 0;
+            _uiMin = iMin;
         }
 
         if (!xmlElement.getAttribute("Max", _uiMax)) {
 
-            _uiMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
+            _uiMax = iMax;
         }
+        // Check boundary Limits (in case Min and Max value are out of range inside XML)
+        _uiMin = (uint32_t)LimitValueAgainstRange<uint64_t>(_uiMin, iMin, iMax);
+        _uiMax = (uint32_t)LimitValueAgainstRange<uint64_t>(_uiMax, iMin, iMax);
     }
 
     // Base
@@ -429,6 +446,16 @@ bool CIntegerParameterType::checkValueAgainstRange(const string &strValue, type 
         return false;
     }
     return true;
+}
+
+// Limit Range accoridng to dynammic
+template <typename type>
+type CIntegerParameterType::LimitValueAgainstRange(type value,
+                                                   type minValue, type maxValue) const
+{
+    if (value > maxValue) return(maxValue);
+    if (value < minValue) return(minValue);
+    return (value);
 }
 
 // Adaptation element retrieval
