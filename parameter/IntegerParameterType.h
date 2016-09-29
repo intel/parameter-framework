@@ -95,9 +95,9 @@ private:
     bool checkValueAgainstRange(const std::string &strValue, type value, type minValue,
                                 type maxValue, CParameterAccessContext &parameterAccessContext,
                                 bool bHexaValue) const;
-    // Limit Range checking
+    // MinMax Range checking
     template <typename type>
-    type LimitValueAgainstRange(type value, type minValue, type maxValue) const;
+    bool minMaxValueAgainstRange(type valueMin, type valueMax, type minValue, type maxValue) const;
 
     // Adaptation element retrieval
     const CParameterAdaptation *getParameterAdaptation() const;

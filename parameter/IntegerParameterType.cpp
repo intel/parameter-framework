@@ -127,10 +127,10 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
         signExtend((int32_t &)iMin);
         signExtend((int32_t &)iMax);
         // Check boundary Limits (in case Min and Max value are out of range inside XML)
-        _uiMin = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMin, (int32_t)iMin,
-                                                           (int32_t)iMax);
-        _uiMax = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMax, (int32_t)iMin,
-                                                           (int32_t)iMax);
+        if (!minMaxValueAgainstRange<int64_t>((int32_t)_uiMin, (int32_t)_uiMax, (int32_t)iMin,
+                                              (int32_t)iMax)) {
+            return false;
+        }
         signExtend((int32_t &)_uiMin);
         signExtend((int32_t &)_uiMax);
 
@@ -148,8 +148,9 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
             _uiMax = iMax;
         }
         // Check boundary Limits (in case Min and Max value are out of range inside XML)
-        _uiMin = (uint32_t)LimitValueAgainstRange<uint64_t>(_uiMin, iMin, iMax);
-        _uiMax = (uint32_t)LimitValueAgainstRange<uint64_t>(_uiMax, iMin, iMax);
+        if (!minMaxValueAgainstRange<uint64_t>(_uiMin, _uiMax, iMin, iMax)) {
+            return false;
+        }
     }
 
     // Base
@@ -450,15 +451,21 @@ bool CIntegerParameterType::checkValueAgainstRange(const string &strValue, type 
     return true;
 }
 
-// Limit Range accoridng to dynammic
+// MinMax Range check accoridng to dynammic
 template <typename type>
-type CIntegerParameterType::LimitValueAgainstRange(type value, type minValue, type maxValue) const
+bool CIntegerParameterType::minMaxValueAgainstRange(type valueMin, type valueMax, type minValue,
+                                                    type maxValue) const
 {
-    if (value > maxValue)
-        return (maxValue);
-    if (value < minValue)
-        return (minValue);
-    return (value);
+    if ((valueMin > maxValue) || (valueMin < minValue)) {
+        return false;
+    }
+    if ((valueMax > maxValue) || (valueMax < minValue)) {
+        return false;
+    }
+    if (valueMin > valueMax) {
+        return false;
+    }
+    return true;
 }
 
 // Adaptation element retrieval
