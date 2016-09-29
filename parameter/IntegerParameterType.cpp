@@ -111,8 +111,8 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
 
         // Signed means we have one less util bit
         sizeInBits--;
-	iMin = 1U << sizeInBits;
-	iMax = (1U << sizeInBits) - 1;
+        iMin = 1U << sizeInBits;
+        iMax = (1U << sizeInBits) - 1;
 
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
@@ -127,14 +127,16 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
         signExtend((int32_t &)iMin);
         signExtend((int32_t &)iMax);
         // Check boundary Limits (in case Min and Max value are out of range inside XML)
-        _uiMin = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMin, (int32_t)iMin, (int32_t)iMax);
-        _uiMax = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMax, (int32_t)iMin, (int32_t)iMax);
+        _uiMin = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMin, (int32_t)iMin,
+                                                           (int32_t)iMax);
+        _uiMax = (uint32_t)LimitValueAgainstRange<int64_t>((int32_t)_uiMax, (int32_t)iMin,
+                                                           (int32_t)iMax);
         signExtend((int32_t &)_uiMin);
         signExtend((int32_t &)_uiMax);
 
     } else {
-	iMin = 0;
-	iMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
+        iMin = 0;
+        iMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
 
         if (!xmlElement.getAttribute("Min", _uiMin)) {
 
@@ -450,11 +452,12 @@ bool CIntegerParameterType::checkValueAgainstRange(const string &strValue, type 
 
 // Limit Range accoridng to dynammic
 template <typename type>
-type CIntegerParameterType::LimitValueAgainstRange(type value,
-                                                   type minValue, type maxValue) const
+type CIntegerParameterType::LimitValueAgainstRange(type value, type minValue, type maxValue) const
 {
-    if (value > maxValue) return(maxValue);
-    if (value < minValue) return(minValue);
+    if (value > maxValue)
+        return (maxValue);
+    if (value < minValue)
+        return (minValue);
     return (value);
 }
 
