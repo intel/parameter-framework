@@ -61,6 +61,7 @@ const auto validIntegerInstances = Config{&Config::instances,
     <IntegerParameter Name="defaultMinS32" Size="32" Signed="true" Min="-2147483648"/>
     <IntegerParameter Name="defaultMaxS32" Size="32" Signed="true" Max="2147483647"/>)"};
 const auto &invalidIntegerParameters = Tests<string>{
+    {"invalid Size(64)", "<IntegerParameter Name='error' Size='64'/>"},
     {"minimum > maximum", "<IntegerParameter Name='error' Min='1' Max='0'/>"},
     {"S8 minimum > MaxRange", "<IntegerParameter Name='error' Size='8' Signed='true' Min='128'/>"},
     {"S8 minimum < MinRange", "<IntegerParameter Name='error' Size='8' Signed='true' Min='-129'/>"},
