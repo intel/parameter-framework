@@ -117,6 +117,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
             _uiMin = iMin;
+            signExtend((int32_t &)_uiMin);
         }
 
         if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
