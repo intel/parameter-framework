@@ -103,6 +103,9 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
     xmlElement.getAttribute("Size", sizeInBits);
 
     // Size
+    if (sizeInBits > 32) {
+        return false;
+    }
     setSize(sizeInBits / 8);
 
     // Min / Max
