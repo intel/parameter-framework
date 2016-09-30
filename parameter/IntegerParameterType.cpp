@@ -93,6 +93,8 @@ void CIntegerParameterType::showProperties(string &strResult) const
 bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
                                     CXmlSerializingContext &serializingContext)
 {
+    uint32_t iMax, iMin;
+
     // Sign
     xmlElement.getAttribute("Signed", _bSigned);
 
@@ -101,6 +103,9 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
     xmlElement.getAttribute("Size", sizeInBits);
 
     // Size
+    if (sizeInBits > 32) {
+        return false;
+    }
     setSize(sizeInBits / 8);
 
     // Min / Max
@@ -109,27 +114,46 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
 
         // Signed means we have one less util bit
         sizeInBits--;
+        iMin = 1U << sizeInBits;
+        iMax = (1U << sizeInBits) - 1;
 
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
-            _uiMin = 1U << sizeInBits;
+            _uiMin = iMin;
+            signExtend((int32_t &)_uiMin);
         }
 
         if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
 
-            _uiMax = (1U << sizeInBits) - 1;
+            _uiMax = iMax;
+        }
+
+        signExtend((int32_t &)iMin);
+        signExtend((int32_t &)iMax);
+        // Check boundary Limits (in case Min and Max value are out of range inside XML)
+        if (!minMaxValueAgainstRange<int64_t>((int32_t)_uiMin, (int32_t)_uiMax, (int32_t)iMin,
+                                              (int32_t)iMax)) {
+            return false;
         }
         signExtend((int32_t &)_uiMin);
         signExtend((int32_t &)_uiMax);
+
     } else {
+        iMin = 0;
+        iMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
+
         if (!xmlElement.getAttribute("Min", _uiMin)) {
 
-            _uiMin = 0;
+            _uiMin = iMin;
         }
 
         if (!xmlElement.getAttribute("Max", _uiMax)) {
 
-            _uiMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
+            _uiMax = iMax;
+        }
+        // Check boundary Limits (in case Min and Max value are out of range inside XML)
+        if (!minMaxValueAgainstRange<uint64_t>(_uiMin, _uiMax, iMin, iMax)) {
+            return false;
         }
     }
 
@@ -426,6 +450,23 @@ bool CIntegerParameterType::checkValueAgainstRange(const string &strValue, type 
 
         parameterAccessContext.setError(stream.str());
 
+        return false;
+    }
+    return true;
+}
+
+// MinMax Range check accoridng to dynammic
+template <typename type>
+bool CIntegerParameterType::minMaxValueAgainstRange(type valueMin, type valueMax, type minValue,
+                                                    type maxValue) const
+{
+    if ((valueMin > maxValue) || (valueMin < minValue)) {
+        return false;
+    }
+    if ((valueMax > maxValue) || (valueMax < minValue)) {
+        return false;
+    }
+    if (valueMin > valueMax) {
         return false;
     }
     return true;
