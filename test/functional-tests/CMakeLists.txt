@@ -36,6 +36,7 @@ if(BUILD_TESTING)
     add_executable(parameterFunctionalTest
                    Basic.cpp
                    FloatingPoint.cpp
+                   Integer.cpp
                    Handle.cpp
                    AutoSync.cpp)
 
