@@ -36,6 +36,7 @@
 #include "ParameterAdaptation.h"
 #include "Utility.h"
 #include <errno.h>
+#include <convert.hpp>
 
 #define base CParameterType
 
@@ -147,13 +148,16 @@ bool CIntegerParameterType::toBlackboard(const string &strValue, uint32_t &uiVal
     // Get integer value from the string provided
     int64_t iData;
 
-    if (!convertValueFromString(strValue, iData, parameterAccessContext)) {
-
-        return false;
-    }
-
     // Check against Min / Max
     if (_bSigned) {
+
+        if (not convertTo(strValue, iData)) {
+            string strError;
+            strError = "Impossible to convert value " + strValue + " for " + getKind();
+
+            parameterAccessContext.setError(strError);
+            return false;
+        }
 
         if (bValueProvidedAsHexa && isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
 
@@ -167,6 +171,14 @@ bool CIntegerParameterType::toBlackboard(const string &strValue, uint32_t &uiVal
             return false;
         }
     } else {
+
+        if (not convertTo(strValue, (uint64_t &)iData)) {
+            string strError;
+            strError = "Impossible to convert value " + strValue + " for " + getKind();
+
+            parameterAccessContext.setError(strError);
+            return false;
+        }
 
         if (!checkValueAgainstRange<uint64_t>(strValue, iData, _uiMin, _uiMax,
                                               parameterAccessContext, bValueProvidedAsHexa)) {
@@ -360,39 +372,6 @@ int CIntegerParameterType::toPlainInteger(int iSizeOptimizedData) const
     }
 
     return base::toPlainInteger(iSizeOptimizedData);
-}
-
-// Convert value provided by the user as a string into an int64
-bool CIntegerParameterType::convertValueFromString(
-    const string &strValue, int64_t &iData, CParameterAccessContext &parameterAccessContext) const
-{
-
-    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
-    errno = 0;
-    char *pcStrEnd;
-
-    // Convert the input string
-    if (_bSigned) {
-
-        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
-    } else {
-
-        iData = strtoull(strValue.c_str(), &pcStrEnd, 0);
-    }
-
-    // Conversion error when the input string does not contain only digits or the number is out of
-    // range (int32_t type)
-    if (errno || (*pcStrEnd != '\0')) {
-
-        string strError;
-        strError = "Impossible to convert value " + strValue + " for " + getKind();
-
-        parameterAccessContext.setError(strError);
-
-        return false;
-    }
-
-    return true;
 }
 
 // Range checking

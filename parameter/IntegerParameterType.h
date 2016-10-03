@@ -86,10 +86,6 @@ private:
     // Returns true if children dynamic creation is to be dealt with
     bool childrenAreDynamic() const override;
 
-    // Conversion from std::string
-    bool convertValueFromString(const std::string &strValue, int64_t &iData,
-                                CParameterAccessContext &parameterAccessContext) const;
-
     // Range checking
     template <typename type>
     bool checkValueAgainstRange(const std::string &strValue, type value, type minValue,
