@@ -46,7 +46,7 @@
 #include "ComponentInstance.h"
 #include "ParameterBlockType.h"
 #include "BooleanParameterType.h"
-#include "IntegerParameterType.h"
+#include "IntegerParameterBuilder.h"
 #include "FixedPointParameterType.h"
 #include "FloatingPointParameterType.h"
 #include "ParameterBlackboard.h"
@@ -2777,8 +2777,7 @@ void CParameterMgr::feedElementLibraries()
         "ParameterBlock", new TNamedElementBuilderTemplate<CParameterBlockType>());
     pParameterCreationLibrary->addElementBuilder(
         "BooleanParameter", new TNamedElementBuilderTemplate<CBooleanParameterType>());
-    pParameterCreationLibrary->addElementBuilder(
-        "IntegerParameter", new TNamedElementBuilderTemplate<CIntegerParameterType>());
+    pParameterCreationLibrary->addElementBuilder("IntegerParameter", new IntegerParameterBuilder());
     pParameterCreationLibrary->addElementBuilder(
         "LinearAdaptation", new TElementBuilderTemplate<CLinearParameterAdaptation>());
     pParameterCreationLibrary->addElementBuilder(

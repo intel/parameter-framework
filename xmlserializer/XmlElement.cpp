@@ -266,6 +266,8 @@ bool CXmlElement::CChildIterator::next(CXmlElement &xmlChildElement)
 
 template bool CXmlElement::getAttribute(const std::string &name, std::string &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, bool &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, signed char &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, unsigned char &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, short &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, unsigned short &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, int &value) const;
@@ -279,6 +281,8 @@ template bool CXmlElement::getAttribute(const std::string &name, double &value) 
 
 template void CXmlElement::setAttribute(const std::string &name, const std::string &value);
 template void CXmlElement::setAttribute(const std::string &name, const bool &value);
+template void CXmlElement::setAttribute(const std::string &name, const signed char &value);
+template void CXmlElement::setAttribute(const std::string &name, const unsigned char &value);
 template void CXmlElement::setAttribute(const std::string &name, const short &value);
 template void CXmlElement::setAttribute(const std::string &name, const unsigned short &value);
 template void CXmlElement::setAttribute(const std::string &name, const int &value);

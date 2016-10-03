@@ -35,6 +35,7 @@ add_library(parameter SHARED
     ${parameter_OS_SPECIFIC_SRCS}
     AreaConfiguration.cpp
     ArrayParameter.cpp
+    BaseIntegerParameterType.cpp
     BaseParameter.cpp
     BitParameterBlock.cpp
     BitParameterBlockType.cpp
@@ -66,7 +67,6 @@ add_library(parameter SHARED
     HardwareBackSynchronizer.cpp
     InstanceConfigurableElement.cpp
     InstanceDefinition.cpp
-    IntegerParameterType.cpp
     LinearParameterAdaptation.cpp
     LogarithmicParameterAdaptation.cpp
     LoggingElementBuilderTemplate.cpp
