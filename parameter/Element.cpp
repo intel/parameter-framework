@@ -31,6 +31,7 @@
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
 #include "ErrorContext.hpp"
+#include "PfError.hpp"
 #include <algorithm>
 #include <assert.h>
 #include <stdio.h>
@@ -140,8 +141,8 @@ string CElement::logValue(utility::ErrorContext & /*ctx*/) const
 }
 
 // From IXmlSink
-bool CElement::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
-{
+bool CElement::fromXml(const CXmlElement &xmlElement,
+                       CXmlSerializingContext &serializingContext) try {
     xmlElement.getAttribute(gDescriptionPropertyName, _strDescription);
 
     // Propagate through children
@@ -183,6 +184,9 @@ bool CElement::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &se
     }
 
     return true;
+} catch (const PfError &e) {
+    serializingContext.appendLineToError(e.what());
+    return false;
 }
 
 void CElement::childrenToXml(CXmlElement &xmlElement,

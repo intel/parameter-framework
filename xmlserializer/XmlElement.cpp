@@ -28,9 +28,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "XmlElement.h"
+#include "PfError.hpp"
 #include <libxml/tree.h>
 #include "convert.hpp"
 #include <stdlib.h>
+#include <stdexcept>
 
 using std::string;
 
@@ -79,10 +81,6 @@ bool CXmlElement::hasAttribute(const string &strAttributeName) const
 template <>
 bool CXmlElement::getAttribute<std::string>(const string &name, string &value) const
 {
-    if (!hasAttribute(name)) {
-        return false;
-    }
-
     string backup = value;
     xmlChar *pucXmlValue = xmlGetProp((xmlNode *)_pXmlElement, (const xmlChar *)name.c_str());
     if (pucXmlValue == nullptr) {
@@ -108,7 +106,7 @@ bool CXmlElement::getAttribute(const std::string &name, T &value) const
     T backup = value;
     if (!convertTo<T>(rawValue, value)) {
         value = backup;
-        return false;
+        throw PfError("\'" + rawValue + "\' could not be parsed as the requested type.");
     }
 
     return true;
