@@ -96,6 +96,12 @@ public:
         xmlElement.getAttribute("Min", _min);
         xmlElement.getAttribute("Max", _max);
 
+        if (_min > _max) {
+            serializingContext.setError("The range of allowed value is empty (" +
+                                        std::to_string(_min) + " > " + std::to_string(_max) + ").");
+            return false;
+        }
+
         // Base
         return Base::fromXml(xmlElement, serializingContext);
     }
