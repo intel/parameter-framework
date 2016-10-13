@@ -3,10 +3,8 @@
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="W3cXmlAttributes.xsd"/>
     <xs:include schemaLocation="Parameter.xsd"/>
     <xs:complexType name="ComponentType">
-        <xs:sequence>
-            <xs:sequence maxOccurs="unbounded">
-                <xs:group ref="ParameterBlockGroup"/>
-            </xs:sequence>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ParameterBlockGroup"/>
         </xs:sequence>
         <xs:attributeGroup ref="Nameable"/>
         <xs:attribute name="Extends" use="optional"/>
