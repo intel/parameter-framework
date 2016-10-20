@@ -28,9 +28,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "XmlElement.h"
+#include "PfError.hpp"
 #include <libxml/tree.h>
 #include "convert.hpp"
 #include <stdlib.h>
+#include <stdexcept>
 
 using std::string;
 
@@ -79,10 +81,6 @@ bool CXmlElement::hasAttribute(const string &strAttributeName) const
 template <>
 bool CXmlElement::getAttribute<std::string>(const string &name, string &value) const
 {
-    if (!hasAttribute(name)) {
-        return false;
-    }
-
     string backup = value;
     xmlChar *pucXmlValue = xmlGetProp((xmlNode *)_pXmlElement, (const xmlChar *)name.c_str());
     if (pucXmlValue == nullptr) {
@@ -108,7 +106,7 @@ bool CXmlElement::getAttribute(const std::string &name, T &value) const
     T backup = value;
     if (!convertTo<T>(rawValue, value)) {
         value = backup;
-        return false;
+        throw PfError("\'" + rawValue + "\' could not be parsed as the requested type.");
     }
 
     return true;
@@ -266,6 +264,8 @@ bool CXmlElement::CChildIterator::next(CXmlElement &xmlChildElement)
 
 template bool CXmlElement::getAttribute(const std::string &name, std::string &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, bool &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, signed char &value) const;
+template bool CXmlElement::getAttribute(const std::string &name, unsigned char &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, short &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, unsigned short &value) const;
 template bool CXmlElement::getAttribute(const std::string &name, int &value) const;
@@ -279,6 +279,8 @@ template bool CXmlElement::getAttribute(const std::string &name, double &value) 
 
 template void CXmlElement::setAttribute(const std::string &name, const std::string &value);
 template void CXmlElement::setAttribute(const std::string &name, const bool &value);
+template void CXmlElement::setAttribute(const std::string &name, const signed char &value);
+template void CXmlElement::setAttribute(const std::string &name, const unsigned char &value);
 template void CXmlElement::setAttribute(const std::string &name, const short &value);
 template void CXmlElement::setAttribute(const std::string &name, const unsigned short &value);
 template void CXmlElement::setAttribute(const std::string &name, const int &value);
