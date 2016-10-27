@@ -26,7 +26,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# working on 2.8.12 - broken on older versions
 # Known to work with CMake 3.2.2, might work with older 3.x versions, will not
 # work with versions prior to 3.0.0.
 
