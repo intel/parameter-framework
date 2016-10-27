@@ -32,11 +32,11 @@
 #include "SubsystemObjectFactory.h"
 #include "SkeletonSubsystemObject.h"
 
-#define base CSubsystem
+
 
 // Implementation
 CSkeletonSubsystem::CSkeletonSubsystem(const std::string &strName, core::log::Logger &logger)
-    : base(strName, logger)
+    : CSubsystem(strName, logger)
 {
     // Provide mapping keys to upper layer
     addContextMappingKey("Owner");
