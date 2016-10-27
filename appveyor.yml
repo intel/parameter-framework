@@ -32,7 +32,7 @@ install:
   # Install Windows Installer XML (WiX) to create installer with cpack
   - cinst wixtoolset
 
-  # Download and install external dependancy if they are not in the cache
+  # Download and install external dependency if they are not in the cache
   - if not exist libxml2-x86_64 (
       wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &&
       7z x libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
