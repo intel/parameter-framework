@@ -27,7 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # working on 2.8.12 - broken on older versions
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.2.2)
 
 project(parameter-framework-plugins-skeleton)
 
