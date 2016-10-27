@@ -21,11 +21,3 @@ parameter-framework client.
     remote-process <host> <port> <command>
 
 You can get all available commands with the `help` command.
-
-You may also run a batch of commands by passing them on remote-process'
-standard input:
-
-    remote-process <host> <port> < file
-
-You should not use this feature in an interactive mode, because the
-communication may timeout if you're typing your commands too slowly.
