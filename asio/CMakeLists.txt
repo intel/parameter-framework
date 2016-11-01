@@ -37,9 +37,10 @@ if (NETWORKING)
     set_property(CACHE ASIO_DIR PROPERTY ADVANCED TRUE)
     if (NOT ASIO_DIR)
         message(SEND_ERROR
-    " ASIO header (asio.hpp) could not be found.
-    ASIO is used for networking. On Linux, you should install it using your
-    package manager. On Windows, please refer to the main README.")
+    " 
+	asio.hpp could not be found. This error could have occurred due to incorrect installation.
+	Try reinstalling. For Linux users, install using the package manager. For Window's users, 
+	please refer to the main README file.")
     endif()
 
     # Ubuntu 14.04 packages asio 1.10.1 and clang 3.4.1.
