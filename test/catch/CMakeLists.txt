@@ -30,6 +30,7 @@ if(BUILD_TESTING)
     # TODO Use gtest as it is the team recommendation
     #      Unfortunately gtest is very hard to setup as not binary distributed
     #      catch is only one header so it is very easy
+    find_path(CATCH_HEADER catch.hpp PATH_SUFFIXES catch/ )
     find_path(CATCH_HEADER catch.hpp)
     set_property(CACHE CATCH_HEADER PROPERTY ADVANCED TRUE)
     if(NOT CATCH_HEADER)
