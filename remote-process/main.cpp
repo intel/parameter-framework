@@ -42,19 +42,19 @@ using namespace std;
 
 bool sendAndDisplayCommand(asio::ip::tcp::socket &socket, CRequestMessage &requestMessage)
 {
-    string strError;
+    string Error;
 
-    if (requestMessage.serialize(Socket(socket), true, strError) != CRequestMessage::success) {
+    if (requestMessage.serialize(Socket(socket), true, Error) != CRequestMessage::success) {
 
-        cerr << "Unable to send command to target: " << strError << endl;
+        cerr << "Unable to send command to target: " << Error << endl;
         return false;
     }
 
     ///// Get answer
     CAnswerMessage answerMessage;
-    if (answerMessage.serialize(Socket(socket), false, strError) != CRequestMessage::success) {
+    if (answerMessage.serialize(Socket(socket), false, Error) != CRequestMessage::success) {
 
-        cerr << "Unable to received answer from target: " << strError << endl;
+        cerr << "Unable to received answer from target: " << Error << endl;
         return false;
     }
 
