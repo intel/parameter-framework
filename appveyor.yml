@@ -30,6 +30,10 @@ init:
 install:
   - cinst cmake.portable wget 7zip.commandline
   # Install Windows Installer XML (WiX) to create installer with cpack
+  # This package is currently broken because of a missing checksum. Since we
+  # are not distributing the packages, we don't care about that and can
+  # override the checksum:
+  - choco feature enable -n allowEmptyChecksums
   - cinst wixtoolset
 
   # Download and install external dependency if they are not in the cache
