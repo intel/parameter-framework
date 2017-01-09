@@ -14,6 +14,7 @@ env:
     global:
         - PREFIX=$HOME/prefix
         - MY_CMAKE_OPTIONS="-DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=$HOME/install"
+        - OSX_CMAKE_OPTIONS="-DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DCLIENT_SIMULATOR=OFF"
         - CTEST_OUTPUT_ON_FAILURE=1
         - LINUX=false
         - OSX=false
@@ -89,7 +90,7 @@ before_script:
           coverage=ON;
           export CCACHE_CPP2=1;
       fi
-    - if $OSX; then export MY_CMAKE_OPTIONS+=" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF"; fi
+    - if $OSX; then export MY_CMAKE_OPTIONS+=" $OSX_CMAKE_OPTIONS"; fi
 
 # how to build
 script:
@@ -112,12 +113,6 @@ script:
         make -j$(nproc) &&
         (if $LINUX; then make ExperimentalTest ExperimentalMemCheck; fi) &&
         make install )
-  - if $LINUX; then ( cd tools/clientSimulator &&
-        echo "TODO - install the generated .deb instead of using \$HOME/install."
-             "This would permit to test the packaging" &&
-        cmake $MY_CMAKE_OPTIONS . &&
-        make &&
-        make install ); fi
   # Check that all installed files are in a component (no "unspecified
   # component" archive created)
   - (cd build && cpack -G TGZ -D CPACK_ARCHIVE_COMPONENT_INSTALL=ON &&
@@ -126,7 +121,7 @@ script:
   - ( mkdir build_less_features && cd build_less_features &&
         rm -rf $PREFIX/asio-1.10.6 &&
         cmake $MY_CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=Debug
-        -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF .. &&
+        -DNETWORKING=OFF -DPYTHON_BINDINGS=OFF -DC_BINDINGS=OFF -DCLIENT_SIMULATOR=OFF .. &&
         make -j$(nproc) &&
         (if $LINUX; then make test; fi) )
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Intel Corporation
+# Copyright (c) 2015-2017, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,27 +26,25 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# has been tested on 2.8.11 only - should not work on older versions
-cmake_minimum_required(VERSION 2.8.11)
-
-project(parameter-framework-clientSimulator)
-
-# Force usage of Python 3.x ...
-find_package(PythonInterp 3 REQUIRED)
-# ... and force the libs to be at the same version as the interpreter
-find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
-include_directories(${PYTHON_INCLUDE_DIRS})
+# Force usage of Python 3.x; here, we use find_program instead of find_package
+# because other parts of Parameter Framework request Python 2.x and CMake has
+# troubles with the cohabitation.
+find_program(PYTHON3 python3 REQUIRED)
 
 # Find the python modules install path.
 # plat_specific is needed because we are installing a shared-library python
 # module and not only a pure python module.
 # prefix='' makes get_python_lib return a relative path.
 execute_process(COMMAND
-    ${PYTHON_EXECUTABLE} -c
+    ${PYTHON3} -c
         "from distutils import sysconfig;\\
          print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
     OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-install(DIRECTORY clientsimulator DESTINATION ${PYTHON_MODULE_PATH})
+install(DIRECTORY clientsimulator
+        DESTINATION ${PYTHON_MODULE_PATH}
+        COMPONENT client_simulator)
 
-install(PROGRAMS pfClientSimulator.py DESTINATION bin)
+install(PROGRAMS pfClientSimulator.py
+        DESTINATION bin
+        COMPONENT client_simulator)

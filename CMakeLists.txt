@@ -50,6 +50,7 @@ option(PYTHON_BINDINGS "Python library to use the Parameter Framework from pytho
 option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
 option(FATAL_WARNINGS "Turn warnings into errors (-Werror flag)" ON)
 option(NETWORKING "Set to OFF in order to stub networking code" ON)
+option(CLIENT_SIMULATOR "Set to OFF to disable client simulator" ON)
 
 include(SetVersion.cmake)
 
@@ -126,6 +127,9 @@ endif()
 
 add_subdirectory(tools/xmlGenerator)
 add_subdirectory(tools/xmlValidator)
+if (CLIENT_SIMULATOR)
+    add_subdirectory(tools/clientSimulator)
+endif()
 
 add_subdirectory(bindings)
 
