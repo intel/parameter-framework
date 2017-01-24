@@ -47,5 +47,5 @@ if(BUILD_TESTING)
     endif()
 
     add_library(catch STATIC catch.cpp)
-    target_include_directories(catch PUBLIC "${CATCH_HEADER}")
+    target_include_directories(catch SYSTEM PUBLIC "${CATCH_HEADER}")
 endif()
