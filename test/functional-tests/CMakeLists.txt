@@ -38,6 +38,7 @@ if(BUILD_TESTING)
                    FloatingPoint.cpp
                    FixedPoint.cpp
                    Integer.cpp
+                   Logarithmic.cpp
                    Handle.cpp
                    AutoSync.cpp)
 
