@@ -130,6 +130,31 @@ SCENARIO_METHOD(IntegerPF, "Integer types", "[Integer types]")
                 }
             }
 
+            AND_THEN ("Set/Get a integer type parameter in raw value space") {
+                REQUIRE_NOTHROW(setRawValueSpace(true));
+                REQUIRE_NOTHROW(setHexOutputFormat(true));
+
+                for (auto &vec : Tests<string>{
+                         {"(too high)", "0x0D"}, {"(too low)", "0xCD"},
+                     }) {
+                    GIVEN ("Invalid value " + vec.title) {
+                        CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
+                    }
+                }
+                for (auto &vec : Tests<string>{
+                         {"(upper limit)", "0x0C"},
+                         {"(lower limit)", "0xCE"},
+                         {"(inside range)", "0x00"},
+                     }) {
+                    GIVEN ("A valid value " + vec.title) {
+                        CHECK_NOTHROW(setParameter(path, vec.payload));
+                        string getValueBack;
+                        REQUIRE_NOTHROW(getParameter(path, getValueBack));
+                        CHECK(getValueBack == vec.payload);
+                    }
+                }
+            }
+
             AND_THEN ("Set/Get integer type parameter handle") {
                 ElementHandle handle{*this, path};
                 /** @FIXME: 'set' operations on a ParameterHandle are silently
