@@ -37,6 +37,7 @@ if(BUILD_TESTING)
                    Basic.cpp
                    Boolean.cpp
                    BitParameter.cpp
+                   EnumParameter.cpp
                    FloatingPoint.cpp
                    FixedPoint.cpp
                    Integer.cpp
