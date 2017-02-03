@@ -35,6 +35,7 @@ if(BUILD_TESTING)
     # Add unit test
     add_executable(parameterFunctionalTest
                    Basic.cpp
+                   Boolean.cpp
                    FloatingPoint.cpp
                    FixedPoint.cpp
                    Integer.cpp
