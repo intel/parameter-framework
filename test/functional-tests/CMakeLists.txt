@@ -36,6 +36,7 @@ if(BUILD_TESTING)
     add_executable(parameterFunctionalTest
                    Basic.cpp
                    Boolean.cpp
+                   BitParameter.cpp
                    FloatingPoint.cpp
                    FixedPoint.cpp
                    Integer.cpp
