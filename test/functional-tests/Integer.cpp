@@ -154,6 +154,30 @@ SCENARIO_METHOD(IntegerPF, "Integer types", "[Integer types]")
                     }
                 }
             }
+
+            AND_THEN ("Set/Get double type parameter handle") {
+                ElementHandle handle{*this, path};
+                /** @FIXME: 'set' operations on a ParameterHandle are silently
+                 * ignored in tuning mode. Does it make sense ? */
+                REQUIRE_NOTHROW(setTuningMode(false));
+
+                for (auto &vec : Tests<double>{
+                         {"(upper limit)", 12.0f},
+                         {"(lower limit)", -50.0f},
+                         {"(inside range)", 0.0f},
+                     }) {
+                    GIVEN ("A valid value (rejected not supported)" + vec.title) {
+                        CHECK_THROWS_AS(handle.setAsDouble(vec.payload), Exception);
+                    }
+                }
+                for (auto &vec : Tests<double>{
+                         {"(too high)", 12.01f}, {"(too low)", -50.01f},
+                     }) {
+                    GIVEN ("An invalid value " + vec.title) {
+                        CHECK_THROWS_AS(handle.setAsDouble(vec.payload), Exception);
+                    }
+                }
+            }
         }
     }
 }
