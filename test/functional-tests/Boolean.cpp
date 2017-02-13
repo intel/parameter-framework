@@ -81,6 +81,24 @@ SCENARIO_METHOD(BooleanPF, "Boolean types", "[Boolean types]")
                 }
             }
 
+            AND_THEN ("Set/Get boolean type parameter handle") {
+                ElementHandle handle{*this, path};
+                /** @FIXME: 'set' operations on a ParameterHandle are silently
+                 * ignored in tuning mode. Does it make sense ? */
+                REQUIRE_NOTHROW(setTuningMode(false));
+
+                for (auto &vec : Tests<bool>{
+                         {"(upper limit)", true}, {"(lower limit)", false},
+                     }) {
+                    GIVEN ("A valid value " + vec.title) {
+                        CHECK_NOTHROW(handle.setAsBoolean(vec.payload));
+                        bool getValueBack;
+                        REQUIRE_NOTHROW(handle.getAsBoolean(getValueBack));
+                        CHECK(getValueBack == vec.payload);
+                    }
+                }
+            }
+
             AND_THEN ("Set/Get integer type parameter handle") {
                 ElementHandle handle{*this, path};
                 /** @FIXME: 'set' operations on a ParameterHandle are silently
