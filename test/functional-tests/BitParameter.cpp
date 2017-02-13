@@ -45,7 +45,7 @@ namespace parameterFramework
 const auto validBitParameterInstances = Config{
     &Config::instances,
     // Default for integers is unsigned/32bits
-    R"(<BitParameterBlock Name="nominal" Size="16"><BitParameter Pos="1" Size="2" Name="twobits"/><BitParameter Pos="3" Size="3" Max="6" Name="treebits"/></BitParameterBlock>)"};
+    R"(<BitParameterBlock Name="nominal" Size="16"><BitParameter Pos="0" Size="1" Name="bool"/><BitParameter Pos="1" Size="2" Name="twobits"/><BitParameter Pos="3" Size="3" Max="6" Name="treebits"/></BitParameterBlock>)"};
 
 const auto &invalidBitParameterParameters =
     Tests<string>{{"Too much bits", "<BitParameterBlock Name='toomuchbits' Size='8'><BitParameter "
@@ -120,6 +120,40 @@ SCENARIO_METHOD(BitParameterPF, "BitParameter types", "[BitParameter types]")
                         CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
                         REQUIRE_NOTHROW(getParameter(path, getValueBack));
+                        CHECK(getValueBack == vec.payload);
+                    }
+                }
+            }
+
+            AND_THEN ("Set/Get a BitParameter type parameter in boolean") {
+                ElementHandle handle{*this, path};
+                /** @FIXME: 'set' operations on a ParameterHandle are silently
+                 * ignored in tuning mode. Does it make sense ? */
+                REQUIRE_NOTHROW(setTuningMode(false));
+
+                for (auto &vec : Tests<bool>{
+                         {"(upper limit)", true}, {"(lower limit)", false},
+                     }) {
+                    GIVEN ("Invalid value " + vec.title) {
+                        CHECK_THROWS_AS(handle.setAsBoolean(vec.payload), Exception);
+                    }
+                }
+            }
+
+            AND_THEN ("Set/Get a BitParameter type parameter in boolean") {
+                path = "/test/test/nominal/bool";
+                ElementHandle handle{*this, path};
+                /** @FIXME: 'set' operations on a ParameterHandle are silently
+                 * ignored in tuning mode. Does it make sense ? */
+                REQUIRE_NOTHROW(setTuningMode(false));
+
+                for (auto &vec : Tests<bool>{
+                         {"(upper limit)", true}, {"(lower limit)", false},
+                     }) {
+                    GIVEN ("A valid value " + vec.title) {
+                        CHECK_NOTHROW(handle.setAsBoolean(vec.payload));
+                        bool getValueBack;
+                        REQUIRE_NOTHROW(handle.getAsBoolean(getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
