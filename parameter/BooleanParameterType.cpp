@@ -108,6 +108,7 @@ bool CBooleanParameterType::toBlackboard(uint32_t uiUserValue, uint32_t &uiValue
     if (uiUserValue > 1) {
 
         parameterAccessContext.setError("Value out of range");
+        return false;
     }
 
     uiValue = uiUserValue;
