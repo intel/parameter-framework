@@ -157,6 +157,42 @@ class TestCases(PfwTestCase):
         indexed_files_system_array_value = open(self.param_short_name).read().splitlines()[index]
         assert indexed_files_system_array_value == hex_indexed_array_value, log.F("FILESSYSTEM : %s[%s] update error"
                                                                                   % (self.param_name, str(index)))
+    def test_dump_Values(self):
+        """
+        Testing INT16_ARRAY dump value
+        ---------------------------------
+            Test case description :
+            ~~~~~~~~~~~~~~~~~~~~~~~
+                - Set every INT16_ARRAY elements to values : 1 0 -50 0 0
+            Tested commands :
+            ~~~~~~~~~~~~~~~~~
+                - [setParameter] function
+            Used commands :
+            ~~~~~~~~~~~~~~~
+                - [getParameter] function
+            Expected result :
+            ~~~~~~~~~~~~~~~~~
+                - INT16_ARRAY array elements correctly recorded
+                - Blackboard and filesystem values checked
+        """
+        log.D(self.test_dump_Values.__doc__)
+        index = 2
+        indexed_array_value = self.array_min
+        indexed_array_value_path = "".join([self.param_name, "/", str(index)])
+        hex_indexed_array_value = hex(c_uint16(indexed_array_value).value)
+        #Check parameter value setting
+        out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value))
+        assert err == None, log.E("when setting parameter %s[%s]: %s"
+                                  % (self.param_name, str(index), err))
+        assert out == "Done", log.E("when setting parameter %s[%s]: %s"
+                                  % (self.param_name, str(index), out))
+        #Check parameter value on blackboard
+        out, err = self.pfw.sendCmd("dumpElement", str(self.param_name), "")
+        #out, err = self.pfw.sendCmd("getParameter", str(indexed_array_value_path), "")
+        assert err == None, log.E("when setting parameter %s[%s] : %s"
+                                  % (self.param_name, str(index), err))
+        assert out == str("- IntegerParameter: INT16_ARRAY = 1 0 -50 0 0"), log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
+                                                      % (self.param_name, str("- IntegerParameter: INT16_ARRAY = 1 0 -50 0 0"), out))
 
     def test_Min_Value_Overflow(self):
         """
