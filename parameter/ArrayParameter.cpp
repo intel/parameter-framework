@@ -171,7 +171,7 @@ bool CArrayParameter::access(std::vector<string> &astrValues, bool bSet,
 string CArrayParameter::logValue(CParameterAccessContext &context) const
 {
     // Dump values
-    return getValues(0, context);
+    return getValues(getOffset() - context.getBaseOffset(), context);
 }
 
 // Used for simulation and virtual subsystems
