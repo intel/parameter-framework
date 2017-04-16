@@ -207,7 +207,8 @@ bool CSystemClass::loadPlugins(list<string> &lstrPluginFiles, core::Results &err
             // Next plugin
             ++it;
 
-            continue;
+            // Serious error, break loop to throw it to caller.
+            break;
         }
 
         // Account for this success
