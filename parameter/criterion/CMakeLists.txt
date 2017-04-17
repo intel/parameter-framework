@@ -40,7 +40,7 @@ include_directories(
 target_link_libraries(criterion pfw_utility xmlserializer)
 
 # '-fPIC' needed for shared library to link against libcriterion
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wno-error=parentheses")
 
 # Client headers
 install(FILES
