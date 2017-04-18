@@ -72,6 +72,7 @@ public:
     void listChildren(std::string &strChildList) const;
     std::string listQualifiedPaths(bool bDive, size_t level = 0) const;
     void listChildrenPaths(std::string &strChildPathList) const;
+    void getSubpaths(std::vector<std::string> &results) const;
 
     // Hierarchy query
     size_t getNbChildren() const;
