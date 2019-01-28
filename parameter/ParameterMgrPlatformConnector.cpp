@@ -30,6 +30,7 @@
 #include "ParameterMgrPlatformConnector.h"
 #include "ParameterMgr.h"
 #include "ParameterMgrLogger.h"
+#include "Memory.hpp"
 #include <assert.h>
 
 using std::string;
@@ -37,16 +38,15 @@ using std::string;
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
     const string &strConfigurationFilePath)
-    : _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this)),
-      _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
+    : _pParameterMgrLogger(utility::make_unique<CParameterMgrLogger<CParameterMgrPlatformConnector>>(*this)),
+      _pParameterMgr(utility::make_unique<CParameterMgr>(strConfigurationFilePath, *_pParameterMgrLogger)),
       _bStarted(false), _pLogger(nullptr)
 {
 }
 
 CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
 {
-    delete _pParameterMgr;
-    delete _pParameterMgrLogger;
+    ;
 }
 
 // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
