@@ -324,8 +324,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 
 // Remote command parsers array Size
 CParameterMgr::CParameterMgr(const string &strConfigurationFilePath, log::ILogger &logger)
-    : _pMainParameterBlackboard(new CParameterBlackboard),
-      _pElementLibrarySet(new CElementLibrarySet),
+    : _pMainParameterBlackboard(utility::make_unique<CParameterBlackboard>()),
+      _pElementLibrarySet(utility::make_unique<CElementLibrarySet>()),
       _xmlConfigurationUri(CXmlDocSource::mkUri(strConfigurationFilePath, "")), _logger(logger)
 {
     // Deal with children
@@ -337,10 +337,7 @@ CParameterMgr::CParameterMgr(const string &strConfigurationFilePath, log::ILogge
 
 CParameterMgr::~CParameterMgr()
 {
-    // Children
-    delete _pRemoteProcessorServer;
-    delete _pMainParameterBlackboard;
-    delete _pElementLibrarySet;
+    ;
 }
 
 string CParameterMgr::getKind() const
@@ -393,14 +390,14 @@ bool CParameterMgr::load(string &strError)
         LOG_CONTEXT("Main blackboard back synchronization");
 
         // Back synchronization for areas in parameter blackboard not covered by any domain
-        BackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard).sync();
+        BackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard.get()).sync();
     }
 
     // We're done loading the settings and back synchronizing
     CConfigurableDomains *pConfigurableDomains = getConfigurableDomains();
 
     // We need to ensure all domains are valid
-    pConfigurableDomains->validate(_pMainParameterBlackboard);
+    pConfigurableDomains->validate(_pMainParameterBlackboard.get());
 
     // Log selection criterion states
     {
@@ -792,7 +789,7 @@ void CParameterMgr::getSettingsAsBytes(const CConfigurableElement &element,
     // Prepare parameter access context for main blackboard.
     // No need to handle output raw format and value space as Byte arrays are hexa formatted
     CParameterAccessContext parameterAccessContext(error);
-    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard.get());
 
     // Get the settings
     element.getSettingsAsBytes(settings, parameterAccessContext);
@@ -809,7 +806,7 @@ bool CParameterMgr::setSettingsAsBytes(const CConfigurableElement &element,
     //       This may lead to undetected out of range value assignment.
     //       Use this functionality with caution
     CParameterAccessContext parameterAccessContext(error);
-    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard.get());
     parameterAccessContext.setAutoSync(autoSyncOn());
 
     // Set the settings
@@ -1524,7 +1521,7 @@ bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableEle
                                      string &result) const
 {
     string error;
-    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard, _bValueSpaceIsRaw,
+    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard.get(), _bValueSpaceIsRaw,
                                               _bOutputRawFormatIsHex, true);
 
     CXmlParameterSerializingContext xmlParameterContext(configContext, error);
@@ -1548,7 +1545,7 @@ bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableEle
 bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
                                      const string &settings, string &error)
 {
-    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard, _bValueSpaceIsRaw,
+    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard.get(), _bValueSpaceIsRaw,
                                               _bOutputRawFormatIsHex, false);
 
     CXmlParameterSerializingContext xmlParameterContext(configContext, error);
@@ -1567,7 +1564,7 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
         CSyncerSet syncerSet;
         static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
         core::Results errors;
-        if (not syncerSet.sync(*_pMainParameterBlackboard, false, &errors)) {
+        if (not syncerSet.sync(*_pMainParameterBlackboard.get(), false, &errors)) {
             error = utility::asString(errors);
 
             return false;
@@ -1631,7 +1628,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandP
 
     string strError;
 
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard,
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard.get(),
                                                    _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Dump elements
@@ -1966,7 +1963,7 @@ bool CParameterMgr::accessParameterValue(const string &strPath, string &strValue
     }
 
     // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard,
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard.get(),
                                                    _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Activate the auto synchronization with the hardware
@@ -2070,7 +2067,7 @@ bool CParameterMgr::accessConfigurationValue(const string &strDomain,
     if (bIsLastApplied) {
 
         // Define Main context
-        parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+        parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard.get());
 
         // Activate the auto synchronization with the hardware
         if (bSet) {
@@ -2210,7 +2207,7 @@ bool CParameterMgr::sync(string &strError)
 
     // Sync
     core::Results error;
-    if (!syncerSet.sync(*_pMainParameterBlackboard, false, &error)) {
+    if (!syncerSet.sync(*_pMainParameterBlackboard.get(), false, &error)) {
 
         strError = utility::asString(error);
         return false;
@@ -2312,7 +2309,7 @@ bool CParameterMgr::createConfiguration(const string &strDomain, const string &s
 
     // Delegate to configurable domains
     return logResult(getConfigurableDomains()->createConfiguration(
-                         strDomain, strConfiguration, _pMainParameterBlackboard, strError),
+                         strDomain, strConfiguration, _pMainParameterBlackboard.get(), strError),
                      strError);
 }
 bool CParameterMgr::renameConfiguration(const string &strDomain, const string &strConfiguration,
@@ -2362,7 +2359,7 @@ bool CParameterMgr::restoreConfiguration(const string &strDomain, const string &
     // Delegate to configurable domains
     return logResult(
         getConstConfigurableDomains()->restoreConfiguration(
-            strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, errors),
+            strDomain, strConfiguration, _pMainParameterBlackboard.get(), _bAutoSyncOn, errors),
         strError);
 }
 
@@ -2380,7 +2377,7 @@ bool CParameterMgr::saveConfiguration(const string &strDomain, const string &str
 
     // Delegate to configurable domains
     return logResult(getConfigurableDomains()->saveConfiguration(
-                         strDomain, strConfiguration, _pMainParameterBlackboard, strError),
+                         strDomain, strConfiguration, _pMainParameterBlackboard.get(), strError),
                      strError);
 }
 
@@ -2415,7 +2412,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string &strDomain,
     // Delegate
     core::Results infos;
     bool isSuccess = getConfigurableDomains()->addConfigurableElementToDomain(
-        strDomain, pConfigurableElement, _pMainParameterBlackboard, infos);
+        strDomain, pConfigurableElement, _pMainParameterBlackboard.get(), infos);
 
     if (isSuccess) {
         info() << infos;
@@ -2556,7 +2553,7 @@ bool CParameterMgr::importDomainsXml(const string &xmlSource, bool withSettings,
     if (importSuccess) {
 
         // Validate domains after XML import
-        pConfigurableDomains->validate(_pMainParameterBlackboard);
+        pConfigurableDomains->validate(_pMainParameterBlackboard.get());
     }
 
     return importSuccess;
@@ -2731,7 +2728,7 @@ std::mutex &CParameterMgr::getBlackboardMutex()
 // Blackboard reference (dynamic parameter handling)
 CParameterBlackboard *CParameterMgr::getParameterBlackboard()
 {
-    return _pMainParameterBlackboard;
+    return _pMainParameterBlackboard.get();
 }
 
 // Dynamic creation library feeding
@@ -2856,14 +2853,9 @@ bool CParameterMgr::handleRemoteProcessingInterface(string &strError)
 
     try {
         // The ownership of remoteComandHandler is given to Bg remote processor server.
-        _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, createCommandHandler());
+        _pRemoteProcessorServer = utility::make_unique<BackgroundRemoteProcessorServer>(port, createCommandHandler());
     } catch (std::runtime_error &e) {
         strError = string("ParameterMgr: Unable to create Remote Processor Server: ") + e.what();
-        return false;
-    }
-
-    if (_pRemoteProcessorServer == nullptr) {
-        strError = "ParameterMgr: Unable to create Remote Processor Server";
         return false;
     }
 
@@ -2936,7 +2928,7 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
     getSystemClass()->checkForSubsystemsToResync(syncerSet, infos);
 
     // Ensure application of currently selected configurations
-    getConfigurableDomains()->apply(_pMainParameterBlackboard, syncerSet, bForce, infos);
+    getConfigurableDomains()->apply(_pMainParameterBlackboard.get(), syncerSet, bForce, infos);
     info() << infos;
 
     // Reset the modified status of the current criteria to indicate that a new configuration has
