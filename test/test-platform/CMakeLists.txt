@@ -30,9 +30,12 @@ if(NETWORKING)
     add_executable(test-platform
         main.cpp
         TestPlatform.cpp)
-
+    
+    set(CMAKE_THREAD_PREFER_PTHREAD 1)
+    find_package(Threads REQUIRED)
+    
     target_link_libraries(test-platform
-            PRIVATE parameter pfw_utility remote-processor)
+            PRIVATE parameter pfw_utility remote-processor Threads::Threads)
     # Workaround because asio is still leaking to test-platform
     target_link_libraries(test-platform PRIVATE asio)
 
