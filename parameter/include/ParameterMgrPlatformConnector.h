@@ -37,6 +37,8 @@
 #include "ElementHandle.h"
 #include "ParameterMgrLoggerForward.h"
 
+#include <memory>
+
 class CParameterMgr;
 
 class PARAMETER_EXPORT CParameterMgrPlatformConnector
@@ -196,9 +198,9 @@ private:
 
 protected:
     // Private logging
-    CParameterMgrLogger<CParameterMgrPlatformConnector> *_pParameterMgrLogger;
+    std::unique_ptr<CParameterMgrLogger<CParameterMgrPlatformConnector>> _pParameterMgrLogger;
     // Implementation
-    CParameterMgr *_pParameterMgr;
+    std::unique_ptr<CParameterMgr> _pParameterMgr;
     // State
     bool _bStarted;
     // Logging

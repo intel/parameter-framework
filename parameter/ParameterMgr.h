@@ -856,10 +856,10 @@ private:
     bool _bAutoSyncOn{true};
 
     // Current Parameter Settings
-    CParameterBlackboard *_pMainParameterBlackboard;
+    std::unique_ptr<CParameterBlackboard> _pMainParameterBlackboard;
 
     // Dynamic object creation
-    CElementLibrarySet *_pElementLibrarySet;
+    std::unique_ptr<CElementLibrarySet> _pElementLibrarySet;
 
     // XML parsing, object creation handling
     std::string _xmlConfigurationUri;
@@ -869,7 +869,7 @@ private:
     const CSubsystemPlugins *_pSubsystemPlugins{nullptr};
 
     // Remote Processor Server
-    IRemoteProcessorServerInterface *_pRemoteProcessorServer{nullptr};
+    std::unique_ptr<IRemoteProcessorServerInterface> _pRemoteProcessorServer;
 
     // Parser description array
     static const SRemoteCommandParserItem gastRemoteCommandParserItems[];
