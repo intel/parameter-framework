@@ -106,6 +106,13 @@ protected:
     // Subsystem object creator publication (strong reference)
     void addSubsystemObjectFactory(CSubsystemObjectCreator *pSubsystemObjectCreator);
 
+    /** Logging methods
+     *@{
+     */
+    core::log::details::Info info() const { return _logger.info(); }
+    core::log::details::Warning warning() const { return _logger.warning(); }
+    /* @} */
+
 private:
     CSubsystem(const CSubsystem &);
     CSubsystem &operator=(const CSubsystem &);
